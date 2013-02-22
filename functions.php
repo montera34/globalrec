@@ -83,10 +83,10 @@ register_taxonomy( 'gb-year', 'global-meeting', array(
 	'label' => 'Year',
 	'query_var' => true,
 	'rewrite' => true ) );
-}
+
 register_taxonomy( 'post-region', 'post', array(
 	'hierarchical' => true,
-	'label' => 'Region',
+	'label' => 'Regions',
 	'query_var' => true,
 	'rewrite' => true ) );
 }

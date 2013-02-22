@@ -13,10 +13,12 @@ get_header(); ?>
 	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 		//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 		$args = array(
-	 'caller_get_posts' => 1,
-	 'post_type' => 'bio', 
-	 'posts_per_page' => -1, 
-	 'post_parent' => 0
+		'caller_get_posts' => 1,
+		'post_type' => 'bio', 
+		'posts_per_page' => -1, 
+		'post_parent' => 0,
+		'order' =>  'ASC',
+		'orderby' =>  'title'
 		);
 
 	if ( $paged > 1 ) {
@@ -32,19 +34,17 @@ get_header(); ?>
 		
 		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
 
-	<div class="storycontent">
+	
 		<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;">
 			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
 					<?php the_post_thumbnail( 'thumbnail' ); ?>
 			</a> 
 		</div>
-	</div>
-</div>
-
+	
 	<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 	<?php endif; ?>
-
+</div>
 	
 
 	<div class="navigation">

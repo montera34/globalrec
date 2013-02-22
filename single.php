@@ -15,8 +15,11 @@ get_header();
 	 <h3 class=""><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a><div class="edit-button"><?php edit_post_link(__('Edit This')); ?></div></h3>
 				
 	<div class="postmetadata">
-									<?php the_time('F d, Y') ?>	&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;<?php the_category(', ') ?>
-									&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;<?php the_author_posts_link(); ?>
+		<?php the_time('F d, Y') ?> &nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp; In category <?php the_category(', ') ?>&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp; by <?php the_author_posts_link(); ?>&nbsp;&nbsp;&nbsp;
+		<!--&bull;&nbsp;&nbsp;Region <?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?> -->
+		
 									
 	</div>
 	<div class="share">

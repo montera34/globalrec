@@ -96,6 +96,11 @@ get_header(); ?>
 									<?php the_time('F d, Y') ?>&nbsp;<?php the_category(', ') ?>					
 						</div>
 						<div class="storycontent">
+							<?php if (has_post_thumbnail()) {
+							echo "<div class=\"size-thumbnail wp-image-2864 alignleft\" style=\"float:left;font-size:12px;margin:0 10px 10px 0;\">";
+							the_post_thumbnail( 'thumbnail' );
+							echo "</div>";
+							} ?>
 							<?php the_excerpt(); ?>
 						</div>
 					</div>

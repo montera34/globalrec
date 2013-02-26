@@ -343,5 +343,6 @@ function initialize_cmb_meta_boxes() {
 
 //--------------------------finishes metaboxes--------------------------//
 
+ add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
 
 ?>

@@ -48,6 +48,11 @@ get_header(); ?>
 
 
 			<div id="post-<?php the_ID(); ?>" <?php post_class('portada-home sticky'); ?>	>
+				<?php if ( has_post_thumbnail()) : ?>
+					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+					<?php the_post_thumbnail(array(300,300)); ?>
+					</a>
+				<?php endif; ?> 
 				<h4 class="post-title"><a style="color:#000000;" href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h4>
 				<div class="postmetadata">
 							<?php the_time('F d, Y') ?>&nbsp;<?php the_category(', ') ?>					

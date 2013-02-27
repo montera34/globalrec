@@ -18,7 +18,7 @@ get_header();
 		<?php the_time('F d, Y') ?> &nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp; In category <?php the_category(', ') ?>&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp; by <?php the_author_posts_link(); ?>&nbsp;&nbsp;&nbsp;
-		<!--&bull;&nbsp;&nbsp;Region <?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?> -->
+		&nbsp;&nbsp;Region <?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?> 
 							
 	</div>
 	<div class="share">

@@ -32,31 +32,49 @@ $termdesc = $wp_query->queried_object->description;
 <span class"postmetadata alt"> <?php echo category_description(); ?></span>	
 
 					
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<?php if (have_posts()) : 
+	$count = 0;
+	while (have_posts()) : the_post(); 
+	$count++;
+	if ( $count == 1 ) { echo "<div class='row'>"; }
+	?>
 <div class="portada-post archive-post post-<?php the_ID(); ?>">
 	<div style="margin:0 10px 10px 0;">
-	<?php the_post_thumbnail( array(150,150) ); ?> 	</div>
+	<?php 
+	if ( has_post_thumbnail()) : ?>
+		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+		<?php the_post_thumbnail('thumbnail'); ?>
+		</a>
+	<?php 
+	else:
+		echo '<img width="150" src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.png" />';
+	endif;
+	 ?> 	</div>
 	<h4 class="archive-header">
 		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 			<?php the_title() ?>
 		</a>
 	</h4>
-	<!--div class="postmetadata">
-		<?php the_time('F d, Y') ?>										
-	</div-->
+	<?php //related excerpt
+	$post_excerpt = get_the_excerpt();
+	$pattern = '/.{180}/i';
+	preg_match($pattern, $post_excerpt, $matches);
+	if ( $matches[0] != '' ) {
+		$post_excerpt = $matches[0] . "...";
+	} ?> 
 	<div class="excerpt">
-		<?php the_excerpt(); ?> 
+		<p><?php echo "" .$post_excerpt; ?> </p>
 	</div>
 	<div class="postmetadata">
-		<?php the_time('F d, Y') ?> &nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp; In category <?php the_category(', ') ?>&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp; by <?php the_author_posts_link(); ?>&nbsp;&nbsp;&nbsp;
-		<!--&bull;&nbsp;&nbsp;Region <?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?> -->					
+		<?php the_time('F d, Y') ?>
+		&nbsp;In category <?php the_category(', ') ?>
+		&nbsp;by <?php the_author_posts_link(); ?>
+		&nbsp;Region <?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?>					
 	</div>
 </div>
 
-<?php comments_template(); // Get wp-comments.php template ?>
-
+<?php //comments_template(); // Get wp-comments.php template  
+	if ( $count == 2 ) { echo "</div><!-- .row -->"; $count = 0; }?>
 <?php endwhile; else: ?>
 <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 <?php endif; ?>

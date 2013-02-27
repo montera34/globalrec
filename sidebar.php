@@ -9,19 +9,9 @@
 
 <ul>
 <?php do_action('icl_language_selector'); ?>
-<?php 	/* Widgetized sidebar, if you have the plugin installed. */
-		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar() ) : ?>
-	<?php /*
-			$args = array(
-			'depth'        => 0,
-			'sort_column'  => 'menu_order, post_title',
-			'title_li'     => __(''));
-			wp_list_pages( $args ); */?> 
-
-	<?php wp_nav_menu( array( 'theme_location' => 'side-menu' ) ); ?>
-
+<?php wp_nav_menu( array( 'theme_location' => 'side-menu' ) ); ?>
 <?php 
-	if ( is_page('blog') || is_single() || is_category() || is_search()) { 
+	if ( is_page('blog') || is_category() || is_search()) { 
 		echo '<li id="secondnav">Categories</li>';
 		$args = array(//'exclude' => 568,
 'title_li'     => __('')		);
@@ -46,16 +36,7 @@
 	</div>
 	</form>
  </li>
- 
- <!--li id="meta"><?php _e('Meta:'); ?>
-	<ul>
-		<?php wp_register(); ?>
-		<li><?php wp_loginout(); ?></li>
-		<li><a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('Syndicate this site using RSS'); ?>"><?php _e('<abbr title="Really Simple Syndication">RSS</abbr>'); ?></a></li>
-		<li><a href="<?php bloginfo('comments_rss2_url'); ?>" title="<?php _e('The latest comments to all posts in RSS'); ?>"><?php _e('Comments <abbr title="Really Simple Syndication">RSS</abbr>'); ?></a></li>
-	</ul>
- </li-->
-<?php endif; ?>
+
 
 </ul>
 

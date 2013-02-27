@@ -66,6 +66,31 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 	'_edit_link' => 'post.php?post=%d',
 	)
 );
+
+register_post_type( 'newsletter', array( // Defining Newsletter custom post type
+	'labels' => array(
+		'name' => __( 'Newsletters' ),
+		'singular_name' => __( 'Newsletters' ),
+		'add_new_item' => __( 'Add Newsletter' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New Newsletter' ),
+		'view' => __( 'View Newsletter' ),
+		'view_item' => __( 'View Newsletter' ),
+		'search_items' => __( 'Search Newsletter' ),
+		'not_found' => __( 'We didnt found any Newsletter' ),
+		'not_found_in_trash' => __( 'No Newsletter in the trash bin' ),
+		'parent' => __( 'Parent Newsletter' )
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
+	'rewrite' => array('slug'=>'newsletter','with_front'=>false),
+	//'_builtin' => false,
+	'_edit_link' => 'post.php?post=%d',
+	)
+);
 }
 
 

@@ -69,7 +69,11 @@ $termdesc = $wp_query->queried_object->description;
 		<?php the_time('F d, Y') ?>
 		&nbsp;In category <?php the_category(', ') ?>
 		&nbsp;by <?php the_author_posts_link(); ?>
-		&nbsp;Region <?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?>					
+		<?php if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
+		echo " Region: ";	
+		echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
+		endif;
+	 	?> 	
 	</div>
 </div>
 

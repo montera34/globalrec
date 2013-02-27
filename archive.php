@@ -57,13 +57,14 @@ $termdesc = $wp_query->queried_object->description;
 	</h4>
 	<?php //related excerpt
 	$post_excerpt = get_the_excerpt();
-	$pattern = '/.{180}/i';
+	$pattern = '/.{210}/i';
 	preg_match($pattern, $post_excerpt, $matches);
 	if ( $matches[0] != '' ) {
 		$post_excerpt = $matches[0] . "...";
 	} ?> 
 	<div class="excerpt">
-		<p><?php echo "" .$post_excerpt; ?> </p>
+		<p><?php if($post->post_excerpt) : the_excerpt(); else: 
+			echo "" .$post_excerpt; endif; ?> </p>
 	</div>
 	<div class="postmetadata">
 		<?php the_time('F d, Y') ?>

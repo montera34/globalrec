@@ -10,6 +10,7 @@ get_header(); ?>
 	</h2>
 	<?php the_content();  
 	endwhile; endif; 
+
 	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 		//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 		$args = array(
@@ -33,13 +34,15 @@ get_header(); ?>
 		$wp_query->in_the_loop = true;
 		
 		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-
-	
-		<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;">
-			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
-					<?php the_post_thumbnail( 'thumbnail' ); ?>
-			</a> 
-		</div>
+		<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), thumbnail, false, '' ); ?>
+		<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
+			<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: relative;width:150px;height:150px;background-image:url('<?php echo $src[0]; ?>');">
+			<?php //the_post_thumbnail( 'thumbnail' ); ?>
+				<div class='box-bottom'>
+				<span><?php the_title_attribute(); ?></span>
+				</div><!-- .box-bottom -->
+			</div>
+		</a>
 	
 	<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>

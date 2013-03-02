@@ -940,3 +940,22 @@ background-color: #04C;
 	/*height:400px;*/
 
 }
+/* storify */
+.sfy-story {
+	clear:none !important;
+}
+
+/*---*/
+.box-bottom {
+position: absolute;
+bottom: 0px;
+text-align: center;
+height: 20px;
+width: 100%;
+background-color:white;
+opacity:.5;
+}
+.box-bottom span {
+font-size: 12px;
+color: black;
+}

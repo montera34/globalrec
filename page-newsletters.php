@@ -16,7 +16,7 @@ get_header(); ?>
 		//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 		$args = array(		//arguments for showing newsletters custom post type
 			'post_type' => 'newsletter', 
-			'posts_per_page' => -1, 
+			'posts_per_page' => 1, 
 			'post_parent' => 0,
 			'order' =>  'ASC',
 			'orderby' =>  'title'

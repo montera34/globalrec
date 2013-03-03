@@ -949,8 +949,9 @@ background-color: #04C;
 .box-bottom {
 position: absolute;
 bottom: 0px;
-text-align: center;
-height: 20px;
+/*text-align: center;*/
+padding-left:5px;
+min-height: 20px;
 width: 100%;
 background-color:white;
 opacity:.5;

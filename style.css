@@ -450,7 +450,7 @@ margin:3px 0 0 3px;
 
 .portada-post{
  margin: 0 0 18px 0;
- min-height: 380px;
+ min-height: 310px;
 }
 
 .post-short{
@@ -538,6 +538,7 @@ padding: 0px 0 5px 0;
 
 .post, .type-proyectos{
 width:600px;	
+min-height: 210px;
 }
 
 

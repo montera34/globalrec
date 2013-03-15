@@ -20,8 +20,11 @@
 	<meta content="Global Alliance of Waste Pickers" name="organization" />
 	
 	
+<!-- Bootstrap -->
+<link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
+<!-- /Bootstrap -->
 
-	<style type="text/css" media="screen">
+	 <style type="text/css" media="screen">
 		@import url( <?php bloginfo('stylesheet_url'); ?> );
 	</style>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
@@ -51,40 +54,38 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-
-<div id="wrap">
-<div id="header">
-	<div id="header-top">
-		<h1>
-		<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/"><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png"></a>
-		<a href="<?php bloginfo('url'); ?>/" style="display:none;"><?php bloginfo('name'); ?></a><span id="header-top-top" class="tagline" ><img alt="Global Alliance of Waste Pickers" src="<?php bloginfo('template_url'); ?>/images/logotipo_1.png"></span><span style="display:none;"><?php bloginfo('description'); ?></span>
-		</h1>
-
-
-	<?php if (is_page(78)){
-	echo "";
-	} else {
-	//  echo "<div id=\"google_translate_element\"></div>";
-	  /*echo "<script>
-			function googleTranslateElementInit() {
-				new google.translate.TranslateElement({
-				pageLanguage:'auto',
-				autoDisplay: false,
-				includedLanguages: 'zh-CN,fr,pt,es,en',
-				multilanguagePage: true,
-				gaTrack: true,
-				gaId: 'UA-26606134',
-				layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-				}, 'google_translate_element');
-			}
-		</script>
-		<script src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'></script>";*/
-	}?>
-
-		
-		
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">	
+			<div class="span12">
+				<?php $defaults = array(
+					'theme_location'  => 'side-menu',
+					'container' => 'false',
+					'menu_id' => 'pre-menu',
+					'menu_class' => 'nav menu_class navbar inline-menu'
+					);
+				wp_nav_menu( $defaults );?>
+			</div>
+		</div>
 	</div>
-
 </div>
-
+<!--span id="header-top-top" class="tagline" ><img alt="Global Alliance of Waste Pickers" src="<?php bloginfo('template_url'); ?>/images/logotipo_1.png" style="display:none;"></span-->
+<div class="container">
+	<div class="row-fluid" style="padding-top: 60px;">
+		<div id="logo" class="span8">
+			<h2 class="textfuera"><a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/"><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png"></a> Global Alliance of Waste Pickers</h2>
+			<h2 class="textfuera"><?php echo $genvars['blogdesc']; ?></h2>
+		</div><!-- #logo -->
+		<div id="search" class="span4">
+			<?php get_search_form(); ?>
+		</div>
+		<li class=""> 	
+			<a href="http://www.twitter.com/global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" />x
+			</a>
+		</li>
+		<li class=" "> <a href="http://www.facebook.com/pages/GlobalRec/207415605997716">
+			<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" />  </a>
+		</li>
+	</div>
+</div>
 <!-- end header -->

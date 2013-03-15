@@ -12,7 +12,7 @@ get_header();
 
 
 <div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-	 <h3 class=""><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a><div class="edit-button"><?php edit_post_link(__('Edit This')); ?></div></h3>
+	 <h3 class=""><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link(); ?></h3>
 				
 	<div class="postmetadata">
 		<?php the_time('F d, Y') ?> &nbsp;&nbsp;

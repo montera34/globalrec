@@ -1,6 +1,6 @@
 <?php  /* Template Name: Page Home*/ 
 get_header(); ?>
-<div id="content">
+<div class="container">
 	<?php get_sidebar(); ?>
 	<div id="main-portada">
 		<div id="front-0">
@@ -11,10 +11,7 @@ get_header(); ?>
 		</div>
 		<div id="front-1">
 		<a href="blog" title="Go to blog" alt="Go to blog">Blog Posts</a>
-		<?php
-		
-		
-		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
+		<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 		
 		/* Get all sticky posts */
 		$sticky = get_option( 'sticky_posts' );

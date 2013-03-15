@@ -82,7 +82,64 @@ body {
 	background-position:right top;*/
 }
 
+/*------------new menu------------*/
+#pre-menu {
+	/*position: relative;
+	bottom: 0px;*/
+}
+#pre-menu li {
+	
+}
+/* header menu desplegable */
+#pre-menu li a {
+        display: block!important;
+        display: block;
+        position: relative;
+        text-decoration: none;
+        z-index: 999;
+	/*color: #fff;*/
+}
+#pre-menu li:hover,
+#pre-menu li a:hover,
+#pre-menu li:hover a {
+	text-decoration: none;
+	position: relative;
+	z-index: 999;
+}
+#pre-menu li ul {
+	display: none;
+	position: absolute;
+	z-index: 999;
+	width: 100px;
+	text-align: center;
+	font-weight: bold;
+	left: 0;
+	padding: 17px 0 5px;
+	margin: 0 !important;
+}
+#pre-menu li a:hover ul,
+#pre-menu li:hover ul {
+	display: block !important;
+}
+#pre-menu li a:hover ul li,
+#pre-menu li:hover ul li {
+	position: relative;
+	display: block;
+	margin: 0 !important;
+	padding: 0 !important;
+	z-index: 999;
+	background-color: #b3b3b3;
+}
+#pre-menu li a:hover ul li a,
+#pre-menu li:hover ul li a {
+	padding: 2px 0 8px 0 !important;
+}
+
+
+
+
 /*------------menu------------*/
+
 #menu {
 	padding: 5px 0 5px 5px;
 	width:160px;

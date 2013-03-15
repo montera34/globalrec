@@ -59,12 +59,13 @@
 		<div class="container">	
 			<div class="span12">
 				<?php $defaults = array(
-					'theme_location'  => 'side-menu',
+					'theme_location'  => 'main-menu',
 					'container' => 'false',
 					'menu_id' => 'pre-menu',
 					'menu_class' => 'nav menu_class navbar inline-menu'
 					);
 				wp_nav_menu( $defaults );?>
+				<?php do_action('icl_language_selector'); ?>
 			</div>
 		</div>
 	</div>
@@ -80,7 +81,7 @@
 			<?php get_search_form(); ?>
 		</div>
 		<li class=""> 	
-			<a href="http://www.twitter.com/global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" />x
+			<a href="http://www.twitter.com/global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> 
 			</a>
 		</li>
 		<li class=" "> <a href="http://www.facebook.com/pages/GlobalRec/207415605997716">

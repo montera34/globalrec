@@ -23,6 +23,7 @@
 <!-- Bootstrap -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
 <!-- /Bootstrap -->
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
 
 	 <style type="text/css" media="screen">
 		@import url( <?php bloginfo('stylesheet_url'); ?> );
@@ -74,7 +75,7 @@
 <div class="container">
 	<div class="row-fluid" style="padding-top: 60px;">
 		<div id="logo" class="span8">
-			<h2 class="textfuera"><a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/"><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png"></a> Global Alliance of Waste Pickers</h2>
+			<h2 class="textfuera"><a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a><span syle="font-family: 'Roboto Condensed', sans-serif;">Global Alliance of Waste Pickers</span> </h2>
 			<h2 class="textfuera"><?php echo $genvars['blogdesc']; ?></h2>
 		</div><!-- #logo -->
 		<div id="search" class="span4">

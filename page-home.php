@@ -1,13 +1,13 @@
 <?php  /* Template Name: Page Home*/ 
 get_header(); ?>
 <div class="container">
-	<?php get_sidebar(); ?>
+	<?php //get_sidebar(); ?>
 	<div id="main-portada">
 		<div id="front-0">
 		<?php if ( ! dynamic_sidebar( 'front-page-widget-area-main' ) ) : ?><?php endif; // end primary widget area ?>
 		</div>	<!-- #front-0-->
 		<div id="menu-frontpage">
-			<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>		
+			<?php wp_nav_menu( array( 'theme_location' => 'side-menu' ) ); ?>		
 		</div>
 		<div id="front-1">
 		<a href="blog" title="Go to blog" alt="Go to blog">Blog Posts</a>

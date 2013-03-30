@@ -278,6 +278,9 @@ function the_post_image_url($size=large) {
 //add featured image to 'post', 'page','bio','global-meeting'
 add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting' ) ); 
 
+//add posts formats
+add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 'image' ) );
+
 
 //----- Adds metabox. Via https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Basic-Usage
 

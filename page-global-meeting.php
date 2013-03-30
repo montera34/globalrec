@@ -1,8 +1,10 @@
 <?php  /* Template Name: Page Global Meetings*/ 
 get_header(); ?>
 
-<div id="content">
-<?php get_sidebar(); ?>
+<div id="content" class="container">
+	<div id="menu" class="span3">
+		<?php get_sidebar(); ?>
+	</div>
 <div id="main">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 				

@@ -2,8 +2,12 @@
 
 <div class="container">
 	<div class="row-fluid">
-	<?php get_sidebar(); ?>
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<!-- begin sidebar -->
+		<div id="menu" class="span3">
+			<?php get_sidebar(); ?>
+		</div>
+		<!-- end sidebar -->
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class('span9') ?> id="post-<?php the_ID(); ?>">
 			<?php the_post_thumbnail( 'medium' ); ?>
 			<h3 class=""><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link(); ?></h3>			
@@ -17,10 +21,10 @@
 				endif;
 			 	?> 						
 			</small></div>
-		<div class="">
-		<?php include("share.php")?>
-		</div>
-		<hr>
+	 		<?php include("share.php")?>
+			<hr>
+				
+			
 		<?php the_content(__('(more...)')); ?>
 		<div class="postmetadata">
 		<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?>  &nbsp;&nbsp;| <?php the_tags( ); ?> 

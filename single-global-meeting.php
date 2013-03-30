@@ -1,6 +1,12 @@
 <?php get_header(); ?>
-	<div id="content">
-		<?php get_sidebar(); ?>
+
+<div class="container">
+	<div class="row-fluid">
+		<!-- begin sidebar -->
+		<div id="menu" class="span3">
+			<?php get_sidebar(); ?>
+		</div>
+		<!-- end sidebar -->
 		<div id="main">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

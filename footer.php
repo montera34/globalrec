@@ -6,16 +6,16 @@
 ?>
 <!-- begin footer -->
 
-</div>
-<?php get_sidebar(); ?>
-<div id="footer">	
 
-		<strong><a href="/">Global Alliance of Waste Pickers</a></strong>. <a href="http://www.globalrec.org/feed/">Feed/RSS</a>. Powered by <a href='http://wordpress.org/'><strong>Wordpress</strong></a>. Web 
-		<a href='http://montera34.com' title='montera34'>M34</a>.
+<div class="container">	
+<div id="footer" class="row">	
+	<div class="span12"> <small>
+		<strong><a href="/">Global Alliance of Waste Pickers</a></strong>. <a href="http://www.globalrec.org/feed/">Feed/RSS</a>. Powered by <a href='http://wordpress.org/'><strong>Wordpress</strong></a>. Web development <a href='http://montera34.com' title='montera34'>M34</a>.
+		</small>
 	</div>
-
+</div>
+</div>
 <?php wp_footer(); ?>
-
 
 <!-- Place this render call where appropriate -->
 <script type="text/javascript">

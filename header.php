@@ -55,7 +55,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">	
 			<div class="span12">
@@ -75,19 +75,22 @@
 <div class="container">
 	<div class="row-fluid" style="padding-top: 60px;">
 		<div id="logo" class="span8">
-			<h2 class="textfuera"><a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a><span syle="font-family: 'Roboto Condensed', sans-serif;">Global Alliance of Waste Pickers</span> </h2>
+			<h2 class="textfuera"><a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a><span style="font-family: 'Roboto Condensed', sans-serif;">Global Alliance of Waste Pickers</span> </h2>
+
 			<h2 class="textfuera"><?php echo $genvars['blogdesc']; ?></h2>
 		</div><!-- #logo -->
 		<div id="search" class="span4">
 			<?php get_search_form(); ?>
 		</div>
-		<li class=""> 	
-			<a href="http://www.twitter.com/global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> 
-			</a>
-		</li>
-		<li class=" "> <a href="http://www.facebook.com/pages/GlobalRec/207415605997716">
-			<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" />  </a>
-		</li>
+		<ul class="nav nav-pills">
+		  	<li class="">
+		    		<a href="http://www.twitter.com/global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter</a>
+		  	</li>
+		  	<li class="">
+				<a href="http://www.facebook.com/pages/GlobalRec/207415605997716">
+				<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> Facebook  </a>
+			</li>
+		</ul>
 	</div>
 </div>
 <!-- end header -->

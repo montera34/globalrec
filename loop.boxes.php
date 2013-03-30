@@ -1,4 +1,4 @@
-<li id="post-<?php the_ID(); ?>" <?php post_class('span4'); ?>	>
+<li id="post-<?php the_ID(); ?>" <?php post_class('span3'); ?>	>
 	<div class="thumbnail">
 		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 		<?php if (has_post_thumbnail()) :
@@ -10,9 +10,9 @@
 			endif; ?>
 		</a>
 		<div class="caption">
-			<h3 class="post-title">
+			<h4 class="post-title">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-			</h3>
+			</h4>
 			<div class="postmetadata">
 			<?php the_time('F d, Y') ?>&nbsp;<?php the_category(', ') ?>					
 			</div>

@@ -5,7 +5,7 @@
  */
 ?>
 <!-- begin sidebar -->
-<div id="menu" class="span3">
+
 	<ul>
 	<?php wp_nav_menu( array( 'theme_location' => 'side-menu' ) ); ?>
 	<?php 
@@ -17,5 +17,4 @@
 		} 
 	?>
 	</ul>
-</div>
-<!-- end sidebar -->
+

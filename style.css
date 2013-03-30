@@ -12,6 +12,10 @@ This is just a basic layout, with only the bare minimum defined.
 Please tweak this and make it your own. :)
 */
 
+a {
+	color: #fe7c11;
+
+}
 
 /* arreglando gallery */
 
@@ -59,9 +63,6 @@ padding-bottom: 10px; }
 .archive-post:hover {background-color:#eee;}
 
 .excerpt{font-size:0.9em;}
-#cuadro-portada:hover{background-color:#dd6400;}
-.portada-home:hover {background-color:#dedede;}
-.portada-home  {width:400px !important;}
 /*.portada-home {padding:3px !important;}*/
 .type-post  p img, .storycontent p img { margin: 0 15px 0 0;}
 h4 { margin: 0 0 5px 0; }
@@ -137,8 +138,11 @@ body {
 	padding: 2px 0 8px 0 !important;
 }
 
-
+.navbar .navbar-inner{
+	background-color: #fe7c11 !important;
+	background-image:none;
 }
+
 /* storify */
 .sfy-story {
 	clear:none !important;

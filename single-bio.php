@@ -2,11 +2,9 @@
 
 <div class="container">
 	<div class="row-fluid">
-	<?php get_sidebar(); ?>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div class="row">
-			<div <?php post_class('span9') ?> id="post-<?php the_ID(); ?>">
-			<div class="row">	
+		<div <?php post_class('span12') ?> id="post-<?php the_ID(); ?>">
+			<div class="row-fluid">	
 				<div class="span8">
 					<h3>
 						<a href="/life-and-voices"> <!-- needs to be internationalized-->				
@@ -16,24 +14,23 @@
 				</div>
 				<div class="btn btn-small pull-right"><?php edit_post_link(__('Edit This')); ?></div>
 			</div>
-			
-			<div class="row">
-				<div class="span3"><small>
-					<?php the_post_thumbnail( 'thumbnail',array('class'=> "img-rounded",'alt'=> trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),'title'	=> trim(strip_tags( $attachment->post_title ))) ); ?> <br>
-					<?php if ( is_user_logged_in() ) { ?> 
-						 email: <?php
-							global $post;
-							$text = get_post_meta( $post->ID, 'bio_email', true );
-							echo $text; 	
-							echo "<br>telephone:<br>";
-							$text = get_post_meta( $post->ID, 'bio_telephone', true );
-							echo $text; 
-						}?>
-					</small>
-				</div> 
-				<div class="span9">
-				<?php the_content(__('(more...)')); ?>
-				</div>
+		</div>		
+		<div class="row-fluid">
+			<div class="span3"><small>
+				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded",'alt'=> trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),'title'	=> trim(strip_tags( $attachment->post_title ))) ); ?> <br>
+				<?php if ( is_user_logged_in() ) { ?> 
+					 email: <?php
+						global $post;
+						$text = get_post_meta( $post->ID, 'bio_email', true );
+						echo $text; 	
+						echo "<br>telephone:<br>";
+						$text = get_post_meta( $post->ID, 'bio_telephone', true );
+						echo $text; 
+					}?>
+				</small>
+			</div> 
+			<div class="span7">
+			<?php the_content(__('(more...)')); ?>
 			</div>
 		</div>
 	</div>

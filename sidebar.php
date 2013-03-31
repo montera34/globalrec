@@ -1,20 +1,5 @@
-<?php
-/**
- * @package WordPress
- * @subpackage Classic_Theme
- */
-?>
-<!-- begin sidebar -->
-
-	<ul>
-	<?php wp_nav_menu( array( 'theme_location' => 'side-menu' ) ); ?>
-	<?php 
-		if ( is_page('blog') || is_category() || is_search()) { 
-			echo '<li id="secondnav">Categories</li>';
-			$args = array(//'exclude' => 568,
-	'title_li'     => __('')		);
-			wp_list_categories( $args ); 
-		} 
-	?>
-	</ul>
-
+<!-- begin main sidebar -->
+<ul class="nav nav-tabs nav-stacked">
+		<?php dynamic_sidebar( 'main-sidebar-widget' ) ?>
+</ul>
+<!-- end main sidebar -->

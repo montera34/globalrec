@@ -1,21 +1,12 @@
 <?php  /* Template Name: Page Global Meetings*/ 
 get_header(); ?>
 
-<div id="content" class="container">
-	<div id="menu" class="span3">
-		<?php get_sidebar(); ?>
-	</div>
-<div id="main">
+<div class="container">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
-				
-				<h2 id="post-<?php the_ID(); ?>"><?php the_title();?></h2>
-				
-				<?php the_content(); ?>
-								
-				
+		<h2 id="post-<?php the_ID(); ?>"><?php the_title();?></h2>		
+			<?php the_content(); ?>	
 			<?php endwhile; endif; ?>
-	<?php
-			global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
+			<?php	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 				//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 				$args = array(
 				 'caller_get_posts' => 1,
@@ -30,21 +21,33 @@ get_header(); ?>
 	 
 				$my_query = new WP_Query($args);
 				?>
-	<?php if ( $my_query->have_posts() ) : ?>
-			<?php while ( $my_query->have_posts() ) : 
-				 $my_query->the_post(); ?>
-						 <?php 	 //necessary to show the tags 
-						global $wp_query;
-						$wp_query->in_the_loop = true;
-						  ?>
-						  <?php $more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
+	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+	<?php 	 //necessary to show the tags 
+		global $wp_query;
+		$wp_query->in_the_loop = true;
+		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. 
+		
 
-
+		//intento de añadir la class 'label' a los bg-type
+		$id = $post->ID;
+		$tax = 'gb-type';
+		$op = '';
+		$list = get_the_term_list($id,$tax,'','|','');
+		if ($list) {
+		   $terms = explode('|',$list);
+		   $op = '';
+		   foreach ($terms as $term) {
+		      $class = 'item-' . ++$i;
+		      $item = "<span class=\"label\">$term</span>";
+		      $op .= $item;
+		   }
+		}
+		?>
 			<div <?php post_class('global-meeting-list'); ?> id="post-<?php the_ID(); ?>">
-			
 				<div class="postmetadata-gb">
 					<?php echo get_the_term_list( $post->ID, 'gb-type', ' ', ', ', '' ); ?> 
-					<?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); ?>
+					<?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); 
+					echo $op; ?>
 				</div>
 				<h4 class="post-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 				<?php the_title(); ?></a><div class="edit-button"><?php // edit_post_link(__('Edit This')); ?></div></h4>
@@ -85,6 +88,5 @@ get_header(); ?>
 					}
 				?></div>
 				</div>
-</div>	<!-- #main -->
 </div><!-- #content -->
 <?php get_footer(); ?>

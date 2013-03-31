@@ -5,7 +5,7 @@ function register_my_menus() {
   register_nav_menus(
     array(
 		'main-menu' => 'Main Menu',
-		'side-menu' => 'Side Menu',
+		'home-menu' => 'Home Menu',
 		'foot_menu' => 'Footer Menu'
 	)
   );
@@ -140,9 +140,9 @@ function globalrec_widgets_init() {
 	) );
 	// Area 2, located at the front-page.
 	register_sidebar( array(
-		'name' => __( 'Front page widget area', 'globalrec' ),
-		'id' => 'front-page-widget-area',
-		'description' => __( 'Front page widget area', 'globalrec' ),
+		'name' => __( 'Main Sidebar', 'globalrec' ),
+		'id' => 'main-sidebar-widget',
+		'description' => __( 'Main sidebar', 'globalrec' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
 		'before_title' => '<h3 class="widget-title">',

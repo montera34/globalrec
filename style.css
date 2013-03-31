@@ -11,10 +11,15 @@ Modifications by Matthew Mullenweg || http://photomatt.net
 This is just a basic layout, with only the bare minimum defined.
 Please tweak this and make it your own. :)
 */
+/*
+a {
+	color: #555;
+}
 
 a {
 	color: #fe7c11;
-}
+}*/
+
 
 /* arreglando gallery */
 .gallery br {
@@ -52,7 +57,6 @@ padding-bottom: 10px; }
 
 .sticky  {background-color:#eee;padding:15px !important;border-top:3px solid #ccc;}
 .sticky h4  {margin-top:1px !important;}
-.storycontent p  {line-height:1.5em;}
 
 .archive-post {float:left; width:340px; padding:15px; border: solid 1px #ddd;margin-right:5px !important;}
 .archive-post  img{max-width:220px;}
@@ -66,15 +70,6 @@ h5 a{font-size:12px;}
 #secondnav  {background-color:white !important;}
 
 
-#header-top-top { margin:0 0 0 65px;}
-body {
-	border: 0;
-	color: #000;
-	font-family: sans-serif;
-	margin: 0;
-	padding: 0;
-	font-size:100%;
-}
 
 /*------------new menu------------*/
 #pre-menu {

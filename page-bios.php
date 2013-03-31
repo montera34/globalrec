@@ -4,7 +4,6 @@ get_header(); ?>
 <div id="page">
 	<div class="container">
 		<div class="row-fluid">
-			<?php get_sidebar(); ?>
 			<?php if (have_posts()) : while (have_posts()) : the_post();?>
 			<h2 id="post-<?php the_ID(); ?>">
 				<?php the_title();?>

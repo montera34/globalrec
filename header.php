@@ -29,8 +29,14 @@
 		@import url( <?php bloginfo('stylesheet_url'); ?> );
 	</style>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-	
+
+<!-- Less -->
+<link rel="stylesheet/less" type="text/css" href="<?php bloginfo('template_url'); ?>/less/magic-bootstrap.less" />
+<script src="<?php bloginfo('template_url'); ?>/less/less-1.3.3.min.js" type="text/javascript"></script>
+<!-- /Less -->
+
+<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+
 	<?php wp_get_archives('type=monthly&format=link'); ?>
 	
 	<?php //comments_popup_script(); // off by default ?>
@@ -55,42 +61,58 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">	
-			<div class="span12">
-				<?php $defaults = array(
-					'theme_location'  => 'main-menu',
-					'container' => 'false',
-					'menu_id' => 'pre-menu',
-					'menu_class' => 'nav menu_class navbar inline-menu'
-					);
-				wp_nav_menu( $defaults );?>
-				<?php do_action('icl_language_selector'); ?>
+<div class="container">
+	<div class="row-fluid" style="margin:10px 0 0px;">
+		<div id="imagotipo" class="span2">
+			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a>
+		</div>
+		<div id="logotipo" class="span4">
+			<h1><span style="font-family: 'Roboto Condensed', sans-serif;"><small>GLOBAL ALLIANCE OF</small><br><span class="globalreccolor">WASTE PICKERS</span></span> </h1>
+		</div>
+		<div id="tagline" class="span6">
+			<div class="row-fluid">
+				<div class="span6">
+					<?php do_action('icl_language_selector'); ?>
+				</div>
+      				<div id="search" class="pull-right">
+					<?php get_search_form(); ?>
+				</div>
+			</div>	
+			<div class="row-fluid">
+				<div class="span9">
+					<small><?php echo get_bloginfo( 'description' ) ?></small>
+				</div>
+				<div class="pull-right">
+					<ul class="nav nav-pills">
+		  				<li class="">
+				    		<a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> </a>
+				  		</li>
+				  		<li class="">
+						<a href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
+						<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> </a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!--span id="header-top-top" class="tagline" ><img alt="Global Alliance of Waste Pickers" src="<?php bloginfo('template_url'); ?>/images/logotipo_1.png" style="display:none;"></span-->
-<div class="container">
-	<div class="row-fluid" style="padding-top: 60px;">
-		<div id="logo" class="span8">
-			<h2 class="textfuera"><a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a><span style="font-family: 'Roboto Condensed', sans-serif;">Global Alliance of Waste Pickers</span> </h2>
-
-			<h2 class="textfuera"><?php echo $genvars['blogdesc']; ?></h2>
-		</div><!-- #logo -->
-		<div id="search" class="span4">
-			<?php get_search_form(); ?>
+<div class="container">	
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">	
+				<div class="span12">
+					<?php $defaults = array(
+						'theme_location'  => 'main-menu',
+						'container' => 'false',
+						'menu_id' => 'pre-menu',
+						'menu_class' => 'nav nav-pills'
+						);
+					wp_nav_menu( $defaults );?>
+				
+				</div>
+			</div>
 		</div>
-		<ul class="nav nav-pills">
-		  	<li class="">
-		    		<a href="http://www.twitter.com/global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter</a>
-		  	</li>
-		  	<li class="">
-				<a href="http://www.facebook.com/pages/GlobalRec/207415605997716">
-				<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> Facebook  </a>
-			</li>
-		</ul>
 	</div>
 </div>
 <!-- end header -->

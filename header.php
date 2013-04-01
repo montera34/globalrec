@@ -97,11 +97,10 @@
 		</div>
 	</div>
 </div>
-<div class="container">	
+<div class="container" id="main-menu">	
 	<div class="navbar">
-		<div class="navbar-inner">
+		<!--<div class="navbar-inner">-->
 			<div class="container">	
-				<div class="span12">
 					<?php $defaults = array(
 						'theme_location'  => 'main-menu',
 						'container' => 'false',
@@ -109,8 +108,6 @@
 						'menu_class' => 'nav nav-pills'
 						);
 					wp_nav_menu( $defaults );?>
-				
-				</div>
 			</div>
 		</div>
 	</div>

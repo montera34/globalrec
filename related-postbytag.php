@@ -1,6 +1,7 @@
 <?php //wp_reset_query(); ?>
 
-<?php $prueba=get_post_meta($post->ID, 'gm_tag', true); if ( $prueba) { ?>
+<?php $prueba=get_post_meta($post->ID, 'gm_tag', true); 
+if ( $prueba) { ?>
 
 <?php // show related post //
 	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
@@ -31,9 +32,6 @@
 					<?php the_title(); ?>
 				</a>
 			</h5>
-			<div class="postmetadata">
-				<?php //the_time('F d Y') ?>
-			</div>
 		</div>
 
 	<?php endwhile; else: ?>

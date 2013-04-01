@@ -70,7 +70,7 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	'labels' => array(
 		'name' => __( 'Newsletters' ),
-		'singular_name' => __( 'Newsletters' ),
+		'singular_name' => __( 'Newsletter' ),
 		'add_new_item' => __( 'Add Newsletter' ),
 		'edit' => __( 'Edit' ),
 		'edit_item' => __( 'Edit this item' ),
@@ -87,6 +87,31 @@ register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'newsletter','with_front'=>false),
+	//'_builtin' => false,
+	'_edit_link' => 'post.php?post=%d',
+	)
+);
+
+register_post_type( 'waste-picker-group', array( // Defining Waste Picker Group custom post type
+	'labels' => array(
+		'name' => __( 'Waste Picker Groups' ),
+		'singular_name' => __( 'Waste Picker Group' ),
+		'add_new_item' => __( 'Add Waste Picker Group' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New Waste Picker Group' ),
+		'view' => __( 'View Waste Picker Group' ),
+		'view_item' => __( 'View Waste Picker Group' ),
+		'search_items' => __( 'Search Waste Picker Group' ),
+		'not_found' => __( 'We didnt found any Waste Picker Group' ),
+		'not_found_in_trash' => __( 'No Waste Picker Group in the trash bin' ),
+		'parent' => __( 'Parent Waste Picker Group' )
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
+	'rewrite' => array('slug'=>'group','with_front'=>false),
 	//'_builtin' => false,
 	'_edit_link' => 'post.php?post=%d',
 	)

@@ -21,6 +21,18 @@ get_header(); ?>
 	 
 				$my_query = new WP_Query($args);
 				?>
+
+
+  <table class="table table-hover table-condensed">
+	<thead>
+	 <tr>
+          <th>Name</th>
+	  <th>Location</th>
+          <th>Year</th>
+          <th>Type</th>
+         </tr>
+	</thead>
+    <tbody>
 	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
 	<?php 	 //necessary to show the tags 
 		global $wp_query;
@@ -43,25 +55,26 @@ get_header(); ?>
 		   }
 		}
 		?>
-			<div <?php post_class('global-meeting-list'); ?> id="post-<?php the_ID(); ?>">
-				<div class="postmetadata-gb">
-					<?php echo get_the_term_list( $post->ID, 'gb-type', ' ', ', ', '' ); ?> 
-					<?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); 
-					echo $op; ?>
-				</div>
-				<h4 class="post-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
-				<?php the_title(); ?></a><div class="edit-button"><?php // edit_post_link(__('Edit This')); ?></div></h4>
-				
-				<div class="storycontent">
-					<!--?php the_excerpt(__('Read the rest of the post')); ?-->
-				</div>
 
+			<tr <?php post_class('global-meeting-list'); ?> id="post-<?php the_ID(); ?>">
 				
-			</div>
+				<td><h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
+					<?php the_title(); ?></a><div class="edit-button"><?php // edit_post_link(__('Edit This')); ?></div></h4>
+				</td>
+				<td><?php $text = get_post_meta( $post->ID, 'gm_location', true ); echo $text; ?> </td>
+				<td>
+					<?php // echo get_the_term_list( $post->ID, 'gb-type', ' ', ', ', '' ); ?> 
+					<span class="label"><?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); ?></span> 
+				</td>
+				<td>	<?php echo $op; ?>
+				</td>
+			</tr>
 
 	<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 	<?php endif; ?>
+    </tbody>
+  </table>
 
 	
 

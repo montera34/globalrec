@@ -4,7 +4,7 @@ $separator = ' ';
 $output = '';
 
 ?>
-<li id="post-<?php the_ID(); ?>" <?php post_class('span4'); ?>	>
+<li id="post-<?php the_ID(); ?>" <?php post_class('span6'); ?>	>
 	<div class="thumbnail">
 		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 		<?php if (has_post_thumbnail()) :
@@ -15,17 +15,32 @@ $output = '';
 				//echo '<img width="150" src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.png" />';
 			endif; ?>
 		</a>
-		<div class="caption">
+		<div class="">
 			<h4 class="post-title">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 			</h4>
-
 			<div>
- 				 <small>
-				  <?php the_author_posts_link(); ?>  <br>
-				<?php the_excerpt(); ?></small>		
+				<small>
+				<?php the_author_posts_link(); ?> | 
+				<?php  
+					if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
+					echo "Region ";	
+					echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
+					endif;
+			 	?></small>
 			</div>
-			<div id="postmetadata">
+			<?php //related excerpt
+				$post_excerpt = get_the_excerpt();
+				$pattern = '/.{210}/i';
+				preg_match($pattern, $post_excerpt, $matches);
+				if ( $matches[0] != '' ) {
+					$post_excerpt = $matches[0] . "...";
+				} ?> 
+			<div class="excerpt">
+				<p><?php if($post->post_excerpt) : the_excerpt(); else: 
+					echo "" .$post_excerpt; endif; ?> </p>
+			</div>
+			<div>
 			<?php // the_time('F d, Y') ?>
 			<?php
 				if($categories){

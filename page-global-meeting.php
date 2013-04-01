@@ -58,8 +58,8 @@ get_header(); ?>
 
 			<tr <?php post_class('global-meeting-list'); ?> id="post-<?php the_ID(); ?>">
 				
-				<td><h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
-					<?php the_title(); ?></a><div class="edit-button"><?php // edit_post_link(__('Edit This')); ?></div></h4>
+				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
+					<?php the_title(); ?></a><div class="edit-button"><?php // edit_post_link(__('Edit This')); ?></div> 
 				</td>
 				<td><?php $text = get_post_meta( $post->ID, 'gm_location', true ); echo $text; ?> </td>
 				<td>

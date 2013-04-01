@@ -2,9 +2,6 @@
 <div id="page">
 	<div class="container">
 		<div class="row-fluid">
-			<div id="menu" class="span3">
-				<?php get_sidebar(); ?>
-			</div>
 			<?php 
 			if ( have_posts() ) :
 				while ( have_posts() ) : the_post();

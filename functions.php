@@ -160,7 +160,7 @@ function globalrec_widgets_init() {
 	) );
 	// Area 4, located at the Newsround up page
 	register_sidebar( array(
-		'name' => __( 'Newsround up', 'globalrec' ),
+		'name' => __( 'News Feeds', 'globalrec' ),
 		'id' => 'newsroundup',
 		'description' => __( 'Newslround up feeds', 'globalrec' ),
 		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s">',

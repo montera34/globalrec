@@ -35,7 +35,7 @@ $termdesc = $wp_query->queried_object->description;
 			$count++;
 			if ( $count == 1 ) { echo "<div class='row'>"; } ?>
 			<?php include("loop.boxes.php")?>
-		<?php if ( $count == 2 ) { echo "</div><!-- .row -->"; $count = 0; }?>
+		<?php if ( $count == 3 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>
 		<?php endwhile; else: ?>
 	</ul>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>

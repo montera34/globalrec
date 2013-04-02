@@ -10,7 +10,7 @@ if ( post_password_required() ) : ?>
 
 <h5 id="comments"><?php comments_number(__(''), __('1 Comment'), __('% Comments')); ?>
 <?php if ( comments_open() ) : ?>
-	<a href="#postcomment" title="<?php _e("Leave a comment"); ?>">&raquo;</a>
+	<a href="#postcomment" title="<?php _e("Leave a comment"); ?>"> </a>
 <?php endif; ?>
 </h5>
 

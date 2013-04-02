@@ -339,7 +339,8 @@ function sample_metaboxes( $meta_boxes ) {
 add_filter( 'cmb_meta_boxes', 'sample_metaboxes' );
 
 function global_meeting_sample_metaboxes( $meta_boxes ) {
-	$prefix = 'gm_'; // Prefix for all fields
+	$prefix2 = 'gm_'; // Prefix for all fields
+	$prefix = '_gr_';
 	$meta_boxes[] = array(
 		'id' => 'global-meeting',
 		'title' => 'Global Meeting Details',
@@ -351,25 +352,25 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Date',
 				'desc' => 'Date of the global meeting',
-				'id' => $prefix . 'date',
+				'id' => $prefix2 . 'date',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Location',
 				'desc' => 'City and country',
-				'id' => $prefix . 'location',
+				'id' => $prefix2 . 'location',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Tag',
 				'desc' => 'Related tag from the blog',
-				'id' => $prefix . 'tag',
+				'id' => $prefix2 . 'tag',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Downloads',
 				'desc' => 'List here all the documents to download',
-				'id' => $prefix . 'downloads',
+				'id' => $prefix2 . 'downloads',
 				'type' => 'wysiwyg',
 					'options' => array(
 						    'wpautop' => true, // use wpautop?
@@ -378,6 +379,48 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 						    'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
 						),
 			),
+		),
+	);
+	$meta_boxes[] = array(
+		'id' => 'post-extra-fields',
+		'title' => 'Post in category Press',
+		'pages' => array('post'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Published in',
+				'desc' => 'Media/newspaper/web that published this article',
+				'id' => $prefix . 'published-in',
+				'type' => 'text_medium'
+			),
+			array(
+				'name' => 'Written by',
+				'desc' => 'This article was written by...',
+				'id' => $prefix . 'written-by',
+				'type' => 'text_medium'
+			),
+			array(
+				'name' => 'Date',
+				'desc' => 'when was this article/text published.  Stored in m/d/Y format (ex: 09/01/2011)',
+				'id' => $prefix . 'article-date',
+				'type' => 'text_date'
+			),
+			array(
+				'name' => 'Link to original article',
+				'desc' => 'Provide the url> http://www.radiosantafe.com/2012/03/01/dos-marchas-afectan-la-movilidad-por-la-carrera-septima/',
+				'id' => $prefix . 'article-url',
+				'type' => 'text_medium'
+			),
+			array(
+				'name' => 'Article title',
+				'desc' => 'The title of the article',
+				'id' => $prefix . 'article-title',
+				'type' => 'wysiwyg',
+				'options' => array(),
+			),
+
 		),
 	);
 

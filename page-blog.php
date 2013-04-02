@@ -38,8 +38,29 @@ get_header(); ?>
 			</ul>
 		</div>
 		<div class="row-fluid">
-  			<div class="span12">
-				<?php posts_nav_link(); ?>
+  			<div class="offset3 span9">
+				<div class="pull-left">
+				<?php if ( !$max_page ) {
+ 					 $max_page = $my_query->max_num_pages;
+					}
+ 	
+					if ( !$paged ) {
+ 					 $paged = 1;
+					}
+					$nextpage = intval($paged) + 1;
+ 
+					if ( !is_single() && ( empty($paged) || $nextpage <= $max_page) ) {
+  					$attr = apply_filters( 'next_posts_link_attributes', '' );
+ 					 echo '<a href="' . next_posts( $max_page, false ) . "\" $attr>". preg_replace('/&([^#])(?![a-z]{1,8};)/', '&$1', ' &laquo; Previous posts') .'</a>';
+					}
+					?>
+				</div>
+  				<div class="pull-right"><?php 
+					if ( !is_single() && $paged > 1 ) {
+  				$attr = apply_filters( 'previous_posts_link_attributes', '' );
+  				echo '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/', '&$1', 'Newer posts &raquo;' ) .'</a>';
+					}
+				?></div>
 			</div>
 		</div>
 	<?php get_footer(); ?>

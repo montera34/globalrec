@@ -1,48 +1,97 @@
-<?php get_header(); ?>
+<?php get_header();
+$categories = get_the_category();
+$separator = ' ';
+$output = ''; ?>
 
 <div class="container">
 	<div class="row-fluid">
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<div <?php post_class('span8') ?> id="post-<?php the_ID(); ?>">
+			<div class="row-fluid">
+			<?php
+				if($categories){
+					foreach($categories as $category) {
+						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right">'.$category->cat_name.'</a>'.$separator;
+					}
+				echo trim($output, $separator);
+				}	
+			?>	
+			<?php // the_post_thumbnail( 'medium' ); ?>
+			</div>
+			<div class="btn btn-small pull-right"><?php edit_post_link(__('Edit This')); ?></div>	
+			<h3><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
+			
+			<div class="row-fluid">
+				<div class="span4">
+					<h4>
+						<?php 
+							$written_by = get_post_meta( $post->ID, '_gr_written-by', true ); 
+						 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+								echo "<small>submitted by ";
+								the_author_posts_link();
+								echo "</small><br><small>written by </small>";	
+								echo $written_by;
+							}
+							else {
+								echo "<small>by </small>";
+								the_author_posts_link();
+							}
+					 	?> 
+					</h4>
+				</div>
+				<div class="span4">
+					<?php 
+						$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
+						if ( $region != '')  : 
+						echo "<h4><small>Region </small>";	
+						echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
+						echo "</h4>";
+						endif;
+					 	?>
+				</div>
+				<div class="span4"> 	
+					<h4><small class="pull-right">
+						<?php the_time('F d, Y') ?>					
+					</small></h4>
+				</div>
+			</div>
+			
+		 	<?php include("share.php")?>
+			
+			<div id="post-content">	
+				<?php 
+				$article_url = get_post_meta( $post->ID, '_gr_article-url', true );
+				$article_title = get_post_meta( $post->ID, '_gr_article-title', true );
+				if ($article_url != '') {
+						echo "<div class='row-fluid'><div class='span12'><a href='".$article_url."'>".$article_title."</a><br>";
+						echo $written_by. ". ";
+						echo get_post_meta( $post->ID, '_gr_published-in', true );	
+						echo ". ";
+						echo get_post_meta( $post->ID, '_gr_article-date', true );
+						echo "</div></div>";	
+					}
+				the_content(__('(more...)')); ?>
+			</div>
+			<div class="post-metadata">
+				<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?> | <?php the_tags( ); ?> 
+			</div>
+			<div class="feedback">
+				<?php wp_link_pages(); ?>
+				<?php comments_popup_link(__(' '), __('Comments (1)'), __('Comments (%)')); ?>
+			</div>
+		<?php comments_template(); // Get wp-comments.php template ?>
+
+		<?php endwhile; else: ?>
+		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+		<?php endif; ?>
+	
+		<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
+		</div>
 		<!-- begin sidebar -->
-		<div id="menu" class="span3">
+		<div id="menu" class="offset1 span3">
 			<?php get_sidebar(); ?>
 		</div>
 		<!-- end sidebar -->
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class('span9') ?> id="post-<?php the_ID(); ?>">
-			<?php the_post_thumbnail( 'medium' ); ?>
-			<h3 class=""><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link(); ?></h3>			
-			<div class="postmetadata"><small>
-				<?php the_time('F d, Y') ?> &nbsp;&nbsp;
-				In category <?php the_category(', ') ?>&nbsp;&nbsp;
-				by <?php the_author_posts_link(); ?>&nbsp;&nbsp;
-				<?php if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
-				echo "Region ";	
-				echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
-				endif;
-			 	?> 						
-			</small></div>
-	 		<?php include("share.php")?>
-			<hr>
-				
-			
-		<?php the_content(__('(more...)')); ?>
-		<div class="postmetadata">
-		<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?>  &nbsp;&nbsp;| <?php the_tags( ); ?> 
-		</div>
-		<div class="feedback">
-			<?php wp_link_pages(); ?>
-			<?php comments_popup_link(__('Comments (0)'), __('Comments (1)'), __('Comments (%)')); ?>
-		</div>
-	
-
-	<?php comments_template(); // Get wp-comments.php template ?>
-
-	<?php endwhile; else: ?>
-	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-	<?php endif; ?>
-
-	<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
 	</div>
 	<?php get_footer(); ?>
-	
 </div>

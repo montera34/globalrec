@@ -13,17 +13,13 @@ $output = '';
 			</div>
 			<div class="row-fluid"> <!-- sub menu for front page -->
 				<div id="menu-frontpage" class="span12">
-					<div class="container">	
-						<div class="span12">
-								<?php $defaults = array(
-									'theme_location'  => 'home-menu',
-									'container' => 'false',
-									'menu_id' => 'pre-menu',
-									'menu_class' => 'nav nav-pills'
-									);
-								wp_nav_menu( $defaults );?>
-						</div>
-					</div>
+						<?php $defaults = array(
+							'theme_location'  => 'home-menu',
+							'container' => 'false',
+							'menu_id' => 'pre-menu',
+							'menu_class' => 'nav nav-pills'
+							);
+						wp_nav_menu( $defaults );?>
 				</div>
 			</div>
 			<div id="front-1" class="row-fluid"> <!-- sticky posts -->
@@ -59,15 +55,15 @@ $output = '';
 							<div class="span5">
 							<?php if ( has_post_thumbnail()) : ?>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-							<?php the_post_thumbnail(array(300,300)); ?>
+							<?php the_post_thumbnail('medium'); ?>
 							</a>
 						</div>
 						<?php endif; ?> 
 						<div class="span7">
 							<h4 class="post-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h4>
-							<div>
+							<div class="post-metadata">
 							<small>
-							<?php the_author_posts_link(); ?> | 
+							by <?php the_author_posts_link(); ?> | 
 							<?php  
 								if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
 								echo "Region ";	

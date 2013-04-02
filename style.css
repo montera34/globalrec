@@ -48,22 +48,6 @@ margin: 25px 20px 10px 5px;float:left;font-size:12px;border-bottom:#ddd solid 4p
 .widget-container-feed  a:hover{background-color:#ddd;}
 .widget-container-feed  a:visited{color:grey;}
 
-.global-meeting-list{ margin:0 0 5px 0;}
-.global-meeting-list h4 { font-size: .9em;
-padding-bottom: 10px; }
-.global-meeting-list h4 a{color:black;}
-
-.postmetadata-gb{ font-size:.8em;float:right;}
-
-.sticky  {background-color:#eee;padding:15px !important;border-top:3px solid #ccc;}
-.sticky h4  {margin-top:1px !important;}
-
-.archive-post {float:left; width:340px; padding:15px; border: solid 1px #ddd;margin-right:5px !important;}
-.archive-post  img{max-width:220px;}
-.archive-post:hover {background-color:#eee;}
-
-.excerpt{font-size:0.9em;}
-/*.portada-home {padding:3px !important;}*/
 .type-post  p img, .storycontent p img { margin: 0 15px 0 0;}
 h4 { margin: 0 0 5px 0; }
 h5 a{font-size:12px;}

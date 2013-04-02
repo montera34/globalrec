@@ -23,12 +23,14 @@
 <!-- Bootstrap -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
 <!-- /Bootstrap -->
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
 
-	 <style type="text/css" media="screen">
-		@import url( <?php bloginfo('stylesheet_url'); ?> );
-	</style>
+<style type="text/css" media="screen">
+	@import url( <?php bloginfo('stylesheet_url'); ?> );
+</style>
+
 <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
 
 <!-- Less -->
 <link rel="stylesheet/less" type="text/css" href="<?php bloginfo('template_url'); ?>/less/magic-bootstrap.less" />
@@ -67,7 +69,7 @@
 			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a>
 		</div>
 		<div id="logotipo" class="span4">
-			<h1><span style="font-family: 'Roboto Condensed', sans-serif;"><small>GLOBAL ALLIANCE OF</small><br><span class="globalreccolor">WASTE PICKERS</span></span> </h1>
+			<h1><span style="font-family: 'Roboto Condensed', sans-serif;"><small><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></small><br><span class="globalreccolor"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span></span> </h1>
 		</div>
 		<div id="tagline" class="span6">
 			<div class="row-fluid">

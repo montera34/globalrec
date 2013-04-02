@@ -6,37 +6,34 @@
 .globalreccolor {
   color:@mainBrandColor;
 }
-.label a {
+.label a{
 	color:@white;
 }
 
-#main-menu ul li {
-	background-color:@mainBrandColor;
-	margin-right: 5px;
-	border:1px solid @mainBrandColor;
-	
+h4  {
+	font-family: 'Sintony', lucida sans console, sans-serif;
 }
-#main-menu li:hover {
-	background-color:darken(@mainBrandColor, 5%);
-}
-
-#main-menu li a{
-	color:white;
-	text-shadow: 0 0px 0 white;
-	padding: 5px;
-}
-#main-menu li.current-menu-item{
-	background-color:@white;
-	
-}
-#main-menu li.current-menu-item a{
+.post-metadata a, h4 a{
 	color:@mainBrandColor;
 }
 
+/*-------------menu end----------*/
+.sticky  {
+	background-color:#eee;
+	border-top:3px solid @grayLight;
+}
+.sticky h4  {margin-top:1px !important;}
+
+.portada-home {}
+h4.post-title a {
+	color:@mainBrandColor;
+}
 
 .category-in-the-news {
 	background-color:@grayLighter;
 }
+
+
 
 /*------------new menu------------*/
 #pre-menu {
@@ -101,7 +98,28 @@
 .navbar .navbar-inner{
 	background-image:none;
 }
+#main-menu ul li {
+	background-color:@mainBrandColor;
+	margin-right: 5px;
+	border:1px solid @mainBrandColor;
+	
+}
+#main-menu li:hover {
+	background-color:darken(@mainBrandColor, 5%);
+}
 
+#main-menu li a{
+	color:white;
+	text-shadow: 0 0px 0 white;
+	padding: 5px;
+}
+#main-menu li.current-menu-item{
+	background-color:@white;
+	
+}
+#main-menu li.current-menu-item a{
+	color:@mainBrandColor;
+}
 
 // Colors
 @black: #000;

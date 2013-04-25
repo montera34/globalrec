@@ -7,6 +7,12 @@ get_header(); ?>
 			<?php get_sidebar(); ?>
 		</div>
 		<div id="blog" class="span9">	
+			<div class="row-fluid">
+				<h2 id="post-<?php the_ID(); ?>" class="span6">
+					<?php the_title();?>	
+				</h2>		
+				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
+			</div>	
 			<ul class="thumbnails">	
 			<?php
 			global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"

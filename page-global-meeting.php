@@ -3,7 +3,12 @@ get_header(); ?>
 
 <div class="container">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
-		<h2 id="post-<?php the_ID(); ?>"><?php the_title();?></h2>		
+		<div class="row-fluid">
+			<h2 id="post-<?php the_ID(); ?>" class="span10">
+				<?php the_title();?>	
+			</h2>		
+			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
+		</div>
 			<?php the_content(); ?>	
 			<?php endwhile; endif; ?>
 			<?php	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"

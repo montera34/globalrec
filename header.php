@@ -73,8 +73,14 @@
 		</div>
 		<div id="tagline" class="span6">
 			<div class="row-fluid">
-				<div class="span6">
-					<?php do_action('icl_language_selector'); ?>
+				<div class="span7">
+					<?php if ( is_home() ) {
+						echo '<a href="/globalrec/?lang=en">English</a> | <a href="/globalrec/?lang=es">Español</a> | <a href="/globalrec/?lang=pt-br">Portugués</a> | <a href="/?lang=fr">French</a>';
+					} else {
+						// echo do_action('icl_language_selector');
+						echo '<a href="/globalrec/?lang=en">English</a> | <a href="/globalrec/?lang=es">Español</a> | <a href="/globalrec/?lang=pt-br">Portugués</a> | <a href="/?lang=fr">French</a>';
+						}
+						?>
 				</div>
       				<div id="search" class="pull-right">
 					<?php get_search_form(); ?>

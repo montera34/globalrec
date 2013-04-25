@@ -11,8 +11,9 @@ $output = '';
 					<?php dynamic_sidebar( 'front-page-widget-area-main' ) ?>
 				</div>
 			</div>
-			<div class="row-fluid"> <!-- sub menu for front page -->
-				<div id="menu-frontpage" class="span12">
+			<!--
+			<div class="row-fluid">--> <!-- sub menu for front page -->
+				<!--<div id="menu-frontpage" class="span12">
 						<?php $defaults = array(
 							'theme_location'  => 'home-menu',
 							'container' => 'false',
@@ -21,7 +22,8 @@ $output = '';
 							);
 						wp_nav_menu( $defaults );?>
 				</div>
-			</div>
+			</div>-->
+
 			<div id="front-1" class="row-fluid"> <!-- sticky posts -->
 				<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 

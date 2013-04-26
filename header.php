@@ -93,17 +93,6 @@
 				<div class="span9">
 					<small><?php echo get_bloginfo( 'description' ) ?></small>
 				</div>
-				<div class="pull-right">
-					<ul class="nav nav-pills">
-		  				<li class="">
-				    		<a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> </a>
-				  		</li>
-				  		<li class="">
-						<a href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
-						<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> </a>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -111,16 +100,29 @@
 <div class="container" id="main-menu">	
 	<div class="navbar">
 		<!--<div class="navbar-inner">-->
-			<div class="container">	
-					<?php $defaults = array(
-						'theme_location'  => 'main-menu',
-						'container' => 'false',
-						'menu_id' => 'pre-menu',
-						'menu_class' => 'nav nav-pills'
-						);
-					wp_nav_menu( $defaults );?>
-			</div>
+		<div class="container">	
+			<?php $defaults = array(
+				'theme_location'  => 'main-menu',
+				'container' => 'false',
+				'menu_id' => 'pre-menu',
+				'menu_class' => 'nav nav-pills'
+				);
+			wp_nav_menu( $defaults );?>
+			<div class="pull-right">
+				<div class="btn-group">
+					<button class="btn  btn-small">
+			    		<a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter </a>
+			  		</button>
+			  		<button class="btn  btn-small">
+					<a href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
+					<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> Facebook</a>
+					</button>
+				</div>
+			</div>	
 		</div>
 	</div>
 </div>
+
+
+
 <!-- end header -->

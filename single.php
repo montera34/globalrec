@@ -11,7 +11,7 @@ $output = ''; ?>
 			<?php
 				if($categories){
 					foreach($categories as $category) {
-						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right">'.$category->cat_name.'</a>'.$separator;
+						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right" style="margin-right:5px">'.$category->cat_name.' </a> '.$separator;
 					}
 				echo trim($output, $separator);
 				}	

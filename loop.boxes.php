@@ -21,10 +21,10 @@ $output = '';
 		</h4>
 		<div class="post-metadata">
 			<small>
-			<?php the_author_posts_link(); ?> | 
+			<?php the_author_posts_link(); ?> 
 			<?php  
 				if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
-				echo "Region ";	
+				echo "| Region ";	
 				echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
 				endif;
 		 	?></small>

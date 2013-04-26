@@ -61,7 +61,7 @@ $output = '';
 					<a href="http://localhost/globalrec/?page_id=7512">
 						<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" >
 						<h3>Where are we?</h3></a>
-						<p>Lorem ipsum dolor sit amet.</p>
+						<p></p>
 				</div>
 				<!-- box for the Last newsletter ----------------------------------------------------------->
 				<div class="span4">

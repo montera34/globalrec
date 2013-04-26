@@ -18,9 +18,14 @@ $output = ''; ?>
 			?>	
 			<?php // the_post_thumbnail( 'medium' ); ?>
 			</div>
-			<div class="btn btn-small pull-right"><?php edit_post_link(__('Edit This')); ?></div>	
-			<h3><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
-			
+			 <?php if ( is_user_logged_in() ) { 
+				echo '<div class="btn btn-small pull-right">';
+				edit_post_link(__('Edit This')); 
+				echo "</div>";
+			  } ?>
+			<div class="row-fluid">	
+				<h3 class="span12"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
+			</div>
 			<div class="row-fluid">
 				<div class="span4">
 					<h4>
@@ -56,8 +61,13 @@ $output = ''; ?>
 				</div>
 			</div>
 			
-		 	<?php include("share.php")?>
-			
+		 	<hr style="margin:3px 0 3px 0;">
+
+			<div class="row-fluid">	
+				<div class="offset6 span3">Check translation:</div>
+				<div class="span2"><?php do_action('icl_language_selector'); ?></div>
+			</div>
+
 			<div id="post-content">	
 				<?php 
 				$article_url = get_post_meta( $post->ID, '_gr_article-url', true );
@@ -72,8 +82,21 @@ $output = ''; ?>
 					}
 				the_content(__('(more...)')); ?>
 			</div>
+
+			<?php include("share.php")?>
+
 			<div class="post-metadata">
-				<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?> | <?php the_tags( ); ?> 
+				<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?> | 
+				<?php
+					if($categories){
+						foreach($categories as $category) {
+							$output2 .= '<a href="'.get_category_link( $category->term_id ).'" title="' 
+							. esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) 
+							. '" class="label">'.$category->cat_name.'</a>'.$separator;
+						}
+					echo trim($output2, $separator);
+					} ?> | 
+				<?php the_tags( ); ?> 
 			</div>
 			<div class="feedback">
 				<?php wp_link_pages(); ?>

@@ -170,8 +170,8 @@ function globalrec_widgets_init() {
 		'description' => __( 'Main sidebar', 'globalrec' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 		'after_widget' => '</li>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
+		'before_title' => '<h4 class="widget-title">',
+		'after_title' => '</h4>',
 	) );
 	// Area 3, located at the Newsletter page
 	register_sidebar( array(

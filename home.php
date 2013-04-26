@@ -171,14 +171,15 @@ $output = '';
 				</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span12">
-					<!--<h3><a href="blog" title="Go to blog" alt="Go to blog">Blog</a></h3>-->
+				<div class="span4">
+					<h3><a href="blog" title="Go to blog" alt="Go to blog">Organizing</a></h3>
 					<?php // montamos otro loop para llamar a los no sticky
 					global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'caller_get_posts' => 	1,
-					 'posts_per_page'=>	9,
+					 'posts_per_page'=>	4,
+					 'cat'=>		159, //change to category "organizing" and internationalize
 					 'post__not_in' => 	get_option( 'sticky_posts' )					 
 						);
 					if ( $paged > 1 ) {
@@ -187,21 +188,80 @@ $output = '';
 		 
 					$my_query = new WP_Query($args); ?>
 					<ul class="thumbnails">
-						<?php if ( $my_query->have_posts() ) : $count = 0; 
-							while ( $my_query->have_posts() ) : $my_query->the_post(); 
-							$count++; 
-							if ( $count == 1 ) { echo "<div class='row-fluid'>"; } ?>
-						<?php global $wp_query;	 //necessary to show the tags 
+						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
+							
+						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<?php include("loop.boxes.php")?>
-							<?php if ( $count == 3 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>
+							<li id="post-<?php the_ID(); ?>" <?php post_class('span12'); ?>	>
+								<?php include("loop.boxes.php")?>
+							</li>
 						<?php endwhile; else: ?>
 					</ul>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
-					<a href="blog" title="Go to blog" alt="Go to blog">Read more blog Posts</a>
 				</div>
+				<div class="span4">
+					<h3><a href="blog" title="Go to blog" alt="Go to blog">Threats</a></h3>
+					<?php // montamos otro loop para llamar a los no sticky
+					global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
+					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
+					$args = array(
+					 'caller_get_posts' => 	1,
+					 'posts_per_page'=>	4,
+					 'cat'=>		35, //change to category "threats" and internationalize
+					 'post__not_in' => 	get_option( 'sticky_posts' )					 
+						);
+					if ( $paged > 1 ) {
+					 $args['paged'] = $paged;
+						}
+		 
+					$my_query = new WP_Query($args); ?>
+					<ul class="thumbnails">
+						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
+							
+						global $wp_query;	 //necessary to show the tags 
+							$wp_query->in_the_loop = true; 
+							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
+							<li id="post-<?php the_ID(); ?>" <?php post_class('span12'); ?>	>
+								<?php include("loop.boxes.php")?>
+							</li>
+						<?php endwhile; else: ?>
+					</ul>
+					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+					<?php endif; ?>
+				</div>	
+				<div class="span4">
+					<h3><a href="blog" title="Go to blog" alt="Go to blog">Publications</a></h3>
+					<?php // montamos otro loop para llamar a los no sticky
+					global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
+					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
+					$args = array(
+					 'caller_get_posts' => 	1,
+					 'posts_per_page'=>	4,
+					 'cat'=>		26, //change to category "publications" and internationalize
+					 'post__not_in' => 	get_option( 'sticky_posts' )					 
+						);
+					if ( $paged > 1 ) {
+					 $args['paged'] = $paged;
+						}
+		 
+					$my_query = new WP_Query($args); ?>
+					<ul class="thumbnails">
+						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
+							
+						global $wp_query;	 //necessary to show the tags 
+							$wp_query->in_the_loop = true; 
+							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
+							<li id="post-<?php the_ID(); ?>" <?php post_class('span12'); ?>	>
+								<?php include("loop.boxes.php")?>
+							</li>
+						<?php endwhile; else: ?>
+					</ul>
+					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+					<?php endif; ?>
+				</div>	
+				<a href="blog" title="Go to blog" alt="Go to blog">Read more blog Posts</a>
 			</div>	
 		</div>
 		

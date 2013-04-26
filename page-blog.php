@@ -34,8 +34,9 @@ get_header(); ?>
 			$count++;
 			if ( $count == 1 ) { echo "<div class='row-fluid'>"; }
 			?>
+			<li id="post-<?php the_ID(); ?>" <?php post_class('span4'); ?>	>
 				<?php include("loop.boxes.php")?>
-
+			</li>
 			<?php if ( $count == 3 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>
 
 			<?php endwhile; else: ?>

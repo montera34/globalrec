@@ -21,7 +21,7 @@ get_header(); ?>
 				$my_query = new WP_Query($args);
 				?>
 
-
+<!--
   <table class="table table-hover table-condensed">
 	<thead>
 	 <tr>
@@ -74,9 +74,8 @@ get_header(); ?>
 	<?php endif; ?>
     </tbody>
   </table>
-
+-->
 	
-
 	<div class="navigation">
   			<div class="alignleft"><?php 
 				if ( !$max_page ) {

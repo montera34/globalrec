@@ -66,7 +66,10 @@
 <div class="container">
 	<div class="row-fluid" style="margin:10px 0 0px;">
 		<div id="imagotipo" class="span2">
-			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" ><img src="<?php bloginfo('template_url'); ?>/images/logo_3.png" ></a>
+			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" >
+				<!--img src="<?php bloginfo('template_url'); ?>/images/logo_3.png"-->
+				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" alt="Global Alliance Of Wste Pickers Imagotype" />
+			</a>
 		</div>
 		<div id="logotipo" class="span4">
 			<h1><span style="font-family: 'Roboto Condensed', sans-serif;"><small><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></small><br><span class="globalreccolor"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span></span> </h1>

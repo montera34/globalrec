@@ -19,7 +19,6 @@ get_header(); ?>
 				'post_parent' => 0,
 				'order' =>  'ASC',
 				'orderby' =>  'title'
-
 				);
 
 

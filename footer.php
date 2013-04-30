@@ -9,8 +9,9 @@
 
 <div class="container">	
 <div id="footer" class="row">	
-	<div class="span12"> <small>
-		<strong><a href="/">Global Alliance of Waste Pickers</a></strong>. <a href="http://www.globalrec.org/feed/">Feed/RSS</a>. Powered by <a href='http://wordpress.org/'><strong>Wordpress</strong></a>. Web development <a href='http://montera34.com' title='montera34'>M34</a>.
+	<div class="span12"> 
+		<small>
+			<?php  dynamic_sidebar( 'footer-sidebar' ) ?>
 		</small>
 	</div>
 </div>

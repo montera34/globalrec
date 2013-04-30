@@ -155,7 +155,7 @@ function my_custom_init() {
 function globalrec_widgets_init() {
 	// Area 1, located at the front-page.
 	register_sidebar( array(
-		'name' => __( 'Front page widget area main', 'globalrec' ),
+		'name' => __( 'Banner Home page widget area', 'globalrec' ),
 		'id' => 'front-page-widget-area-main',
 		'description' => __( 'Front page widget area main', 'globalrec' ),
 		'before_widget' => '',
@@ -165,7 +165,7 @@ function globalrec_widgets_init() {
 	) );
 	// Area 2, located at the front-page.
 	register_sidebar( array(
-		'name' => __( 'Main Sidebar', 'globalrec' ),
+		'name' => __( 'Home page side bar', 'globalrec' ),
 		'id' => 'main-sidebar-widget',
 		'description' => __( 'Main sidebar', 'globalrec' ),
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
@@ -193,6 +193,27 @@ function globalrec_widgets_init() {
 		'before_title' => '<strong>',
 		'after_title' => '</strong>',
 	) );
+	// Area 5, located at the blog page
+	register_sidebar( array(
+		'name' => __( 'Blog side bar', 'globalrec' ),
+		'id' => 'blog-sidebar',
+		'description' => __( 'The side bar of the blog', 'globalrec' ),
+		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<strong>',
+		'after_title' => '</strong>',
+	) );
+	// Area 6, located at the footer
+	register_sidebar( array(
+		'name' => __( 'Footer bar', 'globalrec' ),
+		'id' => 'footer-sidebar',
+		'description' => __( 'The footer bar', 'globalrec' ),
+		'before_widget' => ' ',
+		'after_widget' => '',
+		'before_title' => ' ',
+		'after_title' => ' ',
+	) );
+
 
 }
 /** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */

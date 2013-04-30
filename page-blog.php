@@ -3,9 +3,6 @@ get_header(); ?>
 
 <div class="container">
 	<div class="row-fluid">
-		<div class="span3">
-			<?php get_sidebar(); ?>
-		</div>
 		<div id="blog" class="span9">	
 			<div class="row-fluid">
 				<h2 id="post-<?php the_ID(); ?>" class="span6">
@@ -44,6 +41,9 @@ get_header(); ?>
 			<?php endif; ?>
 			</ul>
 		</div>
+	<div class="span3">
+		<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
+	</div>
 		<div class="row-fluid">
   			<div class="offset3 span9">
 				<div class="pull-left">

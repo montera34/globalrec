@@ -112,7 +112,7 @@ $output = ''; ?>
 		</div>
 		<!-- begin sidebar -->
 		<div id="menu" class="offset1 span3">
-			<?php get_sidebar(); ?>
+			<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
 		</div>
 		<!-- end sidebar -->
 	</div>

@@ -247,10 +247,12 @@ $output = '';
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
 				</div>	
-				<a href="blog" title="Go to blog" alt="Go to blog">Read more blog Posts</a>
 			</div>	
+			<div class="row-fluid">
+			<a href="blog" title="Go to blog" alt="Go to blog" class="btn pull-right">Read more blog Posts</a>
+		 	</div>
 		</div>
-		
+
 		<!-- begin sidebar -->
 		<div id="menu" class="span3">
 			<?php get_sidebar(); ?>

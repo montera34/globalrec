@@ -22,6 +22,9 @@
 	
 <!-- Bootstrap -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- Bootstrap responsive-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="<?php bloginfo('template_url'); ?>/css/bootstrap-responsive.css" rel="stylesheet">
 <!-- /Bootstrap -->
 
 <style type="text/css" media="screen">

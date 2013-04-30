@@ -129,8 +129,12 @@ register_taxonomy( 'gb-type', 'global-meeting', array(
 	'query_var' => true,
 	'rewrite' => true ) );
 register_taxonomy( 'gb-year', 'global-meeting', array(
-	'hierarchical' => true,
 	'label' => 'Year',
+	'query_var' => true,
+	'rewrite' => true ) );
+register_taxonomy( 'gb-selected', 'global-meeting', array( //select if it appears in a prominent way in the global meetings page
+	'hierarchical' => true,
+	'label' => 'Selected for Global Meetings boxes',
 	'query_var' => true,
 	'rewrite' => true ) );
 

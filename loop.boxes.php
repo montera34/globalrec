@@ -20,8 +20,8 @@ $output = '';
 			<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 		</h4>
 		<div class="post-metadata">
-			<small>
-			<?php the_author_posts_link(); ?> 
+			<small> 
+			<?php if (get_post_type() == 'post') { the_author_posts_link(); }?> 
 			<?php  
 				if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
 				echo "| Region ";	
@@ -36,10 +36,17 @@ $output = '';
 			if ( $matches[0] != '' ) {
 				$post_excerpt = $matches[0] . "...";
 			} ?> 
-		<div class="excerpt">
-			<small><?php if($post->post_excerpt) : the_excerpt(); else: 
-				echo "" .$post_excerpt; endif; ?> </small>
-		</div>
+		<?php if (get_post_type() != 'global-meeting') { //conditional if is global meeting custom post type, don-t show excerpt?>		
+			<div class="excerpt">
+				<small>
+					<?php if($post->post_excerpt) : the_excerpt(); else: 
+					echo "" .$post_excerpt; endif; ?> 
+				</small>
+			</div>
+		<?php }?>
+		 			<?php $text = get_post_meta( $post->ID, 'gm_location', true ); echo $text; ?>  
+					<span class="label"><?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); ?></span> 
+				 	<?php echo $op; ?>
 		<div>
 		<?php // the_time('F d, Y') ?>
 		<?php

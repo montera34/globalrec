@@ -11,6 +11,61 @@ get_header(); ?>
 		</div>
 			<?php the_content(); ?>	
 			<?php endwhile; endif; ?>
+		<div class="row-fluid">
+			<?php global $more;    //select global meeting to build the highlited boxes. They should be marked with the taxonomy selected in "highlighted"
+				$args = array(
+				 'caller_get_posts' => 1,
+				 'post_type' => 'global-meeting', 
+				 'posts_per_page' => 3, 
+				 'post_parent' => 0,
+				 'gb-selected' => 'highlighted'
+					);
+				if ( $paged > 1 ) {
+				 $args['paged'] = $paged;
+					}
+	 
+				$my_query = new WP_Query($args);
+				?>
+			<ul class="thumbnails">	
+			<?php if ($my_query->have_posts() ) : 
+				$count = 0;
+				while ( $my_query->have_posts()) : $my_query->the_post(); 
+				$count++;
+				if ( $count == 1 ) { echo "<div class='row-fluid'>"; } ?>
+			<?php 	 //necessary to show the tags 
+				global $wp_query;
+				$wp_query->in_the_loop = true;
+				$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. 
+		
+
+				//intento de añadir la class 'label' a los bg-type
+				$id = $post->ID;
+				$tax = 'gb-type';
+				$op = '';
+				$list = get_the_term_list($id,$tax,'','|','');
+				if ($list) {
+				   $terms = explode('|',$list);
+				   $op = '';
+				   foreach ($terms as $term) {
+					  $class = 'item-' . ++$i;
+					  $item = "<span class=\"label\">$term</span>";
+					  $op .= $item;
+				   }
+				}
+				?>		
+					<li id="post-<?php the_ID(); ?>" <?php post_class('span4'); ?>	>
+						<?php include("loop.boxes.php")?>
+
+					 
+					</li>
+			<?php if ( $count == 3 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>
+				
+
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endif; ?>
+			</ul>
+		</div>
 			<?php	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 				//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 				$args = array(

@@ -81,10 +81,10 @@
 			<div class="row-fluid">
 				<div class="span7">
 					<?php if ( is_home() ) {
-						echo '<a href="/globalrec/?lang=en">English</a> | <a href="/globalrec/?lang=es">Español</a> | <a href="/globalrec/?lang=pt-br">Portugués</a> | <a href="/?lang=fr">French</a>';
+						echo '<a href="/">English</a> | <a href="/es">Español</a> | <a href="/pt-br">Português</a> | <a href="/fr">Français</a>';
 					} else {
 						// echo do_action('icl_language_selector');
-						echo '<a href="/globalrec/?lang=en">English</a> | <a href="/globalrec/?lang=es">Español</a> | <a href="/globalrec/?lang=pt-br">Portugués</a> | <a href="/?lang=fr">French</a>';
+						echo '<a href="/">English</a> | <a href="/es">Español</a> | <a href="/pt-br">Português</a> | <a href="/fr">Français</a>';
 						}
 						?>
 				</div>

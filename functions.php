@@ -192,7 +192,7 @@ function globalrec_widgets_init() {
 		'name' => __( 'News Feeds', 'globalrec' ),
 		'id' => 'newsroundup',
 		'description' => __( 'Newslround up feeds', 'globalrec' ),
-		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s">',
+		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s span3">',
 		'after_widget' => '</div>',
 		'before_title' => '<strong>',
 		'after_title' => '</strong>',
@@ -204,8 +204,8 @@ function globalrec_widgets_init() {
 		'description' => __( 'The side bar of the blog', 'globalrec' ),
 		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s">',
 		'after_widget' => '</div>',
-		'before_title' => '<strong>',
-		'after_title' => '</strong>',
+		'before_title' => '<h4 class="widget-title">',
+		'after_title' => '</h4>',
 	) );
 	// Area 6, located at the footer
 	register_sidebar( array(

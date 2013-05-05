@@ -107,7 +107,7 @@ $(document).ready(function () {
 						$wp_query->in_the_loop = true;
 		
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), medium, false, '' ); ?>
+						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), thumbnail, false, '' ); ?>
 						
 							<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: relative;width:200px;height:130px;background-image:url('<?php echo $src[0]; ?>');">
 							<?php //the_post_thumbnail( 'thumbnail' ); ?>
@@ -156,10 +156,10 @@ $(document).ready(function () {
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
 						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), medium, false, '' ); ?>
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: 
-							relative;width:200px;height:130px;background-image:url('<?php echo $src[0]; ?>');">
-							<?php //the_post_thumbnail( 'thumbnail' ); ?> 
-							</div>
+							<!--div class="size-thumbnail wp-image-2864 alignleft" style="margin:0 15px 15px 0;position: 
+							relative;width:200px;height:130px;background-image:url('<?php echo $src[0]; ?>');"-->
+							<?php the_post_thumbnail( 'medium' ); ?> 
+							<!--/div-->
 								<h4><?php the_title();?></h4>
 						</a> 
 						<?php endwhile; else: ?>

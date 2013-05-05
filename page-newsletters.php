@@ -8,9 +8,11 @@ get_header(); ?>
 			<?php the_title();?>
 		</h2>
 		<?php the_content(); ?>
+		<?php endwhile; endif; ?>
+		<a name="globalrec"></a>
 	 	<h3>Struggles and victories Newsletters (globalrec.org)</h3>
 		<?php //  _e('(struggles-and-victories-newsletters)', 'wpml_theme'); ?>
-		<?php endwhile; endif; 
+		<?php
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(		//arguments for showing newsletters custom post type

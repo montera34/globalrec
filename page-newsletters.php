@@ -102,6 +102,7 @@ get_header(); ?>
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
+		<a name="africa"></a>
 		<h3>African newsletters </h3>
 		<?php
 
@@ -139,7 +140,8 @@ get_header(); ?>
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
-
+		
+		<a name="india"></a>
 		<h3>India (AIW) Newsletters</h3>
 		<?php
 
@@ -177,7 +179,7 @@ get_header(); ?>
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
-
+		<a name="america"></a>
 		<h3>Latin America Newsletters</h3>
 		<?php
 

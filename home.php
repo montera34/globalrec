@@ -7,6 +7,15 @@ $output = '';
 	<div class="row-fluid">
 		<div class="span9">
 			<!-- Carousel starts -->
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.carousel').carousel({
+        interval: 3000
+    });
+
+    $('.carousel').carousel('cycle');
+});
+</script>
 			<div class="row-fluid">
 				<div id="myCarousel" class="carousel slide">
 					<ol class="carousel-indicators">
@@ -18,10 +27,11 @@ $output = '';
 					</ol>
 					<!-- Carousel items -->
 					<div class="carousel-inner">
-					  <?php
+					  <?php 
 					   $the_query = new WP_Query(array(
-					    'category_name' => 'incineration', //ToDo, change it to taxonomy activated
-					    'posts_per_page' => 1
+						'posts_per_page' => 1,
+						'post__in'  => get_option( 'sticky_posts' ),
+						'ignore_sticky_posts' => 1
 					    ));
 					   while ( $the_query->have_posts() ) :
 					   $the_query->the_post();
@@ -37,8 +47,9 @@ $output = '';
 					   wp_reset_postdata();
 					  ?>
 					  <?php
+				 	   $sticky = get_option( 'sticky_posts' );
 					   $the_query = new WP_Query(array(
-					    'category_name' => 'incineration', //ToDo, change it to taxonomy activated
+					    'post__in'  => $sticky,
 					    'posts_per_page' => 4,
 					    'offset' => 1
 					    ));
@@ -71,7 +82,7 @@ $output = '';
 			<div class="row-fluid" id="home-boxes"> 
 				<!-- box for Life and voices link. It loads a random photo of a waste picker everytime.--------------------- -->
 				<div class="span4">
-					<a href="http://localhost/globalrec/?page_id=9">
+					<a href="/life-and-voices/">
 					<?php 	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 						//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 						$args = array(
@@ -80,8 +91,8 @@ $output = '';
 						'posts_per_page' => 1, 
 						'post_parent' => 0,
 						'order' =>  'ASC',
-						'orderby' =>  'title'
-						//'orderby' =>  'rand' change to random in production
+						//'orderby' =>  'title'
+						'orderby' =>  'rand' //change to random in production
 					);
 
 					if ( $paged > 1 ) {
@@ -104,7 +115,7 @@ $output = '';
 								
 								<span><?php the_title_attribute(); ?></span>
 								</div><!-- .box-bottom -->
-							</div><h4>Who? Life and Voices of Waste pickers</h4>
+							</div><h3 style="clear: left;">Life and Voices of Waste pickers</h3>
 						
 					<?php endwhile; else: ?>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
@@ -114,7 +125,7 @@ $output = '';
 				</div>
 				<!-- box for Where we are? ----------------------------------------------------------->
 				<div class="span4">
-					<a href="http://localhost/globalrec/?page_id=7512">
+					<a href="/where-are-we/">
 						<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" >
 						<h3>Where are we?</h3></a>
 						<p></p>
@@ -160,13 +171,13 @@ $output = '';
 			<hr>
 			<div class="row-fluid">
 				<div class="span4">
-					<h3><a href="blog" title="Go to blog" alt="Go to blog">Organizing</a></h3>
+					<h3><a href="/category/organizing/" title="Go to Organizing Articles">Organizing</a></h3>
 					<?php global $more; 
 					$args = array(
 					 'caller_get_posts' => 	1,
 					 'posts_per_page'=>	4,
-					 'cat'=>		159, //change to category "organizing" and internationalize
-					 'post__not_in' => 	get_option( 'sticky_posts' )					 
+					 'cat'=>		858, //change to category "organizing" and internationalize
+					 //'post__not_in' => 	get_option( 'sticky_posts' )					 
 						);
 					if ( $paged > 1 ) {
 					 $args['paged'] = $paged;
@@ -188,15 +199,14 @@ $output = '';
 					<?php endif; ?>
 				</div>
 				<div class="span4">
-					<h3><a href="blog" title="Go to blog" alt="Go to blog">Threats</a></h3>
+					<h3><a href="category/threats/" title="Go to Threats Articles">Threats</a></h3>
 					<?php // montamos otro loop para llamar a los no sticky
 					global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'caller_get_posts' => 	1,
 					 'posts_per_page'=>	4,
-					 'cat'=>		35, //change to category "threats" and internationalize
-					 'post__not_in' => 	get_option( 'sticky_posts' )					 
+					 'cat'=>		964, //change to category "threats" and internationalize				 
 						);
 					if ( $paged > 1 ) {
 					 $args['paged'] = $paged;
@@ -218,15 +228,14 @@ $output = '';
 					<?php endif; ?>
 				</div>	
 				<div class="span4">
-					<h3><a href="blog" title="Go to blog" alt="Go to blog">Publications</a></h3>
+					<h3><a href="/category/publications/" title="Go to Publications Articles">Publications</a></h3>
 					<?php // montamos otro loop para llamar a los no sticky
 					global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'caller_get_posts' => 	1,
 					 'posts_per_page'=>	4,
-					 'cat'=>		26, //change to category "publications" and internationalize
-					 'post__not_in' => 	get_option( 'sticky_posts' )					 
+					 'cat'=>		970, //change to category "publications" and internationalize					 
 						);
 					if ( $paged > 1 ) {
 					 $args['paged'] = $paged;

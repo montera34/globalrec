@@ -109,8 +109,8 @@ $(document).ready(function () {
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
 						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), thumbnail, false, '' ); ?>
 						
-							<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: relative;width:200px;height:130px;background-image:url('<?php echo $src[0]; ?>');">
-							<?php //the_post_thumbnail( 'thumbnail' ); ?>
+							<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: relative;');">
+							<?php the_post_thumbnail( 'thumbnail' ); ?>
 								<div class='box-bottom'>
 								
 								<span><?php the_title_attribute(); ?></span>
@@ -136,9 +136,9 @@ $(document).ready(function () {
 					$args = array(		//arguments for showing newsletters custom post type
 						'post_type' => 'newsletter', 
 						'posts_per_page' => 1, 
-						'post_parent' => 0,
-						'order' =>  'ASC',
-						'orderby' =>  'title'
+						'post_parent' => 0
+						//'order' =>  'ASC',
+						
 						);
 
 

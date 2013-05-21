@@ -192,7 +192,7 @@ function globalrec_widgets_init() {
 		'name' => __( 'News Feeds', 'globalrec' ),
 		'id' => 'newsroundup',
 		'description' => __( 'Newslround up feeds', 'globalrec' ),
-		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s span3">',
+		'before_widget' => '<div id="%1$s" class="widget-container-feed %2$s span2">',
 		'after_widget' => '</div>',
 		'before_title' => '<strong>',
 		'after_title' => '</strong>',

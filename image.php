@@ -1,29 +1,29 @@
 <?php get_header(); ?>
-<div id="content">
-<?php get_sidebar(); ?> 
-  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment" title="back to a <?php echo get_the_title($post->post_parent) ?>" alt="volver a <?php echo get_the_title($post->post_parent) ?>">&laquo; Back to <?php echo get_the_title($post->post_parent) ?></a>
-		<div class="navigation">
-			<div class="nav-image-left"><?php previous_image_link( false, '&laquo; Prev' ); ?></div>
-			<div class="nav-image-up"></div>
-			<div class="nav-image-right"><?php next_image_link( false, 'Next &raquo;' ); ?> </div>
-		</div>
+<div id="page">
+	<div class="container">
+		<div class="row-fluid">
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment" title="back to a <?php echo get_the_title($post->post_parent) ?>" alt="volver a <?php echo get_the_title($post->post_parent) ?>">&laquo; Back to <?php echo get_the_title($post->post_parent) ?></a>
+			<div class="span8">
+				<div class="btn pull-left"><?php previous_image_link( false, '&laquo; Prev' ); ?></div>
+				<div class="nav-image-up"></div>
+				<div class="btn pull-right"><?php next_image_link( false, 'Next &raquo;' ); ?> </div>
+			</div>
 
+			<?php $attachment_link = get_the_attachment_link($post->ID, true, array(950, 800)); // This also populates the iconsize for the next line ?>
+			<!--h3><?php the_excerpt(); ?></h3-->	
 
-<?php $attachment_link = get_the_attachment_link($post->ID, true, array(950, 800)); // This also populates the iconsize for the next line ?>
-<!--h3><?php the_excerpt(); ?></h3-->	
+			<?php $_post = &get_post($post->ID); $classname = ($_post->iconsize[0] <= 128 ? 'small' : '') . 'attachment'; // This lets us style narrow icons specially ?>
 
-<?php $_post = &get_post($post->ID); $classname = ($_post->iconsize[0] <= 128 ? 'small' : '') . 'attachment'; // This lets us style narrow icons specially ?>
+			<div class="span8" id="post-<?php the_ID(); ?>">
 
-		<div class="" id="post-<?php the_ID(); ?>">
+				<p class="<?php echo $classname; ?>"><?php echo $attachment_link; ?><br /></p>
+				<?php the_title(); ?>
+				<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
 
-			<p class="<?php echo $classname; ?>"><?php echo $attachment_link; ?><br /></p>
-			<?php the_title(); ?>
-			<?php the_content('<p class="serif">Read the rest of this entry &raquo;</p>'); ?>
-
-			<?php wp_link_pages(array('before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
-<div class="clear"></div>
-			<p class="postmetadata alt quiet">
+				<?php wp_link_pages(array('before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
+				<div class="clear"></div>
+				<p class="postmetadata alt quiet">
 					<small>
 						<!--Posted on <?php the_time('l, F jS, Y') ?> at <?php the_time() ?>
 						and is filed under <?php the_taxonomies(); ?>.
@@ -49,15 +49,17 @@
 
 					</small>
 				</p>
+			</div>
 		</div>
-
-	<?php comments_template(); ?>
-
-	<?php endwhile; else: ?>
+		<div class="row-fluid">
+		<?php comments_template(); ?>
+		</div>
+		<?php endwhile; else: ?>
 
 		<p>Sorry, nothing came through.</p>
 
-<?php endif; ?>
+		<?php endif; ?>
+	</div> 
+</div> 
 
-<?php get_footer(); ?>	
-</div><!-- #content -->
+<?php get_footer(); ?>

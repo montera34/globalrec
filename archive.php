@@ -15,7 +15,7 @@ $termdesc = $wp_query->queried_object->description;
 			<?php } elseif ( get_post_type() == 'global-meeting' && is_archive()) { ?>
 				<h4><?php _e('Global meeting type:', 'cp'); ?> <span><?php echo $termname ?></span></h4>
 			<?php } elseif ( get_post_type() == 'post' && is_archive()) { ?>
-				<h4><?php _e('Region:', 'cp'); ?> <span><?php echo $termname ?></span></h4>
+				<h4><?php _e('', 'cp'); ?> <span><?php echo $termname ?></span></h4>
 			<?php } elseif ( is_tag() ) { ?>
 				<h4><?php _e('Tag:', 'cp'); ?> <span><?php single_tag_title(); ?></span></h4>
 			<?php } elseif ( is_day() ) { ?>

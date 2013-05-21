@@ -6,7 +6,7 @@
 		<div <?php post_class("span8") ?> id="post-<?php the_ID(); ?>">
 			 <!-- change links in production -->
 			<ul class="breadcrumb">
-			  <li><a href="#">Home</a> <span class="divider">/</span></li>
+			  <!--li><a href="#">Home</a> <span class="divider">/</span></li-->
 			  <li><a href="/global-meetings/">Global Meetings</a> <span class="divider">/</span></li>
 			  <li><?php the_title(); ?> </li>
 			</ul>

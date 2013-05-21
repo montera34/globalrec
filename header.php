@@ -113,13 +113,9 @@
 			wp_nav_menu( $defaults );?>
 			<div class="pull-right">
 				<div class="btn-group">
-					<button class="btn  btn-small">
-			    		<a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter </a>
-			  		</button>
-			  		<button class="btn  btn-small">
-					<a href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
+			    		<a  class="btn  btn-small" href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter </a>
+					<a class="btn  btn-small" href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
 					<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> Facebook</a>
-					</button>
 				</div>
 			</div>	
 		</div>

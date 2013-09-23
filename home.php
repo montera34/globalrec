@@ -258,7 +258,7 @@ $(document).ready(function () {
 				</div>	
 			</div>	
 			<div class="row-fluid">
-			<a href="blog" title="Go to blog" alt="Go to blog" class="btn pull-right">Read more blog Posts</a>
+			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-large pull-right">Read more blog Posts</a>
 		 	</div>
 		</div>
 

@@ -44,8 +44,8 @@ get_header(); ?>
 		<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
 	</div>
 		<div class="row-fluid">
-  			<div class="offset3 span9">
-				<div class="pull-left">
+  			<div class="span9">
+				<div class="pull-left btn btn-large">
 				<?php if ( !$max_page ) {
  					 $max_page = $my_query->max_num_pages;
 					}
@@ -61,7 +61,7 @@ get_header(); ?>
 					}
 					?>
 				</div>
-  				<div class="pull-right"><?php 
+  				<div class="pull-right btn btn-large"><?php 
 					if ( !is_single() && $paged > 1 ) {
   				$attr = apply_filters( 'previous_posts_link_attributes', '' );
   				echo '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/', '&$1', 'Newer posts &raquo;' ) .'</a>';

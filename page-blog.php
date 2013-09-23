@@ -21,7 +21,6 @@ get_header(); ?>
 				if ( $paged > 1 ) {
 				 $args['paged'] = $paged;
 					}
-
 				$my_query = new WP_Query($args);
 				?>
 

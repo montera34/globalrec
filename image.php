@@ -11,7 +11,7 @@
 			</div>
 
 			<?php $attachment_link = get_the_attachment_link($post->ID, true, array(950, 800)); // This also populates the iconsize for the next line ?>
-			<!--h3><?php the_excerpt(); ?></h3-->	
+			<!--<h3><?php the_excerpt(); ?></h3>-->	
 
 			<?php $_post = &get_post($post->ID); $classname = ($_post->iconsize[0] <= 128 ? 'small' : '') . 'attachment'; // This lets us style narrow icons specially ?>
 

@@ -21,7 +21,16 @@ $output = '';
 		</h4>
 		<div class="post-metadata">
 			<small> 
-			<?php if (get_post_type() == 'post') { the_author_posts_link(); }?> 
+			<?php if (get_post_type() == 'post') { 
+				$written_by = get_post_meta( $post->ID, '_gr_written-by', true ); 
+				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+						echo $written_by;
+					}
+					else {
+						the_author_posts_link();
+					}
+				}
+			?> 
 			<?php  
 				if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
 				echo "| Region ";	

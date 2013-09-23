@@ -26,6 +26,8 @@ $output = '';
 				if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  : 
 				echo "| Region ";	
 				echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
+				echo " | ";
+				echo the_time('M d, Y');
 				endif;
 		 	?></small>
 		</div>

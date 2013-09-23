@@ -72,11 +72,13 @@ $output = ''; ?>
 				<?php 
 				$article_url = get_post_meta( $post->ID, '_gr_article-url', true );
 				$article_title = get_post_meta( $post->ID, '_gr_article-title', true );
+				$article_published_in = get_post_meta( $post->ID, '_gr_published-in', true );
 				if ($article_url != '') {
 						echo "<div class='row-fluid'><div class='span12'><a href='".$article_url."'>".$article_title."</a><br>";
 						echo $written_by. ". ";
-						echo get_post_meta( $post->ID, '_gr_published-in', true );	
-						echo ". ";
+						if ($article_published_in != '') {
+							echo $article_published_in. ". ";	
+						}
 						echo get_post_meta( $post->ID, '_gr_article-date', true );
 						echo "</div></div>";	
 					}

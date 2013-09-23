@@ -80,55 +80,18 @@ $(document).ready(function () {
 			</div>-->
 
 			<div class="row-fluid" id="home-boxes"> 
-				<!-- box for Life and voices link. It loads a random photo of a waste picker everytime.--------------------- -->
 				<div class="span4">
 					<a href="/life-and-voices/">
-					<?php 	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
-						//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
-						$args = array(
-						'caller_get_posts' => 1,
-						'post_type' => 'bio', 
-						'posts_per_page' => 1, 
-						'post_parent' => 0,
-						'order' =>  'ASC',
-						//'orderby' =>  'title'
-						'orderby' =>  'rand' //change to random in production
-					);
-
-					if ( $paged > 1 ) {
-					 $args['paged'] = $paged;
-						}
-
-					$my_query = new WP_Query($args);
-		
-					if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
-						//necessary to show the tags 
-						global $wp_query;
-						$wp_query->in_the_loop = true;
-		
-						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), thumbnail, false, '' ); ?>
-						
-							<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: relative;');">
-							<?php the_post_thumbnail( 'thumbnail' ); ?>
-								<div class='box-bottom'>
-								
-								<span><?php the_title_attribute(); ?></span>
-								</div><!-- .box-bottom -->
-							</div><h3 style="clear: left;">Life and Voices of Waste pickers</h3>
-						
-					<?php endwhile; else: ?>
-					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-					<?php endif; ?>
-					
+						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt=">Life and Voices of Waste pickers" />
+						<h3 style="clear: left;">Life and Voices of Waste pickers</h3>
+						<p>Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.
 					</a>
 				</div>
 				<!-- box for Where we are? ----------------------------------------------------------->
 				<div class="span4">
-					<a href="/where-are-we/">
-						<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" >
-						<h3>Where are we?</h3></a>
-						<p></p>
+						<?php icl_link_to_element(7618,'page',__('<img src="http://globalrec.org/wp-content/themes/globalrec/images/map-waste-pickers-groups_p.png" >')); ?>
+						<h3><?php icl_link_to_element(7618,'page'); ?></h3>
+						<p>Provisional list of hundreds of waste pickers’ groups around the globe.</p>
 				</div>
 				<!-- box for the Last newsletter ----------------------------------------------------------->
 				<div class="span4">
@@ -161,7 +124,8 @@ $(document).ready(function () {
 							<?php the_post_thumbnail( 'medium' ); ?> 
 							<!--/div-->
 								<h4><?php the_title();?></h4>
-						</a> 
+						</a> 	
+						<p>Check the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>.</p>
 						<?php endwhile; else: ?>
 						<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 						<?php endif; ?>

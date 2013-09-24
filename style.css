@@ -21,6 +21,10 @@ a {
 }*/
 
 
+.wp-caption {
+margin-bottom: 10px;
+}
+
 /* arreglando gallery */
 .gallery br {
 display:none;

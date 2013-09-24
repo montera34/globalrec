@@ -125,7 +125,7 @@ $(document).ready(function () {
 							<!--/div-->
 								<h4><?php the_title();?></h4>
 						</a> 	
-						<p>Check the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>.</p>
+						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>.</p>
 						<?php endwhile; else: ?>
 						<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 						<?php endif; ?>

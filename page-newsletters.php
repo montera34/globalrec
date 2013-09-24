@@ -3,10 +3,14 @@ get_header(); ?>
 
 <div class="container">
 	<div class="row-fluid">
+		<div id="blog" class="span9">	
+			<div class="row-fluid">
+				<h2 id="post-<?php the_ID(); ?>" class="span6">
+					<?php the_title();?>	
+				</h2>		
+				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
+			</div>	
 		<?php if (have_posts()) : while (have_posts()) : the_post();?>
-		<h2 id="post-<?php the_ID(); ?>">
-			<?php the_title();?>
-		</h2>
 		<?php the_content(); ?>
 		<a name="globalrec"></a>
 	 	<h3>Struggles and victories Newsletters (globalrec.org)</h3>
@@ -16,7 +20,7 @@ get_header(); ?>
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(		//arguments for showing newsletters custom post type
 				'post_type' => 'newsletter', 
-				'posts_per_page' => 2, 
+				'posts_per_page' => -1, 
 				'post_parent' => 0
 				//'order' =>  'ASC',
 				//'orderby' =>  'title'

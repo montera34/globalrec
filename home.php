@@ -16,63 +16,6 @@ $(document).ready(function () {
     $('.carousel').carousel('cycle');
 });
 </script>
-			<div class="row-fluid">
-				<div id="myCarousel" class="carousel slide">
-					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-						<li data-target="#myCarousel" data-slide-to="3"></li>
-						<li data-target="#myCarousel" data-slide-to="4"></li>
-					</ol>
-					<!-- Carousel items -->
-					<div class="carousel-inner">
-					  <?php 
-					   $the_query = new WP_Query(array(
-						'posts_per_page' => 1,
-						'post__in'  => get_option( 'sticky_posts' ),
-						'ignore_sticky_posts' => 1
-					    ));
-					   while ( $the_query->have_posts() ) :
-					   $the_query->the_post();
-					  ?>
-					   <div class="active item">
-					    <?php the_post_thumbnail('large');?>
-						<div class="carousel-caption">
-			              <h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title();?></a></h4>
-			            </div>
-					   </div><!-- item active -->
-					  <?php
-					   endwhile;
-					   wp_reset_postdata();
-					  ?>
-					  <?php
-				 	   $sticky = get_option( 'sticky_posts' );
-					   $the_query = new WP_Query(array(
-					    'post__in'  => $sticky,
-					    'posts_per_page' => 4,
-					    'offset' => 1
-					    ));
-					   while ( $the_query->have_posts() ) :
-					   $the_query->the_post();
-					  ?>
-					   <div  class="item">
-					    <?php the_post_thumbnail('large');?>
-						<div class="carousel-caption">
-			              <h4><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title();?></a></h4>
-			            </div>
-					   </div><!-- item -->
-					  <?php
-					   endwhile;
-					   wp_reset_postdata();
-					  ?>
-					 </div><!-- carousel-inner -->
-					<!-- Carousel nav -->
-					  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-					  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-					</div><!-- #myCarousel -->
-			</div>
-
 			<!-- div class="row-fluid"> <!-- space for banners -->
 				<!-- <div class="span12">
 					<?php dynamic_sidebar( 'front-page-widget-area-main' ) ?>

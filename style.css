@@ -11,15 +11,14 @@ Modifications by Matthew Mullenweg || http://photomatt.net
 This is just a basic layout, with only the bare minimum defined.
 Please tweak this and make it your own. :)
 */
-/*
-a {
-	color: #555;
+
+#main-menu .navbar{
+	background-color:#EEE;
 }
 
-a {
-	color: #fe7c11;
-}*/
-
+#home-boxes h3 {
+	line-height: 1.2em;
+}
 
 .wp-caption {
 margin-bottom: 10px;

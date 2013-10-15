@@ -70,14 +70,16 @@
 	<div class="row-fluid" style="margin:10px 0 0px;">
 		<div id="imagotipo" class="span2">
 			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" >
-				<!--img src="<?php bloginfo('template_url'); ?>/images/logo_3.png"-->
 				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" alt="Global Alliance Of Wste Pickers Imagotype" />
 			</a>
 		</div>
-		<div id="logotipo" class="span4">
-			<h1><span style="font-family: 'Roboto Condensed', sans-serif;"><small><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></small><br><span class="globalreccolor"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span></span> </h1>
+		<div id="logotipo" class="span3">
+			<h1>
+			<span style="font-family: 'Roboto Condensed', sans-serif;"><small><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></small>
+			<br><span class="globalreccolor"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span></span>
+			</h1>
 		</div>
-		<div id="tagline" class="span6">
+		<div id="tagline" class="span7">
 			<div class="row-fluid">
 				<div class="span7">
 					<?php if ( is_home() ) {
@@ -88,13 +90,20 @@
 						}
 						?>
 				</div>
-      				<div id="search" class="pull-right">
+      	<div id="search" class="pull-right">
 					<?php get_search_form(); ?>
 				</div>
 			</div>	
 			<div class="row-fluid">
-				<div class="span9">
+				<div class="span8">
 					<small><?php echo get_bloginfo( 'description' ) ?></small>
+				</div>
+				<div class="pull-right">
+					<div class="btn-group">
+					  		<a  class="btn  btn-small" href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter </a> <!-- TODO add imgaes to the theme-->
+						<a class="btn  btn-small" href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
+						<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> Facebook</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -110,14 +119,7 @@
 				'menu_id' => 'pre-menu',
 				'menu_class' => 'nav nav-pills'
 				);
-			wp_nav_menu( $defaults );?>
-			<div class="pull-right">
-				<div class="btn-group">
-			    		<a  class="btn  btn-small" href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="http://www.globalrec.org/wp-content/uploads/2011/11/tw.gif" alt="" width="16" height="16" /> Twitter </a>
-					<a class="btn  btn-small" href="http://www.facebook.com/pages/GlobalRec/207415605997716" title="Facebook GLobal Alliance of Waste Pickers">
-					<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="http://www.globalrec.org/wp-content/uploads/2011/11/fb.gif" alt="" width="16" height="16" /> Facebook</a>
-				</div>
-			</div>	
+			wp_nav_menu( $defaults );?>	
 		</div>
 	</div>
 </div>

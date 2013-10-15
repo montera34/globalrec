@@ -56,7 +56,7 @@ height: 0;
 
 .widget-container-feed {width: 230px;
 margin: 25px 20px 10px 5px;float:left;font-size:12px;border-bottom:#ddd solid 4px}
-.widget-container-feed  ul {list-style:none;margin:5px 0 0 0;padding:0;}
+.widget-container-feed  ul {list-style:none;margin:5px 0 0 5px;padding:0;}
 .widget-container-feed  ul li{font-size:11px !important; line-height:16px;margin-bottom:5px;}
 .widget-container-feed  a:link{color:black;}
 .widget-container-feed  a:hover{background-color:#ddd;}

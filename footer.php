@@ -1,14 +1,6 @@
-<?php
-/**
- * @package WordPress
- * @subpackage Classic_Theme
- */
-?>
 <!-- begin footer -->
-
-
 <div class="container">	
-<div id="footer" class="row">	
+<div id="footer" class="row-fluid">	
 	<div class="span12"> 
 		<small>
 			<?php  dynamic_sidebar( 'footer-sidebar' ) ?>

@@ -150,7 +150,7 @@ $output = '';
 				</div>	
 			</div>	
 			<div class="row-fluid">
-			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-large pull-right">Read more blog Posts</a>
+			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-large pull-right">Read more Blog Posts</a>
 		 	</div>
 		</div>
 
@@ -160,8 +160,7 @@ $output = '';
 		</div>
 		<!-- end sidebar -->
 	</div>
-	<hr>
-	<div id="footer-home-bar" class="row-fluid">
+	<div id="footer-home-bar" class="row-fluid" 	style="border-top:5px solid #fe7c11;	margin:10px 0 0 0;">
 	<h5>Waste Picker Groups (websites)</h5>
 	<?php dynamic_sidebar( 'footer-home-bar' ) ?>
 	</div>	 

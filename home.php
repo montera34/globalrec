@@ -52,12 +52,13 @@ $output = '';
 						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), medium, false, '' ); ?>
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php the_post_thumbnail( 'medium' ); ?> 
-								<h4><?php the_title();?></h4>
+								<h4>Newsletter: <?php the_title();?></h4>
 						</a> 	
-						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>.</p>
+						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>" class="btn btn-mini">Subscribe to newsletter</a></p>
 						<?php endwhile; else: ?>
 						<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 						<?php endif; ?>
+						
 				</div>
 			</div> 
 			<hr>

@@ -43,32 +43,29 @@ get_header(); ?>
 	<div class="span3">
 		<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
 	</div>
-		<div class="row-fluid">
-  			<div class="span9">
-				<div class="pull-left btn btn-large">
+	<div class="row-fluid">
+		<div class="span9">
+			<div class="pull-left btn btn-large">
 				<?php if ( !$max_page ) {
- 					 $max_page = $my_query->max_num_pages;
-					}
- 	
-					if ( !$paged ) {
- 					 $paged = 1;
-					}
-					$nextpage = intval($paged) + 1;
- 
-					if ( !is_single() && ( empty($paged) || $nextpage <= $max_page) ) {
-  					$attr = apply_filters( 'next_posts_link_attributes', '' );
- 					 echo '<a href="' . next_posts( $max_page, false ) . "\" $attr>". preg_replace('/&([^#])(?![a-z]{1,8};)/', '&$1', ' &laquo; Previous posts') .'</a>';
-					}
-					?>
-				</div>
-  				<div class="pull-right btn btn-large"><?php 
-					if ( !is_single() && $paged > 1 ) {
-  				$attr = apply_filters( 'previous_posts_link_attributes', '' );
-  				echo '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/', '&$1', 'Newer posts &raquo;' ) .'</a>';
-					}
-				?></div>
+				 $max_page = $my_query->max_num_pages;
+				}
+				if ( !$paged ) {
+				 $paged = 1;
+				}
+				$nextpage = intval($paged) + 1;
+				if ( !is_single() && ( empty($paged) || $nextpage <= $max_page) ) {
+					$attr = apply_filters( 'next_posts_link_attributes', '' );
+				 echo '<a href="' . next_posts( $max_page, false ) . "\" $attr>".  __('Older Posts &raquo;') .'</a>';
+				}
+				?>
+			</div>
+			<div class="pull-right btn btn-large"><?php 
+				if ( !is_single() && $paged > 1 ) {
+				$attr = apply_filters( 'previous_posts_link_attributes', '' );
+				echo '<a href="' . previous_posts( false ) . "\" $attr>".  __('&laquo; Newer Posts') .'</a>';
+				}?>
 			</div>
 		</div>
+	</div>
 	<?php get_footer(); ?>
 </div>
-

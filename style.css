@@ -12,6 +12,14 @@ This is just a basic layout, with only the bare minimum defined.
 Please tweak this and make it your own. :)
 */
 
+#footer-home-bar img{
+	max-width:80px;
+	
+}
+#footer-home-bar a{
+	font-weight:bold;
+}
+
 #main-menu .navbar{
 	background-color:#EEE;
 }

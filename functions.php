@@ -217,6 +217,16 @@ function globalrec_widgets_init() {
 		'before_title' => ' ',
 		'after_title' => ' ',
 	) );
+	// Area 7, located at the footer
+	register_sidebar( array(
+		'name' => __( 'Footer Home bar', 'globalrec' ),
+		'id' => 'footer-home-bar',
+		'description' => __( 'Footer Home bar', 'globalrec' ),
+		'before_widget' => ' ',
+		'after_widget' => '',
+		'before_title' => ' ',
+		'after_title' => ' ',
+	) );
 
 
 }

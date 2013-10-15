@@ -160,10 +160,10 @@ $output = '';
 		</div>
 		<!-- end sidebar -->
 	</div>
-	
-	
-	<div id="front-2" class="row">
-	<?php dynamic_sidebar( 'front-page-widget-area' ) ?>
+	<hr>
+	<div id="footer-home-bar" class="row-fluid">
+	<h5>Waste Picker Groups (websites)</h5>
+	<?php dynamic_sidebar( 'footer-home-bar' ) ?>
 	</div>	 
 	<?php get_footer(); ?>
 </div><!-- #content -->

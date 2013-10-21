@@ -16,15 +16,12 @@
         bloginfo('description');
     }
     ?>" />
-		<meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
+	<meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
 	<meta content="Global Alliance of Waste Pickers" name="organization" />
-	
 	
 <!-- Bootstrap -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
-	<!-- Bootstrap responsive-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="<?php bloginfo('template_url'); ?>/css/bootstrap-responsive.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- /Bootstrap -->
 
 <style type="text/css" media="screen">
@@ -67,21 +64,19 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="container">
-	<div class="row-fluid" style="margin:10px 0 0px;">
-		<div id="imagotipo" class="span2">
-			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" >
-				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" alt="Global Alliance Of Wste Pickers Imagotype" />
+	<div class="row">
+		<div id="imagotipo" class="col-md-4">
+			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
+				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" alt="Global Alliance Of Waste Pickers Imagotype" />
 			</a>
+			<div style="font-family: 'Roboto Condensed', sans-serif;margin:35px 0 0 10px;">
+				<span style="font-size:24px;line-height: 22px;color: #999;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
+				<br><span class="globalreccolor" style="font-weight: bold;font-size:34px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
+			</div>
 		</div>
-		<div id="logotipo" class="span3">
-			<h1>
-			<span style="font-family: 'Roboto Condensed', sans-serif;"><small><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></small>
-			<br><span class="globalreccolor"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span></span>
-			</h1>
-		</div>
-		<div id="tagline" class="span7">
-			<div class="row-fluid">
-				<div class="span7">
+		<div id="tagline" class="col-md-8">
+			<div class="row">
+				<div class="col-md-7">
 					<?php if ( is_home() ) {
 						echo '<a href="/">English</a> | <a href="/es">Español</a> | <a href="/pt-br">Português</a> | <a href="/fr">Français</a>';
 					} else {
@@ -94,12 +89,12 @@
 					<?php get_search_form(); ?>
 				</div>
 			</div>	
-			<div class="row-fluid">
-				<div class="span8">
+			<div class="row">
+				<div class="col-md-8">
 					<small><?php echo get_bloginfo( 'description' ) ?></small>
 				</div>
-				<div class="pull-right">
-					<div style="font-size:10px;margin-top: 10px;">
+				<div class="col-md-4">
+					<div style="font-size:10px;margin-top: 10px;" class="pull-right ">
 						Supported by <a href="http://wiego.org" title="WIEGO">
 						<img title="WIEGO" src="<?php bloginfo('template_url'); ?>/images/wiego-logo.png" alt="Logo WIEGO"/></a>
 					</div>
@@ -107,26 +102,21 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="container" id="main-menu">	
-	<div class="navbar">
-		<!--<div class="navbar-inner">-->
-		<div class="container">	
+	<div id="main-menu">	
+		<div class="navbar">
+			<div class="pull-right">
+				<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
+					<button type="button" class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a>
+					<button type="button" class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a></button>
+				</div>
+			</div>
 			<?php $defaults = array(
 				'theme_location'  => 'main-menu',
-				'container' => 'false',
 				'menu_id' => 'pre-menu',
 				'menu_class' => 'nav nav-pills'
 				);
 			wp_nav_menu( $defaults );?>	
-			<div class="pull-right">
-				<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
-				  		<a  class="btn  btn-small" href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a> <!-- TODO add imgaes to the theme-->
-					<a class="btn  btn-small" href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers">
-					<img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a>
-				</div>
-			</div>
+
 		</div>
 	</div>
-</div>
 <!-- end header -->

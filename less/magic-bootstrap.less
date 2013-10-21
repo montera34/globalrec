@@ -3,6 +3,31 @@
 *  
 **/
 
+#page-bios .post-metadata{
+	display:none;
+}
+
+#home-boxes-2 ul li, #blog ul li, #archive ul li{
+	list-style-type: none;
+}
+
+/* Menu */
+.navbar {
+	min-height: 0px;
+}
+
+.navbar .btn-xs {
+	padding:2px 5px;
+}
+
+.form-search{
+	margin:2px 0 0 0 ;
+}
+
+#home .thumbnail {
+	margin: 0 0 10px 0;
+}
+
 a {
 	color:@gray;
 }
@@ -17,6 +42,10 @@ background-color: #F3F3F3;
 
 .globalreccolor {
   color:@mainBrandColor;
+}
+.post-metadata{
+	color:#888;
+	font-size: 90%;
 }
 .label a, .post-metadata a.label {
 	color:@white !important;
@@ -115,7 +144,7 @@ h4.post-title a {
 	padding: 2px 0 8px 5 !important;
 }
 #pre-menu li ul li:hover{
-	background-color: @grayLighter;
+	background-color: black;
 }
 #pre-menu li ul li{
 	border:0;
@@ -126,14 +155,17 @@ h4.post-title a {
 .navbar .navbar-inner{
 	background-image:none;
 }
+#pre-menu .nav-pills li {
+border-radius: 0px;
+}
 #main-menu ul li {
 	background-color:@mainBrandColor;
-	margin-right: 5px;
+	margin-right: 3px;
 	border:1px solid @mainBrandColor;
 	
 }
-#main-menu li:hover {
-	background-color:darken(@mainBrandColor, 5%);
+#main-menu li:hover, .nav-pills li a:hover{
+	background-color:darken(@mainBrandColor, 10%);
 }
 
 #main-menu li a{
@@ -150,8 +182,9 @@ h4.post-title a {
 }
 
 #footer{
-	border-top:15px solid @mainBrandColor;
-	margin:10px 0 15px 0;
+	border-top:10px solid @mainBrandColor;
+	margin-top:10px;
+	margin-botttom:15px;
 }
 
 // Colors

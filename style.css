@@ -1,8 +1,8 @@
 /*
-Theme Name: Global Rec Theme
+Theme Name: Global Rec with bootstrap v3
 Theme URI: http://montera34.com/lab/
-Description: based in classic by Dave Shea
-Version: 0.0
+Description:
+Version: 0.1
 Author: Pablo Rey Montera34
 Tags: xxx
 
@@ -17,7 +17,9 @@ Please tweak this and make it your own. :)
 	display:none;}
 
 #footer-home-bar img{
-	max-width:80px;
+	max-height:43px;
+	margin:2px;
+	vertical-align:middle;
 }
 #footer-home-bar a{
 	font-weight:bold;

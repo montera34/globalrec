@@ -2,13 +2,13 @@
 get_header(); ?>
 
 <div class="container">
-	<div class="row-fluid">
-		<div id="blog" class="span9">	
-			<div class="row-fluid">
-				<h2 id="post-<?php the_ID(); ?>" class="span6">
+	<div class="row">
+		<div id="blog" class="col-md-9">	
+			<div class="row">
+				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
+				<h2 id="post-<?php the_ID(); ?>" class="col-md-6">
 					<?php the_title();?>	
 				</h2>		
-				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 			</div>	
 		<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<?php the_content(); ?>
@@ -22,10 +22,7 @@ get_header(); ?>
 				'post_type' => 'newsletter', 
 				'posts_per_page' => -1, 
 				'post_parent' => 0
-				//'order' =>  'ASC',
-				//'orderby' =>  'title'
 				);
-
 
 		if ( $paged > 1 ) {
 		 $args['paged'] = $paged;

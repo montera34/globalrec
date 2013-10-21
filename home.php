@@ -3,33 +3,33 @@ $categories = get_the_category();
 $separator = ' ';
 $output = '';
 ?>
-<div class="container">
-	<div class="row-fluid">
-		<div class="span9">
-			<!-- div class="row-fluid"> <!-- space for banners -->
-				<!-- <div class="span12">
+<div id="home">
+	<div class="row">
+		<div class="col-md-9">
+			<!-- div class="row"> <!-- space for banners -->
+				<!-- <div class="col-md-12">
 					<?php dynamic_sidebar( 'front-page-widget-area-main' ) ?>
 				</div>
 			</div>-->
-			<div class="row-fluid" id="home-boxes"> 
+			<div class="row" id="home-boxes"> 
 				<!-- box for Life and Voices ----------------------------------------------------------->
-				<div class="span4">
+				<div class="col-md-4">
 					<a href="<?php echo get_permalink(icl_object_id(2856,'page')) ?>">
-						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt="Life and Voices of Waste pickers" />
+						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt="Life and Voices of Waste pickers" class="img-responsive"/>
 						<h3><?php icl_link_to_element(2856,'page'); ?></h3>
 					</a>
 					<p>Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.
 				</div>
 				<!-- box for Where we are? ----------------------------------------------------------->
-				<div class="span4">
+				<div class="col-md-4">
 						<a href="<?php echo get_permalink(icl_object_id(7618,'page')) ?>">
-							<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png"/>
+							<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" class="img-responsive"/>
 							<h3><?php icl_link_to_element(7618,'page'); ?></h3>
 						</a>
 						<p>Provisional list of hundreds of waste pickers’ groups around the globe.</p>
 				</div>
 				<!-- box for the Last newsletter ----------------------------------------------------------->
-				<div class="span4">
+				<div class="col-md-4">
 					<?php global $more;   
 					$args = array(		//arguments for showing newsletters custom post type
 						'post_type' => 'newsletter', 
@@ -51,20 +51,20 @@ $output = '';
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
 						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), medium, false, '' ); ?>
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<?php the_post_thumbnail( 'medium' ); ?> 
+							<?php the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); ?> 
 								<h4>Newsletter: <?php the_title();?></h4>
 						</a> 	
-						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>" class="btn btn-mini">Subscribe to newsletter</a></p>
+						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> Subscribe to newsletter</button></a></p>
 						<?php endwhile; else: ?>
 						<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 						<?php endif; ?>
 						
 				</div>
 			</div> 
-			<hr>
-			<div class="row-fluid">
-				<div class="span4">
-					<!-- Organizing post column -->
+			<div class="row" id="home-boxes-2">
+				<div class="col-md-4">
+					<!-- Organizing post column 
+					<img src="<?php bloginfo('template_url'); ?>/images/hand-in-hand.png"/>-->
 					<h3><?php icl_link_to_element(858, 'category'); ?></h3>
 					<?php global $more; 
 					$args = array(
@@ -77,13 +77,13 @@ $output = '';
 						}
 		 
 					$my_query = new WP_Query($args); ?>
-					<ul class="thumbnails">
+					<ul class="col-md-12">
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<li id="post-<?php the_ID(); ?>" <?php post_class('span12'); ?>	>
+							<li id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
 								<?php include("loop.boxes.php")?>
 							</li>
 						<?php endwhile; else: ?>
@@ -91,8 +91,9 @@ $output = '';
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
 				</div>
-				<div class="span4">
-					<!-- Threats posts column -->
+				<div class="col-md-4">
+					<!-- Threats posts column
+					<img src="<?php bloginfo('template_url'); ?>/images/march.png"/>-->
 					<h3><?php icl_link_to_element(964, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
@@ -106,13 +107,13 @@ $output = '';
 						}
 		 
 					$my_query = new 	WP_Query($args); ?>
-					<ul class="thumbnails">
+					<ul class="col-md-12">
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<li id="post-<?php the_ID(); ?>" <?php post_class('span12'); ?>	>
+							<li id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
 								<?php include("loop.boxes.php")?>
 							</li>
 						<?php endwhile; else: ?>
@@ -120,8 +121,9 @@ $output = '';
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
 				</div>	
-				<div class="span4">
-					<!-- Publications posts column -->
+				<div class="col-md-4">
+					<!-- Publications posts column
+					<img src="<?php bloginfo('template_url'); ?>/images/icon-publications.png"/> -->
 					<h3><?php icl_link_to_element(970, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
@@ -135,13 +137,13 @@ $output = '';
 						}
 		 
 					$my_query = new WP_Query($args); ?>
-					<ul class="thumbnails">
+					<ul class="col-md-12">
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<li id="post-<?php the_ID(); ?>" <?php post_class('span12'); ?>	>
+							<li id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
 								<?php include("loop.boxes.php")?>
 							</li>
 						<?php endwhile; else: ?>
@@ -150,18 +152,18 @@ $output = '';
 					<?php endif; ?>
 				</div>	
 			</div>	
-			<div class="row-fluid">
-			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-large pull-right">Read more Blog Posts</a>
+			<div class="row">
+			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-primary btn-lg pull-right">Read more Blog Posts</a>
 		 	</div>
 		</div>
 
 		<!-- begin sidebar -->
-		<div id="menu" class="span3">
+		<div id="menu" class="col-md-3">
 			<?php get_sidebar(); ?>
 		</div>
 		<!-- end sidebar -->
 	</div>
-	<div id="footer-home-bar" class="row-fluid" 	style="border-top:5px solid #fe7c11;	margin:10px 0 0 0;">
+	<div id="footer-home-bar" class="row" 	style="border-top:5px solid #fe7c11;	margin:10px 0 0 0;">
 	<h5>Waste Picker Groups (websites)</h5>
 	<?php dynamic_sidebar( 'footer-home-bar' ) ?>
 	</div>	 

@@ -1,23 +1,23 @@
 <?php get_header(); ?>
 
 <div class="container">
-	<div class="row-fluid">
+	<div class="row">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class('span12') ?> id="post-<?php the_ID(); ?>">
-			<div class="row-fluid">	
-				<div class="span8">
+		<div <?php post_class('col-md-12') ?> id="post-<?php the_ID(); ?>">
+			<div class="row">	
+				<div class="col-md-8">
 					<h3>
-						<a href="/life-and-voices"> <!-- needs to be internationalized-->				
+						<a href="/life-and-voices"> <!-- TODO needs to be internationalized-->				
 						Life and voices 
 						</a> > <?php the_title(); ?>
 					</h3>
 				</div>
-				<div class="btn btn-small pull-right"><?php edit_post_link(__('Edit This')); ?></div>
+				<div class="btn btn-default btn-sm pull-right"><?php edit_post_link(__('Edit This')); ?></div>
 			</div>
 		</div>		
-		<div class="row-fluid">
-			<div class="span3"><small>
-				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded",'alt'=> trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),'title'	=> trim(strip_tags( $attachment->post_title ))) ); ?> <br>
+		<div class="row">
+			<div class="col-md-3"><small>
+				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded img-responsive",'alt'=> trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),'title'	=> trim(strip_tags( $attachment->post_title ))) ); ?> <br>
 				<?php if ( is_user_logged_in() ) { ?> 
 					 email: <?php
 						global $post;
@@ -29,7 +29,7 @@
 					}?>
 				</small>
 			</div> 
-			<div class="span7">
+			<div class="col-md-7">
 			<?php the_content(__('(more...)')); ?>
 			</div>
 		</div>

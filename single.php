@@ -4,10 +4,10 @@ $separator = ' ';
 $output = ''; ?>
 
 <div class="container">
-	<div class="row-fluid">
+	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class('span8') ?> id="post-<?php the_ID(); ?>">
-			<div class="row-fluid">
+		<div <?php post_class('col-md-8') ?> id="post-<?php the_ID(); ?>">
+			<div class="row">
 			<?php
 				if($categories){
 					foreach($categories as $category) {
@@ -23,11 +23,11 @@ $output = ''; ?>
 				edit_post_link(__('Edit This')); 
 				echo "</div>";
 			  } ?>
-			<div class="row-fluid">	
-				<h3 class="span12"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
+			<div class="row">	
+				<h3 class="col-md-12"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
 			</div>
-			<div class="row-fluid">
-				<div class="span4">
+			<div class="row">
+				<div class="col-md-4">
 					<h4>
 						<?php 
 							$written_by = get_post_meta( $post->ID, '_gr_written-by', true ); 
@@ -44,7 +44,7 @@ $output = ''; ?>
 					 	?> 
 					</h4>
 				</div>
-				<div class="span4">
+				<div class="col-md-4">
 					<?php 
 						$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 						if ( $region != '')  : 
@@ -54,7 +54,7 @@ $output = ''; ?>
 						endif;
 					 	?>
 				</div>
-				<div class="span4"> 	
+				<div class="col-md-4"> 	
 					<h4><small class="pull-right">
 						<?php the_time('F d, Y') ?>					
 					</small></h4>
@@ -63,9 +63,9 @@ $output = ''; ?>
 			
 		 	<hr style="margin:3px 0 3px 0;">
 
-			<div class="row-fluid">	
-				<div class="offset6 span3">Check translation:</div>
-				<div class="span2"><?php do_action('icl_language_selector'); ?></div>
+			<div class="row">	
+				<div class="col-md-offset-6 col-md-3">Check translation:</div>
+				<div class="col-md-2"><?php do_action('icl_language_selector'); ?></div>
 			</div>
 
 			<div id="post-content">	
@@ -74,7 +74,7 @@ $output = ''; ?>
 				$article_title = get_post_meta( $post->ID, '_gr_article-title', true );
 				$article_published_in = get_post_meta( $post->ID, '_gr_published-in', true );
 				if ($article_url != '') {
-						echo "<div class='row-fluid'><div class='span12'><a href='".$article_url."'>".$article_title."</a><br>";
+						echo "<div class='row'><div class='col-md-12'><a href='".$article_url."'>".$article_title."</a><br>";
 						echo $written_by. ". ";
 						if ($article_published_in != '') {
 							echo $article_published_in. ". ";	
@@ -113,7 +113,7 @@ $output = ''; ?>
 		<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
 		</div>
 		<!-- begin sidebar -->
-		<div id="menu" class="offset1 span3">
+		<div id="menu" class="col-md-offset-1 col-md-3">
 			<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
 		</div>
 		<!-- end sidebar -->

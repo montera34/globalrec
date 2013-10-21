@@ -1,14 +1,16 @@
+</div><!-- close container-->
 <!-- begin footer -->
-<div class="container">	
-<div id="footer" class="row-fluid">	
-	<div class="span12"> 
-		<small>
-			<?php  dynamic_sidebar( 'footer-sidebar' ) ?>
-		</small>
+<div id="footer" class="container">	
+	<div class="row">	
+		<div class="col-md-12"> 
+			<small>
+				<?php  dynamic_sidebar( 'footer-sidebar' ) ?>
+			</small>
+		</div>
 	</div>
 </div>
-</div>
 <?php wp_footer(); ?>
+
 
 <!-- Place this render call where appropriate -->
 <script type="text/javascript">
@@ -18,9 +20,9 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
-<script src="http://code.jquery.com/jquery.js"></script>
-<!-- Bootstrap -->
-<script src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
-<!-- /Bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

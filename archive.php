@@ -4,9 +4,9 @@ $termname = $wp_query->queried_object->name;
 $termdesc = $wp_query->queried_object->description;
 ?>
 		
-<div class="container">
-	<div class="row-fluid">
-		<div class="span10">
+<div id="archive">
+	<div class="row">
+		<div class="col-md-10">
 			<strong>
 			<?php if ( is_tag('pune2012') ) { ?>
 				<h2>Pune 2012 posts</h2>
@@ -33,14 +33,14 @@ $termdesc = $wp_query->queried_object->description;
 		</div>
 		<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 	</div>
-	<div class="row-fluid">
+	<div class="row">
 		<span> <?php echo category_description(); ?></span>	
-		<ul class="thumbnails">	
+		<ul>	
 			<?php if (have_posts()) : $count = 0;
 				while (have_posts()) : the_post();
 				$count++;
-				if ( $count == 1 ) { echo "<div class='row-fluid'>"; } ?>
-				<li id="post-<?php the_ID(); ?>" <?php post_class('span3'); ?>	>
+				if ( $count == 1 ) { echo "<div class='row'>"; } ?>
+				<li id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
 					<?php include("loop.boxes.php")?>
 				</li>
 
@@ -50,9 +50,9 @@ $termdesc = $wp_query->queried_object->description;
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
 	</div>
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="pull-right btn btn-large">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="pull-right btn btm-default btn-lg">
 				<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
 			</div>
 		</div>

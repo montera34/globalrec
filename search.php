@@ -1,19 +1,19 @@
 <?php get_header(); ?>
-<div class="container">
-	<div class="row-fluid">
-		<div class="row-fluid">
-			<div class="span6"><h2>Search results: <?php the_search_query(); ?></h2></div>
-			<div class="span6">Keep searching: <?php get_search_form(); ?></div>
+<div>
+	<div class="row">
+		<div class="row">
+			<div class="col-md-6"><h2>Search results: <?php the_search_query(); ?></h2></div>
+			<div class="col-md-6">Keep searching: <?php get_search_form(); ?></div>
 			<br>
 		</div>
-		<ul class="thumbnails">	
+		<ul class="">	
 			<?php if (have_posts() ) : 
 			$count = 0;
 			while (have_posts()) : the_post(); 
 			$count++;
 			if ( $count == 1 ) { echo "<div class='row-fluid'>"; }
 			?>
-			<li id="post-<?php the_ID(); ?>" <?php post_class('span3'); ?>	>
+			<li id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
 				<?php include("loop.boxes.php")?>
 			</li>
 			<?php if ( $count == 4 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>

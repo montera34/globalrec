@@ -1,13 +1,11 @@
 <?php get_header(); ?>
 
 <div class="container">
-	<div class="row-fluid">
+	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class("span8") ?> id="post-<?php the_ID(); ?>">
-			 <!-- change links in production -->
+		<div <?php post_class("col-md-8") ?> id="post-<?php the_ID(); ?>">
 			<ul class="breadcrumb">
-			  <!--li><a href="#">Home</a> <span class="divider">/</span></li-->
-			  <li><a href="/global-meetings/">Global Meetings</a> <span class="divider">/</span></li>
+			  <li><a href="/global-meetings/">Global Meetings</a></li>
 			  <li><?php the_title(); ?> </li>
 			</ul>
 			<?php the_post_thumbnail( 'medium' ); ?>
@@ -16,7 +14,7 @@
 					<?php the_title(); ?>
 				</a>	
 			</h3>
-			<div class="btn btn-small pull-right"><?php edit_post_link(__('Edit This')); ?></div>
+			<div class="btn btn-sm btn-default pull-right"><?php edit_post_link(__('Edit This')); ?></div>
 			<h4><?php 	
 				$text = get_post_meta( $post->ID, 'gm_location', true );
 				echo $text; 
@@ -32,7 +30,7 @@
 			<?php the_content(__('(more...)')); ?>		
 		</div>
 		<!--right column -->
-		<div class="offset1 span3"> 
+		<div class="col-md-offset-1 col-md-3"> 
 			<?php if (get_post_meta( $post->ID, 'gm_downloads', true )) { echo '<h4>Downloads</h4>';} ?> 
 			<?php 	$text = get_post_meta( $post->ID, 'gm_downloads', true );
 			echo $text;  ?>	
@@ -44,8 +42,8 @@
 			
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span12"> 
+	<div class="row">
+		<div class="col-md-12"> 
 		<?php include("share.php")?>
 		<div >
 			<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?>  &nbsp;&nbsp;| <?php the_tags( ); ?> 
@@ -67,4 +65,4 @@
 		
 	
 	<?php get_footer(); ?>
-</div><!-- #container -->
+</div><!-- #container -->row

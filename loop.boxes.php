@@ -2,13 +2,12 @@
 $categories = get_the_category();
 $separator = ' ';
 $output = '';
-
 ?>
 
 <div class="thumbnail">
 	<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 	<?php if (has_post_thumbnail()) :
-			echo "<div class=\"row-fluid\"><div class=\"size-thumbnail col-md-10\" style=\"font-size:12px;margin:0 10px 10px 0;\">";
+			echo "<div class=\"row\"><div class=\"size-thumbnail col-md-12\" style=\"margin:0 0 10px 0;\">";
 			the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
 			echo "</div></div>";
 		else:
@@ -61,7 +60,7 @@ $output = '';
 	<?php
 		if($categories){
 			foreach($categories as $category) {
-				$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label">'.$category->cat_name.'</a>'.$separator;
+				$output .= '<span class="label"><a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" >'.$category->cat_name.'</a></span>'.$separator;
 			}
 		echo trim($output, $separator);
 		}	

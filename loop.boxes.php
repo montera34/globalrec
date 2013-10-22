@@ -1,6 +1,6 @@
 <?php
 $categories = get_the_category();
-$separator = ' ';
+$separator = '&nbsp;';
 $output = '';
 ?>
 
@@ -34,7 +34,7 @@ $output = '';
 			endif;		
 			echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
 			echo " | ";
-			echo the_time('M d, Y');
+			if (get_post_type() != 'global-meeting') {the_time('M d, Y');}
 	 	?></small>
 	</div>
 	<?php //related excerpt
@@ -44,7 +44,7 @@ $output = '';
 		if ( $matches[0] != '' ) {
 			$post_excerpt = $matches[0] . "...";
 		} ?> 
-	<?php if (get_post_type() != 'global-meeting') { //conditional if is global meeting custom post type, don-t show excerpt?>		
+	<?php if (get_post_type() != 'global-meeting') { //conditional if is global meeting custom post type, don't show excerpt ?>		
 		<div class="excerpt">
 			<small>
 				<?php if($post->post_excerpt) : the_excerpt(); else: 
@@ -52,19 +52,22 @@ $output = '';
 			</small>
 		</div>
 	<?php }?>
-	 			<?php $text = get_post_meta( $post->ID, 'gm_location', true ); echo $text; ?>  
-				<span class="label"><?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); ?></span> 
-			 	<?php echo $op; ?>
-	<div>
-	<?php // the_time('F d, Y') ?>
-	<?php
-		if($categories){
-			foreach($categories as $category) {
-				$output .= '<span class="label"><a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" >'.$category->cat_name.'</a></span>'.$separator;
-			}
-		echo trim($output, $separator);
-		}	
-	?>			
+		<?php $text = get_post_meta( $post->ID, 'gm_location', true ); echo $text; ?> 
+		<div class="pull-right"> 
+			<span class="label "><?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); ?></span> 
+		 	<?php echo $op; ?>
+		 </div>
+	<div class="row">
+			<div class="col-md-12">
+			<?php
+				if($categories){
+					foreach($categories as $category) {
+						$output .= '<a href="'.get_category_link( $category->term_id ).'"title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" ><span class="label">'.$category->cat_name.'</span></a> '; //removed the ".$separator"
+					}
+				echo trim($output, $separator);
+				}	
+			?>
+		</div>
 	</div>
 </div>
 

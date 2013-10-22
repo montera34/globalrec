@@ -33,28 +33,23 @@ $termdesc = $wp_query->queried_object->description;
 		</div>
 		<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 	</div>
-	<div class="row">
-		<span> <?php echo category_description(); ?></span>	
-		<ul>	
-			<?php if (have_posts()) : $count = 0;
-				while (have_posts()) : the_post();
-				$count++;
-				if ( $count == 1 ) { echo "<div class='row'>"; } ?>
-				<li id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
-					<?php include("loop.boxes.php")?>
-				</li>
-
-			<?php if ( $count == 4 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>
-			<?php endwhile; else: ?>
-		</ul>
-		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-		<?php endif; ?>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="pull-right btn btm-default btn-lg">
-				<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
+	<span> <?php echo category_description(); ?></span>	
+		<?php if (have_posts()) : $count = 0;
+			while (have_posts()) : the_post();
+			$count++;
+			if ( $count == 1 ) { echo "<div class='row'>"; } ?>
+			<div id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
+				<?php include("loop.boxes.php")?>
 			</div>
+		<?php if ( $count == 4 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?> <!-- TODO CLose row if is the 4th OR it is hte last one!-->
+		<?php endwhile; else: ?>
+	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+	<?php endif; ?>
+	<div class="row" style="clear:left;">
+		<div class="col-md-11">
+			<span class="pull-right">
+				<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?> <!-- TODO include  btn btn-primary btn-lg pull-right inside the link-->
+			</span>
 		</div>
 	</div>
 </div>

@@ -8,7 +8,6 @@
 				<?php the_title();?>	
 			</h2>		
 		</div>	
-		<ul>	
 		<?php
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
@@ -28,15 +27,14 @@
 		$count++;
 		if ( $count == 1 ) { echo "<div class='row'>"; }
 		?>
-		<li id="post-<?php the_ID(); ?>" <?php post_class('col-md-4'); ?>	>
+		<div id="post-<?php the_ID(); ?>" <?php post_class('col-md-4'); ?>	>
 			<?php include("loop.boxes.php")?>
-		</li>
+		</div>
 		<?php if ( $count == 3 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?>
 
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
-		</ul>
 	</div>
 <div class="col-md-3">
 	<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
@@ -53,14 +51,14 @@
 			$nextpage = intval($paged) + 1;
 			if ( !is_single() && ( empty($paged) || $nextpage <= $max_page) ) {
 				$attr = apply_filters( 'next_posts_link_attributes', '' );
-			 echo '<button class="btn btn-default"><a href="' . next_posts( $max_page, false ) . "\" $attr>".  __('Older Posts &raquo;') .'</a></button>';
+			 echo '<div class="btn btn-default"><a href="' . next_posts( $max_page, false ) . "\" $attr>".  __('Older Posts &raquo;') .'</a></div>';
 			}
 			?>
 		</div>
 		<div class="pull-right btn btn-large"><?php 
 			if ( !is_single() && $paged > 1 ) {
 			$attr = apply_filters( 'previous_posts_link_attributes', '' );
-			echo '<button class="btn btn-default"><a href="' . previous_posts( false ) . "\" $attr>".  __('&laquo; Newer Posts') .'</a></button>';
+			echo '<div class="btn btn-default"><a href="' . previous_posts( false ) . "\" $attr>".  __('&laquo; Newer Posts') .'</a></div>';
 			}?>
 		</div>
 	</div>

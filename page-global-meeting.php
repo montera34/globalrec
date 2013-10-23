@@ -1,6 +1,6 @@
 <?php  /* Template Name: Page Global Meetings*/ 
 get_header(); ?>
-<div id="page-bios">
+<div id="page-gb">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<div class="row">
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10">

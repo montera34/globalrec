@@ -7,9 +7,9 @@ $output = '';
 <div class="thumbnail">
 	<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 	<?php if (has_post_thumbnail()) :
-			echo "<div class=\"row\"><div class=\"size-thumbnail col-md-12\" style=\"margin:0 0 10px 0;\">";
+			echo "<div class=\"size-thumbnail\" style=\"margin:0 0 10px 0;\">";
 			the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
-			echo "</div></div>";
+			echo "</div>";
 		else:
 			//echo '<img width="150" src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.png" />';
 		endif; ?>

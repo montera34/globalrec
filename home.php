@@ -77,17 +77,15 @@ $output = '';
 						}
 		 
 					$my_query = new WP_Query($args); ?>
-					<ul class="col-md-12">
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<li id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
+							<div id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
 								<?php include("loop.boxes.php")?>
-							</li>
+							</div>
 						<?php endwhile; else: ?>
-					</ul>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
 				</div>
@@ -107,17 +105,15 @@ $output = '';
 						}
 		 
 					$my_query = new 	WP_Query($args); ?>
-					<ul class="col-md-12">
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<li id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
+							<div id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
 								<?php include("loop.boxes.php")?>
-							</li>
+							</div>
 						<?php endwhile; else: ?>
-					</ul>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
 				</div>	
@@ -137,17 +133,15 @@ $output = '';
 						}
 		 
 					$my_query = new WP_Query($args); ?>
-					<ul class="col-md-12">
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-							<li id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
+							<div id="post-<?php the_ID(); ?>" <?php post_class(''); ?>	>
 								<?php include("loop.boxes.php")?>
-							</li>
+							</div>
 						<?php endwhile; else: ?>
-					</ul>
 					<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 					<?php endif; ?>
 				</div>	

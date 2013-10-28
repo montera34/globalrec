@@ -1,8 +1,3 @@
-/*
-* pikock, autreplanete http://www.autreplanete.com/ 
-*  
-**/
-
 .label {
 	background-color: #999;
 }
@@ -26,6 +21,23 @@
 .form-search{
 	margin:2px 0 0 0 ;
 }
+
+/* Language switcher in header */
+#language_list li {
+	background-color:@grayLighter;
+	margin: 0 3px;
+	font-size:85%;
+}
+#language_list li.active a{
+	background-color:@mainBrandColor;
+	border-radius: 0;
+}
+#language_list li:hover, #language_list .nav-pills li a:hover{
+	background-color:@grayLight;
+}
+
+#language_list li a{
+	padding:4px;
 
 #home .thumbnail {
 	margin: 0 0 10px 0;
@@ -165,7 +177,7 @@ border-radius: 0px;
 	border:1px solid @mainBrandColor;
 	
 }
-#main-menu li:hover, .nav-pills li a:hover{
+#main-menu li:hover, #main-menu .nav-pills li a:hover{
 	background-color:darken(@mainBrandColor, 10%);
 }
 
@@ -185,7 +197,7 @@ border-radius: 0px;
 #footer{
 	border-top:10px solid @mainBrandColor;
 	margin-top:10px;
-	margin-botttom:15px;
+	height: 35px;
 }
 
 // Colors

@@ -77,13 +77,9 @@
 		<div id="tagline" class="col-md-8">
 			<div class="row">
 				<div class="col-md-7">
-					<?php if ( is_home() ) {
-						echo '<a href="/">English</a> | <a href="/es">Español</a> | <a href="/pt-br">Português</a> | <a href="/fr">Français</a>';
-					} else {
-						// echo do_action('icl_language_selector');
-						echo '<a href="/">English</a> | <a href="/es">Español</a> | <a href="/pt-br">Português</a> | <a href="/fr">Français</a>';
-						}
-						?>
+					<div class="pull-right">
+						<?php languages_list(); ?>
+					</div>
 				</div>
       	<div id="search" class="pull-right">
 					<?php get_search_form(); ?>
@@ -106,8 +102,8 @@
 		<div class="navbar">
 			<div class="pull-right">
 				<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
-					<button type="button" class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a>
-					<button type="button" class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a></button>
+					<div type="button" class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a></div>
+					<div type="button" class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a></div>
 				</div>
 			</div>
 			<?php $defaults = array(

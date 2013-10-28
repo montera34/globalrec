@@ -13,7 +13,7 @@ $output = '';
 			</div>-->
 			<div class="row" id="home-boxes"> 
 				<!-- box for Life and Voices ----------------------------------------------------------->
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-6">
 					<a href="<?php echo get_permalink(icl_object_id(2856,'page')) ?>">
 						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt="Life and Voices of Waste pickers" class="img-responsive"/>
 						<h3><?php icl_link_to_element(2856,'page'); ?></h3>
@@ -21,7 +21,7 @@ $output = '';
 					<p>Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.
 				</div>
 				<!-- box for Where we are? ----------------------------------------------------------->
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-6">
 						<a href="<?php echo get_permalink(icl_object_id(7618,'page')) ?>">
 							<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" class="img-responsive"/>
 							<h3><?php icl_link_to_element(7618,'page'); ?></h3>
@@ -29,7 +29,7 @@ $output = '';
 						<p>Provisional list of hundreds of waste pickers’ groups around the globe.</p>
 				</div>
 				<!-- box for the Last newsletter ----------------------------------------------------------->
-				<div class="col-md-4">
+				<div class="col-md-4 col-xs-6">
 					<?php global $more;   
 					$args = array(		//arguments for showing newsletters custom post type
 						'post_type' => 'newsletter', 
@@ -63,6 +63,12 @@ $output = '';
 						
 				</div>
 			</div> 
+			<hr style="margin-top:5px;margin-bottom:0px;">
+			<div class="row" >
+				<div class="col-md-12">
+				<h2>News<small> from Waste Pickers around the world</small></h2>
+				</div>			
+			</div>
 			<div class="row" id="home-boxes-2">
 				<div class="col-md-4">
 					<!-- Organizing post column 

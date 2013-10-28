@@ -172,8 +172,8 @@ function globalrec_widgets_init() {
 		'name' => __( 'Home page side bar', 'globalrec' ),
 		'id' => 'main-sidebar-widget',
 		'description' => __( 'Main sidebar', 'globalrec' ),
-		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-		'after_widget' => '</li>',
+		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h4 class="widget-title">',
 		'after_title' => '</h4>',
 	) );

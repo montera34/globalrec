@@ -51,7 +51,9 @@ $output = '';
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
 						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), medium, false, '' ); ?>
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-							<?php the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); ?> 
+							<?php // the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); //inserts the medium size image ?> 
+							<?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), medium, false, '' ); ?>
+							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;"></div>
 								<h4>Newsletter: <?php the_title();?></h4>
 						</a> 	
 						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> Subscribe to newsletter</button></a></p>
@@ -65,7 +67,7 @@ $output = '';
 				<div class="col-md-4">
 					<!-- Organizing post column 
 					<img src="<?php bloginfo('template_url'); ?>/images/hand-in-hand.png"/>-->
-					<h3><?php icl_link_to_element(858, 'category'); ?></h3>
+					<h3><strong><?php icl_link_to_element(858, 'category'); ?></strong></h3>
 					<?php global $more; 
 					$args = array(
 					 'caller_get_posts' => 	1,
@@ -92,7 +94,7 @@ $output = '';
 				<div class="col-md-4">
 					<!-- Threats posts column
 					<img src="<?php bloginfo('template_url'); ?>/images/march.png"/>-->
-					<h3><?php icl_link_to_element(964, 'category'); ?></h3>
+					<h3><strong><?php icl_link_to_element(964, 'category'); ?></strong></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
@@ -120,7 +122,7 @@ $output = '';
 				<div class="col-md-4">
 					<!-- Publications posts column
 					<img src="<?php bloginfo('template_url'); ?>/images/icon-publications.png"/> -->
-					<h3><?php icl_link_to_element(970, 'category'); ?></h3>
+					<h3><strong><?php icl_link_to_element(970, 'category'); ?></strong></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(

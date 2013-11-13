@@ -12,7 +12,9 @@ This is just a basic layout, with only the bare minimum defined.
 Please tweak this and make it your own. :)
 */
 
-
+#logotype{
+font-family:"Roboto Condensed",sans-serif;margin:35px 0 0 10px;
+}
 #indicimelayer{
 	display:none;}
 
@@ -51,7 +53,6 @@ clear: both;
 height: 0;
 }
 
-
 /*----------*/
 .rss-date{color:#bbb;}
 .rssSummary{color:#aaa;padding-left:20px;}
@@ -68,9 +69,6 @@ margin: 25px 20px 10px 5px;float:left;font-size:12px;border-bottom:#ddd solid 4p
 h4 { margin: 0 0 5px 0; }
 h5 a{font-size:12px;}
 #secondnav  {background-color:white !important;}
-
-
-
 
 /* storify */
 .sfy-story {
@@ -91,4 +89,224 @@ opacity:.5;
 .box-bottom span {
 font-size: 12px;
 color: black;
+}
+
+/* moving from less -----------------------*/
+.label {
+	background-color: #999;
+}
+.label a{
+	color: white;
+}
+
+#home-boxes-2 ul li, #blog ul li, #archive ul li{
+	list-style-type: none;
+}
+/* Widgets*/
+
+#main-sidebar .widget-container{
+	margin-bottom:30px;
+}
+.twitter-timestamp{
+	font-size: 85%;
+	color: grey;
+}
+.poweredby{
+	display:none;
+}
+
+/* Menu */
+.navbar {
+	min-height: 0px;
+}
+
+.navbar .btn-xs {
+	padding:2px 5px;
+}
+
+.form-search{
+	margin:2px 0 0 0 ;
+}
+
+/* Language switcher in header */
+#language_list li {
+	background-color:#eee;
+	margin: 0 3px;
+	font-size:85%;
+}
+#language_list li.active a{
+	background-color:#fe7c11;
+	border-radius: 0;
+}
+#language_list li:hover, #language_list .nav-pills li a:hover{
+	background-color:#dedede;
+}
+
+#language_list li a{
+	padding:4px;
+}
+#home .thumbnail {
+	margin: 0 0 10px 0;
+}
+
+a {
+	color:#000;
+}
+a:visited {
+	color:#333;
+}
+.wp-caption-text{
+font-size:10px;
+margin:4px 0 0 10px !important;
+margin: 0 10px 0 0px !important;
+padding:0 0 0 3px;
+background-color: #F3F3F3;
+}
+
+.globalreccolor {
+  color:#fe7c11;
+}
+.post-metadata{
+	color:#888;
+	font-size: 90%;
+}
+
+h4, h3  {
+	font-family: 'Sintony', lucida sans console, sans-serif;
+}
+.post-metadata a, h4 a, #footer a, #main-sidebar a, .type-post #post-content a{
+	color:#fe7c11;
+}
+
+blockquote p {
+	font-size: 14px !important; 
+	padding: 5px;
+}
+
+
+/*-------------menu end----------*/
+/*.sticky  {
+	background-color:#eee;
+	border-top:3px solid @grayLight;
+}
+.sticky h4  {margin-top:1px !important;}
+*/
+.portada-home {}
+h4.post-title a {
+	color:#fe7c11;
+}
+
+.category-in-the-news {
+	/*background-color:@grayLighter;*/
+	padding: 5px;
+}
+
+.category-in-the-news h4 a{
+	color:#dedede;
+}
+
+#home-boxes a:link {
+	color:black;
+}
+
+/*------------new menu------------*/
+#pre-menu {
+	/*position: relative;
+	bottom: 0px;*/
+}
+#pre-menu li {
+	
+}
+/* header menu desplegable */
+#pre-menu li a {
+        display: block!important;
+        display: block;
+        position: relative;
+        text-decoration: none;
+        z-index: 999;
+	/*color: #fff;*/
+}
+#pre-menu li:hover,
+#pre-menu li a:hover,
+#pre-menu li:hover a {
+	text-decoration: none;
+	position: relative;
+	z-index: 999;
+}
+#pre-menu li ul {
+	display: none;
+	position: absolute;
+	z-index: 999;
+	width: 150px;
+	font-weight: bold;
+	left: 0;
+	padding: 2px 0 5px;
+	margin: 0 !important;
+}
+#pre-menu li a:hover ul,
+#pre-menu li:hover ul {
+	display: block !important;
+}
+#pre-menu li a:hover ul li,
+#pre-menu li:hover ul li {
+	position: relative;
+	display: block;
+	margin: 0 !important;
+	padding: 0 !important;
+	z-index: 999;
+	background-color: #b3b3b3;
+}
+#pre-menu li a:hover ul li a,
+#pre-menu li:hover ul li a {
+	padding: 2px 0 8px 5 !important;
+}
+#pre-menu li ul li:hover{
+	background-color: black;
+}
+#pre-menu li ul li{
+	border:0;
+}
+#pre-menu ul.sub-menu li a{
+	color:white;
+}
+.navbar .navbar-inner{
+	background-image:none;
+}
+#pre-menu .nav-pills li {
+border-radius: 0px;
+}
+#main-menu ul li {
+	background-color:#fe7c11;
+	margin-right: 3px;
+	border:1px solid #fe7c11;
+	
+}
+#main-menu li:hover, #main-menu .nav-pills li a:hover{
+	background-color:#fd6b00;
+}
+
+#main-menu li a{
+	color:white;
+	text-shadow: 0 0px 0 white;
+	padding: 5px;
+}
+#main-menu li.current-menu-item{
+	background-color:white;
+	
+}
+#main-menu li.current-menu-item a{
+	color:#fe7c11;
+}
+
+nav li.menu-item-has-children {
+	background-image:url('images/dropdown.png');
+	background-repeat:no-repeat;
+	background-position:right center; 
+	padding-right: 8px;
+}
+
+#footer{
+	border-top:10px solid #fe7c11;
+	margin-top:10px;
+	height: 35px;
 }

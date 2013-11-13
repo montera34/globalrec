@@ -18,7 +18,7 @@ $output = '';
 						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt="Life and Voices of Waste pickers" class="img-responsive"/>
 						<h3><?php icl_link_to_element(2856,'page'); ?></h3>
 					</a>
-					<p>Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.
+					<p><?php _e('Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.','globalrec'); ?></p>
 				</div>
 				<!-- box for Where we are? ----------------------------------------------------------->
 				<div class="col-md-4 col-xs-6">
@@ -26,7 +26,7 @@ $output = '';
 							<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" class="img-responsive"/>
 							<h3><?php icl_link_to_element(7618,'page'); ?></h3>
 						</a>
-						<p>Provisional list of hundreds of waste pickers’ groups around the globe.</p>
+						<p><?php _e('Provisional list of hundreds of waste pickers’ groups around the globe.','globalrec'); ?></p>
 				</div>
 				<!-- box for the Last newsletter ----------------------------------------------------------->
 				<div class="col-md-4 col-xs-6">
@@ -49,16 +49,15 @@ $output = '';
 							$wp_query->in_the_loop = true;
 	
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-						<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), medium, false, '' ); ?>
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php // the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); //inserts the medium size image ?> 
 							<?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), medium, false, '' ); ?>
 							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;"></div>
 								<h4>Newsletter: <?php the_title();?></h4>
 						</a> 	
-						<p>Check out the latest GlobalRec newsletter. You can also <a href="/subscription/">subscribe to receive it by email</a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> Subscribe to newsletter</button></a></p>
+						<p><?php _e('Check out the latest GlobalRec newsletter.','globalrec'); ?> <a href="/subscription/"><?php _e('You can also subscribe to receive it by email','globalrec'); ?></a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> <?php _e('Subscribe to newsletter','globalrec'); ?></button></a></p>
 						<?php endwhile; else: ?>
-						<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+						<p><?php _e('Sorry, no posts matched your criteria.','globalrec'); ?></p>
 						<?php endif; ?>
 						
 				</div>
@@ -66,7 +65,7 @@ $output = '';
 			<hr style="margin-top:5px;margin-bottom:0px;">
 			<div class="row" >
 				<div class="col-md-12">
-				<h2>News<small> from Waste Pickers around the world</small></h2>
+				<h2><?php _e('News','globalrec'); ?><small> <?php _e('from Waste Pickers around the world','globalrec'); ?></small></h2>
 				</div>			
 			</div>
 			<div class="row" id="home-boxes-2">
@@ -155,7 +154,7 @@ $output = '';
 				</div>	
 			</div>	
 			<div class="row">
-			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-primary btn-lg pull-right">Read more Blog Posts</a>
+			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-primary btn-lg pull-right"><?php _e('Read more Blog Posts','globalrec'); ?></a>
 		 	</div>
 		</div>
 
@@ -166,7 +165,7 @@ $output = '';
 		<!-- end sidebar -->
 	</div>
 	<div id="footer-home-bar" class="row" 	style="border-top:5px solid #fe7c11;	margin:10px 0 0 0;">
-	<h5>Waste Picker Groups (websites)</h5>
+	<h5><?php _e('Waste Picker Groups','globalrec'); ?></h5>
 	<?php dynamic_sidebar( 'footer-home-bar' ) ?>
 	</div>	 
 	<?php get_footer(); ?>

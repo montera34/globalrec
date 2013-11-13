@@ -1,10 +1,4 @@
-<?php
-/**
- * @package WordPress
- * @subpackage Classic_Theme
- */
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 
 <head profile="http://gmpg.org/xfn/11">
@@ -69,9 +63,9 @@
 			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
 				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" alt="Global Alliance Of Waste Pickers Imagotype" />
 			</a>
-			<div style="font-family: 'Roboto Condensed', sans-serif;margin:35px 0 0 10px;">
-				<span style="font-size:24px;line-height: 22px;color: #999;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
-				<br><span class="globalreccolor" style="font-weight: bold;font-size:34px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
+			<div id="logotype">
+				<span style="font-size:23px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
+				<br><span class="globalreccolor" style="font-weight:700; font-size:34px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
 			</div>
 		</div>
 		<div id="tagline" class="col-md-8">
@@ -98,7 +92,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="main-menu">	
+	<nav id="main-menu">	
 		<div class="navbar">
 			<div class="pull-right">
 				<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
@@ -114,5 +108,5 @@
 			wp_nav_menu( $defaults );?>	
 
 		</div>
-	</div>
+	</nav>
 <!-- end header -->

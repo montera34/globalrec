@@ -75,12 +75,12 @@ get_header(); ?>
 
   <table class="table table-hover table-condensed">
 	<thead>
-	 <tr>
-          <th>Name</th>
-	  <th>Location</th>
-          <th>Year</th>
-          <th>Type</th>
-         </tr>
+		<tr>
+			<th><?php _e('Name','globalrec'); ?></th>
+			<th><?php _e('Location','globalrec'); ?></th>
+			<th><?php _e('Year','globalrec'); ?></th>
+			<th><?php _e('Type','globalrec'); ?></th>
+		</tr>
 	</thead>
     <tbody>
 	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>

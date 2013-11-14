@@ -57,7 +57,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="container">
+<div id="main-container" class="container">
 	<div class="row">
 		<div id="imagotipo" class="col-md-4">
 			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">

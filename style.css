@@ -4,13 +4,15 @@ Theme URI: http://montera34.com/lab/
 Description:
 Version: 0.1
 Author: Pablo Rey Montera34
-Tags: xxx
-
-Default WordPress by Dave Shea || http://mezzoblue.com
-Modifications by Matthew Mullenweg || http://photomatt.net
-This is just a basic layout, with only the bare minimum defined.
-Please tweak this and make it your own. :)
+Tags: bootstrap
 */
+
+body{
+	background-color:#fafafa;
+}
+#main-container{
+	background-color:#FFF;
+}
 
 #logotype{
 font-family:"Roboto Condensed",sans-serif;margin:35px 0 0 10px;
@@ -29,6 +31,7 @@ font-family:"Roboto Condensed",sans-serif;margin:35px 0 0 10px;
 
 #main-menu .navbar{
 	background-color:#EEE;
+	border-radius: 0px;
 }
 
 #home-boxes h3 {
@@ -103,7 +106,11 @@ color: black;
 	list-style-type: none;
 }
 /* Widgets*/
-
+#main-sidebar{
+	border-left: 4px solid #ccc;
+	padding-left:8px;
+	background-color:#fbfbfb;
+}
 #main-sidebar .widget-container{
 	margin-bottom:30px;
 }
@@ -171,7 +178,7 @@ background-color: #F3F3F3;
 	font-size: 90%;
 }
 
-h4, h3  {
+h4, h3, h2 {
 	font-family: 'Sintony', lucida sans console, sans-serif;
 }
 .post-metadata a, h4 a, #footer a, #main-sidebar a, .type-post #post-content a{
@@ -194,15 +201,6 @@ blockquote p {
 .portada-home {}
 h4.post-title a {
 	color:#fe7c11;
-}
-
-.category-in-the-news {
-	/*background-color:@grayLighter;*/
-	padding: 5px;
-}
-
-.category-in-the-news h4 a{
-	color:#dedede;
 }
 
 #home-boxes a:link {

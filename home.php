@@ -53,7 +53,7 @@ $output = '';
 							<?php // the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); //inserts the medium size image ?> 
 							<?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), medium, false, '' ); ?>
 							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;"></div>
-								<h4>Newsletter: <?php the_title();?></h4>
+								<h3><?php _e('Recent newsletter','globalrec'); ?></h3>
 						</a> 	
 						<p><?php _e('Check out the latest GlobalRec newsletter.','globalrec'); ?> <a href="/subscription/"><?php _e('You can also subscribe to receive it by email','globalrec'); ?></a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> <?php _e('Subscribe to newsletter','globalrec'); ?></button></a></p>
 						<?php endwhile; else: ?>
@@ -70,9 +70,8 @@ $output = '';
 			</div>
 			<div class="row" id="home-boxes-2">
 				<div class="col-md-4">
-					<!-- Organizing post column 
-					<img src="<?php bloginfo('template_url'); ?>/images/hand-in-hand.png"/>-->
-					<h3><strong><?php icl_link_to_element(858, 'category'); ?></strong></h3>
+					<!-- Organizing post column -->
+					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-hand-in-hand.png"/><br><?php icl_link_to_element(858, 'category'); ?></h3>
 					<?php global $more; 
 					$args = array(
 					 'caller_get_posts' => 	1,
@@ -97,9 +96,8 @@ $output = '';
 					<?php endif; ?>
 				</div>
 				<div class="col-md-4">
-					<!-- Threats posts column
-					<img src="<?php bloginfo('template_url'); ?>/images/march.png"/>-->
-					<h3><strong><?php icl_link_to_element(964, 'category'); ?></strong></h3>
+					<!-- Threats posts column-->
+					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-march.png"/><br><?php icl_link_to_element(964, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
@@ -125,9 +123,9 @@ $output = '';
 					<?php endif; ?>
 				</div>	
 				<div class="col-md-4">
-					<!-- Publications posts column
-					<img src="<?php bloginfo('template_url'); ?>/images/icon-publications.png"/> -->
-					<h3><strong><?php icl_link_to_element(970, 'category'); ?></strong></h3>
+					<!-- Publications posts column-->
+					
+					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-publication.png"/><br><?php icl_link_to_element(970, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(

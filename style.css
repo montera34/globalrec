@@ -95,13 +95,6 @@ color: black;
 }
 
 /* moving from less -----------------------*/
-.label {
-	background-color: #999;
-}
-.label a{
-	color: white;
-}
-
 #home-boxes-2 ul li, #blog ul li, #archive ul li{
 	list-style-type: none;
 }
@@ -183,6 +176,13 @@ h4, h3, h2 {
 	color:#fe7c11;
 }
 
+.label {
+	background-color: #999;
+	color:#fff;
+}
+.label a,a.label{
+	color: white;
+}
 blockquote p {
 	font-size: 14px !important; 
 	padding: 5px;

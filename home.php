@@ -6,7 +6,7 @@ $output = '';
 <div id="home">
 	<div class="row">
 		<div class="col-md-9">
-			<div class="row"> <!-- space for banners -->
+			<div class="row"> <!-- space for banners X -->
 				 <div class="col-md-12">
 					<?php dynamic_sidebar( 'front-page-widget-area-main' ) ?>
 				</div>
@@ -52,7 +52,7 @@ $output = '';
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php // the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); //inserts the medium size image ?> 
 							<?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), medium, false, '' ); ?>
-							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;"></div>
+							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;background-position: center;"></div>
 								<h3><?php _e('Recent newsletter','globalrec'); ?></h3>
 						</a> 	
 						<p><?php _e('Check out the latest GlobalRec newsletter.','globalrec'); ?> <a href="/subscription/"><?php _e('You can also subscribe to receive it by email','globalrec'); ?></a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> <?php _e('Subscribe to newsletter','globalrec'); ?></button></a></p>

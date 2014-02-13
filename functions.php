@@ -374,6 +374,8 @@ function sample_metaboxes( $meta_boxes ) {
 add_filter( 'cmb_meta_boxes', 'sample_metaboxes' );
 
 function global_meeting_sample_metaboxes( $meta_boxes ) {
+
+	//Custom fields for global meetings
 	$prefix2 = 'gm_'; // Prefix for all fields
 	$prefix = '_gr_';
 	$meta_boxes[] = array(
@@ -416,6 +418,8 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	
+	//Custom fields for articles
 	$meta_boxes[] = array(
 		'id' => 'post-extra-fields',
 		'title' => 'Post in category Press',
@@ -459,6 +463,35 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		),
 	);
 
+	//Custom fields for Waste Picker groups
+	//we need to create the array of members
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'bio'
+		));
+	foreach ($posts as $post) {
+		$members[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	$prefixwpg = '_wpg_';
+	$meta_boxes[] = array(
+		'id' => 'waste-picker-groups-membes',
+		'title' => 'Waste Picker Members',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Members',
+				'desc' => 'Select the members of this group',
+				'id' => $prefixwpg . 'members',
+				'type' => 'select',
+				'options' =>  $members //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
 	return $meta_boxes;
 }
 add_filter( 'cmb_meta_boxes', 'global_meeting_sample_metaboxes' );

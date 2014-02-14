@@ -459,7 +459,6 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'wysiwyg',
 				'options' => array(),
 			),
-
 		),
 	);
 
@@ -474,9 +473,10 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			'name' => $post->post_title,
 			'value' => $post->ID
 		);
+	}
 	$prefixwpg = '_wpg_';
 	$meta_boxes[] = array(
-		'id' => 'waste-picker-groups-membes',
+		'id' => 'wpg-members',
 		'title' => 'Waste Picker Members',
 		'pages' => array('waste-picker-group'), // post type
 		'context' => 'normal',
@@ -487,11 +487,158 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'name' => 'Members',
 				'desc' => 'Select the members of this group',
 				'id' => $prefixwpg . 'members',
-				'type' => 'select',
+				'type' => 'select', //TODO need to make it work for multicheck https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Field-Types
 				'options' =>  $members //one to many relationship. One waste picker group contains multiple members (bios)
 			),
 		),
 	);
+	wp_reset_query();
+	$meta_boxes[] = array(
+		'id' => 'wpg-contact-info',
+		'title' => 'Contact Information',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Email of Organization',
+				'desc' => 'ex: info@globalrec.org',
+				'id' => $prefixwpg . 'email',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Website of Organization',
+				'desc' => 'ex: http://globalrec.org',
+				'id' => $prefixwpg . 'website',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Physical Address',
+				'desc' => 'ex: ',
+				'id' => $prefixwpg . 'physical-address',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Postal Address',
+				'desc' => 'ex: ',
+				'id' => $prefixwpg . 'postal-address',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'City',
+				'desc' => '',
+				'id' => $prefixwpg . 'city',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Region / State',
+				'desc' => 'Indicate region or state within the country. Ex: Florida',
+				'id' => $prefixwpg . 'city',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Country',
+				'desc' => '',
+				'id' => $prefixwpg . 'country',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Country Code Telephone',
+				'desc' => 'Ex: +1',
+				'id' => $prefixwpg . 'country-code-telephone',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Phone 1',
+				'desc' => '',
+				'id' => $prefixwpg . 'phone1',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Phone 2',
+				'desc' => '',
+				'id' => $prefixwpg . 'phone2',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Cell Phone',
+				'desc' => '',
+				'id' => $prefixwpg . 'cell-phone',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Fax',
+				'desc' => '',
+				'id' => $prefixwpg . 'fax',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Skype',
+				'desc' => 'Skype user name.',
+				'id' => $prefixwpg . 'skype',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Facebook',
+				'desc' => 'Full url. Ex: http://facebook.com/globalrec',
+				'id' => $prefixwpg . 'facebook',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Twitter',
+				'desc' => 'User name. Ex: global_rec',
+				'id' => $prefixwpg . 'twitter',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Other social networks',
+				'desc' => 'Add url',
+				'id' => $prefixwpg . 'other-social-networks',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Language',
+				'desc' => 'Add url',
+				'id' => $prefixwpg . 'language',
+				'type' => 'multicheck',
+				'options' => array(
+					'spanish' => 'Spanish',
+					'portuguese' => 'Portuguese',
+					'english' => 'English',
+					'french' => 'French',
+					'bamanankan' => 'Bamanankan',
+					'bambaro' => 'Bambaro',
+					'bomu' => 'Bomu',
+					'Iigbo' => 'Igbo',
+					'kikongo' => 'Kikongo',
+					'lingala' => 'Lingala',
+					'malagasy' => 'Malagasy',
+					'mandingue' => 'Mandingue',
+					'peulh' => 'Peulh',
+					'serere' => 'Serere',
+					'swaili' => 'Swaili',
+					'tieyako-bozo' => 'Tieyako Bozo',
+					'toucouleur-yoruba' => 'Toucouleur / Yoruba',
+					'tshiluba' => 'Tshiluba',
+					'walot' => 'Walot'
+				),
+			),
+			array(
+				'name' => 'Primary Contact',
+				'desc' => '',
+				'id' => $prefixwpg . 'primary-contact',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Secondary Contact',
+				'desc' => '',
+				'id' => $prefixwpg . 'secondary-contact',
+				'type' => 'textarea_small',
+			),
+		),
+	);
+
 	return $meta_boxes;
 }
 add_filter( 'cmb_meta_boxes', 'global_meeting_sample_metaboxes' );

@@ -916,7 +916,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'radio_inline',
 				'options' => array(
 				    array('name' => 'no', 'value' => 'no'),
-				    array('name' => 'Mquarterly', 'value' => 'quarterly'),
+				    array('name' => 'Quarterly', 'value' => 'quarterly'),
 				    array('name' => 'annually', 'value' => 'annually'),
 				    array('name' => 'every 2 years', 'value' => 'every-2-years'),
 				    array('name' => 'every 3 years', 'value' => 'every-3-years'),
@@ -1103,6 +1103,51 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'social-exclusion' => 'social exclusion',
 					'transportation' => 'transportation',
 				),
+			),
+		),
+	);
+	//Complementary Info Custom fields
+	$meta_boxes[] = array(
+		'id' => 'wpg-services',
+		'title' => 'Complementary Info',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Publications (details)',
+				'desc' => 'Other publications or documents where to find information about this organization.',
+				'id' => $prefixwpg . 'publications',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Source of Information',
+				'desc' => 'Where is the information coming from.',
+				'id' => $prefixwpg . 'information-source',
+				'type' => 'textarea_small',
+			),
+			array(
+					'name' => 'Date of Data Entry',
+					'desc' => '',
+					'id' => $prefixwpg . 'date-data-entry',
+					'type' => 'text_date_timestamp'
+			),
+			array(
+					'name' => 'Date Data Updated',
+					'desc' => '',
+					'id' => $prefixwpg . 'date-data-updated',
+					'type' => 'text_date_timestamp'
+			),
+			array(
+				'name' => 'Status of the organization',
+				'desc' => 'Indicate if the organization is active',
+				'id' => $prefixwpg . 'status',
+				'type' => 'radio_inline',
+				'options' => array(
+					  array('name' => 'Yes', 'value' => 'yes'),
+					  array('name' => 'No', 'value' => 'no'),
+				)
 			),
 		),
 	);

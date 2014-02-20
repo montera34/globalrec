@@ -819,8 +819,14 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				)
 			),
 			array(
-				'name' => 'Registration Year',
+				'name' => 'Year Formed',
 				'desc' => 'Year the organization was formed',
+				'id' => $prefixwpg . 'year-formed',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Registration Year',
+				'desc' => 'Year the organization was registered',
 				'id' => $prefixwpg . 'registration-year',
 				'type' => 'text_small',
 			),
@@ -880,6 +886,17 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				)
 			),
 			array(
+				'name' => 'Affiliations',
+				'desc' => '',
+				'id' => $prefixwpg . 'affiliations',
+				'type' => 'multicheck',
+				'options' => array(
+					'donor' => 'Donor ',
+					'government' => 'Government',
+					'ngo' => 'NGO',
+					'waste-picker-organisation' => 'Waste Picker Organisation',				)
+			),
+			array(
 				'name' => 'How activities are funded?',
 				'desc' => '',
 				'id' => $prefixwpg . 'funding',
@@ -907,6 +924,185 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				    array('name' => 'every 5 years', 'value' => 'every-5-years'),
 				    array('name' => 'other', 'value' => 'other'),
 				)
+			),
+		),
+	);
+	//Benefits custom fields
+	$meta_boxes[] = array(
+		'id' => 'wpg-benefits',
+		'title' => 'Benefits information',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Member benefits',
+				'desc' => 'Select if the organization is Waste Pickers bases or supports Waste Pickers',
+				'id' => $prefixwpg . 'member-benefits',
+				'type' => 'multicheck',
+				'options' => array(
+					'access-to-financial-and-material-resources' =>'access to financial and material resources',
+					'access-to-micro-credits' =>'access to micro credits',
+					'access-to-recycleable-materials' =>'access to recycleable materials',
+					'access-to-training-centre-for-families' =>'access to training centre for families',
+					'availability-of-compost-manure' =>'availability of compost manure',
+					'child-care-system' =>'Child Care system',
+					'child-educapprenticeship-schemes' =>'Child EducApprenticeship schemes',
+					'child-education-programmes' =>'Child education programmes',
+					'clean-and-healthy-environment' =>'clean and healthy environment',
+					'emergency-health-care-members-fund' =>'Emergency Health Care members fund',
+					'health-centre' =>'Health Centre',
+					'health-insurance' =>'Health Insurance',
+					'id-cards' =>'ID cards',
+					'improved-working-and-living-conditions' =>'improved working and living conditions',
+					'job-creation' =>'job creation',
+					'legal-assistance' =>'legal assistance',
+					'life-insurance' =>'Life Insurance',
+					'life-insurance' =>'Life Insurance',
+					'literacy-programmes' =>'Literacy programmes',
+					'medical-aid-scheme' =>'medical aid scheme',
+					'occupational-health-safety' =>'Occupational Health & Safety',
+					'profit-share' =>'profit share',
+					'ration-cards' =>'ration cards',
+					'savings-or-credit-system' =>'Savings or Credit system',
+					'source-of-income' =>'source of income',
+					'urban-environment-management-support' =>'urban environment management support',
+				),
+			),
+			array(
+				'name' => 'Number of credit / saving members?',
+				'desc' => 'Ex: 125',
+				'id' => $prefixwpg . 'registration-year',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Safety & Technology',
+				'desc' => '',
+				'id' => $prefixwpg . 'safety-technology',
+				'type' => 'multicheck',
+				'options' => array(
+					'yes' =>'yes',
+					'gloves' =>'gloves',
+					'masks' =>'masks',
+					'risk-training' =>'risk training',
+					'safety-boots' =>'safety boots',
+					'access-to-micro-credits' =>'no',
+				),
+			),
+		),
+	);
+	//Services Custom fields
+	$meta_boxes[] = array(
+		'id' => 'wpg-services',
+		'title' => 'Services provided by the organization',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Relationship with Municipality',
+				'desc' => '',
+				'id' => $prefixwpg . 'relationship-municipality',
+				'type' => 'multicheck',
+				'options' => array(
+					'excellent' =>'Excellent',
+					'forma-contract' =>'formal contract',
+					'friendly' =>'friendly',
+					'independent' =>'independent',
+					'non existent' =>'non existent',
+					'poor' =>'poor',
+				),
+			),
+			array(
+				'name' => 'Types of materials collected',
+				'desc' => '',
+				'id' => $prefixwpg . 'types-of-materials',
+				'type' => 'multicheck',
+				'options' => array(
+					'biodegradable-waste' => 'biodegradable waste',
+					'bones' => 'bones',
+					'bottles' => 'bottles',
+					'charcoal' => 'charcoal',
+					'clothing' => 'clothing',
+					'crankshafts' => 'crankshafts',
+					'electronic-waste' => 'electronic waste',
+					'engine-blocks' => 'engine blocks',
+					'food' => 'food',
+					'glass' => 'glass',
+					'household-items' => 'household items',
+					'metals' => 'metals',
+					'organics' => 'organics',
+					'paper' => 'paper',
+					'plastics' => 'plastics',
+					'used-tires' => 'used tires',
+					'other' => 'other',
+				),
+			),
+			array(
+				'name' => 'Do you sell to middlemen?',
+				'desc' => '',
+				'id' => $prefixwpg . 'middlemen',
+				'type' => 'radio_inline',
+				'options' => array(
+					  array('name' => 'Yes', 'value' => 'yes'),
+					  array('name' => 'No', 'value' => 'no'),
+				)
+			),
+			array(
+				'name' => 'Activities?', //TODO
+				'desc' => '',
+				'id' => $prefixwpg . 'activities',//TODO
+				'type' => 'multicheck',
+				'options' => array(
+					'pending' => 'pending',//TODO
+				),
+			),
+			array(
+				'name' => 'Sorting spaces',
+				'desc' => 'Where waste is sored or broken down, for example,electrical household items are taken to a sorting workshop where the same types of goods are picked apart by someone and all the reusable components extracted and sorted.',
+				'id' => $prefixwpg . 'sorting-spaces',
+				'type' => 'multicheck',
+				'options' => array(
+					'sorting-centres' => 'sorting centres',
+					'sorting-workshops' => 'sorting workshops',
+				),
+			),
+			array(
+				'name' => 'Treatment of organic materials',
+				'desc' => '',
+				'id' => $prefixwpg . 'treatment-organic-materials',
+				'type' => 'multicheck',
+				'options' => array(
+					'biogas' => 'biogas',
+					'composting' => 'composting',
+					'pig-farming' => 'pig farming',
+				),
+			),
+			array(
+				'name' => 'Challenges to access waste',
+				'desc' => '',
+				'id' => $prefixwpg . 'challenges-access-waste',
+				'type' => 'multicheck',
+				'options' => array(
+					'competition-between-organisations' => 'competition between organisations',
+					'harassment' => 'harassment',
+					'lack-of-capacity' => 'lack of capacity',
+					'lack-of-democratic-practices-in-organisations' => 'lack of democratic practices in organisations',
+					'lack-of-dumps' => 'lack of dumps',
+					'lack-of-education-and-training' => 'lack of education and training',
+					'lack-of-land' => 'lack of land',
+					'lack-of-money' => 'lack of money',
+					'lack-of-networks' => 'lack of networks',
+					'lack-of-opportunity-to-share-information' => 'lack of opportunity to share information',
+					'lack-of-recognition-of-wps' => 'lack of recognition of WPs',
+					'lack-of-skills-and-experience' => 'lack of skills and experience',
+					'lack-of-unity-between-organisations' => 'lack of unity between organisations',
+					'privatisation' => 'privatisation',
+					'social-exclusion' => 'social exclusion',
+					'transportation' => 'transportation',
+				),
 			),
 		),
 	);

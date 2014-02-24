@@ -51,7 +51,7 @@ $output = '';
 						$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
 						<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 							<?php // the_post_thumbnail( 'medium', array('class' => 'img-responsive') ); //inserts the medium size image ?> 
-							<?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), medium, false, '' ); ?>
+							<?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'medium', false, '' ); ?>
 							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;background-position: center;"></div>
 								<h3><?php _e('Recent newsletter','globalrec'); ?></h3>
 						</a> 	
@@ -74,7 +74,7 @@ $output = '';
 					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-hand-in-hand.png"/><br><?php icl_link_to_element(858, 'category'); ?></h3>
 					<?php global $more; 
 					$args = array(
-					 'caller_get_posts' => 	1,
+					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	4,
 					 'cat'=> 858
 						);
@@ -101,7 +101,7 @@ $output = '';
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
-					 'caller_get_posts' => 	1,
+					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	4,
 					 'cat'=>	icl_object_id(964, 'category')		 
 						);
@@ -129,7 +129,7 @@ $output = '';
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
-					 'caller_get_posts' => 	1,
+					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	4,
 					 'cat'=> 970
 						);

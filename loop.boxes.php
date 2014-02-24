@@ -55,7 +55,6 @@ $output = '';
 		<?php $text = get_post_meta( $post->ID, 'gm_location', true ); echo $text; ?> 
 		<div class="pull-right"> 
 			<span class="label "><?php echo get_the_term_list( $post->ID, 'gb-year', ' ', ', ', '' ); ?></span> 
-		 	<?php echo $op; ?>
 		 </div>
 	<div class="row">
 			<div class="col-md-12">

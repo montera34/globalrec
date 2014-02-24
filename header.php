@@ -59,18 +59,19 @@
 
 <div id="main-container" class="container">
 	<div class="row">
-		<div id="imagotipo" class="col-md-4">
+		<div id="imagotipo" class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
-				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" alt="Global Alliance Of Waste Pickers Imagotype" />
+				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" 
+				alt="<?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?> <?php _e( 'WASTE PICKERS', 'domain' ); ?>" />
 			</a>
 			<div id="logotype">
-				<span style="font-size:23px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
-				<br><span class="globalreccolor" style="font-weight:700; font-size:34px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
+				<span style="font-size:22px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
+				<br><span class="globalreccolor" style="font-weight:700; font-size:32px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
 			</div>
 		</div>
-		<div id="tagline" class="col-md-8">
+		<div id="tagline" class="col-xs-12 col-md-7 col-lg-8">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-xs-12 col-md-7">
 					<div class="pull-right">
 						<?php languages_list(); ?>
 					</div>
@@ -80,7 +81,7 @@
 				</div>
 			</div>	
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-xs-12 col-md-8">
 					<small><?php echo get_bloginfo( 'description' ) ?></small>
 				</div>
 				<div class="col-md-4">

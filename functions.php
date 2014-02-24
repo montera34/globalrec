@@ -1175,7 +1175,7 @@ function languages_list(){
         foreach($languages as $l){
             if($l['active']) {echo '<li class="active">';} else {echo '<li>';};
             if(!$l['active']) {echo '<a href="'.$l['url'].'">';} else {echo '<a href="#">';};
-            echo icl_disp_language($l['native_name']);
+            echo $l['native_name'];
            	echo '</a>';
             echo '</li>';
         }

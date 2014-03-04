@@ -357,6 +357,36 @@ function sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Custom fields to select a Waste Picker group
+	//we need to create the array of Wwaste Picker Groups
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'waste-picker-group'
+		));
+	foreach ($posts as $post) {
+		$groups[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'wpg-members',
+		'title' => 'Waste Picker Members',
+		'pages' => array('bio'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Waste Picker Group',
+				'desc' => 'Select the main waste picker group where it belongs',
+				'id' => $prefix . 'members',
+				'type' => 'select', 
+				'options' =>  $groups //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
+	wp_reset_query();
 
 	return $meta_boxes;
 }
@@ -450,38 +480,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
-
-	//Custom fields for Waste Picker groups
-	//we need to create the array of members
-	$posts = query_posts( array(
-		'posts_per_page' => -1,
-		'post_type' => 'bio'
-		));
-	foreach ($posts as $post) {
-		$members[] = array(
-			'name' => $post->post_title,
-			'value' => $post->ID
-		);
-	}
 	$prefixwpg = '_wpg_';
-	$meta_boxes[] = array(
-		'id' => 'wpg-members',
-		'title' => 'Waste Picker Members',
-		'pages' => array('waste-picker-group'), // post type
-		'context' => 'normal',
-		'priority' => 'high',
-		'show_names' => true, // Show field names on the left
-		'fields' => array(
-			array(
-				'name' => 'Members',
-				'desc' => 'Select the members of this group',
-				'id' => $prefixwpg . 'members',
-				'type' => 'select', //TODO need to make it work for multicheck https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Field-Types
-				'options' =>  $members //one to many relationship. One waste picker group contains multiple members (bios)
-			),
-		),
-	);
-	wp_reset_query();
 	$meta_boxes[] = array(
 		'id' => 'wpg-contact-info',
 		'title' => 'Contact Information',

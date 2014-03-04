@@ -227,12 +227,9 @@ function globalrec_widgets_init() {
 		'before_title' => ' ',
 		'after_title' => ' ',
 	) );
-
-
 }
 /** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
 add_action( 'widgets_init', 'globalrec_widgets_init' );
-
 
 // sustituye el [...] del excerpt por un link al post. more info at http://codex.wordpress.org/Function_Reference/the_excerpt
 function new_excerpt_more($more) {
@@ -241,11 +238,7 @@ function new_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
-
 //--------------------------------------------------------------------------------//
-
-
-automatic_feed_links();
 
 if ( function_exists('register_sidebar') )
 	register_sidebar(array(
@@ -255,9 +248,6 @@ if ( function_exists('register_sidebar') )
 		'after_title' => '',
 	));
 
-	
-
-
 /*
 add_action('init', 'my_custom_init');
 
@@ -265,7 +255,6 @@ function my_custom_init() {
 		
 		add_post_type_support( 'letras', array('excerpt', 'page-attributes') );
 }*/
-
 
 /* Translation: To make categories id work via http://wpml.org/es/documentation-2/soporte/crear-temas-multilingues-en-wordpress/numeros-id-dependientes-del-idioma/*/
 /*Si está escribiendo un Tema que necesita ser utilizado con WPML, pero también desea que se ejecute adecuadamente sin WPML, debería realizar esas llamadas por medio de la función function_exists(). Por ejemplo: puede crear esta función en su archivo functions.php:*/
@@ -534,7 +523,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Region / State',
 				'desc' => 'Indicate region or state within the country. Ex: Florida',
-				'id' => $prefixwpg . 'city',
+				'id' => $prefixwpg . 'region',
 				'type' => 'text_small',
 			),
 			array(
@@ -665,11 +654,12 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'options' => array(
 				    'door-to-door-only-waste' => 'Door to door waste only',
 						'door-to-door-waste-recyclables' => 'Door to door waste and recyclables',
-						'Iinterant-buyers' => 'Interant buyers',
+						'iinterant-buyers' => 'Interant buyers',
 						'itinerant-workers' => 'Itinerant workers',
 						'landfills' => 'Landfills',
 						'scrap-dealers' => 'Scrap dealers',
 						'sorting-centres' => 'Sorting centres',
+						'swm' => 'SWM',
 						'waste-pickers' => 'Waste Pickers',
 						'waste-pickers-in-streets' => 'Waster Pickers working in streets',
 				)
@@ -719,15 +709,16 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'workplace-members',
 				'type' => 'multicheck',
 				'options' => array(
-					'recovery-from-landfil' => 'recovery from landfil',
+					'door-to-door' => 'door to door',
 					'dump' => 'dump',
-					'sanitary-landfill' => 'sanitary landfill',
-					'street' => 'street',
+					'fixed' => 'Fixed',
+					'informal-collection-from-companies' => 'informal collection from companies',
 					'recycling-centre' => 'recycling centre',
 					'recycling-workshop' => 'recycling workshop',
-					'door-to-door' => 'door to door',
+					'recovery-from-landfil' => 'recovery from landfil',
+					'sanitary-landfill' => 'sanitary landfill',
 					'sorting-centres' => 'sorting centres',
-					'informal-collection-from-companies' => 'informal collection from companies',
+					'street' => 'street',
 					'street-sweeping' => 'street sweeping',
 				)
 			),
@@ -754,9 +745,21 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'text_small',
 			),
 			array(
-				'name' => 'Gender composition: Women',
+				'name' => 'Gender Composition Women (Number)',
 				'desc' => 'Indicate the percentage of women. If there are 60% of women input "60"',
 				'id' => $prefixwpg . 'gender-women-composition',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Gender Composition Women (Comment)',
+				'desc' => 'If no number is provided indicate here thins like "majority of women"',
+				'id' => $prefixwpg . 'gender-women-comment',
+				'type' => 'text_small',
+			),
+			array(
+				'name' => 'Organization Structure',
+				'desc' => ' ',
+				'id' => $prefixwpg . 'structure',
 				'type' => 'text_small',
 			),
 			array(
@@ -773,6 +776,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'contribute-to-cleaning-the-environment' => 'contribute to cleaning the environment',
 					'coordinate-selective-collection-and-evacuation' => 'coordinate selective collection and evacuation',
 					'create-wp-Trade-Union' => 'create WP Trade Union',
+					'demands-provision-of-governement-funded-social-security' => 'demands provision of Government funded Social Security ',
 					'development-of-eduactional-activities-for-children-and-adolescents' => 'development of eduactional activities for children and adolescents',
 					'education-and-training' => 'education and training',
 					'fight-against-discrimination-and-poverty' => 'fight against discrimination and poverty',
@@ -790,12 +794,6 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'social-development-in-urban-areas' => 'social development in urban areas',
 					'strengthen-unity-and-cohesion-among-wps' => 'strengthen unity and cohesion among WPs',
 				)
-			),
-			array(
-				'name' => 'Formally registered',
-				'desc' => '',
-				'id' => $prefixwpg . 'formally-registered',
-				'type' => 'checkbox',
 			),
 			array(
 				'name' => 'Eucation and training',
@@ -819,6 +817,12 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				)
 			),
 			array(
+				'name' => 'Formally registered',
+				'desc' => '',
+				'id' => $prefixwpg . 'formally-registered',
+				'type' => 'checkbox',
+			),
+			array(
 				'name' => 'Year Formed',
 				'desc' => 'Year the organization was formed',
 				'id' => $prefixwpg . 'year-formed',
@@ -831,59 +835,10 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'text_small',
 			),
 			array(
-				'name' => 'Partnering Organsiations',
+				'name' => 'Partnering Organizations',
 				'desc' => '',
 				'id' => $prefixwpg . 'partnering-organizations',
-				'type' => 'multicheck',
-				'options' => array(
-					'acf' => 'ACF',
-					'agence-francais-de-development' => 'Agence Francais de Development',
-					'akamasoa' => 'AKAMASOA',
-					'aquassistance-france' => 'Aquassistance France',
-					'atd-quart-monde' => 'ATD Quart Monde',
-					'autre-terre' => 'Autre Terre',
-					'bamato' => 'BAMATO',
-					'caneq' => 'CANEQ',
-					'ceka-kalasaka' => 'Ceka Kalasaka',
-					'community-development-trust-fund' => 'Community Development Trust Fund',
-					'consultants-san-frontiere' => 'Consultants San Frontiere',
-					'danida-sida' => 'DANIDA-SIDA',
-					'ded' => 'DED',
-					'destiny-africa' => 'DESTINY AFRICA',
-					'enda' => 'ENDA',
-					'eu' => 'EU',
-					'fed' => 'FED',
-					'fonds-marie-antoinette-carlier-(acf)' => 'Fonds Marie Antoinette Carlier (ACF)',
-					'foundation-roi-beaudoin' => 'Foundation Roi Beaudoin',
-					'france-liberte' => 'France Liberte',
-					'gaia' => 'GAIA',
-					'graf-sahel' => 'Graf Sahel',
-					'groundwork' => 'groundWork',
-					'ihechi-sweepers' => 'IHECHI Sweepers',
-					'ilo' => 'ILO',
-					'inades-formation-congo/ city-council' => 'INADES FORMATION CONGO/ City Council',
-					'ipec' => 'IPEC',
-					'isf' => 'ISF',
-					'ldfc' => 'LDFC',
-					'life-pnud' => 'LIFE PNUD',
-					'local-municipality' => 'Local Municipality',
-					'metal-&-joints' => 'Metal & Joints',
-					'municipality' => 'Municipality',
-					'mvungano-wa-wanavijiji' => 'MVUNGANO WA WANAVIJIJI',
-					'other' => 'Other',
-					'oxfam' => 'OXFAM',
-					'plafcco' => 'PLAFCCO',
-					'quebec' => 'Quebec',
-					'ratpka' => 'RATPKA',
-					'recovad' => 'RECOVAD',
-					'rse' => 'RSE',
-					'snv' => 'SNV',
-					'streetnet' => 'STREETNET',
-					'ugo-waste-pickers' => 'UGO Waste Pickers',
-					'umande-trust' => 'UMANDE TRUST',
-					'wiego' => 'WIEGO',
-					'world-bank' => 'World Bank',
-				)
+				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Affiliations',
@@ -894,7 +849,8 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'donor' => 'Donor ',
 					'government' => 'Government',
 					'ngo' => 'NGO',
-					'waste-picker-organisation' => 'Waste Picker Organisation',				)
+					'waste-picker-organisation' => 'Waste Picker Organisation',
+				)
 			),
 			array(
 				'name' => 'How activities are funded?',
@@ -959,7 +915,6 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'job-creation' =>'job creation',
 					'legal-assistance' =>'legal assistance',
 					'life-insurance' =>'Life Insurance',
-					'life-insurance' =>'Life Insurance',
 					'literacy-programmes' =>'Literacy programmes',
 					'medical-aid-scheme' =>'medical aid scheme',
 					'occupational-health-safety' =>'Occupational Health & Safety',
@@ -972,8 +927,8 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Number of credit / saving members?',
-				'desc' => 'Ex: 125',
-				'id' => $prefixwpg . 'registration-year',
+				'desc' => 'Ex: "125"',
+				'id' => $prefixwpg . 'credit-members',
 				'type' => 'text_small',
 			),
 			array(
@@ -1051,12 +1006,22 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				)
 			),
 			array(
-				'name' => 'Activities?', //TODO
+				'name' => 'Activities', 
 				'desc' => '',
-				'id' => $prefixwpg . 'activities',//TODO
+				'id' => $prefixwpg . 'activities', 
 				'type' => 'multicheck',
 				'options' => array(
-					'pending' => 'pending',//TODO
+					'community-sale-of-materials' => 'Community sale of materials	',
+					'community-storage-of-materials' => 'Community storage of materials	',
+					'composting' => 'Composting	',
+					'farming' => 'Farming	',
+					'new-items-made-from-collected-materials' => 'New items made from collected materials	',
+					'organising-collective-events' => 'Organising collective events	',
+					'sensitization-of-locals' => 'Sensitization of locals	',
+					'special-collections-from-large-generators-of-waste' => 'Special collections from large generators of waste	',
+					'street-sweeping' => 'Street sweeping	',
+					'training-and-capacity-building' => 'Training and capacity building	',
+					'transportation' => 'Transportation	',
 				),
 			),
 			array(

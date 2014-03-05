@@ -324,8 +324,8 @@ function the_post_image_url($size=large) {
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
-//add featured image to 'post', 'page','bio','global-meeting'
-add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting' ) ); 
+//adds featured image to 'post', 'page','bio','global-meeting','waste-picker-group'
+add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-group' ) ); 
 
 //add posts formats
 add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 'image' ) );
@@ -380,7 +380,7 @@ function sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Waste Picker Group',
 				'desc' => 'Select the main waste picker group where it belongs',
-				'id' => $prefix . 'members',
+				'id' => $prefixwpg . 'members',
 				'type' => 'select', 
 				'options' =>  $groups //one to many relationship. One waste picker group contains multiple members (bios)
 			),
@@ -598,7 +598,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'bamanankan' => 'Bamanankan',
 					'bambaro' => 'Bambaro',
 					'bomu' => 'Bomu',
-					'Iigbo' => 'Igbo',
+					'igbo' => 'Igbo',
 					'kikongo' => 'Kikongo',
 					'lingala' => 'Lingala',
 					'malagasy' => 'Malagasy',
@@ -1072,7 +1072,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	);
 	//Complementary Info Custom fields
 	$meta_boxes[] = array(
-		'id' => 'wpg-services',
+		'id' => 'wpg-complementary-info',
 		'title' => 'Complementary Info',
 		'pages' => array('waste-picker-group'), // post type
 		'context' => 'normal',
@@ -1095,13 +1095,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'name' => 'Date of Data Entry',
 					'desc' => '',
 					'id' => $prefixwpg . 'date-data-entry',
-					'type' => 'text_date_timestamp'
+					'type' => 'text_date_timestamp' 
 			),
 			array(
 					'name' => 'Date Data Updated',
 					'desc' => '',
 					'id' => $prefixwpg . 'date-data-updated',
-					'type' => 'text_date_timestamp'
+					'type' => 'text_date_timestamp' //TODO, if this is a multiple data entry, we can not use this type of metabox
 			),
 			array(
 				'name' => 'Status of the organization',

@@ -6,11 +6,10 @@
 		<div <?php post_class('col-md-12') ?> id="post-<?php the_ID(); ?>">
 			<div class="row">	
 				<div class="col-md-8">
-					<h3>
-						<a href="/life-and-voices"> <!-- TODO needs to be internationalized-->				
-						Life and voices 
-						</a> > <?php the_title(); ?>
-					</h3>
+					<ul class="breadcrumb">
+						<li><a href="/life-and-voices">Who we are</a></li>
+						<li><?php the_title(); ?> </li>
+					</ul>
 				</div>
 				<div class="btn btn-default btn-sm pull-right"><?php edit_post_link(__('Edit This')); ?></div>
 			</div>

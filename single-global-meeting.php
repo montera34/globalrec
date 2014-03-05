@@ -37,8 +37,8 @@
 		
 			<?php if (get_post_meta($post->ID, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
 			<?php 
-			//includes the loop with the related post accorfding to the custom field gb-tag
-			echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php with the sharing links  ?>
+			//includes the loop with the related post according to the custom field gm-tag
+			echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
 			
 		</div>
 	</div>
@@ -48,11 +48,6 @@
 		<div >
 			<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?>  &nbsp;&nbsp;| <?php the_tags( ); ?> 
 		</div>
-		<div >
-			<?php //wp_link_pages(); ?>
-			<?php //comments_popup_link(__('Comments (0)'), __('Comments (1)'), __('Comments (%)')); ?>
-		</div>
-	
 
 		<?php comments_template(); // Get wp-comments.php template ?>
 

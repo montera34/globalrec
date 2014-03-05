@@ -69,7 +69,7 @@ margin: 25px 20px 10px 5px;float:left;font-size:12px;border-bottom:#ddd solid 4p
 .widget-container-feed  a:visited{color:grey;}
 
 .type-post  p img, .storycontent p img { margin: 0 15px 0 0;}
-h4 { margin: 0 0 5px 0; }
+/*h4 { margin: 0 0 5px 0; }*/
 h5 a{font-size:12px;}
 #secondnav  {background-color:white !important;}
 
@@ -161,7 +161,7 @@ a {
 	font-size: 90%;
 }
 
-h4, h3, h2 {
+h4, h3, h2, h1 {
 	font-family: 'Sintony', lucida sans console, sans-serif;
 }
 .post-metadata a, h4 a, #footer a, #main-sidebar a, .type-post #post-content a, #post-content a{

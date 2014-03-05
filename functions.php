@@ -1113,6 +1113,12 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					  array('name' => 'No', 'value' => 'no'),
 				)
 			),
+			array(
+				'name' => 'Type the tag to show related posts in the right column to this Waste piker group',
+				'desc' => 'Ex: "MNCR"',
+				'id' => 'gm_tag',
+				'type' => 'text_small',
+			),
 		),
 	);
 	return $meta_boxes;

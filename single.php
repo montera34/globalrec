@@ -19,7 +19,7 @@ $output = ''; ?>
 			<?php // the_post_thumbnail( 'medium' ); ?>
 			</div>
 			 <?php if ( is_user_logged_in() ) { 
-				echo '<div class="btn btn-small pull-right">';
+				echo '<div class="btn btn-sm btn-default pull-right">';
 				edit_post_link(__('Edit This')); 
 				echo "</div>";
 			  } ?>

@@ -12,7 +12,7 @@ get_header(); ?>
 		<?php endwhile; endif; ?>
 		<?php global $more;    //select global meeting to build the highlited boxes. They should be marked with the taxonomy selected in "highlighted"
 			$args = array(
-			 'caller_get_posts' => 1,
+			 'ignore_sticky_posts' => 1,
 			 'post_type' => 'global-meeting', 
 			 'posts_per_page' => 3, 
 			 'post_parent' => 0,
@@ -59,7 +59,7 @@ get_header(); ?>
 		<?php	global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(
-			 'caller_get_posts' => 1,
+			 'ignore_sticky_posts' => 1,
 			 'post_type' => 'global-meeting', 
 			 'posts_per_page' => 35, 
 			 'post_parent' => 0

@@ -1,5 +1,6 @@
 <?php get_header(); 
-$website = get_post_meta( $post->ID, '_wpg_website', true );
+$post_id = $post->ID;
+$website = get_post_meta( $post_id, '_wpg_website', true );
 ?>
 
 <div class="container">
@@ -15,23 +16,23 @@ $website = get_post_meta( $post->ID, '_wpg_website', true );
 					<?php the_post_thumbnail( 'medium', array('class' => 'img-responsive'));?>
 					<p>
 						<?php
-						echo "<a href='".get_post_meta( $post->ID, '_wpg_facebook', true ). "'>Facebook</a> ";
-						echo "<a href='".get_post_meta( $post->ID, '_wpg_twitter', true ). "'>Twitter</a><br>";
-						echo get_post_meta( $post->ID, '_wpg_other-social-networks', true ). "<br>"; ?>
+						echo "<a href='".get_post_meta( $post_id, '_wpg_facebook', true ). "'>Facebook</a> ";
+						echo "<a href='".get_post_meta( $post_id, '_wpg_twitter', true ). "'>Twitter</a><br>";
+						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
 						<h4> Contact information</h4>
 						<dl>
 							<?php //Contact information TODO private!
-							echo "<dt>Skype</dt><dd>".get_post_meta( $post->ID, '_wpg_skype', true ). "</dd>";
-							echo "<dt>Email</dt><dd>".get_post_meta( $post->ID, '_wpg_email', true ). "</dd>";
-							echo "<dt>Physycal Adress</dt><dd>".get_post_meta( $post->ID, '_wpg_physical-address', true ). "</dd>";
-							echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post->ID, '_wpg_postal-adress', true ). "</dd>";
-							echo get_post_meta( $post->ID, '_wpg_country-code-telephone', true ). "</dd>";
-							echo "<dt>Phone 1</dt><dd>". get_post_meta( $post->ID, '_wpg_phone1', true ). "</dd>";
-							echo "<dt>Phone 2</dt><dd>".get_post_meta( $post->ID, '_wpg_phone2', true ). "</dd>";
-							echo "<dt>Cellphone</dt><dd>".get_post_meta( $post->ID, '_wpg_cell-phone', true ). "</dd>";
-							echo "<dt>Fax</dt><dd>".get_post_meta( $post->ID, '_wpg_fax', true ). "</dd>";
-							echo "<dt>Primary contact</dt><dd>".get_post_meta( $post->ID, '_wpg_primary-contact', true ). "</dd>";
-							echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post->ID, '_wpg_secondary-contact', true ). "</dd>";
+							echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
+							echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
+							echo "<dt>Physycal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical-address', true ). "</dd>";
+							echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal-adress', true ). "</dd>";
+							echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
+							echo "<dt>Phone 1</dt><dd>". get_post_meta( $post_id, '_wpg_phone1', true ). "</dd>";
+							echo "<dt>Phone 2</dt><dd>".get_post_meta( $post_id, '_wpg_phone2', true ). "</dd>";
+							echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell-phone', true ). "</dd>";
+							echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
+							echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary-contact', true ). "</dd>";
+							echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary-contact', true ). "</dd>";
 							?>
 						</dl
 					</p>
@@ -49,9 +50,9 @@ $website = get_post_meta( $post->ID, '_wpg_website', true );
 						} ?>
 					<h4>
 						<?php	//location
-						echo get_post_meta( $post->ID, '_wpg_city', true ). ", "
-						. get_post_meta( $post->ID, '_wpg_region', true ). ", "
-						. get_post_meta( $post->ID, '_wpg_country', true ); ?>
+						echo get_post_meta( $post_id, '_wpg_city', true ). ", "
+						. get_post_meta( $post_id, '_wpg_region', true ). ", "
+						. get_post_meta( $post_id, '_wpg_country', true ); ?>
 					</h4>	
 						<?php echo "<a href='".$website. "'>Website</a><br>"; ?>
 					<div class="row">
@@ -59,49 +60,50 @@ $website = get_post_meta( $post->ID, '_wpg_website', true );
 							<h4>Primary information</h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
-								echo "<dt>Year formed</dt><dd>".get_post_meta( $post->ID, '_wpg_year-formed', true )
-								. " (registered in: ".get_post_meta( $post->ID, '_wpg_registration-year', true ).")"
-								. " ". get_post_meta( $post->ID, '_wpg_formally-registred', true )."</dd>";
-								echo "<dt>Language</dt><dd>".get_post_meta( $post->ID, '_wpg_language', true ). "</dd>"; //TODO output multiple values
-								echo "<dt>Type of members</dt><dd>".get_post_meta( $post->ID, '_wpg_members-type', true ). "</dd>";
-								echo "<dt>Members' occupation</dt><dd>".get_post_meta( $post->ID, '_wpg_members-occupation', true ). "</dd>";
-								echo "<dt>Organization type</dt><dd>". get_post_meta( $post->ID, '_wpg_organization-type', true ). "</dd>";
-								echo "<dt>Organization scope</dt><dd>". get_post_meta( $post->ID, '_wpg_organization-scope', true ). "</dd>";
-								echo "<dt>Workplace of members</dt><dd>". get_post_meta( $post->ID, '_wpg_workplace-members', true ). "</dd>";
-								echo "<dt>Membership</dt><dd>".get_post_meta( $post->ID, '_wpg_membership', true ). "</dd>";
-								echo "<dt>Organization Structure</dt><dd>".get_post_meta( $post->ID, '_wpg_structure', true ). "</dd>";
-								echo "<dt>Objectives</dt><dd>".get_post_meta( $post->ID, '_wpg_objectives', true ). "</dd>";
-								echo "<dt>Education and training</dt><dd>".get_post_meta( $post->ID, '_wpg_education-training', true ). "</dd>";
-								echo "<dt>Partnering organizations</dt><dd>".get_post_meta( $post->ID, '_wpg_partnering-organizations', true ). "</dd>";
-								echo "<dt>Affiliations</dt><dd>".get_post_meta( $post->ID, '_wpg_affiliations', true ). "</dd>";
-								echo "<dt>Funding</dt><dd>".get_post_meta( $post->ID, '_wpg_funding', true ). "</dd>";
-								echo "<dt>Internal elections</dt><dd>".get_post_meta( $post->ID, '_wpg_elections', true ). "</dd>";
-								echo "<dt>Number of groups</dt><dd>".get_post_meta( $post->ID, '_wpg_number-groups', true ). "</dd>";
-								echo "<dt>Number of members</dt><dd>".get_post_meta( $post->ID, '_wpg_number-individuals', true ). "</dd>";
-								echo "<dt>Gender composition</dt><dd>".get_post_meta( $post->ID, '_wpg_gender-women-composition', true )."%". "</dd>";
-								echo get_post_meta( $post->ID, '_wpg_gender-women-comment', true );
-								?> 
+								echo "<dt>Year formed</dt><dd>".get_post_meta( $post_id, '_wpg_year-formed', true )
+								. " (registered in: ".get_post_meta( $post_id, '_wpg_registration-year', true ).")"
+								. " ". get_post_meta( $post_id, '_wpg_formally-registred', true )."</dd>";
+								echo "<dt>Language</dt>"; echo list_of_items($post_id,'_wpg_language');
+								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members-type', true ). "</dd>";
+								echo "<dt>Members' occupation</dt>"; echo list_of_items($post_id,'_wpg_members-occupation');
+								echo "<dt>Organization type</dt><dd>". get_post_meta( $post_id, '_wpg_organization-type', true ). "</dd>";
+								echo "<dt>Organization scope</dt><dd>". get_post_meta( $post_id, '_wpg_organization-scope', true ). "</dd>";
+								echo "<dt>Workplace of members</dt>"; echo list_of_items($post_id,'_wpg_workplace-members');
+								echo "<dt>Membership</dt><dd>".get_post_meta( $post_id, '_wpg_membership', true )."</dd>";
+								echo "<dt>Organization Structure</dt><dd>".get_post_meta( $post_id, '_wpg_structure', true )."</dd>";
+								echo "<dt>Objectives</dt>"; echo list_of_items($post_id,'_wpg_objectives');
+								echo "<dt>Education and training</dt>"; echo list_of_items($post_id,'_wpg_education-training');
+								echo "<dt>Partnering organizations</dt><dd>".get_post_meta( $post_id, '_wpg_partnering-organizations', true ). "</dd>";
+								echo "<dt>Affiliations</dt><dd>".get_post_meta( $post_id, '_wpg_affiliations', true ). "</dd>";
+								echo "<dt>Funding</dt><dd>".get_post_meta( $post_id, '_wpg_funding', true ). "</dd>";
+								echo "<dt>Internal elections</dt><dd>".get_post_meta( $post_id, '_wpg_elections', true ). "</dd>";
+								echo "<dt>Number of groups</dt><dd>".get_post_meta( $post_id, '_wpg_number-groups', true ). "</dd>";
+								echo "<dt>Number of members</dt><dd>".get_post_meta( $post_id, '_wpg_number-individuals', true ). "</dd>";
+								echo "<dt>Women composition</dt><dd>".get_post_meta( $post_id, '_wpg_gender-women-composition', true )."%"
+										.get_post_meta( $post_id, '_wpg_gender-women-comment', true ). "</dd>"; //used when no % data are available
+									
+									?> 
 							</dl>
 						</div>
 						<div class="col-md-6">
 							<h4>Benefits</h4>
 							<dl>
 								<?php //Benefits 
-								echo "<dt>Member benefits</dt><dd>".get_post_meta( $post->ID, '_wpg_member-benefits', true ). "</dd>";
-								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post->ID, '_wpg_credit-members', true ). "</dd>";
-								echo "<dt><dt>Safety & Technology</dt><dd>".get_post_meta( $post->ID, '_wpg_safety-technology', true ). "</dd>";
+								echo "<dt>Member benefits</dt>"; echo list_of_items($post_id,'_wpg_member-benefits');
+								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post_id, '_wpg_credit-members', true ). "</dd>";
+								echo "<dt><dt>Safety & Technology</dt><dd>".get_post_meta( $post_id, '_wpg_safety-technology', true ). "</dd>";
 								?> 
 							</dl>
 							<h4>Services</h4>
 							<dl>
 								<?php	//Services
-								echo "<dt>Relationship with the Municipality</dt><dd>".get_post_meta( $post->ID, '_wpg_relationship-municipality', true ). "</dd>";
-								echo "<dt>Types of materials</dt><dd>".get_post_meta( $post->ID, '_wpg_types-of-materials', true ). "</dd>";
-								echo "<dt>Are they selling to middlemen</dt><dd>".get_post_meta( $post->ID, '_wpg_middlemen', true ). "</dd>";
-								echo "<dt>Activities</dt><dd>".get_post_meta( $post->ID, '_wpg_activities', true ). "</dd>";
-								echo "<dt>Sorting Spaces</dt><dd>".get_post_meta( $post->ID, '_wpg_sorting-spaces', true ). "</dd>";
-								echo "<dt>Treatmet of orgnanic materials</dt><dd>".get_post_meta( $post->ID, '_wpg_treatment-organic-materials', true ). "</dd>";
-								echo "<dt>Challenges to access waste</dt><dd>".get_post_meta( $post->ID, '_wpg_challenges-access-waste', true ). "</dd>";
+								echo "<dt>Relationship with the Municipality</dt><dd>".get_post_meta( $post_id, '_wpg_relationship-municipality', true ). "</dd>";
+								echo "<dt>Types of materials</dt>"; echo list_of_items($post_id,'_wpg_types-of-materials');
+								echo "<dt>Are they selling to middlemen</dt><dd>".get_post_meta( $post_id, '_wpg_middlemen', true ). "</dd>";
+								echo "<dt>Activities</dt>"; echo list_of_items($post_id,'_wpg_activities');
+								echo "<dt>Sorting Spaces</dt>"; echo list_of_items($post_id,'_wpg_sorting-spaces');
+								echo "<dt>Treatmet of orgnanic materials</dt>"; echo list_of_items($post_id,'_wpg_treatment-organic-materials');
+								echo "<dt>Challenges to access waste</dt>"; echo list_of_items($post_id,'_wpg_challenges-access-waste');
 								?> 
 							</dl>
 						</div>
@@ -110,11 +112,11 @@ $website = get_post_meta( $post->ID, '_wpg_website', true );
 					<h4>Complementary Information</h4>
 						<dl>
 							<?php	//Complementary information
-							echo "<dt>Other publications</dt><dd>".get_post_meta( $post->ID, '_wpg_publications', true ). "</dd>";
-							echo "<dt>Information Source</dt><dd>".get_post_meta( $post->ID, '_wpg_information-source', true ). "</dd>";
-							echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post->ID, '_wpg_date-data-entry', true ). "</dd>";
-							echo "<dt>Date of data update</dt><dd>". get_post_meta( $post->ID, '_wpg_date-data-updated', true ). "</dd>";
-							echo "<dt>Active</dt><dd>".get_post_meta( $post->ID, '_wpg_status', true );
+							echo "<dt>Other publications</dt><dd>".get_post_meta( $post_id, '_wpg_publications', true ). "</dd>";
+							echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information-source', true ). "</dd>";
+							echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date-data-entry', true ). "</dd>";
+							echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date-data-updated', true ). "</dd>";
+							echo "<dt>Active</dt><dd>".get_post_meta( $post_id, '_wpg_status', true );
 							?>
 						</dl>
 					<h4>Comments / Narrative</h4>
@@ -125,7 +127,7 @@ $website = get_post_meta( $post->ID, '_wpg_website', true );
 		<!--right column -->
 		<div class="col-md-2"> 
 			<h4>News related to <?php the_title_attribute(); ?></h4>
-			<?php if (get_post_meta($post->ID, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
+			<?php if (get_post_meta($post_id, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
 			<?php 
 			//includes the loop with the related post according to the custom field gm-tag
 			echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>

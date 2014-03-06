@@ -17,7 +17,7 @@ $website = get_post_meta( $post_id, '_wpg_website', true );
 					<p>
 						<?php
 						echo "<a href='".get_post_meta( $post_id, '_wpg_facebook', true ). "'>Facebook</a> ";
-						echo "<a href='".get_post_meta( $post_id, '_wpg_twitter', true ). "'>Twitter</a><br>";
+						echo "<a href='http://twitter.com/".get_post_meta( $post_id, '_wpg_twitter', true )."' title='Twitter user @".get_post_meta( $post_id, '_wpg_twitter', true )."'>Twitter</a><br>";
 						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
 						<h4> Contact information</h4>
 						<dl>

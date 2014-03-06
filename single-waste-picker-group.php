@@ -14,14 +14,14 @@ $website = get_post_meta( $post_id, '_wpg_website', true );
 			<div class="row">
 				<div class="col-md-3">
 					<?php the_post_thumbnail( 'medium', array('class' => 'img-responsive'));?>
-					<p>
 						<?php
 						echo "<a href='".get_post_meta( $post_id, '_wpg_facebook', true ). "'>Facebook</a> ";
 						echo "<a href='http://twitter.com/".get_post_meta( $post_id, '_wpg_twitter', true )."' title='Twitter user @".get_post_meta( $post_id, '_wpg_twitter', true )."'>Twitter</a><br>";
 						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
+						<?php if ( is_user_logged_in() ) { //Only display this information if user is logged in?>
 						<h4> Contact information</h4>
 						<dl>
-							<?php //Contact information TODO private!
+						<?php 
 							echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
 							echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
 							echo "<dt>Physycal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical-address', true ). "</dd>";
@@ -33,9 +33,9 @@ $website = get_post_meta( $post_id, '_wpg_website', true );
 							echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
 							echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary-contact', true ). "</dd>";
 							echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary-contact', true ). "</dd>";
-							?>
-						</dl
-					</p>
+						?>
+							</dl>
+						<?php	} ?>
 				</div>
 				<div class="col-md-9">
 					<h1> 

@@ -39,7 +39,6 @@ register_post_type( 'global-meeting', array( // global meetings
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'global-meeting','with_front'=>false),
 	'menu_icon' => 'dashicons-admin-site',
-	'_edit_link' => 'post.php?post=%d',
 	)
 );
 register_post_type( 'bio', array( // Defining Biography custom post type
@@ -63,7 +62,6 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'bio','with_front'=>false),
 	'menu_icon' => 'dashicons-id',
-	'_edit_link' => 'post.php?post=%d',
 	)
 );
 
@@ -88,7 +86,6 @@ register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'newsletter','with_front'=>false),
 	'menu_icon' => 'dashicons-email-alt',
-	'_edit_link' => 'post.php?post=%d',
 	)
 );
 
@@ -133,7 +130,6 @@ register_post_type( 'threat', array( // Defining Threat custom post type
 	'public' => true,
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
-	//'rewrite' => array('slug'=>'group','with_front'=>false),
 	'menu_icon' => 'dashicons-hammer',
 	)
 );
@@ -156,7 +152,6 @@ register_post_type( 'inclusive-model', array( // Defining Inclusive Model custom
 	'public' => true,
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
-	//'rewrite' => array('slug'=>'group','with_front'=>false),
 	'menu_icon' => 'dashicons-awards',
 	)
 );
@@ -179,7 +174,6 @@ register_post_type( 'law-report', array( // Defining Law report custom post type
 	'public' => true,
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
-	//'rewrite' => array('slug'=>'group','with_front'=>false),
 	'menu_icon' => 'dashicons-book-alt',
 	)
 );
@@ -202,7 +196,6 @@ register_post_type( 'city', array( // Defining Country custom post type
 	'public' => true,
 	'menu_position' => 5,
 	'supports' => array('title','author','revisions'),
-	//'rewrite' => array('slug'=>'group','with_front'=>false),
 	'menu_icon' => 'dashicons-minus',
 	)
 );

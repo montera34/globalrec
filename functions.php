@@ -38,7 +38,7 @@ register_post_type( 'global-meeting', array( // global meetings
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'global-meeting','with_front'=>false),
-	//'_builtin' => false,
+	'menu_icon' => 'dashicons-admin-site',
 	'_edit_link' => 'post.php?post=%d',
 	)
 );
@@ -62,7 +62,7 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'bio','with_front'=>false),
-	//'_builtin' => false,
+	'menu_icon' => 'dashicons-id',
 	'_edit_link' => 'post.php?post=%d',
 	)
 );
@@ -87,7 +87,7 @@ register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'newsletter','with_front'=>false),
-	//'_builtin' => false,
+	'menu_icon' => 'dashicons-email-alt',
 	'_edit_link' => 'post.php?post=%d',
 	)
 );
@@ -112,7 +112,7 @@ register_post_type( 'waste-picker-group', array( // Defining Waste Picker Group 
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'group','with_front'=>false),
-	//'_builtin' => false,
+	'menu_icon' => 'dashicons-groups',
 	'_edit_link' => 'post.php?post=%d',
 	)
 );

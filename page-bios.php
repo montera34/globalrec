@@ -16,7 +16,7 @@ get_header(); ?>
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(
-			'caller_get_posts' => 1,
+			'ignore_sticky_posts' => 1,
 			'post_type' => 'bio', 
 			'posts_per_page' => -1, 
 			'post_parent' => 0,
@@ -36,7 +36,7 @@ get_header(); ?>
 			$wp_query->in_the_loop = true;
 	
 			$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-			<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), thumbnail, false, '' ); ?>
+			<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail', false, '' ); ?>
 			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
 				<div class="size-thumbnail wp-image-2864 alignleft" style="float:left;margin:0 15px 15px 0;position: relative;width:150px;height:150px;background-image:url('<?php echo $src[0]; ?>');">
 				<?php //the_post_thumbnail( 'thumbnail' ); ?>
@@ -50,30 +50,6 @@ get_header(); ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
 	</div>
-
-	<div class="navigation">
-			<div class="alignleft"><?php 
-			if ( !$max_page ) {
-				 $max_page = $my_query->max_num_pages;
-				}
-
-			if ( !$paged ) {
-				 $paged = 1;
-				}
-				$nextpage = intval($paged) + 1;
-
-			if ( !is_single() && ( empty($paged) || $nextpage <= $max_page) ) {
-					$attr = apply_filters( 'next_posts_link_attributes', '' );
-				 echo '<a href="' . next_posts( $max_page, false ) . "\" $attr>". preg_replace('/&([^#])(?![a-z]{1,8};)/', '&$1', ' &laquo; Previous posts') .'</a>';
-				}
-				?></div>
-					<div class="alignright"><?php 
-				if ( !is_single() && $paged > 1 ) {
-				$attr = apply_filters( 'previous_posts_link_attributes', '' );
-				echo '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/', '&$1', 'Newer posts &raquo;' ) .'</a>';
-				}
-			?></div>
-		</div>
 </div>
 <?php get_footer(); ?>
 

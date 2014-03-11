@@ -243,7 +243,6 @@ register_taxonomy( 'gb-selected', 'global-meeting', array( //select if it appear
 	'label' => 'Selected for Global Meetings boxes',
 	'query_var' => true,
 	'rewrite' => true ) );
-
 register_taxonomy( 'post-region', 'post', array(
 	'hierarchical' => true,
 	'label' => 'Regions',
@@ -256,8 +255,6 @@ add_action('init', 'my_custom_init');
 function my_custom_init() {
 		add_post_type_support( 'global-meeting', 'excerpt' ); //adds excerpt to global meeting post type
 }
-
-
 
 /*
  * Register widgetized areas,
@@ -354,14 +351,6 @@ if ( function_exists('register_sidebar') )
 		'after_title' => '',
 	));
 
-/*
-add_action('init', 'my_custom_init');
-
-function my_custom_init() {
-		
-		add_post_type_support( 'letras', array('excerpt', 'page-attributes') );
-}*/
-
 /* Translation: To make categories id work via http://wpml.org/es/documentation-2/soporte/crear-temas-multilingues-en-wordpress/numeros-id-dependientes-del-idioma/*/
 /*Si está escribiendo un Tema que necesita ser utilizado con WPML, pero también desea que se ejecute adecuadamente sin WPML, debería realizar esas llamadas por medio de la función function_exists(). Por ejemplo: puede crear esta función en su archivo functions.php:*/
 
@@ -374,14 +363,12 @@ function lang_category_id($id){
 }
 add_action('init', 'lang_category_id');
 
-
 //allow iframe
 function add_iframe($initArray) {
 $initArray['extended_valid_elements'] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]";
 return $initArray;
 }
 add_filter('tiny_mce_before_init', 'add_iframe');
-
 
 // Post Attachment image function. Image URL for CSS Background. 
 function the_post_image_url($size=large) {
@@ -464,7 +451,7 @@ function sample_metaboxes( $meta_boxes ) {
 		),
 	);
 	//Custom fields to select a Waste Picker group
-	//we need to create the array of Wwaste Picker Groups
+	//we need to create the array of Waste Picker Groups
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
 		'post_type' => 'waste-picker-group'
@@ -1238,8 +1225,6 @@ function initialize_cmb_meta_boxes() {
 		require_once( 'lib/metabox/init.php' );
 	}
 }
-
-
 //--------------------------finishes metaboxes--------------------------//
 
 add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
@@ -1259,7 +1244,7 @@ function languages_list(){
     }
 }
 
-// Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Groups
+// Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list
 function list_of_items($postid,$value){
 	$items = get_post_meta( $postid, $value, false);
 	if ($items[0]=="") {// If there are no data, do nothing

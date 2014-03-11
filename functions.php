@@ -103,17 +103,130 @@ register_post_type( 'waste-picker-group', array( // Defining Waste Picker Group 
 		'view' => __( 'View Waste Picker Group' ),
 		'view_item' => __( 'View Waste Picker Group' ),
 		'search_items' => __( 'Search Waste Picker Group' ),
-		'not_found' => __( 'We didnt found any Waste Picker Group' ),
+		'not_found' => __( 'We didn\'t found any Waste Picker Group' ),
 		'not_found_in_trash' => __( 'No Waste Picker Group in the trash bin' ),
-		'parent' => __( 'Parent Waste Picker Group' )
 		),
 	'hierarchical' => false,
 	'public' => true,
 	'menu_position' => 5,
-	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
+	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'group','with_front'=>false),
 	'menu_icon' => 'dashicons-groups',
-	'_edit_link' => 'post.php?post=%d',
+	)
+);
+
+register_post_type( 'threat', array( // Defining Threat custom post type
+	'labels' => array(
+		'name' => __( 'Threats' ),
+		'singular_name' => __( 'Threat' ),
+		'add_new_item' => __( 'Add Threat' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New Threat' ),
+		'view' => __( 'View Threat' ),
+		'view_item' => __( 'View Threat' ),
+		'search_items' => __( 'Search Threat' ),
+		'not_found' => __( 'We didn\'t found any Threat' ),
+		'not_found_in_trash' => __( 'No Threat in the trash bin' ),
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
+	//'rewrite' => array('slug'=>'group','with_front'=>false),
+	'menu_icon' => 'dashicons-hammer',
+	)
+);
+
+register_post_type( 'inclusive-model', array( // Defining Inclusive Model custom post type
+	'labels' => array(
+		'name' => __( 'Inclusive Models' ),
+		'singular_name' => __( 'Inclusive Model' ),
+		'add_new_item' => __( 'Add Inclusive Model' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New Inclusive Model' ),
+		'view' => __( 'View Inclusive Model' ),
+		'view_item' => __( 'View Inclusive Model' ),
+		'search_items' => __( 'Search Inclusive Model' ),
+		'not_found' => __( 'We didn\'t found any Inclusive Model' ),
+		'not_found_in_trash' => __( 'No Inclusive Model in the trash bin' ),
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
+	//'rewrite' => array('slug'=>'group','with_front'=>false),
+	'menu_icon' => 'dashicons-awards',
+	)
+);
+
+register_post_type( 'law-report', array( // Defining Law report custom post type
+	'labels' => array(
+		'name' => __( 'Law Reports' ),
+		'singular_name' => __( 'Law Report' ),
+		'add_new_item' => __( 'Add Law Report' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New Law Report' ),
+		'view' => __( 'View Law Report' ),
+		'view_item' => __( 'View Law Report' ),
+		'search_items' => __( 'Search Law Report' ),
+		'not_found' => __( 'We didn\'t found any Law Report' ),
+		'not_found_in_trash' => __( 'No Law Report in the trash bin' ),
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
+	//'rewrite' => array('slug'=>'group','with_front'=>false),
+	'menu_icon' => 'dashicons-book-alt',
+	)
+);
+
+register_post_type( 'city', array( // Defining Country custom post type
+	'labels' => array(
+		'name' => __( 'City' ),
+		'singular_name' => __( 'City' ),
+		'add_new_item' => __( 'Add City' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New City' ),
+		'view' => __( 'View City' ),
+		'view_item' => __( 'View City' ),
+		'search_items' => __( 'Search City' ),
+		'not_found' => __( 'We didn\'t found any City' ),
+		'not_found_in_trash' => __( 'No City in the trash bin' ),
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title','author','revisions'),
+	//'rewrite' => array('slug'=>'group','with_front'=>false),
+	'menu_icon' => 'dashicons-minus',
+	)
+);
+
+register_post_type( 'country', array( // Defining Country custom post type
+	'labels' => array(
+		'name' => __( 'Countries' ),
+		'singular_name' => __( 'Country' ),
+		'add_new_item' => __( 'Add Country' ),
+		'edit' => __( 'Edit' ),
+		'edit_item' => __( 'Edit this item' ),
+		'new_item' => __( 'New Country' ),
+		'view' => __( 'View Country' ),
+		'view_item' => __( 'View Country' ),
+		'search_items' => __( 'Search Country' ),
+		'not_found' => __( 'We didn\'t found any Country' ),
+		'not_found_in_trash' => __( 'No Country in the trash bin' ),
+		),
+	'hierarchical' => false,
+	'public' => true,
+	'menu_position' => 5,
+	'supports' => array('title','author','revisions'),
+	//'rewrite' => array('slug'=>'group','with_front'=>false),
+	'menu_icon' => 'dashicons-minus',
 	)
 );
 }

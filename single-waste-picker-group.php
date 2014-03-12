@@ -54,14 +54,29 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$city = get_post($city_id);
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
-						if ($city_name != 'Not specified' || city == '') { //displays the city from the selection list '_wpg_cityselect', if it has been selected, if not it displays the city from the open field '_wpg_city'
-						echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
+						if ($city != '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field '_wpg_city'
+							if ($city_name == 'Not specified' ) {
+								echo get_post_meta( $post->ID, '_wpg_city', true ). ", ";
+							} else {
+								echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
+							}
 						} else {
-							echo get_post_meta( $post_id, '_wpg_city', true ). ", ";
+							echo get_post_meta( $post->ID, '_wpg_city', true ). ", ";
 						}
-						
-						echo get_post_meta( $post_id, '_wpg_region', true ). ", "
-						. get_post_meta( $post_id, '_wpg_country', true ); ?>
+						echo get_post_meta( $post_id, '_wpg_region', true ). ", ";
+						$country_id = get_post_meta( $post->ID, '_wpg_countryselect', true );
+						$country = get_post($country_id);
+						$country_link = get_permalink($country->ID);
+						$country_name = $country->post_title;
+						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
+							if ($country_name == 'Not specified') {//if the "not specified" option is selected
+								echo get_post_meta( $post->ID, '_wpg_country', true );
+							} else {//if a country has been selected
+								echo '<a href="'.$country_link.'">'.$country_name.'</a>';
+							}
+						} else {
+						echo get_post_meta( $post->ID, '_wpg_country', true );
+						} ?>
 					</h4>	
 						<?php echo "<a href='".$website. "'>Website</a><br>"; ?>
 					<div class="row">

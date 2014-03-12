@@ -1,6 +1,7 @@
 <?php get_header(); 
 $post_id = $post->ID;
 $website = get_post_meta( $post_id, '_wpg_website', true );
+$city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 ?>
 
 <div class="container">
@@ -50,8 +51,16 @@ $website = get_post_meta( $post_id, '_wpg_website', true );
 						} ?>
 					<h4>
 						<?php	//location
-						echo get_post_meta( $post_id, '_wpg_city', true ). ", "
-						. get_post_meta( $post_id, '_wpg_region', true ). ", "
+						if ($city_id) { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field '_wpg_city'
+						$city = get_post($city_id);
+						$city_link = get_permalink($city->ID);
+						$city_name = $city->post_title;
+						echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
+						} else {
+							echo get_post_meta( $post_id, '_wpg_city', true ). ", ";
+						}
+						
+						echo get_post_meta( $post_id, '_wpg_region', true ). ", "
 						. get_post_meta( $post_id, '_wpg_country', true ); ?>
 					</h4>	
 						<?php echo "<a href='".$website. "'>Website</a><br>"; ?>

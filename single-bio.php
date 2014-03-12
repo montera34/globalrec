@@ -4,7 +4,7 @@
 	<div class="row">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class('col-md-12') ?> id="post-<?php the_ID(); ?>">
-			<div class="row">	
+			<div class="row">
 				<div class="col-md-10">
 					<ul class="breadcrumb">
 						<li><a href="/life-and-voices">Who we are</a></li>
@@ -13,11 +13,11 @@
 				</div>
 				<div class="btn btn-default btn-sm pull-right"><?php edit_post_link(__('Edit This')); ?></div>
 			</div>
-		</div>		
+		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded img-responsive",'alt'=> ''.get_the_title().'','title'	=> ''.get_the_title().'') ); ?> <br>
-				<?php if ( is_user_logged_in() ) { ?> 
+				<?php if ( is_user_logged_in() ) { ?>
 				<dl>
 					 <dt>email</dt> <?php
 						global $post;
@@ -38,7 +38,7 @@
 						echo '<dt>Waste Picker Group</dt><dd><a href="'.$group_link.'">'.$group_name.'</a></dd>';
 					}?>
 				</dl>
-			</div> 
+			</div>
 			<div class="col-md-7">
 			<?php the_content(__('(more...)')); ?>
 			</div>

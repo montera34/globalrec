@@ -5,7 +5,7 @@
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class('col-md-12') ?> id="post-<?php the_ID(); ?>">
 			<div class="row">	
-				<div class="col-md-8">
+				<div class="col-md-10">
 					<ul class="breadcrumb">
 						<li><a href="/life-and-voices">Who we are</a></li>
 						<li><?php the_title(); ?> </li>
@@ -15,18 +15,29 @@
 			</div>
 		</div>		
 		<div class="row">
-			<div class="col-md-3"><small>
-				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded img-responsive",'alt'=> trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),'title'	=> trim(strip_tags( $attachment->post_title ))) ); ?> <br>
+			<div class="col-md-3">
+				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded img-responsive",'alt'=> ''.get_the_title().'','title'	=> ''.get_the_title().'') ); ?> <br>
 				<?php if ( is_user_logged_in() ) { ?> 
-					 email: <?php
+				<dl>
+					 <dt>email</dt> <?php
 						global $post;
-						$text = get_post_meta( $post->ID, 'bio_email', true );
-						echo $text; 	
-						echo "<br>telephone:<br>";
-						$text = get_post_meta( $post->ID, 'bio_telephone', true );
-						echo $text; 
+						echo "<dd>".get_post_meta( $post->ID, 'bio_email', true )."</dd>";
+						echo "<dt>Telephone</dt>";
+						echo "<dd>".get_post_meta( $post->ID, 'bio_telephone', true )."</dd>";
+						//retrieve Country
+						$country_id = get_post_meta( $post->ID, 'bio_country', true );
+						$country = get_post($country_id);
+						$country_link = get_permalink($country->ID);
+						$country_name = $country->post_title;
+						echo '<dt>Country</dt><dd><a href="'.$country_link.'">'.$country_name.'</a></dd>';
+						//retrieve Waste Picker group
+						$group_id = get_post_meta( $post->ID, 'bio_group', true );
+						$group = get_post($group_id);
+						$group_link = get_permalink($group->ID);
+						$group_name = $group->post_title;
+						echo '<dt>Waste Picker Group</dt><dd><a href="'.$group_link.'">'.$group_name.'</a></dd>';
 					}?>
-				</small>
+				</dl>
 			</div> 
 			<div class="col-md-7">
 			<?php the_content(__('(more...)')); ?>

@@ -427,7 +427,7 @@ add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 
 //----- Adds metabox. Via https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Basic-Usage
 
 function sample_metaboxes( $meta_boxes ) {
-	$prefix = 'bio_'; // Prefix for all fields
+	$prefixbio = 'bio_'; // Prefix for all fields
 	$meta_boxes[] = array(
 		'id' => 'email',
 		'title' => 'Email',
@@ -439,18 +439,18 @@ function sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Email',
 				'desc' => 'Enter the contact email',
-				'id' => $prefix . 'email',
+				'id' => $prefixbio . 'email',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Telephone',
 				'desc' => 'with country prefix',
-				'id' => $prefix . 'telephone',
+				'id' => $prefixbio . 'telephone',
 				'type' => 'text_medium'
 			),
 		),
 	);
-	//Custom fields to select a Waste Picker group
+	//Custom field to select a Waste Picker group
 	//we need to create the array of Waste Picker Groups
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
@@ -463,8 +463,8 @@ function sample_metaboxes( $meta_boxes ) {
 		);
 	}
 	$meta_boxes[] = array(
-		'id' => 'wpg-members',
-		'title' => 'Waste Picker Members',
+		'id' => 'bio-waste-picker-group',
+		'title' => 'Waste Picker Group',
 		'pages' => array('bio'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
@@ -473,9 +473,38 @@ function sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Waste Picker Group',
 				'desc' => 'Select the main waste picker group where it belongs',
-				'id' => $prefixwpg . 'members',
-				'type' => 'select', 
+				'id' => $prefixbio . 'group',
+				'type' => 'select',
 				'options' =>  $groups //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
+	wp_reset_query();
+	//Custom field to select a Country for a Waste Picker (bio)
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'country'
+		));
+	foreach ($posts as $post) {
+		$countries[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'bio-waste-picker-country',
+		'title' => 'Waste Picker Country',
+		'pages' => array('bio'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Waste Picker Group',
+				'desc' => 'Select the country of the waste picker',
+				'id' => $prefixbio . 'country',
+				'type' => 'select',
+				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
 			),
 		),
 	);

@@ -195,7 +195,7 @@ register_post_type( 'city', array( // Defining Country custom post type
 	'hierarchical' => false,
 	'public' => true,
 	'menu_position' => 5,
-	'supports' => array('title','author','revisions'),
+	'supports' => array('title','editor','author','revisions'),
 	'menu_icon' => 'dashicons-minus',
 	)
 );
@@ -602,7 +602,39 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Custom Fields for Waste Picker Groups
 	$prefixwpg = '_wpg_';
+	
+	//Custom field to select a City for a Waste Picker Group
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'city'
+		));
+	foreach ($posts as $post) {
+		$cities[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'waste-picker-city',
+		'title' => 'Waste Picker Group City',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Waste Picker Group City',
+				'desc' => 'Select the city of the Waste Picker Group',
+				'id' => $prefixwpg . 'city2',
+				'type' => 'select',
+				'options' =>  $cities //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
+	wp_reset_query();
+	
 	$meta_boxes[] = array(
 		'id' => 'wpg-contact-info',
 		'title' => 'Contact Information',
@@ -748,6 +780,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Waste Picker Primary Information
 	$meta_boxes[] = array(
 		'id' => 'wpg-primary-info',
 		'title' => 'Primary Information',

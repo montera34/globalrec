@@ -627,7 +627,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Waste Picker Group City',
 				'desc' => 'Select the city of the Waste Picker Group',
-				'id' => $prefixwpg . 'city2',
+				'id' => $prefixwpg . 'cityselect', //"cityselect" beacuse "city" is alread used
 				'type' => 'select',
 				'options' =>  $cities //one to many relationship. One waste picker group contains multiple members (bios)
 			),

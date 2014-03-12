@@ -173,7 +173,7 @@ register_post_type( 'law-report', array( // Defining Law report custom post type
 	'hierarchical' => false,
 	'public' => true,
 	'menu_position' => 5,
-	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
+	'supports' => array('title','editor','author','revisions'),
 	'menu_icon' => 'dashicons-book-alt',
 	)
 );
@@ -634,6 +634,35 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		),
 	);
 	wp_reset_query();
+	//Custom field to select a Country for a Waste Picker Group
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'country'
+		));
+	foreach ($posts as $post) {
+		$countries[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'waste-picker-country',
+		'title' => 'Waste Picker Group Country',
+		'pages' => array('waste-picker-group'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Waste Picker Group Country',
+				'desc' => 'Select the country of the Waste Picker Group',
+				'id' => $prefixwpg . 'countryselect', //"countryselect" beacuse "country" is alread used
+				'type' => 'select',
+				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
+	wp_reset_query();
 	
 	$meta_boxes[] = array(
 		'id' => 'wpg-contact-info',
@@ -795,9 +824,9 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'members-type',
 				'type' => 'radio_inline',
 				'options' => array(
-				    array('name' => 'Members are Waste Pickers', 'value' => 'waste-picker'),
-				    array('name' => 'Members are Waste Pickers organizations', 'value' => 'waste-picker-org'),
-				    array('name' => 'Waste Picker support organization', 'value' => 'support-org'),
+				    array('name' => 'Members are Waste Pickers', 'value' => 'waste-pickers'),
+				    array('name' => 'Members are Waste Pickers organizations', 'value' => 'waste-picker-organizations'),
+				    array('name' => 'Waste Picker support organization', 'value' => 'support-organization'),
 				)
 			),
 			array(
@@ -1225,7 +1254,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
-	//Complementary Info Custom fields
+	//Complementary Info Custom fields for Waste Picker Groups
 	$meta_boxes[] = array(
 		'id' => 'wpg-complementary-info',
 		'title' => 'Complementary Info',
@@ -1276,6 +1305,38 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Custom Fields for Law Reports
+	$prefixlaw = '_law_';
+	
+	//Custom field to select a City for a Waste Picker Group
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'country'
+		));
+	foreach ($posts as $post) {
+		$countries[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'law-report-country',
+		'title' => 'Law Repor in country',
+		'pages' => array('law-report'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Law Repor in country',
+				'desc' => 'Select the country of the Law',
+				'id' => $prefixlaw . 'countryselect', //"cityselect" beacuse "city" is alread used
+				'type' => 'select',
+				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
+	wp_reset_query();
 	return $meta_boxes;
 }
 add_filter( 'cmb_meta_boxes', 'global_meeting_sample_metaboxes' );

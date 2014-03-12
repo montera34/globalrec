@@ -40,19 +40,17 @@
 				</dl>
 			</div>
 			<div class="col-md-7">
+			<h2><?php the_title(); ?></h2>
 			<?php the_content(__('(more...)')); ?>
 			</div>
 		</div>
 	</div>
 	<?php include("share.php")?>
-	<?php // comments_template();  Get wp-comments.php template ?>
 
 	<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 	<?php endif; ?>
-
-	<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
-	</div>
-	<?php get_footer(); ?>
+</div>
+<?php get_footer(); ?>
 	
 </div>

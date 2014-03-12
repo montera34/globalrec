@@ -1,4 +1,4 @@
-<?php  /* Template Name: Waste Picker GRoups*/ 
+<?php  /* Template Name: Waste Picker Groups List*/ 
 get_header(); ?>
 <div id="page-gb">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -25,14 +25,13 @@ get_header(); ?>
 			$my_query = new WP_Query($args);
 			?>
 
-
   <table class="table table-hover table-condensed">
 	<thead>
 		<tr>
 			<th><?php _e('Name','globalrec'); ?></th>
+			<th><?php _e('Type','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?></th>
-			<th><?php _e('Type','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -45,15 +44,26 @@ get_header(); ?>
 
 			<tr <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
-					<?php the_title(); ?></a><div class="edit-button"><?php // edit_post_link(__('Edit This')); ?></div> 
-				</td>
-				<td><?php echo get_post_meta( $post->ID, '_wpg_country', true ); ?> </td>
-				<td>
-					<?php echo get_post_meta( $post->ID, '_wpg_year-formed', true ); ?>
+					<?php the_title(); ?></a> <div class="btn btn-xs btn-default"><?php edit_post_link(__('Edit This')); ?></div> 
 				</td>
 				<td>
 					<?php echo get_post_meta( $post->ID, '_wpg_members-type', true ); ?>
 				</td>
+				<td><?php
+						$city_id = get_post_meta( $post->ID, '_wpg_cityselect', true );
+						$city = get_post($city_id);
+						$city_link = get_permalink($city->ID);
+						$city_name = $city->post_title;
+						if ($city_name != 'Not specified' || $city == '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field '_wpg_city'
+						echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
+						} else {
+							echo get_post_meta( $post->ID, '_wpg_city', true ). ", ";
+						}
+				 echo get_post_meta( $post->ID, '_wpg_country', true ); ?> </td>
+				<td>
+					<?php echo get_post_meta( $post->ID, '_wpg_year-formed', true ); ?>
+				</td>
+
 			</tr>
 
 	<?php endwhile; else: ?>

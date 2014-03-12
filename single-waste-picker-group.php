@@ -51,10 +51,10 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						} ?>
 					<h4>
 						<?php	//location
-						if ($city_id) { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field '_wpg_city'
 						$city = get_post($city_id);
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
+						if ($city_name != 'Not specified' || city == '') { //displays the city from the selection list '_wpg_cityselect', if it has been selected, if not it displays the city from the open field '_wpg_city'
 						echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
 						} else {
 							echo get_post_meta( $post_id, '_wpg_city', true ). ", ";

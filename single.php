@@ -18,11 +18,7 @@ $output = ''; ?>
 			?>	
 			<?php // the_post_thumbnail( 'medium' ); ?>
 			</div>
-			 <?php if ( is_user_logged_in() ) { 
-				echo '<div class="btn btn-sm btn-default pull-right">';
-				edit_post_link(__('Edit This')); 
-				echo "</div>";
-			  } ?>
+			 <?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
 			<div class="row">	
 				<h3 class="col-md-12"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
 			</div>

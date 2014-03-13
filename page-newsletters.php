@@ -13,53 +13,31 @@ get_header(); ?>
 		<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<?php the_content(); ?>
 		<a name="globalrec"></a>
-	 	<h3>Struggles and victories Newsletters (globalrec.org)</h3>
-		<?php //  _e('(struggles-and-victories-newsletters)', 'wpml_theme'); ?>
+	 	<h3><?php _e('Struggles and victories Newsletters (globalrec.org)', 'wpml_theme'); ?></h3>
 		<?php endwhile; endif; 
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
-			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(		//arguments for showing newsletters custom post type
 				'post_type' => 'newsletter', 
 				'posts_per_page' => -1, 
 				'post_parent' => 0
 				);
 
-		if ( $paged > 1 ) {
-		 $args['paged'] = $paged;
-			}
-
 		$my_query = new WP_Query($args);
 	
 		if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
-			//necessary to show the tags 
 			global $wp_query;
-			$wp_query->in_the_loop = true;
+			$wp_query->in_the_loop = true;?>
 	
-			$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-
-
 			<div class="size-thumbnail">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
-					<?php //the_post_thumbnail( 'thumbnail' ); 
-					the_title();?>
-							
+					<?php the_title();?>
 				</a> 
 			</div><br>
-
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; 
 
-		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
-			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
-			/* $args = array( //arguments for showing newsletters custom post type
-			'caller_get_posts' => 1,
-			'post_type' => 'newsletter', 
-			'posts_per_page' => -1, 
-			'post_parent' => 0,
-			'order' =>  'ASC',
-			'orderby' =>  'title'
-			);*/
+		global $more;    
 			$args = array(	/* 	
 			'relation' => 'OR',
 			array( *///arguments for showing newsletters cagtegory
@@ -78,26 +56,16 @@ get_header(); ?>
 				)*/	
 		);
 
-
-		if ( $paged > 1 ) {
-		 $args['paged'] = $paged;
-			}
-
 		$my_query = new WP_Query($args);
 	
 		if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
 			//necessary to show the tags 
 			global $wp_query;
-			$wp_query->in_the_loop = true;
+			$wp_query->in_the_loop = true;?>
 	
-			$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-
-
 			<div class="size-thumbnail">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
-					<?php //the_post_thumbnail( 'thumbnail' ); 
-					the_title();?>
-							
+					<?php the_title();?>
 				</a> 
 			</div><br>
 
@@ -105,9 +73,8 @@ get_header(); ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
 		<a name="africa"></a>
-		<h3>African newsletters </h3>
-		<?php
-
+		<h3><?php  _e('African newsletters', 'wpml_theme'); ?></h3>
+		<?php 
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			$args = array( //arguments for showing newsletters custom post type
 			'caller_get_posts' => 1, 
@@ -117,19 +84,12 @@ get_header(); ?>
 			'category_name' => 'wastepicking-in-africa'
 			);
 
-		if ( $paged > 1 ) {
-		 $args['paged'] = $paged;
-			}
-
 		$my_query = new WP_Query($args);
 	
 		if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
 			//necessary to show the tags 
 			global $wp_query;
-			$wp_query->in_the_loop = true;
-	
-			$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-
+			$wp_query->in_the_loop = true;?>
 
 			<div class="size-thumbnail">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
@@ -144,7 +104,7 @@ get_header(); ?>
 		<?php endif; ?>
 		
 		<a name="india"></a>
-		<h3>India (AIW) Newsletters</h3>
+		<h3><?php  _e('India (AIW) Newsletters', 'wpml_theme'); ?></h3>
 		<?php
 
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
@@ -172,9 +132,7 @@ get_header(); ?>
 
 			<div class="size-thumbnail">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
-					<?php //the_post_thumbnail( 'thumbnail' ); 
-					the_title();?>
-							
+					<?php the_title();?>
 				</a> 
 			</div><br>
 
@@ -182,9 +140,8 @@ get_header(); ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
 		<a name="america"></a>
-		<h3>Latin America Newsletters</h3>
+		<h3><?php  _e('Latin America Newsletters', 'wpml_theme'); ?></h3>
 		<?php
-
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			$args = array( //arguments for showing newsletters custom post type
 			'caller_get_posts' => 1, 
@@ -194,25 +151,16 @@ get_header(); ?>
 			'category_name' => 'wastepicking-in-latin-america-newsletters'
 			);
 
-		if ( $paged > 1 ) {
-		 $args['paged'] = $paged;
-			}
-
 		$my_query = new WP_Query($args);
 	
 		if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
 			//necessary to show the tags 
 			global $wp_query;
-			$wp_query->in_the_loop = true;
-	
-			$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
-
+			$wp_query->in_the_loop = true;?>
 
 			<div class="size-thumbnail">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
-					<?php //the_post_thumbnail( 'thumbnail' ); 
-					the_title();?>
-							
+					<?php the_title();?>
 				</a> 
 			</div><br>
 

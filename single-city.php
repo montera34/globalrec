@@ -8,7 +8,7 @@
 				<div class="col-md-10">
 					<ul class="breadcrumb">
 						<li><a href="/cities">Cities</a></li>
-						<li><?php the_title(); ?> </li>
+						<li><?php the_title(); ?></li>
 					</ul>
 				</div>
 				<div class="btn btn-default btn-sm pull-right"><?php edit_post_link(__('Edit This')); ?></div>
@@ -31,7 +31,16 @@
 					?>
 			</div>
 			<div class="col-md-7">
-			<h1><?php the_title(); ?></h1>
+			<h1><?php _e('City Report:','globalrec'); ?> <?php the_title(); ?>
+			<?php //location
+				$post_id = $post->ID;
+				$country_id = get_post_meta( $post_id, '_city_countryselect', true );
+				$country = get_post($country_id);
+				$country_link = get_permalink($country->ID);
+				$country_name = $country->post_title;
+				echo '<small><a href="'.$country_link.'">'.$country_name.'</a></small>';
+				?>
+			</h1>
 			<?php the_content(__('(more...)')); ?>
 			</div>
 		</div>

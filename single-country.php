@@ -30,7 +30,7 @@
 				}
 					?>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 			<h3><?php _e('Law reports overview in','globalrec'); ?> <?php the_title(); ?></h3>
 				<?php 
 					//Law Reports list about this Country
@@ -42,7 +42,7 @@
 				foreach($law_reports as $law_report) {
 					echo '<a href="'.get_permalink($law_report->ID).'">'.$law_report->post_title.'</a><br>' ;
 				}?>
-				<?php
+					<?php
 				$downloads = get_post_meta( $law_report->ID, '_law_downloads', true );
 				if ($downloads) {
 					echo '<hr><h4>';
@@ -52,7 +52,18 @@
 				}
 				?>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
+			<h3><?php _e('City reports in','globalrec'); ?> <?php the_title(); ?></h3>
+				<?php 
+					//City Reports list about this Country
+					$city_reports = get_posts( array(
+						'post_type' => 'city',
+						'meta_key' => '_city_countryselect',
+						'meta_value' => $post->ID
+				));
+				foreach($city_reports as $city_report) {
+					echo '<a href="'.get_permalink($city_report->ID).'">'.$city_report->post_title.'</a><br>' ;
+				}?>
 			</div>
 		</div>
 	</div>

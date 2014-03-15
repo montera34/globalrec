@@ -1332,9 +1332,9 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Law Repor in country',
 				'desc' => 'Select the country of the Law',
-				'id' => $prefixlaw . 'countryselect', //"cityselect" beacuse "city" is alread used
+				'id' => $prefixlaw . 'countryselect',
 				'type' => 'select',
-				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
+				'options' =>  $countries
 			),
 		),
 	);
@@ -1362,7 +1362,40 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
-
+	//Custom Fields for Cities
+	$prefixlaw = '_city_';
+	//Custom field to select a Country for City
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'country',
+		'orderby ' => 'title',
+		'order' => 'ASC',
+		));
+	foreach ($posts as $post) {
+		$countries[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'city-in-country',
+		'title' => 'City belons to Country',
+		'pages' => array('city'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'City belons to Country',
+				'desc' => 'Select the country of the city',
+				'id' => $prefixlaw . 'countryselect',
+				'type' => 'select',
+				'options' =>  $countries
+			),
+		),
+	);
+	wp_reset_query();
+	
 	return $meta_boxes;
 }
 add_filter( 'cmb_meta_boxes', 'global_meeting_sample_metaboxes' );

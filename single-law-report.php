@@ -19,6 +19,23 @@
 			<h1><?php the_title(); ?></h1>
 			<?php the_content(__('(more...)')); ?>
 			</div>
+			<div class="col-md-3">
+			<?php 
+			$downloads = get_post_meta( $post->ID, '_law_downloads', true );
+			if ($downloads) { 
+				echo "<h2>Downloads</h2>";
+				echo $downloads;
+			}
+			?>
+			<hr>
+			<?php	
+				$country_id = get_post_meta( $post->ID, '_law_countryselect', true );
+				$country = get_post($country_id);
+				$country_link = get_permalink($country->ID);
+				$country_name = $country->post_title;
+				echo '<a href="'.$country_link.'">'._e('Find more information about ','globalrec').$country_name.'</a>';
+			?>
+			</div>
 		</div>
 	</div>
 	<?php include("share.php")?>

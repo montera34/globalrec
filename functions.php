@@ -170,7 +170,7 @@ register_post_type( 'law-report', array( // Defining Law report custom post type
 		'not_found' => __( 'We didn\'t found any Law Report' ),
 		'not_found_in_trash' => __( 'No Law Report in the trash bin' ),
 		),
-	'hierarchical' => false,
+	'hierarchical' => true,
 	'public' => true,
 	'menu_position' => 5,
 	'supports' => array('title','editor','author','revisions'),
@@ -200,7 +200,7 @@ register_post_type( 'city', array( // Defining Country custom post type
 	)
 );
 
-register_post_type( 'country', array( // Defining Country custom post type
+register_post_type( 'country', array( // Defining City custom post type
 	'labels' => array(
 		'name' => __( 'Countries' ),
 		'singular_name' => __( 'Country' ),
@@ -1305,13 +1305,15 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+		
 	//Custom Fields for Law Reports
 	$prefixlaw = '_law_';
-	
 	//Custom field to select a City for a Waste Picker Group
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
-		'post_type' => 'country'
+		'post_type' => 'country',
+		'orderby ' => 'title',
+		'order' => 'ASC',
 		));
 	foreach ($posts as $post) {
 		$countries[] = array(
@@ -1321,7 +1323,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	}
 	$meta_boxes[] = array(
 		'id' => 'law-report-country',
-		'title' => 'Law Repor in country',
+		'title' => 'Law Report Country',
 		'pages' => array('law-report'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
@@ -1337,6 +1339,30 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		),
 	);
 	wp_reset_query();
+	
+	$meta_boxes[] = array(
+		'id' => 'law-downloads',
+		'title' => 'Law Report Downloads',
+		'pages' => array('law-report'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Downloads',
+				'desc' => 'List here all the documents to download',
+				'id' => $prefixlaw . 'downloads',
+				'type' => 'wysiwyg',
+					'options' => array(
+				    'wpautop' => true, // use wpautop?
+				    'textarea_rows' => get_option('default_post_edit_rows', 12), // rows="..."
+				    'teeny' => false, // output the minimal editor config used in Press This
+				    'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
+				),
+			),
+		),
+	);
+
 	return $meta_boxes;
 }
 add_filter( 'cmb_meta_boxes', 'global_meeting_sample_metaboxes' );

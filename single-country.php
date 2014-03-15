@@ -19,10 +19,10 @@
 			<div class="col-md-4">
 				<h3>Waste Picker Groups in <?php the_title(); ?></h3>
 				<?php 
-					//List of Waste Picker Groups that belong to the City
+					//List of Waste Picker Groups that belong to the Country
 					$waste_picker_groups = get_posts( array(
 						'post_type' => 'waste-picker-group',
-						'meta_key' => '_wpg_countryselect', //city2 because city is used as open field
+						'meta_key' => '_wpg_countryselect',
 						'meta_value' => $post->ID
 				));
 				foreach($waste_picker_groups as $waste_picker_group) {
@@ -31,18 +31,26 @@
 					?>
 			</div>
 			<div class="col-md-4">
-			<h3>Law reports in <?php the_title(); ?></h3>
+			<h3><?php _e('Law reports overview in','globalrec'); ?> <?php the_title(); ?></h3>
 				<?php 
-					//List of Waste Picker Groups that belong to the City
+					//Law Reports list about this Country
 					$law_reports = get_posts( array(
 						'post_type' => 'law-report',
-						'meta_key' => '_law_countryselect', //city2 because city is used as open field
+						'meta_key' => '_law_countryselect',
 						'meta_value' => $post->ID
 				));
 				foreach($law_reports as $law_report) {
 					echo '<a href="'.get_permalink($law_report->ID).'">'.$law_report->post_title.'</a><br>' ;
+				}?>
+				<?php
+				$downloads = get_post_meta( $law_report->ID, '_law_downloads', true );
+				if ($downloads) {
+					echo '<hr><h4>';
+					echo _e('Laws','globalrec');
+					echo '</h4>';
+					echo $downloads;
 				}
-					?>
+				?>
 			</div>
 			<div class="col-md-4">
 			</div>

@@ -25,6 +25,7 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Cities','globalrec'); ?></th>
+			<th><?php _e('Countries','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -32,13 +33,22 @@ get_header(); ?>
 	<?php
 		global $wp_query;
 		$wp_query->in_the_loop = true;
-		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. 
 		?>
 
 			<tr>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title(); ?></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+				<?php //Country
+				$post_id = $post->ID;
+				$country_id = get_post_meta( $post_id, '_city_countryselect', true );
+				$country = get_post($country_id);
+				$country_link = get_permalink($country->ID);
+				$country_name = $country->post_title;
+				echo '<a href="'.$country_link.'">'.$country_name.'</a>';
+				?>
 				</td>
 			</tr>
 

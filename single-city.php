@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-md-7">
 			<h1><?php _e('City Report:','globalrec'); ?> <?php the_title(); ?>
-			<?php //location
+			<?php //Country
 				$post_id = $post->ID;
 				$country_id = get_post_meta( $post_id, '_city_countryselect', true );
 				$country = get_post($country_id);

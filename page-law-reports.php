@@ -24,6 +24,7 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Law','globalrec'); ?></th>
+			<th><?php _e('Law overview','globalrec'); ?></th>
 			<th><?php _e('Attachments','globalrec'); ?></th>
 			<th><?php _e('Country','globalrec'); ?></th>
 		</tr>
@@ -40,6 +41,12 @@ get_header(); ?>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title(); ?></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+						<?php
+						$content = get_post_field( 'post_content', $post->ID);
+						if ($content !='') {echo '<a href="'.get_permalink($post->ID).'"><span class="glyphicon glyphicon-ok"></span></a>';}
+					?>
 				</td>
 				<td>
 					<?php 

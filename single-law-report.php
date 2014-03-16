@@ -16,7 +16,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-7">
-			<h1><?php the_title(); ?></h1>
+			<h1><?php _e('Law Report','globalrec');?>: <?php the_title(); ?></h1>
 			<?php the_content(__('(more...)')); ?>
 			</div>
 			<div class="col-md-3">

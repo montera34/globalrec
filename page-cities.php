@@ -9,14 +9,14 @@ get_header(); ?>
 			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 		</div>
 		<?php the_content(); ?>	
-		<?php endwhile; endif; ?>
+		<?php endwhile; endif;?>
+		
 		<?php
 			$args = array(
 			 'post_type' => 'city', 
 			 'posts_per_page' => -1, 
-			 'post_parent' => 0,
-			 'orderby ' => 'title',
-			 'order' => 'ASC',
+			 'orderby' => 'title', 
+			 'order' => 'ASC' 
 				);
 			$my_query = new WP_Query($args);
 			?>

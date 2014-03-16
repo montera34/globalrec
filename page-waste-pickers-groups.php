@@ -14,8 +14,8 @@ get_header(); ?>
 			$args = array(
 			 'post_type' => 'waste-picker-group', 
 			 'posts_per_page' => -1, 
-			 'post_parent' => 0
-			 
+			 'orderby' => 'title',
+			 'order' => 'ASC',
 				);
 			$my_query = new WP_Query($args);
 			?>

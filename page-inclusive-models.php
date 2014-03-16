@@ -15,7 +15,7 @@ get_header(); ?>
 			 'post_type' => 'inclusive-model', 
 			 'posts_per_page' => -1, 
 			 'post_parent' => 0,
-			 'orderby ' => 'title',
+			 'orderby' => 'title',
 			 'order' => 'ASC',
 				);
 			$my_query = new WP_Query($args);

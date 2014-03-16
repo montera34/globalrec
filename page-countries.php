@@ -12,10 +12,9 @@ get_header(); ?>
 		<?php endwhile; endif; ?>
 		<?php
 			$args = array(
-			 'post_type' => 'country', 
-			 'posts_per_page' => -1, 
-			 'post_parent' => 0,
-			 'orderby ' => 'title',
+			 'post_type' => 'country',
+			 'posts_per_page' => -1,
+			 'orderby' => 'title',
 			 'order' => 'ASC',
 				);
 			$my_query = new WP_Query($args);
@@ -25,6 +24,9 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Countries','globalrec'); ?></th>
+			<th><?php _e('Law Report Overview','globalrec'); ?></th>
+			<th><?php _e('Law Report Attachments','globalrec'); ?></th>
+			<th><?php _e('City reports','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -32,13 +34,43 @@ get_header(); ?>
 	<?php
 		global $wp_query;
 		$wp_query->in_the_loop = true;
-		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. 
 		?>
 
 			<tr>
-				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-					<?php the_title(); ?></a> 
+				<td>
+					<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+					<?php the_title(); ?></a>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+				<?php
+						$law_reports = get_posts( array(
+							'post_type' => 'law-report',
+							'meta_key' => '_law_countryselect',
+							'meta_value' => $post->ID
+					));
+					foreach($law_reports as $law_report) {
+						$content = get_post_field( 'post_content', $law_report->ID);
+						if ($content !='') {echo '<a href="'.get_permalink($law_report->ID).'"><span class="glyphicon glyphicon-ok"></span></a>';}
+					}
+					?>
+				</td>
+				<td>
+					<?php foreach($law_reports as $law_report) {
+						$downloads = get_post_meta( $law_report->ID, '_law_downloads', true );
+						if ($downloads) {echo '<a href="'.get_permalink($law_report->ID).'"><span class="glyphicon glyphicon-ok"></span></a>';}
+					}
+					?>
+				</td>
+				<td>
+				<?php $city_reports = get_posts( array(
+						'post_type' => 'city',
+						'meta_key' => '_city_countryselect',
+						'meta_value' => $post->ID
+				));
+				foreach($city_reports as $city_report) {
+					echo '<a href="'.get_permalink($city_report->ID).'" title="'.get_the_title($city_report->ID).'"><span class="glyphicon glyphicon-ok"></span></a>';
+				}?>
 				</td>
 			</tr>
 

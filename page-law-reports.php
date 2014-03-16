@@ -14,8 +14,7 @@ get_header(); ?>
 			$args = array(
 			 'post_type' => 'law-report', 
 			 'posts_per_page' => -1, 
-			 'post_parent' => 0,
-			 'orderby ' => 'title',
+			 'orderby' => 'title',
 			 'order' => 'ASC',
 				);
 			$my_query = new WP_Query($args);
@@ -25,6 +24,7 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Law','globalrec'); ?></th>
+			<th><?php _e('Attachments','globalrec'); ?></th>
 			<th><?php _e('Country','globalrec'); ?></th>
 		</tr>
 	</thead>
@@ -40,6 +40,14 @@ get_header(); ?>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title(); ?></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+					<?php 
+					$downloads = get_post_meta( $post->ID, '_law_downloads', true );
+					if ($downloads) {
+					echo '<span class="glyphicon glyphicon-ok"></span>'; 
+					}
+					?>
 				</td>
 				<td>
 					<?php 

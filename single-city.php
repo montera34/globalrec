@@ -1,4 +1,5 @@
-<?php get_header(); ?>
+<?php get_header(); 
+$post_id = $post->ID;?>
 
 <div class="container">
 	<div class="row">
@@ -11,12 +12,22 @@
 						<li><?php the_title(); ?></li>
 					</ul>
 				</div>
-				<div class="btn btn-default btn-sm pull-right"><?php edit_post_link(__('Edit This')); ?></div>
+				<?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded img-responsive",'alt'=> ''.get_the_title().'','title'	=> ''.get_the_title().'') ); ?> <br>
+				<?php if ( is_user_logged_in() ) { ?>
+					<div class="panel panel-default">
+						<div class="panel-heading"><?php _e('Hidden field','globalrec');?></div>
+						<div class="panel-body">
+							<?php
+								echo get_post_meta( $post_id, '_city_hidden', true ); 
+								?>
+						</div>
+					</div>
+				<?php } ?>
 				<h3>List of Waste Picker Groups in the City</h3>
 				<?php 
 					//List of Waste Picker Groups that belong to the City
@@ -27,13 +38,11 @@
 				));
 				foreach($waste_picker_groups as $waste_picker_group) {
 					echo '<a href="'.get_permalink($waste_picker_group->ID).'">'.$waste_picker_group->post_title.'</a><br>' ;
-				}
-					?>
+				}?>
 			</div>
 			<div class="col-md-7">
 			<h1><?php _e('City Report:','globalrec'); ?> <?php the_title(); ?>
 			<?php //Country
-				$post_id = $post->ID;
 				$country_id = get_post_meta( $post_id, '_city_countryselect', true );
 				$country = get_post($country_id);
 				$country_link = get_permalink($country->ID);

@@ -79,7 +79,8 @@
 					<?php foreach($posts as $post) {
 					echo '<a href="'.get_permalink($post->ID).'">'.$post->post_title.'</a><br>' ;
 					}
-				}?>
+				}
+				wp_reset_query();?>
 			</div>
 		</div>
 	</div>

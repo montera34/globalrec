@@ -560,7 +560,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		),
 	);
 	
-	//Custom fields for articles
+	//Custom fields for articles (posts)
 	$meta_boxes[] = array(
 		'id' => 'post-extra-fields',
 		'title' => 'Post in category Press',
@@ -602,6 +602,37 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Custom field to select a Country for a post
+	$prefixpost = "_post_";
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'country'
+		));
+	foreach ($posts as $post) {
+		$countries[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'post-in-country',
+		'title' => 'Post in Country',
+		'pages' => array('post'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Post in Country',
+				'desc' => 'Select the country in a post',
+				'id' => $prefixpost . 'country',
+				'type' => 'select',
+				'options' =>  $countries
+			),
+		),
+	);
+	wp_reset_query();
+	
 	//Custom Fields for Waste Picker Groups
 	$prefixwpg = '_wpg_';
 	

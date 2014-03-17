@@ -1,7 +1,8 @@
 <?php get_header();
 $categories = get_the_category();
 $separator = ' ';
-$output = ''; ?>
+$output = '';
+$output2 = ''; ?>
 
 <div class="container">
 	<div class="row">
@@ -14,13 +15,16 @@ $output = ''; ?>
 						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right" style="margin-right:5px">'.$category->cat_name.' </a> '.$separator;
 					}
 				echo trim($output, $separator);
-				}	
-			?>	
-			<?php // the_post_thumbnail( 'medium' ); ?>
+				}
+			?>
 			</div>
-			 <?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
-			<div class="row">	
-				<h3 class="col-md-12"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
+			<div class="row">
+				<div class="col-md-12">
+				<?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
+				<h3>
+					<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
+				</h3>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
@@ -93,8 +97,9 @@ $output = ''; ?>
 							. '" class="label">'.$category->cat_name.'</a>'.$separator;
 						}
 					echo trim($output2, $separator);
-					} ?> | 
-				<?php the_tags( ); ?> 
+					} 
+					?> | 
+				<?php the_tags( ); ?>
 			</div>
 			<div class="feedback">
 				<?php wp_link_pages(); ?>

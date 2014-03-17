@@ -3,21 +3,23 @@
 <div class="container">
 	<div class="row">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class('col-md-12') ?> id="post-<?php the_ID(); ?>">
+		<div <?php post_class('') ?> id="post-<?php the_ID(); ?>">
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-11">
 					<ul class="breadcrumb">
 						<li><a href="/countries">Countries</a></li>
-						<li><?php the_title(); ?> </li>
+						<li><?php the_title(); ?></li>
 					</ul>
 					<h1><?php the_title(); ?></h1>
 				</div>
-				<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				<div class="col-md-1">
+					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4">
-				<h3>Waste Picker Groups in <?php the_title(); ?></h3>
+			<div class="col-md-3">
+				<h3>Waste Picker Groups</h3>
 				<?php 
 					//List of Waste Picker Groups that belong to the Country
 					$waste_picker_groups = get_posts( array(
@@ -31,38 +33,52 @@
 					?>
 			</div>
 			<div class="col-md-3">
-			<h3><?php _e('Law reports overview in','globalrec'); ?> <?php the_title(); ?></h3>
-				<?php 
-					//Law Reports list about this Country
+				<?php //Law Reports list about this Country
 					$law_reports = get_posts( array(
 						'post_type' => 'law-report',
 						'meta_key' => '_law_countryselect',
 						'meta_value' => $post->ID
 				));
-				foreach($law_reports as $law_report) {
-					echo '<a href="'.get_permalink($law_report->ID).'">'.$law_report->post_title.'</a><br>' ;
+				if ($law_reports) {?>
+					<h3><?php _e('Law reports overview','globalrec'); ?></h3>
+					<?php foreach($law_reports as $law_report) {
+						echo '<a href="'.get_permalink($law_report->ID).'">'.$law_report->post_title.'</a><br>';
+					}
+					$downloads = get_post_meta( $law_report->ID, '_law_downloads', true );
+					if ($downloads) {
+						echo '<hr><h4>';
+						echo _e('Laws','globalrec');
+						echo '</h4>';
+						echo $downloads;
+					}
 				}?>
-					<?php
-				$downloads = get_post_meta( $law_report->ID, '_law_downloads', true );
-				if ($downloads) {
-					echo '<hr><h4>';
-					echo _e('Laws','globalrec');
-					echo '</h4>';
-					echo $downloads;
-				}
-				?>
+			</div>
+			<div class="col-md-2">
+					<?php //City Reports list about this Country
+						$city_reports = get_posts( array(
+							'post_type' => 'city',
+							'meta_key' => '_city_countryselect',
+							'meta_value' => $post->ID
+					));
+					if ($city_reports) {?>
+						<h3><?php _e('City reports','globalrec'); ?></h3>
+						<?php foreach($city_reports as $city_report) {
+							echo '<a href="'.get_permalink($city_report->ID).'">'.$city_report->post_title.'</a><br>' ;
+						}
+					}?>
 			</div>
 			<div class="col-md-3">
-			<h3><?php _e('City reports in','globalrec'); ?> <?php the_title(); ?></h3>
-				<?php 
-					//City Reports list about this Country
-					$city_reports = get_posts( array(
-						'post_type' => 'city',
-						'meta_key' => '_city_countryselect',
+				<?php //Posts about this Country
+					$posts = get_posts( array(
+						'post_type' => 'post',
+						'meta_key' => '_post_country',
 						'meta_value' => $post->ID
-				));
-				foreach($city_reports as $city_report) {
-					echo '<a href="'.get_permalink($city_report->ID).'">'.$city_report->post_title.'</a><br>' ;
+				)); 
+				if ($posts) {?>
+					<h3><?php _e('Related posts','globalrec'); ?></h3>
+					<?php foreach($posts as $post) {
+					echo '<a href="'.get_permalink($post->ID).'">'.$post->post_title.'</a><br>' ;
+					}
 				}?>
 			</div>
 		</div>

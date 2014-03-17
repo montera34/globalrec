@@ -9,18 +9,18 @@
 			  <li><?php the_title(); ?> </li>
 			</ul>
 			<?php the_post_thumbnail( 'medium' ); ?>
-			<h3> 
+			<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+			<h3>
 				<a href="<?php the_permalink() ?>" rel="bookmark">
 					<?php the_title(); ?>
-				</a>	
+				</a>
 			</h3>
-			<div class="btn btn-sm btn-default pull-right"><?php edit_post_link(__('Edit This')); ?></div>
-			<h4><?php 	
+			<h4><?php
 				$text = get_post_meta( $post->ID, 'gm_location', true );
 				echo $text; 
 				echo ", ";
 				$text = get_post_meta( $post->ID, 'gm_date', true );
-				echo $text; 
+				echo $text;
 				?>
 			</h4>				
 			<hr>

@@ -4,7 +4,7 @@ $post_id = $post->ID;?>
 <div class="container">
 	<div class="row">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class('col-md-12') ?> id="post-<?php the_ID(); ?>">
+		<div <?php post_class('') ?> id="post-<?php the_ID(); ?>">
 			<div class="row">
 				<div class="col-md-10">
 					<ul class="breadcrumb">
@@ -12,7 +12,9 @@ $post_id = $post->ID;?>
 						<li><?php the_title(); ?></li>
 					</ul>
 				</div>
-				<?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
+				<div class="col-md-2">
+					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</div>
 			</div>
 		</div>
 		<div class="row">

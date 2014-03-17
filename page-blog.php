@@ -12,7 +12,7 @@
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(
-			 'caller_get_posts' => 1,
+			 'ignore_sticky_posts' => 1,
 			'posts_per_page'=>	12
 				);
 			if ( $paged > 1 ) {

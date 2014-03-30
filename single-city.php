@@ -43,7 +43,7 @@ $post_id = $post->ID;?>
 				}?>
 			</div>
 			<div class="col-md-7">
-			<h1><?php _e('City Report:','globalrec'); ?> <?php the_title(); ?>
+			<h1><?php the_title(); ?>
 			<?php //Country
 				$country_id = get_post_meta( $post_id, '_city_countryselect', true );
 				$country = get_post($country_id);
@@ -52,7 +52,18 @@ $post_id = $post->ID;?>
 				echo '<small><a href="'.$country_link.'">'.$country_name.'</a></small>';
 				?>
 			</h1>
-			<?php the_content(__('(more...)')); ?>
+				<?php
+					$content = get_the_content(); 
+				 	if ($content !='') {?>
+						<div class="panel panel-default">
+						 <div class="panel-heading">
+								<h3><span class="glyphicon glyphicon-user"></span> <?php _e('City Report: Interview with a local Waste Picker','globalrec'); ?></h3>
+							</div>
+							<div class="panel-body">
+								<?php echo $content;?>
+							</div>
+						</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

@@ -26,7 +26,7 @@ get_header(); ?>
 			<th><?php _e('Countries','globalrec'); ?></th>
 			<th><?php _e('Law Report Overview','globalrec'); ?></th>
 			<th><?php _e('Law Report Attachments','globalrec'); ?></th>
-			<th><?php _e('City reports','globalrec'); ?></th>
+			<th><?php _e('City reports (Waste Picker interview)','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -69,7 +69,9 @@ get_header(); ?>
 						'meta_value' => $post->ID
 				));
 				foreach($city_reports as $city_report) {
-					echo '<a href="'.get_permalink($city_report->ID).'" title="'.get_the_title($city_report->ID).'"><span class="glyphicon glyphicon-ok"></span></a>';
+					$content = get_post_field( 'post_content', $city_report->ID);
+					//only displays "check" if there is content, that means> there is a Interview city report
+					if ($content !='') {echo '<a href="'.get_permalink($city_report->ID).'" title="'.get_the_title($city_report->ID).'"><span class="glyphicon glyphicon-ok"></span></a>';}
 				}?>
 				</td>
 			</tr>

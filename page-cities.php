@@ -25,6 +25,7 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Cities','globalrec'); ?></th>
+			<th><?php _e('City Report: Interview with a local Waste Picker','globalrec'); ?></th>
 			<th><?php _e('Countries','globalrec'); ?></th>
 		</tr>
 	</thead>
@@ -39,6 +40,13 @@ get_header(); ?>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title(); ?></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+				<?php $content = get_the_content();
+					//only displays "check" if there is content, that means> there is a Interview city report
+					if ($content !='') {?>
+					 <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">	<span class="glyphicon glyphicon-ok"></span></a>
+					<?php } ?>
 				</td>
 				<td>
 				<?php //Country

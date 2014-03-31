@@ -57,7 +57,7 @@ $post_id = $post->ID;?>
 				 	if ($content !='') {?>
 						<div class="panel panel-default">
 						 <div class="panel-heading">
-								<h3><span class="glyphicon glyphicon-user"></span> <?php _e('City Report: Interview with a local Waste Picker','globalrec'); ?></h3>
+								<h3><span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-comment"></span> <?php _e('City Report: Interview with a local Waste Picker','globalrec'); ?></h3>
 							</div>
 							<div class="panel-body">
 								<?php echo $content;?>

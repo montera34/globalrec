@@ -20,9 +20,9 @@
 			<div class="col-md-3">
 				<?php the_post_thumbnail( 'medium',array('class'=> "img-rounded img-responsive",'alt'=> ''.get_the_title().'','title'	=> ''.get_the_title().'') ); ?> <br>
 			</div>
-			<div class="col-md-7">
-			<h1><?php the_title(); ?></h1>
-			<?php the_content(__('(more...)')); ?>
+			<div class="col-md-7 content">
+				<h1><?php the_title(); ?></h1>
+				<?php the_content(__('(more...)')); ?>
 			</div>
 		</div>
 	</div>

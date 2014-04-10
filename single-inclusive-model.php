@@ -15,9 +15,9 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-7">
-			<h1><?php the_title(); ?></h1>
-			<?php the_content(__('(more...)')); ?>
+			<div class="col-md-7 content">
+				<h1><?php the_title(); ?></h1>
+				<?php the_content(__('(more...)')); ?>
 			</div>
 		</div>
 	</div>

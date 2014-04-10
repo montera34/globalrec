@@ -59,7 +59,7 @@ $post_id = $post->ID;?>
 						 <div class="panel-heading">
 								<h3><span class="glyphicon glyphicon-user"></span> <span class="glyphicon glyphicon-comment"></span> <?php _e('City Report: Interview with a local Waste Picker','globalrec'); ?></h3>
 							</div>
-							<div class="panel-body">
+							<div class="panel-body content">
 								<?php echo $content;?>
 							</div>
 						</div>

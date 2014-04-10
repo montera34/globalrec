@@ -19,23 +19,30 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						echo "<a href='".get_post_meta( $post_id, '_wpg_facebook', true ). "'>Facebook</a> ";
 						echo "<a href='http://twitter.com/".get_post_meta( $post_id, '_wpg_twitter', true )."' title='Twitter user @".get_post_meta( $post_id, '_wpg_twitter', true )."'>Twitter</a><br>";
 						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
-						<?php if ( is_user_logged_in() ) { //Only display this information if user is logged in?>
-						<h4> Contact information</h4>
-						<dl>
-						<?php 
-							echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
-							echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
-							echo "<dt>Physycal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical-address', true ). "</dd>";
-							echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal-adress', true ). "</dd>";
-							echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
-							echo "<dt>Phone 1</dt><dd>". get_post_meta( $post_id, '_wpg_phone1', true ). "</dd>";
-							echo "<dt>Phone 2</dt><dd>".get_post_meta( $post_id, '_wpg_phone2', true ). "</dd>";
-							echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell-phone', true ). "</dd>";
-							echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
-							echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary-contact', true ). "</dd>";
-							echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary-contact', true ). "</dd>";
-						?>
-							</dl>
+						<?php if ( is_user_logged_in() ) { //Only display this information if user is logged in ?>
+						<div class="panel panel-default">
+						 <div class="panel-heading">
+								<h4><span class="glyphicon glyphicon-lock"></span> <span class="glyphicon glyphicon-envelope"></span> <?php _e('Contact information','globalrec'); ?></h4>
+							</div>
+							<div class="panel-body">
+								<dl>
+								<?php 
+									echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
+									echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
+									echo "<dt>Physical Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical-address', true ). "</dd>";
+									echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal-adress', true ). "</dd>";
+									echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
+									echo "<dt>Phone 1</dt><dd>". get_post_meta( $post_id, '_wpg_phone1', true ). "</dd>";
+									echo "<dt>Phone 2</dt><dd>".get_post_meta( $post_id, '_wpg_phone2', true ). "</dd>";
+									echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell-phone', true ). "</dd>";
+									echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
+									echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary-contact', true ). "</dd>";
+									echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary-contact', true ). "</dd>";
+								?>
+									</dl>
+							</div>
+						</div>
+
 						<?php	} ?>
 				</div>
 				<div class="col-md-9">
@@ -78,10 +85,10 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						echo get_post_meta( $post->ID, '_wpg_country', true );
 						} ?>
 					</h4>	
-						<?php echo "<a href='".$website. "'>Website</a><br>"; ?>
+						<?php echo "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>"; ?>
 					<div class="row">
 						<div class="col-md-6">
-							<h4>Primary information</h4>
+							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
 								echo "<dt>Year formed</dt><dd>".get_post_meta( $post_id, '_wpg_year-formed', true )
@@ -110,7 +117,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							</dl>
 						</div>
 						<div class="col-md-6">
-							<h4>Benefits</h4>
+							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
 								<?php //Benefits 
 								echo "<dt>Member benefits</dt>"; echo list_of_items($post_id,'_wpg_member-benefits');
@@ -118,7 +125,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo "<dt><dt>Safety & Technology</dt><dd>".get_post_meta( $post_id, '_wpg_safety-technology', true ). "</dd>";
 								?> 
 							</dl>
-							<h4>Services</h4>
+							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
 							<dl>
 								<?php	//Services
 								echo "<dt>Relationship with the Municipality</dt><dd>".get_post_meta( $post_id, '_wpg_relationship-municipality', true ). "</dd>";
@@ -133,7 +140,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						</div>
 					</div>				
 					<hr>
-					<h4>Complementary Information</h4>
+					<h4><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h4>
 						<dl>
 							<?php	//Complementary information
 							echo "<dt>Other publications</dt><dd>".get_post_meta( $post_id, '_wpg_publications', true ). "</dd>";
@@ -150,7 +157,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 		</div>
 		<!--right column -->
 		<div class="col-md-2"> 
-			<h4>News related to <?php the_title_attribute(); ?></h4>
+			<h4><?php _e('News related to','globalrec'); ?> <?php the_title_attribute(); ?></h4>
 			<?php if (get_post_meta($post_id, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
 			<?php 
 			//includes the loop with the related post according to the custom field gm-tag

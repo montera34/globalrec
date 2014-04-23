@@ -29,26 +29,30 @@ $output2 = ''; ?>
 			<div class="row">
 				<div class="col-md-4">
 					<h4>
-						<?php 
-							$written_by = get_post_meta( $post->ID, '_gr_written-by', true ); 
+						<?php
+							$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
 						 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
-								echo "<small>submitted by ";
+								echo "<small>";
+								echo _e('Posted by','globalrec'). " ";
 								the_author_posts_link();
-								echo "</small><br><small>written by </small>";	
+								echo "</small><br><small>";
+								echo _e('written by','globalrec')."</small> ";
 								echo $written_by;
 							}
 							else {
-								echo "<small>by </small>";
+								echo "<small>";
+								echo _e('by ','globalrec'). "</small>";
 								the_author_posts_link();
 							}
-					 	?> 
+					 	?>
 					</h4>
 				</div>
 				<div class="col-md-4">
-					<?php 
+					<?php   
 						$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 						if ( $region != '')  : 
-						echo "<h4><small>Region </small>";	
+						echo "<h4><small>";
+						echo _e('Region','globalrec')."</small> ";	
 						echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
 						echo "</h4>";
 						endif;

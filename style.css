@@ -38,6 +38,10 @@ font-family:"Roboto Condensed",sans-serif;margin:35px 0 0 10px;
 	line-height: 1.2em;
 }
 
+.ontop{
+	z-index:1000;
+}
+
 .wp-caption {
 margin-bottom: 10px;
 }

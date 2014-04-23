@@ -63,12 +63,12 @@ $output2 = ''; ?>
 			
 		 	<hr style="margin:3px 0 3px 0;">
 
-			<div class="row">	
-				<div class="col-md-offset-6 col-md-3">Check translation:</div>
-				<div class="col-md-2"><?php do_action('icl_language_selector'); ?></div>
+			<div class="row">
+				<div class="col-md-offset-6 col-md-3"><?php _e('Check translation','globalrec'); ?>:</div>
+				<div class="col-md-2 ontop"><?php do_action('icl_language_selector'); ?></div>
 			</div>
 
-			<div id="post-content">	
+			<div id="post-content">
 				<?php 
 				$article_url = get_post_meta( $post->ID, '_gr_article-url', true );
 				$article_title = get_post_meta( $post->ID, '_gr_article-title', true );

@@ -54,7 +54,7 @@ $output2 = ''; ?>
 							}
 							else {
 								echo "<small>";
-								echo _e('by ','globalrec'). "</small>";
+								echo _e('by','globalrec'). " </small>";
 								the_author_posts_link();
 							}
 					 	?>

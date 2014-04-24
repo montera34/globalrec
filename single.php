@@ -8,6 +8,19 @@ $output2 = ''; ?>
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class('col-md-8') ?> id="post-<?php the_ID(); ?>">
+			<?php if (is_singular( 'newsletter' ) ) {?>
+				<div class="row">
+					<div class="col-md-10">
+						<ul class="breadcrumb">
+							<li><a href="<?php echo get_permalink(icl_object_id(6545,'page')) ?>#globlarec"><?php _e('Newsletters','globalrec'); ?></a></li>
+							<li><?php the_title(); ?> </li>
+						</ul>
+					</div>
+					<div class="col-md-2">
+						<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+					</div>
+				</div>
+			<?php    } ?>
 			<div class="row">
 			<?php
 				if($categories){

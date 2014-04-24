@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-md-10">
 					<ul class="breadcrumb">
-						<li><a href="/life-and-voices">Who we are</a></li>
+						<li><a href="<?php echo get_permalink(icl_object_id(2856,'page')) ?>"><?php _e('Who we are','globalrec'); ?></a></li>
 						<li><?php the_title(); ?> </li>
 					</ul>
 				</div>

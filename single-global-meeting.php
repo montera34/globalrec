@@ -5,7 +5,7 @@
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class("col-md-8") ?> id="post-<?php the_ID(); ?>">
 			<ul class="breadcrumb">
-			  <li><a href="/global-meetings/">Global Meetings</a></li>
+			  <li><a href="<?php echo get_permalink(icl_object_id(2721,'page')) ?>"><?php _e('Global Meetings','globalrec'); ?></a></li>
 			  <li><?php the_title(); ?> </li>
 			</ul>
 			<?php the_post_thumbnail( 'medium' ); ?>

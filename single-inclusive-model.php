@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-md-10">
 					<ul class="breadcrumb">
-						<li><a href="/law-reports">Law Reports</a></li>
+						<li><a href="<?php echo get_permalink(icl_object_id(10950,'page')) ?>"><?php _e('Inclusive Models','globalrec'); ?></a></li>
 						<li><?php the_title(); ?> </li>
 					</ul>
 				</div>

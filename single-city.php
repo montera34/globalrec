@@ -8,7 +8,7 @@ $post_id = $post->ID;?>
 			<div class="row">
 				<div class="col-md-10">
 					<ul class="breadcrumb">
-						<li><a href="/cities">Cities</a></li>
+						<li><a href="<?php echo get_permalink(icl_object_id(11177,'page')) ?>"><?php _e('Cities','globalrec'); ?></a></li>
 						<li><?php the_title(); ?></li>
 					</ul>
 				</div>

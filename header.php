@@ -86,7 +86,7 @@
 				</div>
 				<div class="col-md-4">
 					<div style="font-size:10px;margin-top: 10px;" class="pull-right ">
-						Supported by <a href="http://wiego.org" title="WIEGO">
+						<?php _e('Supported by','globalrec'); ?> <a href="http://wiego.org" title="WIEGO">
 						<img title="WIEGO" src="<?php bloginfo('template_url'); ?>/images/wiego-logo.png" alt="Logo WIEGO"/></a>
 					</div>
 				</div>

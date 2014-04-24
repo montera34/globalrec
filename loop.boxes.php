@@ -31,7 +31,7 @@ $output = '';
 		?> 
 		<?php  
 			if (get_the_term_list( $post->ID, 'post-region', '', ', ', '' ) != '')  { 
-				echo "| Region ";	
+				echo "| "._e('Region','globalrec');	
 				echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
 				echo " | ";}
 			if (get_post_type() != 'global-meeting') {the_time('M d, Y');}

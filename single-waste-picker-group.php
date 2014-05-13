@@ -98,15 +98,15 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members-type', true ). "</dd>";
 								echo "<dt>Members' occupation</dt>"; echo list_of_items($post_id,'_wpg_members-occupation');
 								echo "<dt>Organization type</dt><dd>". get_post_meta( $post_id, '_wpg_organization-type', true ). "</dd>";
-								echo "<dt>Organization scope</dt><dd>". get_post_meta( $post_id, '_wpg_organization-scope', true ). "</dd>";
+								echo "<dt>Organization scope</dt><dd>". ucfirst(get_post_meta( $post_id, '_wpg_organization-scope', true )). "</dd>";
 								echo "<dt>Workplace of members</dt>"; echo list_of_items($post_id,'_wpg_workplace-members');
-								echo "<dt>Membership</dt><dd>".get_post_meta( $post_id, '_wpg_membership', true )."</dd>";
+								echo "<dt>Membership</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_membership', true ))."</dd>";
 								echo "<dt>Organization Structure</dt><dd>".get_post_meta( $post_id, '_wpg_structure', true )."</dd>";
 								echo "<dt>Objectives</dt>"; echo list_of_items($post_id,'_wpg_objectives');
 								echo "<dt>Education and training</dt>"; echo list_of_items($post_id,'_wpg_education-training');
-								echo "<dt>Partnering organizations</dt><dd>".get_post_meta( $post_id, '_wpg_partnering-organizations', true ). "</dd>";
-								echo "<dt>Affiliations</dt><dd>".get_post_meta( $post_id, '_wpg_affiliations', true ). "</dd>";
-								echo "<dt>Funding</dt><dd>".get_post_meta( $post_id, '_wpg_funding', true ). "</dd>";
+								echo "<dt>Partnering organizations</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_partnering-organizations', true )). "</dd>";
+								echo "<dt>Affiliations</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_affiliations', true )). "</dd>";
+								echo "<dt>Funding</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_funding', true )). "</dd>";
 								echo "<dt>Internal elections</dt><dd>".get_post_meta( $post_id, '_wpg_elections', true ). "</dd>";
 								echo "<dt>Number of groups</dt><dd>".get_post_meta( $post_id, '_wpg_number-groups', true ). "</dd>";
 								echo "<dt>Number of members</dt><dd>".get_post_meta( $post_id, '_wpg_number-individuals', true ). "</dd>";
@@ -122,15 +122,15 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								<?php //Benefits 
 								echo "<dt>Member benefits</dt>"; echo list_of_items($post_id,'_wpg_member-benefits');
 								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post_id, '_wpg_credit-members', true ). "</dd>";
-								echo "<dt><dt>Safety & Technology</dt><dd>".get_post_meta( $post_id, '_wpg_safety-technology', true ). "</dd>";
+								echo "<dt><dt>Safety & Technology</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_safety-technology', true )). "</dd>";
 								?> 
 							</dl>
 							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
 							<dl>
 								<?php	//Services
-								echo "<dt>Relationship with the Municipality</dt><dd>".get_post_meta( $post_id, '_wpg_relationship-municipality', true ). "</dd>";
+								echo "<dt>Relationship with the Municipality</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_relationship-municipality', true )). "</dd>";
 								echo "<dt>Types of materials</dt>"; echo list_of_items($post_id,'_wpg_types-of-materials');
-								echo "<dt>Are they selling to middlemen</dt><dd>".get_post_meta( $post_id, '_wpg_middlemen', true ). "</dd>";
+								echo "<dt>Are they selling to middlemen</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_middlemen', true )). "</dd>";
 								echo "<dt>Activities</dt>"; echo list_of_items($post_id,'_wpg_activities');
 								echo "<dt>Sorting Spaces</dt>"; echo list_of_items($post_id,'_wpg_sorting-spaces');
 								echo "<dt>Treatmet of orgnanic materials</dt>"; echo list_of_items($post_id,'_wpg_treatment-organic-materials');

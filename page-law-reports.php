@@ -38,7 +38,7 @@ get_header(); ?>
 		?>
 
 			<tr>
-				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> <?php _e('Law Report','globalrec'); ?>">
 					<?php the_title(); ?></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
@@ -62,7 +62,7 @@ get_header(); ?>
 					$country = get_post($country_id);
 					$country_link = get_permalink($country->ID);
 					$country_name = $country->post_title;
-					echo '<a href="'.$country_link.'">'.$country_name.'</a>'; 
+					echo '<a href="'.$country_link.'" title="Go to '.$country_name.'">'.$country_name.'</a>'; 
 					?>
 				</td>
 			</tr>

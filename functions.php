@@ -1391,6 +1391,12 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				    'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
 				),
 			),
+			array(
+				'name' => 'Country for the map',
+				'desc' => '',
+				'id' => 'country',
+				'type' => 'text_small',
+			),
 		),
 	);
 	//Custom Fields for Cities

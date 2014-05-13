@@ -87,7 +87,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 					</h4>	
 						<?php echo "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>"; ?>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-7">
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
@@ -116,7 +116,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 									?> 
 							</dl>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-5">
 							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
 								<?php //Benefits 

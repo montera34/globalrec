@@ -730,7 +730,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'City',
 				'desc' => '',
-				'id' => $prefixwpg . 'city',
+				'id' => 'city',
 				'type' => 'text_small',
 			),
 			array(
@@ -742,7 +742,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Country',
 				'desc' => '',
-				'id' => $prefixwpg . 'country',
+				'id' => 'country',
 				'type' => 'text_small',
 			),
 			array(

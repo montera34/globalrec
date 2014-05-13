@@ -925,11 +925,11 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'options' => array(
 					'door to door' => 'door to door',
 					'dump' => 'dump',
-					'fixed' => 'Fixed',
+					'fixed' => 'fixed',
 					'informal collection from companies' => 'informal collection from companies',
 					'recycling centre' => 'recycling centre',
 					'recycling workshop' => 'recycling workshop',
-					'recovery from landfil' => 'recovery from landfil',
+					'landfil' => 'landfil',
 					'sanitary landfill' => 'sanitary landfill',
 					'sorting centres' => 'sorting centres',
 					'street' => 'street',
@@ -1072,10 +1072,10 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'funding',
 				'type' => 'multicheck',
 				'options' => array(
-					'self-funded' => 'Self funded',
-					'donor-funded' => 'Donor Funded',
-					'membeship-fees' => 'Membeship fees',
-					'ngo-funds' => 'NGO funds',
+					'self funded' => 'Self funded',
+					'donor funded' => 'Donor Funded',
+					'membeship fees' => 'Membeship fees',
+					'ngo funds' => 'NGO funds',
 					'loans' => 'Loans (e.g. from banks or corporate bodies)',
 				)
 			),

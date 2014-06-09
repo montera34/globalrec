@@ -658,7 +658,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Waste Picker Group City',
 				'desc' => 'Select the city of the Waste Picker Group',
-				'id' => $prefixwpg . 'cityselect', //"cityselect" beacuse "city" is alread used
+				'id' => $prefixwpg . 'cityselect', //"cityselect" because "city" is alread used
 				'type' => 'select',
 				'options' =>  $cities //one to many relationship. One waste picker group contains multiple members (bios)
 			),
@@ -718,13 +718,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Physical Address',
 				'desc' => 'ex: ',
-				'id' => $prefixwpg . 'physical-address',
+				'id' => $prefixwpg . 'physical_address',
 				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Postal Address',
 				'desc' => 'ex: ',
-				'id' => $prefixwpg . 'postal-address',
+				'id' => $prefixwpg . 'postal_address',
 				'type' => 'text_medium',
 			),
 			array(
@@ -748,7 +748,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Country Code Telephone',
 				'desc' => 'Ex: +1',
-				'id' => $prefixwpg . 'country-code-telephone',
+				'id' => $prefixwpg . 'country_code_telephone',
 				'type' => 'text_small',
 			),
 			array(
@@ -766,7 +766,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Cell Phone',
 				'desc' => '',
-				'id' => $prefixwpg . 'cell-phone',
+				'id' => $prefixwpg . 'cell_phone',
 				'type' => 'text_small',
 			),
 			array(
@@ -796,7 +796,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Other social networks',
 				'desc' => 'Add url',
-				'id' => $prefixwpg . 'other-social-networks',
+				'id' => $prefixwpg . 'other_social_networks',
 				'type' => 'text_medium',
 			),
 			array(
@@ -827,15 +827,51 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				),
 			),
 			array(
-				'name' => 'Primary Contact',
-				'desc' => '',
-				'id' => $prefixwpg . 'primary-contact',
+				'name' => 'Primary Contact name',
+				'desc' => 'Name',
+				'id' => $prefixwpg . 'primary_contact_name',
 				'type' => 'textarea_small',
 			),
 			array(
-				'name' => 'Secondary Contact',
+				'name' => 'Primary Contact phone',
 				'desc' => '',
-				'id' => $prefixwpg . 'secondary-contact',
+				'id' => $prefixwpg . 'primary_contact_phone',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Primary Contact position',
+				'desc' => '',
+				'id' => $prefixwpg . 'primary_contact_position',
+				'type' => 'textarea_small',
+			),
+						array(
+				'name' => 'Primary Contact email',
+				'desc' => '',
+				'id' => $prefixwpg . 'primary_contact_email',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Secondary Contact name',
+				'desc' => 'Name',
+				'id' => $prefixwpg . 'secondary_contact_name',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Secondary Contact phone',
+				'desc' => 'Name',
+				'id' => $prefixwpg . 'secondary_contact_phone',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Secondary Contact position',
+				'desc' => 'Name',
+				'id' => $prefixwpg . 'secondary_contact_position',
+				'type' => 'textarea_small',
+			),
+			array(
+				'name' => 'Secondary Contact email',
+				'desc' => 'Name',
+				'id' => $prefixwpg . 'secondary_contact_email',
 				'type' => 'textarea_small',
 			),
 		),
@@ -852,7 +888,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Type of members',
 				'desc' => 'Select if the organization is Waste Pickers bases or supports Waste Pickers',
-				'id' => $prefixwpg . 'members-type',
+				'id' => $prefixwpg . 'members_type',
 				'type' => 'radio_inline',
 				'options' => array(
 				    array('name' => 'Members are Waste Pickers', 'value' => 'Waste Pickers'),
@@ -863,7 +899,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Occupation of Members',
 				'desc' => '',
-				'id' => $prefixwpg . 'members-occupation',
+				'id' => $prefixwpg . 'members_occupation',
 				'type' => 'multicheck',
 				'options' => array(
 				    'Door to door waste only' => 'Door to door waste only',
@@ -881,7 +917,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Organization Type',
 				'desc' => '',
-				'id' => $prefixwpg . 'organization-type',
+				'id' => $prefixwpg . 'organization_type',
 				'type' => 'multicheck',
 				'options' => array(
 					'Academic' => 'Academic',
@@ -908,7 +944,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Organization Scope',
 				'desc' => '',
-				'id' => $prefixwpg . 'organization-scope',
+				'id' => $prefixwpg . 'organization_scope',
 				'type' => 'multicheck',
 				'options' => array(
 					'local' => 'Local',
@@ -920,7 +956,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Workplace of Members',
 				'desc' => '',
-				'id' => $prefixwpg . 'workplace-members',
+				'id' => $prefixwpg . 'workplace_members',
 				'type' => 'multicheck',
 				'options' => array(
 					'door to door' => 'door to door',
@@ -949,25 +985,25 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Number of groups that are members',
 				'desc' => 'Input the number of groups that belong to the organization. Ex: 7',
-				'id' => $prefixwpg . 'number-groups',
+				'id' => $prefixwpg . 'number_groups',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Number of individuals that are members',
 				'desc' => 'input the number of individuals that belong to the organization> Ex: 134',
-				'id' => $prefixwpg . 'number-individuals',
+				'id' => $prefixwpg . 'number_individuals',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Gender Composition Women (Number)',
 				'desc' => 'Indicate the percentage of women. If there are 60% of women input "60"',
-				'id' => $prefixwpg . 'gender-women-composition',
+				'id' => $prefixwpg . 'gender_women_composition',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Gender Composition Women (Comment)',
 				'desc' => 'If no number is provided indicate here thins like "majority of women"',
-				'id' => $prefixwpg . 'gender-women-comment',
+				'id' => $prefixwpg . 'gender_women_comment',
 				'type' => 'text_small',
 			),
 			array(
@@ -1012,7 +1048,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Eucation and training',
 				'desc' => '',
-				'id' => $prefixwpg . 'education-training',
+				'id' => $prefixwpg . 'education_training',
 				'type' => 'multicheck',
 				'options' => array(
 					'apprenticeship scheme' => 'apprenticeship scheme',
@@ -1033,25 +1069,25 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Formally registered',
 				'desc' => '',
-				'id' => $prefixwpg . 'formally-registered',
+				'id' => $prefixwpg . 'formally_registered',
 				'type' => 'checkbox',
 			),
 			array(
 				'name' => 'Year Formed',
 				'desc' => 'Year the organization was formed',
-				'id' => $prefixwpg . 'year-formed',
+				'id' => $prefixwpg . 'year_formed',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Registration Year',
 				'desc' => 'Year the organization was registered',
-				'id' => $prefixwpg . 'registration-year',
+				'id' => $prefixwpg . 'registration_year',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Partnering Organizations',
 				'desc' => '',
-				'id' => $prefixwpg . 'partnering-organizations',
+				'id' => $prefixwpg . 'partnering_organizations',
 				'type' => 'text_small',
 			),
 			array(
@@ -1109,7 +1145,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Member benefits',
 				'desc' => 'Select if the organization is Waste Pickers bases or supports Waste Pickers',
-				'id' => $prefixwpg . 'member-benefits',
+				'id' => $prefixwpg . 'member_benefits',
 				'type' => 'multicheck',
 				'options' => array(
 					'access to financial and material resources' =>'access to financial and material resources',
@@ -1142,13 +1178,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Number of credit / saving members?',
 				'desc' => 'Ex: "125"',
-				'id' => $prefixwpg . 'credit-members',
+				'id' => $prefixwpg . 'credit_members',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Safety & Technology',
 				'desc' => '',
-				'id' => $prefixwpg . 'safety-technology',
+				'id' => $prefixwpg . 'safety_technology',
 				'type' => 'multicheck',
 				'options' => array(
 					'yes' =>'yes',
@@ -1173,7 +1209,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Relationship with Municipality',
 				'desc' => '',
-				'id' => $prefixwpg . 'relationship-municipality',
+				'id' => $prefixwpg . 'relationship_municipality',
 				'type' => 'multicheck',
 				'options' => array(
 					'excellent' =>'Excellent',
@@ -1187,7 +1223,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Types of materials collected',
 				'desc' => '',
-				'id' => $prefixwpg . 'types-of-materials',
+				'id' => $prefixwpg . 'types_of_materials',
 				'type' => 'multicheck',
 				'options' => array(
 					'biodegradable waste' => 'biodegradable waste',
@@ -1241,7 +1277,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Sorting spaces',
 				'desc' => 'Where waste is sored or broken down, for example,electrical household items are taken to a sorting workshop where the same types of goods are picked apart by someone and all the reusable components extracted and sorted.',
-				'id' => $prefixwpg . 'sorting-spaces',
+				'id' => $prefixwpg . 'sorting_spaces',
 				'type' => 'multicheck',
 				'options' => array(
 					'sortin centres' => 'sorting centres',
@@ -1251,7 +1287,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Treatment of organic materials',
 				'desc' => '',
-				'id' => $prefixwpg . 'treatment-organic-materials',
+				'id' => $prefixwpg . 'treatment_organic_materials',
 				'type' => 'multicheck',
 				'options' => array(
 					'biogas' => 'biogas',
@@ -1262,7 +1298,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Challenges to access waste',
 				'desc' => '',
-				'id' => $prefixwpg . 'challenges-access-waste',
+				'id' => $prefixwpg . 'challenges_access_waste',
 				'type' => 'multicheck',
 				'options' => array(
 					//'competition between organisations' => 'competition between organisations',
@@ -1303,19 +1339,19 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Source of Information',
 				'desc' => 'Where is the information coming from.',
-				'id' => $prefixwpg . 'information-source',
+				'id' => $prefixwpg . 'information_source',
 				'type' => 'textarea_small',
 			),
 			array(
 					'name' => 'Date of Data Entry',
 					'desc' => '',
-					'id' => $prefixwpg . 'date-data-entry',
+					'id' => $prefixwpg . 'date_data_entry',
 					'type' => 'text_date_timestamp' 
 			),
 			array(
 					'name' => 'Date Data Updated',
 					'desc' => '',
-					'id' => $prefixwpg . 'date-data-updated',
+					'id' => $prefixwpg . 'date_data_updated',
 					'type' => 'text_date_timestamp' //TODO, if this is a multiple data entry, we can not use this type of metabox
 			),
 			array(
@@ -1482,8 +1518,7 @@ function languages_list(){
 // Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list
 function list_of_items($postid,$value){
 	$items = get_post_meta( $postid, $value, false);
-	if ($items[0]=="") {// If there are no data, do nothing
-	} else {
+	if (!empty($items) ) {
 		echo "<dd>";
 		foreach($items as $item) {
 			echo  ucfirst ($item)."<br>";

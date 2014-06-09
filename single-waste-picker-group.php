@@ -29,15 +29,20 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								<?php 
 									echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
 									echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
-									echo "<dt>Physical Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical-address', true ). "</dd>";
-									echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal-adress', true ). "</dd>";
-									echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
+									echo "<dt>Physical Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical_address', true ). "</dd>";
+									echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal_address', true ). "</dd>";
+									// echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
 									echo "<dt>Phone 1</dt><dd>". get_post_meta( $post_id, '_wpg_phone1', true ). "</dd>";
 									echo "<dt>Phone 2</dt><dd>".get_post_meta( $post_id, '_wpg_phone2', true ). "</dd>";
-									echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell-phone', true ). "</dd>";
+									echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell_phone', true ). "</dd>";
 									echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
-									echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary-contact', true ). "</dd>";
-									echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary-contact', true ). "</dd>";
+									echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_name', true ). "</dd>";
+									echo "<dt>position</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_position', true ). "</dd>";
+									echo "<dt>phone</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_phone', true ). "</dd>";
+									echo "<dt>email</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_email', true ). "</dd>";
+									echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_name', true ). "</dd>";
+									echo "<dt>phone </dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_phone', true ). "</dd>";
+									echo "<dt>email</dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_email', true ). "</dd>";
 								?>
 									</dl>
 							</div>
@@ -58,28 +63,34 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						} ?>
 					<h4>
 						<?php	//location
+						//City
 						$city = get_post($city_id);
+						$city2 = get_post_meta( $post->ID, 'city', true );
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
 						if ($city != '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field 'city'
 							if ($city_name == 'Not specified' ) {
-								echo get_post_meta( $post->ID, 'city', true ). ", ";
+								echo $city2. ", ";
 							} else {
-								echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
+								echo '<a href="'.$city_link.'">'.$city2.'</a>, ';
 							}
 						} else {
 							echo get_post_meta( $post->ID, 'city', true ). ", ";
 						}
+						//Region
 						echo get_post_meta( $post_id, '_wpg_region', true ). ", ";
+						
+						//Country
 						$country_id = get_post_meta( $post->ID, '_wpg_countryselect', true );
 						$country = get_post($country_id);
+						$country2 = get_post_meta( $post->ID, 'country', true );
 						$country_link = get_permalink($country->ID);
 						$country_name = $country->post_title;
 						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field 'city'
 							if ($country_name == 'Not specified') {//if the "not specified" option is selected
-								echo get_post_meta( $post->ID, 'country', true );
+								echo $country2;
 							} else {//if a country has been selected
-								echo '<a href="'.$country_link.'">'.$country_name.'</a>';
+								echo '<a href="'.$country_link.'">'.$country2.'</a>';
 							}
 						} else {
 						echo get_post_meta( $post->ID, 'country', true );
@@ -91,27 +102,27 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
-								echo "<dt>Year formed</dt><dd>".get_post_meta( $post_id, '_wpg_year-formed', true )
-								. " (registered in: ".get_post_meta( $post_id, '_wpg_registration-year', true ).")"
-								. " ". get_post_meta( $post_id, '_wpg_formally-registred', true )."</dd>";
+								echo "<dt>Year formed (registered)</dt><dd>".get_post_meta( $post_id, '_wpg_year_formed', true )
+								. " (registered in: ".get_post_meta( $post_id, '_wpg_registration_year', true ).")";
+								echo "<dt>Formally registered</dt><dd> "; echo get_post_meta( $post_id, '_wpg_formally_registered', true )."</dd>";
 								echo "<dt>Language</dt>"; echo list_of_items($post_id,'_wpg_language');
-								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members-type', true ). "</dd>";
-								echo "<dt>Members' occupation</dt>"; echo list_of_items($post_id,'_wpg_members-occupation');
-								echo "<dt>Organization type</dt><dd>". get_post_meta( $post_id, '_wpg_organization-type', true ). "</dd>";
-								echo "<dt>Organization scope</dt><dd>". ucfirst(get_post_meta( $post_id, '_wpg_organization-scope', true )). "</dd>";
-								echo "<dt>Workplace of members</dt>"; echo list_of_items($post_id,'_wpg_workplace-members');
+								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members_type', true ). "</dd>";
+								echo "<dt>Members' occupation</dt>"; echo list_of_items($post_id,'_wpg_members_occupation');
+								echo "<dt>Organization type</dt><dd>". get_post_meta( $post_id, '_wpg_organization_type', true ). "</dd>";
+								echo "<dt>Organization scope</dt><dd>". ucfirst(get_post_meta( $post_id, '_wpg_organization_scope', true )). "</dd>";
+								echo "<dt>Workplace of members</dt>"; echo list_of_items($post_id,'_wpg_workplace_members');
 								echo "<dt>Membership</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_membership', true ))."</dd>";
 								echo "<dt>Organization Structure</dt><dd>".get_post_meta( $post_id, '_wpg_structure', true )."</dd>";
 								echo "<dt>Objectives</dt>"; echo list_of_items($post_id,'_wpg_objectives');
-								echo "<dt>Education and training</dt>"; echo list_of_items($post_id,'_wpg_education-training');
-								echo "<dt>Partnering organizations</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_partnering-organizations', true )). "</dd>";
+								echo "<dt>Education and training</dt>"; echo list_of_items($post_id,'_wpg_education_training');
+								echo "<dt>Partnering organizations</dt>"; echo list_of_items($post_id,'_wpg_partnering_organizations');
 								echo "<dt>Affiliations</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_affiliations', true )). "</dd>";
 								echo "<dt>Funding</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_funding', true )). "</dd>";
 								echo "<dt>Internal elections</dt><dd>".get_post_meta( $post_id, '_wpg_elections', true ). "</dd>";
-								echo "<dt>Number of groups</dt><dd>".get_post_meta( $post_id, '_wpg_number-groups', true ). "</dd>";
-								echo "<dt>Number of members</dt><dd>".get_post_meta( $post_id, '_wpg_number-individuals', true ). "</dd>";
-								echo "<dt>Women composition</dt><dd>".get_post_meta( $post_id, '_wpg_gender-women-composition', true )."%"
-										.get_post_meta( $post_id, '_wpg_gender-women-comment', true ). "</dd>"; //used when no % data are available
+								echo "<dt>Number of groups</dt><dd>".get_post_meta( $post_id, '_wpg_number_groups', true ). "</dd>";
+								echo "<dt>Number of members</dt><dd>".get_post_meta( $post_id, '_wpg_number_individuals', true ). "</dd>";
+								echo "<dt>Women composition</dt><dd>".get_post_meta( $post_id, '_wpg_gender_women_composition', true )."% <small>"
+										.get_post_meta( $post_id, '_wpg_gender_women_comment', true ). "</small></dd>"; //used when no % data are available
 									
 									?> 
 							</dl>
@@ -121,20 +132,20 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<dl>
 								<?php //Benefits 
 								echo "<dt>Member benefits</dt>"; echo list_of_items($post_id,'_wpg_member-benefits');
-								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post_id, '_wpg_credit-members', true ). "</dd>";
-								echo "<dt><dt>Safety & Technology</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_safety-technology', true )). "</dd>";
+								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post_id, '_wpg_credit_members', true ). "</dd>";
+								echo "<dt><dt>Safety & Technology</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_safety_technology', true )). "</dd>";
 								?> 
 							</dl>
 							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
 							<dl>
 								<?php	//Services
-								echo "<dt>Relationship with the Municipality</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_relationship-municipality', true )). "</dd>";
-								echo "<dt>Types of materials</dt>"; echo list_of_items($post_id,'_wpg_types-of-materials');
+								echo "<dt>Relationship with the Municipality</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_relationship_municipality', true )). "</dd>";
+								echo "<dt>Types of materials</dt>"; echo list_of_items($post_id,'_wpg_types_of_materials');
 								echo "<dt>Are they selling to middlemen</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_middlemen', true )). "</dd>";
 								echo "<dt>Activities</dt>"; echo list_of_items($post_id,'_wpg_activities');
-								echo "<dt>Sorting Spaces</dt>"; echo list_of_items($post_id,'_wpg_sorting-spaces');
-								echo "<dt>Treatmet of orgnanic materials</dt>"; echo list_of_items($post_id,'_wpg_treatment-organic-materials');
-								echo "<dt>Challenges to access waste</dt>"; echo list_of_items($post_id,'_wpg_challenges-access-waste');
+								echo "<dt>Sorting Spaces</dt>"; echo list_of_items($post_id,'_wpg_sorting_spaces');
+								echo "<dt>Treatmet of orgnanic materials</dt>"; echo list_of_items($post_id,'_wpg_treatment_organic_materials');
+								echo "<dt>Challenges to access waste</dt>"; echo list_of_items($post_id,'_wpg_challenges_access_waste');
 								?> 
 							</dl>
 						</div>
@@ -144,9 +155,9 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						<dl>
 							<?php	//Complementary information
 							echo "<dt>Other publications</dt><dd>".get_post_meta( $post_id, '_wpg_publications', true ). "</dd>";
-							echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information-source', true ). "</dd>";
-							echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date-data-entry', true ). "</dd>";
-							echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date-data-updated', true ). "</dd>";
+							echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information_source', true ). "</dd>";
+							//echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date_data-entry', true ). "</dd>";
+							//echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date_data_updated', true ). "</dd>";
 							echo "<dt>Active</dt><dd>".get_post_meta( $post_id, '_wpg_status', true );
 							?>
 						</dl>

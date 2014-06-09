@@ -26,7 +26,7 @@ get_header(); ?>
 			<th><?php _e('Name','globalrec'); ?></th>
 			<th><?php _e('Type','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
-			<th><?php _e('Year formed','globalrec'); ?></th>
+			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration','globalrec'); ?>)</th>
 		</tr>
 	</thead>
     <tbody>
@@ -43,38 +43,50 @@ get_header(); ?>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
 				<td>
-					<?php echo get_post_meta( $post->ID, '_wpg_members-type', true ); ?>
+					<?php echo get_post_meta( $post->ID, '_wpg_members_type', true ); ?>
 				</td>
-				<td><?php
+				<td><?php 
+						//City
+						//echo get_post_meta( $post->ID, '_wpg_email', true );
 						$city_id = get_post_meta( $post->ID, '_wpg_cityselect', true );
 						$city = get_post($city_id);
+						$city2 = get_post_meta( $post->ID, 'city', true );
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
+						
 						if ($city != '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field '_wpg_city'
 							if ($city_name == 'Not specified' ) {
-								echo get_post_meta( $post->ID, 'city', true ). ", ";
+								echo $city2. ", ";
 							} else {
-								echo '<a href="'.$city_link.'">'.$city_name.'</a>, ';
+								echo '<a href="'.$city_link.'">'.$city2.'</a>, ';
 							}
 						} else {
-							echo get_post_meta( $post->ID, 'city', true ). ", ";
+							echo $city2. ", ";
 						}
+						//Country
 						$country_id = get_post_meta( $post->ID, '_wpg_countryselect', true );
 						$country = get_post($country_id);
+						$country2 =get_post_meta( $post->ID, 'country', true );
 						$country_link = get_permalink($country->ID);
 						$country_name = $country->post_title;
 						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
 							if ($country_name == 'Not specified') {//if the "not specified" option is selected
-								echo get_post_meta( $post->ID, 'country', true );
+								echo $country2;
 							} else {//if a country has been selected
-								echo '<a href="'.$country_link.'">'.$country_name.'</a>';
+								echo '<a href="'.$country_link.'">'.$country2.'</a>';
 							}
 						} else {
 						echo get_post_meta( $post->ID, 'country', true );
 						} ?>
 				</td>
-				<td>
-					<?php echo get_post_meta( $post->ID, '_wpg_year-formed', true ); ?>
+				<td> 
+					<?php 
+						$yearformed = get_post_meta( $post->ID, '_wpg_year_formed', true );
+						$yearregistred = get_post_meta( $post->ID, '_wpg_registration_year', true );
+						echo $yearformed;
+						if (!empty($yearregistred)) {
+							echo " (".$yearregistred.")";
+						} ?>
 				</td>
 
 			</tr>

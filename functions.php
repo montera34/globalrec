@@ -571,32 +571,50 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Published in',
-				'desc' => 'Media/newspaper/web that published this article',
+				'desc' => 'Media/newspaper/web that published this article. Ex: "New York Times"',
 				'id' => $prefix . 'published-in',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Written by',
-				'desc' => 'This article was written by...',
+				'desc' => 'This article was written by. Ex: "Juanito Valderrama"',
 				'id' => $prefix . 'written-by',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Date',
-				'desc' => 'when was this article/text published.  Stored in m/d/Y format (ex: 09/01/2011)',
+				'desc' => 'when was this article/text published. Stored in m/d/Y format (ex: 09/01/2011)',
 				'id' => $prefix . 'article-date',
 				'type' => 'text_date'
 			),
 			array(
 				'name' => 'Link to original article',
-				'desc' => 'Provide the url> http://www.radiosantafe.com/2012/03/01/dos-marchas-afectan-la-movilidad-por-la-carrera-septima/',
+				'desc' => 'Provide the url. ex: "http://www.radiosantafe.com/2012/03/01/dos-marchas-afectan-la-movilidad-por-la-carrera-septima/"',
 				'id' => $prefix . 'article-url',
 				'type' => 'text_medium'
 			),
 			array(
 				'name' => 'Article title',
-				'desc' => 'The title of the article',
+				'desc' => 'The original title of the article',
 				'id' => $prefix . 'article-title',
+				'type' => 'wysiwyg',
+				'options' => array(),
+			),
+		),
+	);
+	//Summary for posts (it is different from the excerpt, that is shown in loop.boxes)
+	$meta_boxes[] = array(
+		'id' => 'post-summary',
+		'title' => 'Summary of post (for translation). It\'s different from Excerpt!',
+		'pages' => array('post'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Post Summary',
+				'desc' => 'This is a summary of the article to send to translators. Do not mistake with the excerpt!',
+				'id' => $prefix . 'post-summary',
 				'type' => 'wysiwyg',
 				'options' => array(),
 			),

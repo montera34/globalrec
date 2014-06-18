@@ -26,7 +26,7 @@ get_header(); ?>
 			<th><?php _e('Name','globalrec'); ?></th>
 			<th><?php _e('Type','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
-			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration','globalrec'); ?>)</th>
+			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
 		</tr>
 	</thead>
     <tbody>
@@ -51,29 +51,35 @@ get_header(); ?>
 						$city_id = get_post_meta( $post->ID, '_wpg_cityselect', true );
 						$city = get_post($city_id);
 						$city2 = get_post_meta( $post->ID, 'city', true );
+						$city2_slug = strtolower (str_replace(" ","-",$city2));
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
 						
-						if ($city != '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field '_wpg_city'
-							if ($city_name == 'Not specified' ) {
+						if (!empty($city2)) {
+							/*if ($city_name == 'Not specified' ) {
 								echo $city2. ", ";
 							} else {
-								echo '<a href="'.$city_link.'">'.$city2.'</a>, ';
+								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
 							}
 						} else {
-							echo $city2. ", ";
-						}
+							echo $city2;
+							if (!empty($city2)) { echo ", ";};
+						}*/
+								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
+							}
+						
 						//Country
 						$country_id = get_post_meta( $post->ID, '_wpg_countryselect', true );
 						$country = get_post($country_id);
 						$country2 =get_post_meta( $post->ID, 'country', true );
+						$country2_slug = strtolower (str_replace(" ","-",$country2));
 						$country_link = get_permalink($country->ID);
 						$country_name = $country->post_title;
 						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
 							if ($country_name == 'Not specified') {//if the "not specified" option is selected
 								echo $country2;
 							} else {//if a country has been selected
-								echo '<a href="'.$country_link.'">'.$country2.'</a>';
+								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
 							}
 						} else {
 						echo get_post_meta( $post->ID, 'country', true );

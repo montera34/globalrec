@@ -43,16 +43,25 @@ $output2 = ''; ?>
 				<div class="col-md-4">
 					<h4>
 						<?php
+							$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
+							$author = get_the_author();
 							$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
-						 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
-								echo "<small>";
-								echo _e('Posted by','globalrec'). " ";
-								the_author_posts_link();
-								echo "</small><br><small>";
-								echo _e('written by','globalrec')."</small> ";
-								echo $written_by;
-							}
-							else {
+						 	if ($written_by != '')  { //if the text is written by someone the field "written" by will be filled
+						 		if ($written_by == $author) { //if the writer has a user
+						 			//temporary hack while creating all the users. Displays author as link if the autor exists.
+									//Author "Display name publicly as" must be the same as the name written at '_gr_written-by' custom field
+						 			echo "<small>";
+									echo _e('by','globalrec')."</small> ";
+									echo "<a href='".$author_url."'>".$author."</a>";
+								} else { //if the text is written by someone the field "written by" will be filled
+									echo "<small>";
+									echo _e('Posted by','globalrec'). " ";
+									the_author_posts_link();
+									echo "</small><br><small>";
+									echo _e('Written by','globalrec')."</small> ";
+									echo $written_by;
+								}
+							} else {
 								echo "<small>";
 								echo _e('by','globalrec'). " </small>";
 								the_author_posts_link();

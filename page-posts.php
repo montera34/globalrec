@@ -23,6 +23,7 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Posts','globalrec'); ?></th>
+			<th><?php _e('Author','globalrec'); ?></th>
 			<th><?php _e('Social Networking sites','globalrec'); ?></th>
 		</tr>
 	</thead>
@@ -37,6 +38,18 @@ get_header(); ?>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title(); ?></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+					<?php if (get_post_type() == 'post') {
+						$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+						 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+								echo $written_by;
+							}
+							else {
+								the_author_posts_link();
+							}
+						}
+					?>
 				</td>
 				<td>
 					<?php  include("share.php")?>

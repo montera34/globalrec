@@ -34,8 +34,7 @@ $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 					}
 				}
 				else {
-					echo $author_url;
-					//the_author_posts_link();
+					the_author_posts_link();
 				}
 			}
 		?>

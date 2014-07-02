@@ -2,6 +2,7 @@
 <?php
 $termname = $wp_query->queried_object->name;
 $termdesc = $wp_query->queried_object->description;
+$author = get_userdata( get_query_var('author') );
 ?>
 		
 <div id="archive">
@@ -12,10 +13,12 @@ $termdesc = $wp_query->queried_object->description;
 				<h2>Pune 2012 posts</h2>
 			<?php } elseif ( is_category() ) { ?>
 				<h2><?php _e('Category:', 'cp'); ?> <span><?php single_cat_title(); ?></span></h2>
+			<?php } elseif ( is_author() ) { ?>	
+				<h2><?php _e('Posts by', 'globalrec'); ?> <strong><?php echo $author->display_name;?></strong> </h2>
 			<?php } elseif ( get_post_type() == 'global-meeting' && is_archive()) { ?>
-				<h2><?php _e('Global meeting type:', 'cp'); ?> <span><?php echo $termname ?></span></h2>
+				<h2><?php _e('Global meeting type:', 'cp'); ?> <?php echo $termname ?></h2>
 			<?php } elseif ( get_post_type() == 'post' && is_archive()) { ?>
-				<h2><?php _e('', 'cp'); ?> <span><?php echo $termname ?></span></h2>
+				<h2><?php _e('', 'cp'); ?> <?php echo $termname ?></h2>
 			<?php } elseif ( is_tag() ) { ?>
 				<h2><?php _e('Tag:', 'cp'); ?> <span><?php single_tag_title(); ?></span></h2>
 			<?php } elseif ( is_day() ) { ?>
@@ -24,8 +27,6 @@ $termdesc = $wp_query->queried_object->description;
 				<h2><?php _e('Archive:', 'cp'); ?> <span><?php the_time( __('F, Y', 'cp') ); ?></span></h2>
 			<?php } elseif ( is_year() ) { ?>
 				<h2><?php _e('Archive:', 'cp'); ?> <span><?php the_time( __('Y', 'cp') ); ?></span></h2>
-			<?php } elseif ( is_author() ) { ?>	
-				<h2><?php _e('Author Archive', 'cp'); ?> </h2>
 			<?php } elseif ( isset($_GET['paged']) && !empty($_GET['paged']) ) { ?>
 				<h2><?php __('Blog Archives', 'cp'); ?></h2>
 			<?php } ?>

@@ -8,7 +8,9 @@ get_header(); ?>
 			</h2>		
 			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 		</div>
-		<?php the_content(); ?>	
+		<div class="content">
+			<?php the_content(); ?>	
+		</div>
 		<?php endwhile; endif; ?>
 		<?php global $more;    //select global meeting to build the highlited boxes. They should be marked with the taxonomy selected in "highlighted"
 			$args = array(

@@ -11,7 +11,9 @@ get_header(); ?>
 				</h2>		
 			</div>	
 		<?php if (have_posts()) : while (have_posts()) : the_post();?>
-		<?php the_content(); ?>
+		<div class="content">
+			<?php the_content(); ?>
+		</div>
 		<a name="globalrec"></a>
 	 	<h3><?php _e('Struggles and victories Newsletters (globalrec.org)', 'wpml_theme'); ?></h3>
 		<?php endwhile; endif; 

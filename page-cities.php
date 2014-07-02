@@ -1,6 +1,6 @@
 <?php  /* Template Name: City List*/ 
 get_header(); ?>
-<div id="page-law-reports"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
+<div id="page-law-reports" <?php post_class(''); ?>>
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<div class="row">
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10">

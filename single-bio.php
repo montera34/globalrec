@@ -13,7 +13,7 @@
 				</div>
 				<div class="col-md-2">
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
-				</div>
+				</div>	
 			</div>
 		</div>
 		<div class="row">

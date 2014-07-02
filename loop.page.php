@@ -6,7 +6,7 @@
 		</h2>		
 	</div>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-8 content">
 		<?php the_content(); ?>
 		</div>
 	</div>

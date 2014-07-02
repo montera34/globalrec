@@ -22,7 +22,7 @@ $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 		<small> 
 		<?php if (get_post_type() == 'post') {
 			$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
-			$author = get_the_author();
+			$author = get_the_author_meta('display_name');
 			$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
 				if (!empty($written_by)) {
 					if ($written_by == $author) {

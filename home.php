@@ -76,14 +76,10 @@ $output = '';
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	4,
-					 'cat'=> 858
+					 'cat'=> icl_object_id(858, 'category')
 						);
-					if ( $paged > 1 ) {
-					 $args['paged'] = $paged;
-						}
-		 
 					$my_query = new WP_Query($args); ?>
-						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
+						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post();
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
@@ -103,14 +99,11 @@ $output = '';
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	4,
-					 'cat'=>	icl_object_id(964, 'category')		 
+					 'cat'=>	icl_object_id(964, 'category')
 						);
-					if ( $paged > 1 ) {
-					 $args['paged'] = $paged;
-						}
 		 
 					$my_query = new 	WP_Query($args); ?>
-						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 
+						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post();
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
@@ -131,11 +124,8 @@ $output = '';
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	4,
-					 'cat'=> 970
+					 'cat'=> icl_object_id(970, 'category')
 						);
-					if ( $paged > 1 ) {
-					 $args['paged'] = $paged;
-						}
 		 
 					$my_query = new WP_Query($args); ?>
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post(); 

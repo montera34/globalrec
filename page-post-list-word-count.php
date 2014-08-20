@@ -27,9 +27,10 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Posts','globalrec'); ?></th>
-			<th><?php _e('Translations','globalrec'); ?></th>
+			<!--<th><?php _e('Translations','globalrec'); ?></th>-->
 			<th><?php _e('Date','globalrec'); ?></th>
 			<th><?php _e('Author','globalrec'); ?></th>
+			<th><?php _e('Country','globalrec'); ?></th>
 			<th><?php _e('Region','globalrec'); ?></th>
 			<th><?php _e('Number of words title+article','globalrec'); ?></th>
 			<th><?php _e('Number of words title+summary','globalrec'); ?></th>
@@ -47,10 +48,10 @@ get_header(); ?>
 					<?php the_title();?></a>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
-				<td>
+				<!--<td>
 					<?php //languages_list_available(); ?>
 					<?php //wp_reset_query(); ?>
-				</td>
+				</td>-->
 				<td>
 					<?php the_time('m/d/Y') ?>
 				</td>
@@ -65,6 +66,14 @@ get_header(); ?>
 							}
 						}
 					?>
+				</td>
+				<td>
+				<?php
+					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$country = get_post( $country_ID );
+					$countrytitle = $country->post_title;
+					echo $countrytitle;
+				?>
 				</td>
 				<td>
 				<?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?>

@@ -120,7 +120,7 @@ $output2 = ''; ?>
 						foreach($categories as $category) {
 							$output2 .= '<a href="'.get_category_link( $category->term_id ).'" title="' 
 							. esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) 
-							. '" class="label">'.$category->cat_name.'</a>'.$separator;
+							. '" class="label">'.str_replace('@'.ICL_LANGUAGE_CODE, '', $category->cat_name).'</a>'.$separator;
 						}
 					echo trim($output2, $separator);
 					} 

@@ -1,6 +1,6 @@
 <?php get_header();
 $categories = get_the_category();
-$separator = ' ';
+$separator = '&nbsp;';
 $output = '';
 $output2 = ''; ?>
 
@@ -25,7 +25,7 @@ $output2 = ''; ?>
 			<?php
 				if($categories){
 					foreach($categories as $category) {
-						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right" style="margin-right:5px">'.$category->cat_name.' </a> '.$separator;
+						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right" style="margin-right:5px">'.str_replace('@'.ICL_LANGUAGE_CODE, '', $category->cat_name).' </a> '.$separator;
 					}
 				echo trim($output, $separator);
 				}

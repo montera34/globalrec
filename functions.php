@@ -178,7 +178,7 @@ register_post_type( 'law-report', array( // Defining Law report custom post type
 	)
 );
 
-register_post_type( 'city', array( // Defining Country custom post type
+register_post_type( 'city', array( // Defining City custom post type
 	'labels' => array(
 		'name' => __( 'City' ),
 		'singular_name' => __( 'City' ),
@@ -200,7 +200,7 @@ register_post_type( 'city', array( // Defining Country custom post type
 	)
 );
 
-register_post_type( 'country', array( // Defining City custom post type
+register_post_type( 'country', array( // Defining Country custom post type
 	'labels' => array(
 		'name' => __( 'Countries' ),
 		'singular_name' => __( 'Country' ),
@@ -1535,8 +1535,8 @@ function languages_list(){
 
 // Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list
 function list_of_items($postid,$value){
-	$items = get_post_meta( $postid, $value, false);
-	if (!empty($items) ) {
+	$items = get_post_meta($postid,$value,false);
+	if (!empty($items)) {
 		echo "<dd>";
 		foreach($items as $item) {
 			echo  ucfirst ($item)."<br>";
@@ -1545,4 +1545,13 @@ function list_of_items($postid,$value){
 	}
 }
 add_action( 'init', 'list_of_items' );
+
+//Function to get the number of waste picker groups that have certain custom fields
+function get_number_posts ($meta_key,$meta_value) {
+	$args = array( 'posts_per_page' => -1,'meta_key'=> $meta_key, 'meta_value' => $meta_value, 'post_type' => 'waste-picker-group');
+	$posts_array = get_posts( $args );
+	$result = count($posts_array);
+	return $result;
+}
+
 ?>

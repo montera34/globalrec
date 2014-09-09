@@ -11,6 +11,61 @@ get_header(); ?>
 		<?php the_content(); ?>	
 		<?php endwhile; endif; ?>
 		<?php
+			$count_wpo = wp_count_posts( 'waste-picker-group' )->publish;
+			global $wpdb;
+			//$wastepickers = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'Members are Waste Pickers';");
+			//$wastepickers_orgs = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'Members are Waste Picker Organisations';");
+			//$orgs_india = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'India';");//AND meta_key = 'country' ??
+			
+			$wp_members = get_number_posts ('_wpg_members_type','Members are Waste Pickers');
+			$wp_orgs = get_number_posts ('_wpg_members_type','members are Waste Picker Organizations');
+			
+			$local_orgs = get_number_posts ('_wpg_organization_scope','local');
+			$regional_orgs = get_number_posts ('_wpg_organization_scope','regional');
+			$national_orgs = get_number_posts ('_wpg_organization_scope','national');
+			$international_orgs = get_number_posts ('_wpg_organization_scope','international');
+			
+			$tradeunions_orgs = get_number_posts ('_wpg_organization_type','Trade Union');
+			$wpg_orgs = get_number_posts ('_wpg_organization_type','Waste Picker Group');
+			$ngo_orgs = get_number_posts ('_wpg_organization_type','NGO');
+			$coop_orgs = get_number_posts ('_wpg_organization_type','Cooperative');
+			$coopfed_orgs = get_number_posts ('_wpg_organization_type','Cooperative Federation');
+					
+			$wp_india = get_number_posts ('country','India');
+			$wp_colombia = get_number_posts ('country','Colombia');
+			
+			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p>';
+			//echo '<p>There are ' . $wastepickers . ' that have waste pickers as members (' . round($wastepickers/$count_wpo*100,1) .'%).</p>';
+			
+			echo '<h3>Type of members</h3>';
+			echo '<p>Oraganizations with waste pickers as members: ' . $wp_members. ' (' . round($wp_members/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Organizations with waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
+			
+			echo '<h3>Scope</h3>';
+			echo 'Local: ' . $local_orgs. ' (' . round($local_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'Regional: ' . $regional_orgs. ' (' . round($regional_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'National: ' . $national_orgs. ' (' . round($national_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'International: ' . $international_orgs. ' (' . round($international_orgs/$count_wpo*100,1) .'%).</p>';
+			
+			echo '<h3>Type of organization</h3>';
+			echo 'Trade Unions: ' . $tradeunions_orgs. ' (' . round($tradeunions_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'Waste Picker Group: ' . $wpg_orgs. ' (' . round($wpg_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'NGO: ' . $ngo_orgs. ' (' . round($ngo_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'Cooperative: ' . $coop_orgs. ' (' . round($coop_orgs/$count_wpo*100,1) .'%).</p>';
+			echo 'Cooperative Federation: ' . $coopfed_orgs. ' (' . round($coopfed_orgs/$count_wpo*100,1) .'%).</p>';
+			
+			echo '<h3>Country</h3>';
+			echo '<p>In India:' . $wp_india . '  (' . round($wp_india/$count_wpo*100,1) .'%).</p>';
+			echo '<p>In Colombia: ' . $wp_colombia . '  (' . round($wp_colombia/$count_wpo*100,1) .'%).</p>';
+			?>
+			
+			<?php
+			// set the meta_key to the appropriate custom field meta key
+			$meta_key = '_wpg_number_individuals';
+			$allwp = $wpdb->get_var( $wpdb->prepare("SELECT sum(meta_value) FROM $wpdb->postmeta WHERE meta_key = %s",$meta_key) );
+			echo "<p>There are " .number_format($allwp). " of waste pickers in waste picker organizations.</p>";
+			?> 
+		<?php
 			$args = array(
 			 'post_type' => 'waste-picker-group', 
 			 'posts_per_page' => -1, 
@@ -24,7 +79,7 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Name','globalrec'); ?></th>
-			<th><?php _e('Type','globalrec'); ?></th>
+			<th><?php _e('Type of Member','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
 		</tr>

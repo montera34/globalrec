@@ -32,8 +32,9 @@ get_header(); ?>
 			<th><?php _e('Author','globalrec'); ?></th>
 			<th><?php _e('Country','globalrec'); ?></th>
 			<th><?php _e('Region','globalrec'); ?></th>
-			<th><?php _e('Number of words title+article','globalrec'); ?></th>
-			<th><?php _e('Number of words title+summary','globalrec'); ?></th>
+			<th><?php _e('Number of words title','globalrec'); ?></th>
+			<th><?php _e('Number of words Article (without html)','globalrec'); ?></th>
+			<th><?php _e('Number of words Summary (without html)','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -80,16 +81,22 @@ get_header(); ?>
 				</td>
 				<td>
 					<?php
-						$title = get_the_title();
-						$str = $title .get_the_content();
+						$str = get_the_title();
 						echo str_word_count($str);
 					?>
 				</td>
 				<td>
 					<?php
+						$str = get_the_content();
+						echo str_word_count($str);
+						echo ' ('. str_word_count(strip_tags($str)).')'; 
+					?>
+				</td>
+				<td>
+					<?php
 						$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-						$summaryAndTitle = get_the_title().get_post_meta( $post->ID, '_gr_post-summary', true );
-						echo str_word_count($summaryAndTitle);
+						echo str_word_count($summary);
+						echo ' ('. str_word_count(strip_tags($summary)).')'; 
 						if (!empty($summary)) {
 							echo ' <span class="glyphicon glyphicon-ok"></span>';
 						} ?>

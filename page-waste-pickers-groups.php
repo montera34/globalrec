@@ -37,15 +37,18 @@ get_header(); ?>
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p>';
 			//echo '<p>There are ' . $wastepickers . ' that have waste pickers as members (' . round($wastepickers/$count_wpo*100,1) .'%).</p>';
 			
+			echo '<div class="row"><div class="col-md-4">';
 			echo '<h3>Type of members</h3>';
 			echo '<p>Oraganizations with waste pickers as members: ' . $wp_members. ' (' . round($wp_members/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Organizations with waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
+			echo '</div><div class="col-md-2">';
 			
 			echo '<h3>Scope</h3>';
 			echo 'Local: ' . $local_orgs. ' (' . round($local_orgs/$count_wpo*100,1) .'%).</p>';
 			echo 'Regional: ' . $regional_orgs. ' (' . round($regional_orgs/$count_wpo*100,1) .'%).</p>';
 			echo 'National: ' . $national_orgs. ' (' . round($national_orgs/$count_wpo*100,1) .'%).</p>';
 			echo 'International: ' . $international_orgs. ' (' . round($international_orgs/$count_wpo*100,1) .'%).</p>';
+			echo '</div><div class="col-md-3">';
 			
 			echo '<h3>Type of organization</h3>';
 			echo 'Trade Unions: ' . $tradeunions_orgs. ' (' . round($tradeunions_orgs/$count_wpo*100,1) .'%).</p>';
@@ -53,10 +56,12 @@ get_header(); ?>
 			echo 'NGO: ' . $ngo_orgs. ' (' . round($ngo_orgs/$count_wpo*100,1) .'%).</p>';
 			echo 'Cooperative: ' . $coop_orgs. ' (' . round($coop_orgs/$count_wpo*100,1) .'%).</p>';
 			echo 'Cooperative Federation: ' . $coopfed_orgs. ' (' . round($coopfed_orgs/$count_wpo*100,1) .'%).</p>';
+			echo '</div><div class="col-md-3">';
 			
 			echo '<h3>Country</h3>';
 			echo '<p>In India:' . $wp_india . '  (' . round($wp_india/$count_wpo*100,1) .'%).</p>';
 			echo '<p>In Colombia: ' . $wp_colombia . '  (' . round($wp_colombia/$count_wpo*100,1) .'%).</p>';
+			echo '</div></div>';
 			?>
 			
 			<?php

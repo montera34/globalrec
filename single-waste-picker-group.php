@@ -96,7 +96,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						echo get_post_meta( $post->ID, 'country', true );
 						} ?>
 					</h4>	
-						<?php echo "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>"; ?>
+						<?php echo ($website != '') ? "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>" : ''; ?>
 					<div class="row">
 						<div class="col-md-7">
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>

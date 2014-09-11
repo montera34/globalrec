@@ -725,13 +725,14 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'name' => 'Email of Organization',
 				'desc' => 'ex: info@globalrec.org',
 				'id' => $prefixwpg . 'email',
-				'type' => 'text_medium',
+				'type' => 'text_email',
 			),
 			array(
 				'name' => 'Website of Organization',
 				'desc' => 'ex: http://globalrec.org',
 				'id' => $prefixwpg . 'website',
-				'type' => 'text_medium',
+				'type' => 'text_url',
+				'protocols' => array( 'http', 'https')
 			),
 			array(
 				'name' => 'Physical Address',
@@ -848,49 +849,49 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'name' => 'Primary Contact name',
 				'desc' => 'Name',
 				'id' => $prefixwpg . 'primary_contact_name',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Primary Contact phone',
 				'desc' => '',
 				'id' => $prefixwpg . 'primary_contact_phone',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Primary Contact position',
 				'desc' => '',
 				'id' => $prefixwpg . 'primary_contact_position',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 						array(
 				'name' => 'Primary Contact email',
 				'desc' => '',
 				'id' => $prefixwpg . 'primary_contact_email',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Secondary Contact name',
 				'desc' => 'Name',
 				'id' => $prefixwpg . 'secondary_contact_name',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Secondary Contact phone',
 				'desc' => 'Name',
 				'id' => $prefixwpg . 'secondary_contact_phone',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Secondary Contact position',
 				'desc' => 'Name',
 				'id' => $prefixwpg . 'secondary_contact_position',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Secondary Contact email',
 				'desc' => 'Name',
 				'id' => $prefixwpg . 'secondary_contact_email',
-				'type' => 'textarea_small',
+				'type' => 'text_medium',
 			),
 		),
 	);
@@ -905,13 +906,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Type of members',
-				'desc' => 'Select if the organization is Waste Pickers bases or supports Waste Pickers',
+				'desc' => 'Select if the organization is Waste Pickers based, Waste Picker Organization based or just supports Waste Pickers',
 				'id' => $prefixwpg . 'members_type',
-				'type' => 'radio_inline',
+				'type' => 'multicheck',
 				'options' => array(
-				    array('name' => 'Members are Waste Pickers', 'value' => 'Waste Pickers'),
-				    array('name' => 'Members are Waste Pickers organizations', 'value' => 'Waste Picker Organizations'),
-				    array('name' => 'Waste Picker support organization', 'value' => 'Support Organization'),
+				    'Members are Waste Pickers' => 'Members are Waste Pickers',
+				    'Members are Waste Pickers organizations' => 'Members are Waste Pickers organizations',
+				    'Waste Picker support organization' => 'Waste Picker support organization',
 				)
 			),
 			array(

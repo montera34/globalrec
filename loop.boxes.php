@@ -9,7 +9,13 @@ $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 	<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 	<?php if (has_post_thumbnail()) :
 			echo "<div class=\"size-thumbnail\" style=\"margin:0 0 10px 0;\">";
-			the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
+			//the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
+			
+			if (get_the_post_thumbnail('medium') != '' ) {
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
+				} else {
+				the_post_thumbnail( 'full', array('class' => 'img-responsive') );
+				}
 			echo "</div>";
 		else:
 			//echo '<img width="150" src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.png" />';

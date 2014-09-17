@@ -27,15 +27,15 @@ get_header(); ?>
 	<thead>
 		<tr>
 			<th><?php _e('Posts','globalrec'); ?></th>
-			<!--<th><?php _e('Translations','globalrec'); ?></th>-->
+			<th><?php _e('# Newsletter','globalrec'); ?></th>
 			<th><?php _e('Date','globalrec'); ?></th>
 			<th><?php _e('Author','globalrec'); ?></th>
 			<th><?php _e('Country','globalrec'); ?></th>
 			<th><?php _e('Region','globalrec'); ?></th>
-			<th><?php _e('# of words title','globalrec'); ?></th>
-			<th><?php _e('# of words Article (without html)','globalrec'); ?></th>
-			<th><?php _e('# of words Summary (without html)','globalrec'); ?></th>
-			<th><?php _e('# of words Summary + title','globalrec'); ?></th>
+			<th><?php _e('# words title','globalrec'); ?></th>
+			<th><?php _e('# words Article without html','globalrec'); ?></th>
+			<th><?php _e('# words Summary without html','globalrec'); ?></th>
+			<th><?php _e('# words Summary + title','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -50,10 +50,9 @@ get_header(); ?>
 					<?php the_title();?></a>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
-				<!--<td>
-					<?php //languages_list_available(); ?>
-					<?php //wp_reset_query(); ?>
-				</td>-->
+				<td>
+					<span class="label"><?php echo get_the_term_list( $post->ID, 'post-newsletter', ' ', ', ', '' ); ?></span> 
+				</td>
 				<td>
 					<?php the_time('m/d/Y') ?>
 				</td>
@@ -89,16 +88,16 @@ get_header(); ?>
 				<td>
 					<?php
 						$str = get_the_content();
-						echo str_word_count($str);
-						echo ' ('. str_word_count(strip_tags($str)).')'; 
+						//echo str_word_count($str);
+						echo str_word_count(strip_tags($str)); 
 					?>
 				</td>
 				<td>
 					<?php
 						$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 						$stripped_summary = strip_tags($summary);
-						echo str_word_count($summary);
-						echo ' ('. str_word_count($stripped_summary).')'; 
+						//echo str_word_count($summary);
+						echo str_word_count($stripped_summary); 
 					?>
 				</td>
 				<td>

@@ -1,4 +1,5 @@
 globalrec
 =========
 
-Wordpress theme of the global alliance of waste pickers
+Wordpress theme of the Global Alliance of Waste Pickers
+http://globalrec.org

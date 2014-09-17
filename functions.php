@@ -967,9 +967,9 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'multicheck',
 				'options' => array(
 					'local' => 'Local',
-					'regional' => 'Regional',
-					'national' => 'National',
-					'international' => 'International',
+					'regional' => 'regional',
+					'national' => 'national',
+					'international' => 'international',
 				)
 			),
 			array(
@@ -1079,10 +1079,10 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'project management' => 'project management',
 					'recycling' => 'recycling',
 					'risks' => 'risks',
-					'technical wp training' => 'Technical WP training',
+					'technical waste picker training' => 'technical waste picker training training',
 					'waste management' => 'waste management',
-					'waste picker activities' => 'Waste picker activities',
-					'wp rights and duties' => 'WP rights and duties',
+					'waste picker activities' => 'waste picker activities',
+					'waste picker rights and duties' => 'waste picker rights and duties',
 				)
 			),
 			array(
@@ -1115,10 +1115,10 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'affiliations',
 				'type' => 'multicheck',
 				'options' => array(
-					'donor' => 'Donor ',
-					'government' => 'Government',
-					'ngo' => 'NGO',
-					'waste-picker-organisation' => 'Waste Picker Organisation',
+					'donor' => 'donor ',
+					'government' => 'government',
+					'ngo' => 'ngo',
+					'waste-picker-organisation' => 'waste wicker organisation',
 				)
 			),
 			array(
@@ -1127,11 +1127,11 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'funding',
 				'type' => 'multicheck',
 				'options' => array(
-					'self funded' => 'Self funded',
-					'donor funded' => 'Donor Funded',
-					'membeship fees' => 'Membeship fees',
-					'ngo funds' => 'NGO funds',
-					'loans' => 'Loans (e.g. from banks or corporate bodies)',
+					'self funded' => 'self funded',
+					'donor funded' => 'donor funded',
+					'membeship fees' => 'membeship fees',
+					'ngo funds' => 'ngo funds',
+					'loans' => 'loans (e.g. from banks or corporate bodies)',
 				)
 			),
 			array(
@@ -1173,13 +1173,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'access to training centre for families' =>'access to training centre for families',
 					'availability of compost manure' =>'availability of compost manure',
 					'child care system' =>'child care system',
-					'child educapprenticeship schemes' =>'child EducApprenticeship schemes',
+					'child educapprenticeship schemes' =>'child educapprenticeship schemes',
 					'child education programmes' =>'child education programmes',
 					'clean and healthy environment' =>'clean and healthy environment',
 					'emergency health care members fund' =>'emergency health care members fund',
 					'health centre' =>'health centre',
 					'health insurance' =>'health insurance',
-					'id cards' =>'ID cards',
+					'id cards' =>'id cards',
 					'improved working and living conditions' =>'improved working and living conditions',
 					'job creation' =>'job creation',
 					'legal assistance' =>'legal assistance',
@@ -1231,7 +1231,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'relationship_municipality',
 				'type' => 'multicheck',
 				'options' => array(
-					'excellent' =>'Excellent',
+					'excellent' =>'excellent',
 					'forma contract' =>'formal contract',
 					'friendly' =>'friendly',
 					'independent' =>'independent',

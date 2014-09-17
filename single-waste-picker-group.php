@@ -102,9 +102,10 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
+								$registration_year = get_post_meta( $post_id, '_wpg_registration_year', true );
 								echo "<dt>Year formed (registered)</dt><dd>".get_post_meta( $post_id, '_wpg_year_formed', true )
-								. " (registered in: ".get_post_meta( $post_id, '_wpg_registration_year', true ).")";
-								echo "<dt>Formally registered</dt><dd> "; echo get_post_meta( $post_id, '_wpg_formally_registered', true )."</dd>";
+								. " (registered in: ".$registration_year.")";
+								echo "<dt>Formally registered</dt><dd> ". get_post_meta( $post_id, '_wpg_formally_registered', true )."</dd>";
 								echo "<dt>Language</dt>"; echo list_of_items($post_id,'_wpg_language');
 								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members_type', true ). "</dd>";
 								echo "<dt>Members' occupation</dt>"; echo list_of_items($post_id,'_wpg_members_occupation');

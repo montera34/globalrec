@@ -248,6 +248,11 @@ register_taxonomy( 'post-region', 'post', array(
 	'label' => 'Regions',
 	'query_var' => true,
 	'rewrite' => true ) );
+register_taxonomy( 'post-newsletter', 'post', array(
+	'hierarchical' => true,
+	'label' => 'Newsletters',
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'post-belongs-to-newsletter' ) ) );
 }
 
 add_action('init', 'my_custom_init');

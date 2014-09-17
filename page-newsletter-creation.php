@@ -1,10 +1,10 @@
 <?php  /* Template Name: Newsletter Creation */
 get_header(); 
 $asian_posts = 7;
-$asian_offset = 4;
-$latinamerican_posts = 6;
+$asian_offset = 0;
+$latinamerican_posts = 12;
 $latinamerican_offset = 0;
-$african_posts= 3;
+$african_posts= 7;
 $african_offset= 0;
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
@@ -199,7 +199,7 @@ $african_offset= 0;
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive') );?>
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
 				</a>
 			</div>
 			<?php //the summary

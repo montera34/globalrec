@@ -730,7 +730,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'name' => 'Email of Organization',
 				'desc' => 'ex: info@globalrec.org',
 				'id' => $prefixwpg . 'email',
-				'type' => 'text_email',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Website of Organization',

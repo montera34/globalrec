@@ -461,6 +461,7 @@ function sample_metaboxes( $meta_boxes ) {
 		'posts_per_page' => -1,
 		'post_type' => 'waste-picker-group'
 		));
+	$groups = '';
 	foreach ($posts as $post) {
 		$groups[] = array(
 			'name' => $post->post_title,
@@ -836,6 +837,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'bamanankan' => 'bamanankan',
 					'bambaro' => 'bambaro',
 					'bomu' => 'bomu',
+					'hindi' => 'hindi',
 					'igbo' => 'igbo',
 					'kikongo' => 'kikongo',
 					'lingala' => 'lingala',
@@ -1541,10 +1543,10 @@ function languages_list(){
     }
 }
 
-// Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list
-function list_of_items($postid,$value,$name){
-	$items = get_post_meta($postid,$value,false);
-	if ($items!=' ') {
+// Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list and single
+function list_of_items($postid=1,$value=1,$name=1){
+	$items = get_post_meta($postid,$value,true);
+	if ($items!='') {
 		echo "<dt>".$name."</dt>";
 		echo "<dd>";
 		foreach($items as $item) {
@@ -1553,7 +1555,17 @@ function list_of_items($postid,$value,$name){
 		echo "</dd>";
 	}
 }
-add_action( 'init', 'list_of_items' );
+add_action( 'wp', 'list_of_items' );
+
+//Function to list single values and uppercase firt letter. Used in Waste Picker Group single
+
+function display_item($postid=1,$value=1,$name=1){
+	$item = get_post_meta($postid,$value,true);
+	if ($item!='') {
+		echo "<dt>".$name."</dt><dd>".$item."</dd>";
+	}
+}
+add_action( 'wp', 'display_item' );
 
 //Function to get the number of waste picker groups that have certain custom fields
 function get_number_posts ($meta_key,$meta_value) {

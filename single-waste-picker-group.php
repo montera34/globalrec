@@ -102,26 +102,25 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
-								$registration_year = get_post_meta( $post_id, '_wpg_registration_year', true );
-								echo "<dt>Year formed (registered)</dt><dd>".get_post_meta( $post_id, '_wpg_year_formed', true )
-								. " (registered in: ".$registration_year.")";
-								echo "<dt>Formally registered</dt><dd> ". get_post_meta( $post_id, '_wpg_formally_registered', true )."</dd>";
+								echo display_item($post_id,'_wpg_year_formed','Year formed');
+								echo display_item($post_id,'_wpg_registration_year','Registered in');
+								echo display_item($post_id,'_wpg_formally_registered','Formally registered');
 								echo list_of_items($post_id,'_wpg_language','Language');
-								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members_type', true ). "</dd>";
+								echo list_of_items($post_id,'_wpg_members_type','Type of members');
 								echo list_of_items($post_id,'_wpg_members_occupation','Members\' occupation');
-								echo "<dt>Organization type</dt><dd>". get_post_meta( $post_id, '_wpg_organization_type', true ). "</dd>";
-								echo "<dt>Organization scope</dt><dd>". ucfirst(get_post_meta( $post_id, '_wpg_organization_scope', true )). "</dd>";
+								echo list_of_items($post_id,'_wpg_organization_type','Organization type');
+								echo list_of_items($post_id,'_wpg_organization_scope','Organization scope');
 								echo list_of_items($post_id,'_wpg_workplace_members','Workplace of members');
-								echo "<dt>Membership</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_membership', true ))."</dd>";
-								echo "<dt>Organization Structure</dt><dd>".get_post_meta( $post_id, '_wpg_structure', true )."</dd>";
+								echo display_item($post_id,'_wpg_membership','Membership');
+								echo display_item($post_id,'_wpg_structure','Organization Structure');
 								echo list_of_items($post_id,'_wpg_objectives','Objectives');
 								echo list_of_items($post_id,'_wpg_education_training','Education and training');
-								echo list_of_items($post_id,'_wpg_partnering_organizations','Partnering organizations');
-								echo "<dt>Affiliations</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_affiliations', true )). "</dd>";
-								echo "<dt>Funding</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_funding', true )). "</dd>";
-								echo "<dt>Internal elections</dt><dd>".get_post_meta( $post_id, '_wpg_elections', true ). "</dd>";
-								echo "<dt>Number of groups</dt><dd>".get_post_meta( $post_id, '_wpg_number_groups', true ). "</dd>";
-								echo "<dt>Number of members</dt><dd>".get_post_meta( $post_id, '_wpg_number_individuals', true ). "</dd>";
+								echo display_item($post_id,'_wpg_partnering_organizations','Partnering organizations');
+								echo display_item($post_id,'_wpg_affiliations','Affiliations');
+								echo list_of_items($post_id,'_wpg_funding','Funding');
+								echo display_item($post_id,'_wpg_elections','Internal elections');
+								echo display_item($post_id,'_wpg_number_groups','Number of groups');
+								echo display_item($post_id,'_wpg_number_individuals','Number of members');
 								echo "<dt>Women composition</dt><dd>".get_post_meta( $post_id, '_wpg_gender_women_composition', true )."% <small>"
 										.get_post_meta( $post_id, '_wpg_gender_women_comment', true ). "</small></dd>"; //used when no % data are available
 									
@@ -133,16 +132,16 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<dl>
 								<?php //Benefits 
 								echo list_of_items($post_id,'_wpg_member-benefits','Member benefits');
-								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post_id, '_wpg_credit_members', true ). "</dd>";
-								echo "<dt><dt>Safety & Technology</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_safety_technology', true )). "</dd>";
+								echo display_item($post_id,'_wpg_credit_members','Number of credit / saving members?');
+								echo list_of_items($post_id,'_wpg_safety_technology','Safety & Technology');
 								?> 
 							</dl>
 							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
 							<dl>
 								<?php	//Services
-								echo "<dt>Relationship with the Municipality</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_relationship_municipality', true )). "</dd>";
+								echo list_of_items($post_id,'_wpg_relationship_municipality','Relationship with the Municipality');
 								echo list_of_items($post_id,'_wpg_types_of_materials','Types of materials');
-								echo "<dt>Are they selling to middlemen</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_middlemen', true )). "</dd>";
+								echo display_item($post_id,'_wpg_middlemen','Are they selling to middlemen?');
 								echo list_of_items($post_id,'_wpg_activities','Activities');
 								echo list_of_items($post_id,'_wpg_sorting_spaces','Sorting Spaces');
 								echo list_of_items($post_id,'_wpg_treatment_organic_materials','Treatmet of orgnanic materials');
@@ -155,11 +154,11 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 					<h4><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h4>
 						<dl>
 							<?php	//Complementary information
-							echo "<dt>Other publications</dt><dd>".get_post_meta( $post_id, '_wpg_publications', true ). "</dd>";
+							echo display_item($post_id,'_wpg_publications','Other publications');
 							echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information_source', true ). "</dd>";
 							//echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date_data-entry', true ). "</dd>";
 							//echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date_data_updated', true ). "</dd>";
-							echo "<dt>Active</dt><dd>".get_post_meta( $post_id, '_wpg_status', true );
+							echo display_item($post_id,'_wpg_status','Active');
 							?>
 						</dl>
 					<h4>Comments / Narrative</h4>

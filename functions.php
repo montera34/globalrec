@@ -915,9 +915,11 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'members_type',
 				'type' => 'multicheck',
 				'options' => array(
-				    'Members are Waste Pickers' => 'members are waste pickers',
-				    'Members are Waste Pickers organizations' => 'members are waste pickers organizations',
-				    'Waste Picker support organization' => 'waste picker support organization',
+				    'members are waste pickers' => 'members are waste pickers',
+				    'members are waste picker organizations' => 'members are waste picker organizations',
+				    'waste picker support organization' => 'waste picker support organization',
+				    'members are multi sector' => 'members are multi sector',
+				    'members employ waste pickers' => 'members employ waste pickers',
 				)
 			),
 			array(

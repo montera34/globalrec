@@ -1542,9 +1542,10 @@ function languages_list(){
 }
 
 // Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list
-function list_of_items($postid,$value){
+function list_of_items($postid,$value,$name){
 	$items = get_post_meta($postid,$value,false);
-	if (!empty($items)) {
+	if ($items!=' ') {
+		echo "<dt>".$name."</dt>";
 		echo "<dd>";
 		foreach($items as $item) {
 			echo  ucfirst ($item)."<br>";

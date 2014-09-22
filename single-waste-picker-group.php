@@ -106,17 +106,17 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo "<dt>Year formed (registered)</dt><dd>".get_post_meta( $post_id, '_wpg_year_formed', true )
 								. " (registered in: ".$registration_year.")";
 								echo "<dt>Formally registered</dt><dd> ". get_post_meta( $post_id, '_wpg_formally_registered', true )."</dd>";
-								echo "<dt>Language</dt>"; echo list_of_items($post_id,'_wpg_language');
+								echo list_of_items($post_id,'_wpg_language','Language');
 								echo "<dt>Type of members</dt><dd>".get_post_meta( $post_id, '_wpg_members_type', true ). "</dd>";
-								echo "<dt>Members' occupation</dt>"; echo list_of_items($post_id,'_wpg_members_occupation');
+								echo list_of_items($post_id,'_wpg_members_occupation','Members\' occupation');
 								echo "<dt>Organization type</dt><dd>". get_post_meta( $post_id, '_wpg_organization_type', true ). "</dd>";
 								echo "<dt>Organization scope</dt><dd>". ucfirst(get_post_meta( $post_id, '_wpg_organization_scope', true )). "</dd>";
-								echo "<dt>Workplace of members</dt>"; echo list_of_items($post_id,'_wpg_workplace_members');
+								echo list_of_items($post_id,'_wpg_workplace_members','Workplace of members');
 								echo "<dt>Membership</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_membership', true ))."</dd>";
 								echo "<dt>Organization Structure</dt><dd>".get_post_meta( $post_id, '_wpg_structure', true )."</dd>";
-								echo "<dt>Objectives</dt>"; echo list_of_items($post_id,'_wpg_objectives');
-								echo "<dt>Education and training</dt>"; echo list_of_items($post_id,'_wpg_education_training');
-								echo "<dt>Partnering organizations</dt>"; echo list_of_items($post_id,'_wpg_partnering_organizations');
+								echo list_of_items($post_id,'_wpg_objectives','Objectives');
+								echo list_of_items($post_id,'_wpg_education_training','Education and training');
+								echo list_of_items($post_id,'_wpg_partnering_organizations','Partnering organizations');
 								echo "<dt>Affiliations</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_affiliations', true )). "</dd>";
 								echo "<dt>Funding</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_funding', true )). "</dd>";
 								echo "<dt>Internal elections</dt><dd>".get_post_meta( $post_id, '_wpg_elections', true ). "</dd>";
@@ -132,7 +132,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
 								<?php //Benefits 
-								echo "<dt>Member benefits</dt>"; echo list_of_items($post_id,'_wpg_member-benefits');
+								echo list_of_items($post_id,'_wpg_member-benefits','Member benefits');
 								echo "<dt>Number of credit / saving members?</dt><dd>".get_post_meta( $post_id, '_wpg_credit_members', true ). "</dd>";
 								echo "<dt><dt>Safety & Technology</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_safety_technology', true )). "</dd>";
 								?> 
@@ -141,12 +141,12 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<dl>
 								<?php	//Services
 								echo "<dt>Relationship with the Municipality</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_relationship_municipality', true )). "</dd>";
-								echo "<dt>Types of materials</dt>"; echo list_of_items($post_id,'_wpg_types_of_materials');
+								echo list_of_items($post_id,'_wpg_types_of_materials','Types of materials');
 								echo "<dt>Are they selling to middlemen</dt><dd>".ucfirst(get_post_meta( $post_id, '_wpg_middlemen', true )). "</dd>";
-								echo "<dt>Activities</dt>"; echo list_of_items($post_id,'_wpg_activities');
-								echo "<dt>Sorting Spaces</dt>"; echo list_of_items($post_id,'_wpg_sorting_spaces');
-								echo "<dt>Treatmet of orgnanic materials</dt>"; echo list_of_items($post_id,'_wpg_treatment_organic_materials');
-								echo "<dt>Challenges to access waste</dt>"; echo list_of_items($post_id,'_wpg_challenges_access_waste');
+								echo list_of_items($post_id,'_wpg_activities','Activities');
+								echo list_of_items($post_id,'_wpg_sorting_spaces','Sorting Spaces');
+								echo list_of_items($post_id,'_wpg_treatment_organic_materials','Treatmet of orgnanic materials');
+								echo list_of_items($post_id,'_wpg_challenges_access_waste','Challenges to access waste');
 								?> 
 							</dl>
 						</div>

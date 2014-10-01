@@ -11,7 +11,7 @@ $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 			echo "<div class=\"size-thumbnail\" style=\"margin:0 0 10px 0;\">";
 			//the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
 			
-			if (get_the_post_thumbnail('medium') != '' ) {
+			if (get_the_post_thumbnail($post->ID,'medium') != '' ) {
 				the_post_thumbnail( 'medium', array('class' => 'img-responsive') );
 				} else {
 				the_post_thumbnail( 'full', array('class' => 'img-responsive') );

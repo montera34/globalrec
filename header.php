@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 
-<head profile="http://gmpg.org/xfn/11">
+<head>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
 		<meta name="description" content="<?php if ( is_single() || is_page() ) {
@@ -58,56 +59,58 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="main-container" class="container">
-	<div class="row">
-		<div id="imagotipo" class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-			<a alt="Home" title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
-				<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" 
-				alt="<?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?> <?php _e( 'WASTE PICKERS', 'domain' ); ?>" />
-			</a>
-			<div id="logotype">
-				<span style="font-size:22px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
-				<br><span class="globalreccolor" style="font-weight:700; font-size:32px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
+	<header>
+		<div class="row">
+			<div id="imagotipo" class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+				<a title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
+					<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" 
+					alt="<?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?> <?php _e( 'WASTE PICKERS', 'domain' ); ?>" />
+				</a>
+				<div id="logotype">
+					<span style="font-size:22px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
+					<br><span class="globalreccolor" style="font-weight:700; font-size:32px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
+				</div>
 			</div>
-		</div>
-		<div id="tagline" class="col-xs-12 col-md-7 col-lg-8">
-			<div class="row">
-				<div class="col-xs-12 col-md-7">
-					<div class="pull-right">
-						<?php languages_list(); ?>
+			<div id="tagline" class="col-xs-12 col-md-7 col-lg-8">
+				<div class="row">
+					<div class="col-xs-12 col-md-7">
+						<div class="pull-right">
+							<?php languages_list(); ?>
+						</div>
+					</div>
+		    	<div class="pull-right">
+						<?php get_search_form(); ?>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-xs-12 col-md-8">
+						<small><?php echo get_bloginfo( 'description' ) ?></small>
+					</div>
+					<div class="col-md-4">
+						<div style="font-size:10px;margin-top: 10px;" class="pull-right ">
+							<?php _e('Supported by','globalrec'); ?> <a href="http://wiego.org" title="WIEGO">
+							<img title="WIEGO" src="<?php bloginfo('template_url'); ?>/images/wiego-logo.png" alt="Logo WIEGO"/></a>
+						</div>
 					</div>
 				</div>
-      	<div id="search" class="pull-right">
-					<?php get_search_form(); ?>
-				</div>
-			</div>	
-			<div class="row">
-				<div class="col-xs-12 col-md-8">
-					<small><?php echo get_bloginfo( 'description' ) ?></small>
-				</div>
-				<div class="col-md-4">
-					<div style="font-size:10px;margin-top: 10px;" class="pull-right ">
-						<?php _e('Supported by','globalrec'); ?> <a href="http://wiego.org" title="WIEGO">
-						<img title="WIEGO" src="<?php bloginfo('template_url'); ?>/images/wiego-logo.png" alt="Logo WIEGO"/></a>
-					</div>
-				</div>
 			</div>
 		</div>
-	</div>
-	<nav id="main-menu">	
-		<div class="navbar">
-			<div class="pull-right">
-				<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
-					<div type="button" class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a></div>
-					<div type="button" class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a></div>
+		<nav id="main-menu">	
+			<div class="navbar">
+				<div class="pull-right">
+					<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
+						<div class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a></div>
+						<div class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a></div>
+					</div>
 				</div>
-			</div>
-			<?php $defaults = array(
-				'theme_location'  => 'main-menu',
-				'menu_id' => 'pre-menu',
-				'menu_class' => 'nav nav-pills'
-				);
-			wp_nav_menu( $defaults );?>	
+				<?php $defaults = array(
+					'theme_location'  => 'main-menu',
+					'menu_id' => 'pre-menu',
+					'menu_class' => 'nav nav-pills'
+					);
+				wp_nav_menu( $defaults );?>	
 
-		</div>
-	</nav>
+			</div>
+		</nav>
+	</header>
 <!-- end header -->

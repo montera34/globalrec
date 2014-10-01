@@ -8,8 +8,9 @@ if ( post_password_required() ) : ?>
 <p><?php _e('Enter your password to view comments.'); ?></p>
 <?php return; endif; ?>
 
-<h5 id="comments"><?php comments_number(__(''), __('1 Comment'), __('% Comments')); ?>
+<h5 id="comments">
 <?php if ( comments_open() ) : ?>
+	<?php comments_number(__(''), __('1 Comment'), __('% Comments')); ?>
 	<a href="#postcomment" title="<?php _e("Leave a comment"); ?>"> </a>
 <?php endif; ?>
 </h5>

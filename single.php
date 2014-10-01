@@ -7,7 +7,7 @@ $output2 = ''; ?>
 <div class="container">
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class('col-md-8') ?> id="post-<?php the_ID(); ?>">
+		<article <?php post_class('col-md-8') ?> id="post-<?php the_ID(); ?>">
 			<?php if (is_singular( 'newsletter' ) ) {?>
 				<div class="row">
 					<div class="col-md-10">
@@ -31,68 +31,72 @@ $output2 = ''; ?>
 				}
 			?>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-				<?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
-				<h3>
-					<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
-				</h3>
+			<header>
+				<div class="row">
+					<div class="col-md-12">
+					<?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
+					<h3>
+						<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
+					</h3>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-5">
-					<h4>
-						<?php
-							$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
-							$author = get_the_author();
-							$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
-						 	if ($written_by != '')  { //if the text is written by someone the field "written" by will be filled
-						 		if ($written_by == $author) { //if the writer has a user
-						 			//temporary hack while creating all the users. Displays author as link if the autor exists.
-									//Author "Display name publicly as" must be the same as the name written at '_gr_written-by' custom field
-						 			echo "<small>";
-									echo _e('by','globalrec')."</small> ";
-									echo "<a href='".$author_url."'>".$author."</a>";
-								} else { //if the text is written by someone the field "written by" will be filled
+				<div class="row">
+					<div class="col-md-5">
+						<h4>
+							<?php
+								$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
+								$author = get_the_author();
+								$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+							 	if ($written_by != '')  { //if the text is written by someone the field "written" by will be filled
+							 		if ($written_by == $author) { //if the writer has a user
+							 			//temporary hack while creating all the users. Displays author as link if the autor exists.
+										//Author "Display name publicly as" must be the same as the name written at '_gr_written-by' custom field
+							 			echo "<small>";
+										echo _e('by','globalrec')."</small> ";
+										echo "<a href='".$author_url."'>".$author."</a>";
+									} else { //if the text is written by someone the field "written by" will be filled
+										echo "<small>";
+										echo _e('Posted by','globalrec'). " ";
+										the_author_posts_link();
+										echo "</small><br><small>";
+										echo _e('Written by','globalrec')."</small> ";
+										echo $written_by;
+									}
+								} else {
 									echo "<small>";
-									echo _e('Posted by','globalrec'). " ";
+									echo _e('by','globalrec'). " </small>";
 									the_author_posts_link();
-									echo "</small><br><small>";
-									echo _e('Written by','globalrec')."</small> ";
-									echo $written_by;
 								}
-							} else {
-								echo "<small>";
-								echo _e('by','globalrec'). " </small>";
-								the_author_posts_link();
-							}
-					 	?>
-					</h4>
+						 	?>
+						</h4>
+					</div>
+					<div class="col-md-4">
+						<?php   
+							$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
+							if ( $region != '')  : 
+							echo "<h4><small>";
+							echo _e('Region','globalrec')."</small> ";	
+							echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
+							echo "</h4>";
+							endif;
+						 	?>
+					</div>
+					<div class="col-md-3">
+						<h4><small class="pull-right">
+							<?php the_time('F d, Y') ?>					
+						</small></h4>
+					</div>
 				</div>
-				<div class="col-md-4">
-					<?php   
-						$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
-						if ( $region != '')  : 
-						echo "<h4><small>";
-						echo _e('Region','globalrec')."</small> ";	
-						echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
-						echo "</h4>";
-						endif;
-					 	?>
-				</div>
-				<div class="col-md-3">
-					<h4><small class="pull-right">
-						<?php the_time('F d, Y') ?>					
-					</small></h4>
-				</div>
-			</div>
+			</header>
 			
 		 	<hr style="margin:3px 0 3px 0;">
 
-			<div class="row">
-				<div class="col-md-offset-6 col-md-3"><?php _e('Check translation','globalrec'); ?>:</div>
-				<div class="col-md-2 ontop"><?php do_action('icl_language_selector'); ?></div>
-			</div>
+			<section>
+				<div class="row">
+					<div class="col-md-offset-6 col-md-3"><?php _e('Check translation','globalrec'); ?>:</div>
+					<div class="col-md-2 ontop"><?php do_action('icl_language_selector'); ?></div>
+				</div>
+			</section>
 
 			<div id="post-content">
 				<?php 
@@ -132,17 +136,19 @@ $output2 = ''; ?>
 				<?php comments_popup_link(__(' '), __('Comments (1)'), __('Comments (%)')); ?>
 			</div>
 		<?php comments_template(); // Get wp-comments.php template ?>
-
+		
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
 	
 		<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
-		</div>
+		</article>
 		<!-- begin sidebar -->
-		<div id="menu" class="col-md-offset-1 col-md-3">
-			<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
-		</div>
+		<aside>
+			<div id="menu" class="col-md-offset-1 col-md-3">
+				<?php  dynamic_sidebar( 'blog-sidebar' ) ?>
+			</div>
+		</aside>
 		<!-- end sidebar -->
 	</div>
 	<?php get_footer(); ?>

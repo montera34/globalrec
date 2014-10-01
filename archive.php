@@ -35,14 +35,15 @@ $author = get_userdata( get_query_var('author') );
 		<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 	</div>
 	<span> <?php echo category_description(); ?></span>	
+		<?php $my_count = $wp_query->post_count; //The number of posts being displayed ?>
 		<?php if (have_posts()) : $count = 0;
 			while (have_posts()) : the_post();
 			$count++;
-			if ( $count == 1 ) { echo "<div class='row'>"; } ?>
+			if ( $count == 1 || $count % 4 == 1) { echo "<div class='row'>"; } ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
 				<?php include("loop.boxes.php")?>
 			</div>
-		<?php if ( $count == 4 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?> <!-- TODO CLose row if is the 4th OR it is the last one!-->
+		<?php if ( $count % 4 == 0 || $count == $my_count) { echo "</div><!-- .row --><hr>";} 	?>
 		<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 	<?php endif; ?>

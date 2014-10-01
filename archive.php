@@ -7,12 +7,12 @@ $author = get_userdata( get_query_var('author') );
 		
 <div id="archive">
 	<div class="row">
-		<div class="col-md-10">
+		<header class="col-md-10">
 			<strong>
 			<?php if ( is_tag('pune2012') ) { ?>
 				<h2>Pune 2012 posts</h2>
 			<?php } elseif ( is_category() ) { ?>
-				<h2><?php _e('Category:', 'cp'); ?> <span><?php single_cat_title(); ?></span></h2>
+				<h2><?php _e('Category:', 'cp'); ?> <?php single_cat_title(); ?></h2>
 			<?php } elseif ( is_author() ) { ?>	
 				<h2><?php _e('Posts by', 'globalrec'); ?> <strong><?php echo $author->display_name;?></strong> </h2>
 			<?php } elseif ( get_post_type() == 'global-meeting' && is_archive()) { ?>
@@ -31,18 +31,19 @@ $author = get_userdata( get_query_var('author') );
 				<h2><?php __('Blog Archives', 'cp'); ?></h2>
 			<?php } ?>
 			</strong>
-		</div>
+		</header>
 		<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 	</div>
-	<span> <?php echo category_description(); ?></span>	
+	<?php $cat_desc = category_description();
+		if ($cat_desc != '') {echo '<span>'.$cat_desc.'</span>';} ?>
 		<?php $my_count = $wp_query->post_count; //The number of posts being displayed ?>
 		<?php if (have_posts()) : $count = 0;
 			while (have_posts()) : the_post();
 			$count++;
 			if ( $count == 1 || $count % 4 == 1) { echo "<div class='row'>"; } ?>
-			<div id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
 				<?php include("loop.boxes.php")?>
-			</div>
+			</article>
 		<?php if ( $count % 4 == 0 || $count == $my_count) { echo "</div><!-- .row --><hr>";} 	?>
 		<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
@@ -50,7 +51,6 @@ $author = get_userdata( get_query_var('author') );
 	<div class="row">
 		<div class="col-md-12">
 			<div class="pull-right">
-				<h5><?php _e('Pagination', 'globalrec'); ?></h5>
 				<?php echo custom_pagination(); ?>
 			</div>
 		</div>

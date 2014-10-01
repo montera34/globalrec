@@ -1733,11 +1733,12 @@ function custom_pagination() {
             'prev_next' => false,
             'type'  => 'array',
             'prev_next'   => TRUE,
-			'prev_text'    => __('«'),
-			'next_text'    => __('»'),
+						'prev_text'    => __('« Prev'),
+						'next_text'    => __('Next »'),
         ) );
         if( is_array( $pages ) ) {
             $paged = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
+            echo '<h5>'._e('Pagination', 'globalrec').'</h5>';
             echo '<ul class="pagination pagination-lg">';
             foreach ( $pages as $page ) {
                     echo "<li>$page</li>";

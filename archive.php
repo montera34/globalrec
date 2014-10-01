@@ -42,15 +42,16 @@ $author = get_userdata( get_query_var('author') );
 			<div id="post-<?php the_ID(); ?>" <?php post_class('col-md-3'); ?>	>
 				<?php include("loop.boxes.php")?>
 			</div>
-		<?php if ( $count == 4 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?> <!-- TODO CLose row if is the 4th OR it is hte last one!-->
+		<?php if ( $count == 4 ) { echo "</div><!-- .row --><hr>"; $count = 0; }?> <!-- TODO CLose row if is the 4th OR it is the last one!-->
 		<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 	<?php endif; ?>
-	<div class="row" style="clear:left;">
-		<div class="col-md-11">
-			<span class="pull-right">
-				<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?> <!-- TODO include  btn btn-primary btn-lg pull-right inside the link-->
-			</span>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="pull-right">
+				<h5><?php _e('Pagination', 'globalrec'); ?></h5>
+				<?php echo custom_pagination(); ?>
+			</div>
 		</div>
 	</div>
 </div>

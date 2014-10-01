@@ -309,3 +309,8 @@ nav li.menu-item-has-children {
 	margin-top:10px;
 	height: 35px;
 }
+
+/* Pagination */
+.pagination .current {
+	background-color:#fe7c11;
+}

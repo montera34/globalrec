@@ -1,11 +1,12 @@
 <?php  /* Template Name: Newsletter Creation */
 get_header(); 
-$asian_posts = 7;
+$asian_posts = -1;
 $asian_offset = 0;
-$latinamerican_posts = 12;
+$latinamerican_posts = -1;
 $latinamerican_offset = 0;
-$african_posts= 7;
+$african_posts= -1;
 $african_offset= 0;
+$newsleter_number = 11;
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -48,6 +49,7 @@ $african_offset= 0;
 					'offset' => $asian_offset,
 					'taxonomy' => 'post-region',
 					'term' => 'asia',
+					'post-newsletter' => '11',
 					);
 				$my_query = new WP_Query($args);
 			?>
@@ -106,6 +108,7 @@ $african_offset= 0;
 					'offset' => $latinamerican_offset,
 					'taxonomy' => 'post-region',
 					'term' => 'latin-america',
+					'post-newsletter' => '11',
 					);
 				$my_query = new WP_Query($args);
 			?>
@@ -164,6 +167,7 @@ $african_offset= 0;
 					'offset' => $african_offset,
 					'taxonomy' => 'post-region',
 					'term' => 'africa',
+					'post-newsletter' => '11',
 					);
 				$my_query = new WP_Query($args);
 			?>

@@ -31,6 +31,7 @@ get_header(); ?>
 			<th><?php _e('Date','globalrec'); ?></th>
 			<th><?php _e('Author','globalrec'); ?></th>
 			<th><?php _e('Country','globalrec'); ?></th>
+			<th><?php _e('Categories','globalrec'); ?></th>
 			<th><?php _e('Region','globalrec'); ?></th>
 			<th><?php _e('# words title','globalrec'); ?></th>
 			<th><?php _e('# words Article without html','globalrec'); ?></th>
@@ -75,6 +76,9 @@ get_header(); ?>
 					$countrytitle = $country->post_title;
 					echo $countrytitle;
 				?>
+				</td>
+				<td>
+				<?php the_category(', ','single'); ?>
 				</td>
 				<td>
 				<?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?>

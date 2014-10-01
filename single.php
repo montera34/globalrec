@@ -40,7 +40,7 @@ $output2 = ''; ?>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<h4>
 						<?php
 							$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
@@ -80,7 +80,7 @@ $output2 = ''; ?>
 						endif;
 					 	?>
 				</div>
-				<div class="col-md-4"> 	
+				<div class="col-md-3">
 					<h4><small class="pull-right">
 						<?php the_time('F d, Y') ?>					
 					</small></h4>

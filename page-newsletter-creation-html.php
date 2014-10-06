@@ -1,4 +1,4 @@
-<?php  /* Template Name: Newsletter Creation */
+<?php  /* Template Name: Newsletter Creation HTML */
 get_header(); 
 $asian_posts = -1;
 $asian_offset = 0;
@@ -7,7 +7,6 @@ $latinamerican_offset = 0;
 $african_posts= -1;
 $african_offset= 0;
 $newsletter_number = icl_object_id(1675, 'post-newsletter');
-
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -19,7 +18,9 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 	</div>
 	<div class="row">
 		<div class="col-md-8 content">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
 			<?php the_content(); ?>
+			</div>
 			<?php endwhile; endif; ?>
 			<table border="0" cellpadding="10" bgcolor="#fe7c11" style="background-color:#fe7c11">
 				<tbody>
@@ -66,7 +67,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -91,13 +92,15 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive') );?>
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive', 'width' => '300') );?>
 				</a>
 			</div>
-			<?php //the summary
-			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-			echo $summary;
-			?>
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+				<?php //the summary
+				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+				echo $summary;
+				?>
+			</div>
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
@@ -131,7 +134,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -156,13 +159,15 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive') );?>
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
 				</a>
 			</div>
-			<?php //the summary
-			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-			echo $summary;
-			?>
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+				<?php //the summary
+				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+				echo $summary;
+				?>
+			</div>
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
@@ -224,10 +229,12 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
 				</a>
 			</div>
-			<?php //the summary
-			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-			echo $summary;
-			?>
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+				<?php //the summary
+				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+				echo $summary;
+				?>
+			</div>
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>

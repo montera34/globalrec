@@ -41,7 +41,7 @@ get_header(); ?>
 			
 			echo '<div class="row"><div class="col-md-4">';
 			echo '<h3>Type of members</h3>';
-			echo '<p>Oraganizations with waste pickers as members: ' . $wp_members. ' (' . round($wp_members/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Organizations with waste pickers as members: ' . $wp_members. ' (' . round($wp_members/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Organizations with waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
 			echo '</div><div class="col-md-2">';
 			

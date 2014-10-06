@@ -130,10 +130,16 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo display_item($post_id,'_wpg_elections','Internal elections');
 								echo display_item($post_id,'_wpg_number_groups','Number of groups');
 								echo display_item($post_id,'_wpg_number_individuals','Number of members');
-								echo "<dt>Women composition</dt><dd>".get_post_meta( $post_id, '_wpg_gender_women_composition', true )."% <small>"
-										.get_post_meta( $post_id, '_wpg_gender_women_comment', true ). "</small></dd>"; //used when no % data are available
-									
-									?> 
+								
+								$women_composition = get_post_meta( $post_id, '_wpg_gender_women_composition', true );
+								$women_composition_comment =	get_post_meta( $post_id, '_wpg_gender_women_comment', true );
+								
+								if ($women_composition || $women_composition_comment) {
+									echo "<dt>Women composition</dt><dd>".$women_composition."%<small>".$women_composition_comment. "</small></dd>";
+								} elseif ($women_composition_comment){
+								 	echo "<dt>Women composition</dt><dd><small>".$women_composition_comment. "</small></dd>";
+								}
+								?> 
 							</dl>
 						</div>
 						<div class="col-md-5">

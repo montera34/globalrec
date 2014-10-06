@@ -16,8 +16,10 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 				<div class="col-md-3">
 					<?php the_post_thumbnail( 'medium', array('class' => 'img-responsive'));?>
 						<?php
-						echo "<a href='".get_post_meta( $post_id, '_wpg_facebook', true ). "'>Facebook</a> ";
-						echo "<a href='http://twitter.com/".get_post_meta( $post_id, '_wpg_twitter', true )."' title='Twitter user @".get_post_meta( $post_id, '_wpg_twitter', true )."'>Twitter</a><br>";
+						$facebook = get_post_meta( $post_id, '_wpg_facebook', true );
+						$twitter = get_post_meta( $post_id, '_wpg_twitter', true );
+						echo $facebook ? "<a href='".$facebook. "'>Facebook</a> " : '';
+						echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'>Twitter</a><br>" : '';
 						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
 						<?php if ( is_user_logged_in() ) { //Only display this information if user is logged in ?>
 						<div class="panel panel-default">

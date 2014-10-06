@@ -69,16 +69,23 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
 						if ($city != '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field 'city'
-							if ($city_name == 'Not specified' ) {
-								echo $city2. ", ";
+							if ($city_name == 'Not specified') {
+								if ($city2 != '') {
+									echo $city2. ", ";
+								}
 							} else {
-								echo '<a href="'.$city_link.'">'.$city2.'</a>, ';
+								if ($city2 != '') {
+									echo '<a href="'.$city_link.'">'.$city2.'</a>, ';
+								}
 							}
 						} else {
-							echo get_post_meta( $post->ID, 'city', true ). ", ";
+							if ($city2 != '') {
+								echo $city2. ", ";
+							}
 						}
 						//Region
-						echo get_post_meta( $post_id, '_wpg_region', true ). ", ";
+						$region = get_post_meta( $post_id, '_wpg_region', true );
+						if ($region != '') {echo $region. ", ";}
 						
 						//Country
 						$country_id = get_post_meta( $post->ID, '_wpg_countryselect', true );
@@ -116,7 +123,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo list_of_items($post_id,'_wpg_objectives','Objectives');
 								echo list_of_items($post_id,'_wpg_education_training','Education and training');
 								echo display_item($post_id,'_wpg_partnering_organizations','Partnering organizations');
-								echo display_item($post_id,'_wpg_affiliations','Affiliations');
+								echo list_of_items($post_id,'_wpg_affiliations','Affiliations');
 								echo list_of_items($post_id,'_wpg_funding','Funding');
 								echo display_item($post_id,'_wpg_elections','Internal elections');
 								echo display_item($post_id,'_wpg_number_groups','Number of groups');
@@ -131,7 +138,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
 								<?php //Benefits 
-								echo list_of_items($post_id,'_wpg_member-benefits','Member benefits');
+								echo list_of_items($post_id,'_wpg_member_benefits','Member benefits');
 								echo display_item($post_id,'_wpg_credit_members','Number of credit / saving members?');
 								echo list_of_items($post_id,'_wpg_safety_technology','Safety & Technology');
 								?> 
@@ -144,7 +151,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo display_item($post_id,'_wpg_middlemen','Are they selling to middlemen?');
 								echo list_of_items($post_id,'_wpg_activities','Activities');
 								echo list_of_items($post_id,'_wpg_sorting_spaces','Sorting Spaces');
-								echo list_of_items($post_id,'_wpg_treatment_organic_materials','Treatmet of orgnanic materials');
+								echo list_of_items($post_id,'_wpg_treatment_organic_materials','Treatmet of organic materials');
 								echo list_of_items($post_id,'_wpg_challenges_access_waste','Challenges to access waste');
 								?> 
 							</dl>

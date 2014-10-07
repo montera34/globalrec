@@ -1696,7 +1696,8 @@ function list_of_items($postid=1,$value=1,$name=1){
 		echo "<dt>".$name."</dt>";
 		echo "<dd>";
 		foreach($items as $item) {
-			echo  ucfirst ($item)."<br>";
+			echo  $item == 'ngo' ? 'NGO' : ucfirst ($item);
+			echo "<br>";
 		}
 		echo "</dd>";
 	}

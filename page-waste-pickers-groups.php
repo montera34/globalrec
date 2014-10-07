@@ -32,9 +32,11 @@ get_header(); ?>
 			$coopfed_orgs = get_number_posts ('_wpg_organization_type','Cooperative Federation');
 					
 			$wp_india = get_number_posts ('country','India');
+			$wp_bangladesh = get_number_posts ('country','Bangladesh');
 			$wp_colombia = get_number_posts ('country','Colombia');
 			$wp_brazil = get_number_posts ('country','Brazil');
 			$wp_kenya = get_number_posts ('country','Kenya');
+			$wp_south_africa = get_number_posts ('country','South Africa');
 			
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p>';
 			//echo '<p>There are ' . $wastepickers . ' that have waste pickers as members (' . round($wastepickers/$count_wpo*100,1) .'%).</p>';
@@ -62,9 +64,11 @@ get_header(); ?>
 			
 			echo '<h3>Country</h3>';
 			echo '<p>In India: ' . $wp_india . '  (' . round($wp_india/$count_wpo*100,1) .'%).</p>';
+			echo '<p>In Bangladesh: ' . $wp_bangladesh . '  (' . round($wp_bangladesh/$count_wpo*100,1) .'%).</p>';
 			echo '<p>In Colombia: ' . $wp_colombia . '  (' . round($wp_colombia/$count_wpo*100,1) .'%).</p>';
 			echo '<p>In Brazil: ' . $wp_brazil . '  (' . round($wp_brazil/$count_wpo*100,1) .'%).</p>';
 			echo '<p>In Kenya: ' . $wp_kenya . '  (' . round($wp_kenya/$count_wpo*100,1) .'%).</p>';
+			echo '<p>In South Africa: ' . $wp_south_africa . '  (' . round($wp_south_africa/$count_wpo*100,1) .'%).</p>';
 			echo '</div></div>';
 			?>
 			
@@ -76,10 +80,10 @@ get_header(); ?>
 			?> 
 		<?php
 			$args = array(
-			 'post_type' => 'waste-picker-group', 
-			 'posts_per_page' => -1, 
-			 'orderby' => 'title',
-			 'order' => 'ASC',
+				'post_type' => 'waste-picker-group', 
+				'posts_per_page' => -1,
+				'orderby' => 'title',
+				'order' => 'ASC',
 				);
 			$my_query = new WP_Query($args);
 			?>

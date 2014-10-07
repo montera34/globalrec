@@ -95,6 +95,7 @@ get_header(); ?>
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
+			<th><?php _e('Members\' occupation','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
 		</tr>
@@ -128,6 +129,11 @@ get_header(); ?>
 						echo get_post_meta( $post_id, '_wpg_members_type', true ); 
 					} ?>
 					
+				</td>
+				<td>
+					<?php
+					echo list_of_items($post_id,'_wpg_members_occupation','');
+					?>
 				</td>
 				<td><?php 
 						//City

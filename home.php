@@ -12,7 +12,7 @@ $output = '';
 				</div>
 			</div>
 			<div class="row" id="home-boxes"> 
-				<!-- box for Life and Voices ----------------------------------------------------------->
+				<!-- box for Life and Voices -->
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<a href="<?php echo get_permalink(icl_object_id(2856,'page')) ?>">
 						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt="Life and Voices of Waste pickers" class="img-responsive"/>
@@ -20,7 +20,7 @@ $output = '';
 					</a>
 					<p><?php _e('Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.','globalrec'); ?></p>
 				</div>
-				<!-- box for Where we are? ----------------------------------------------------------->
+				<!-- box for Where we are? -->
 				<div class="col-xs-12 col-sm-6 col-md-4">
 						<a href="<?php echo get_permalink(icl_object_id(7618,'page')) ?>">
 							<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" class="img-responsive"/>
@@ -28,7 +28,7 @@ $output = '';
 						</a>
 						<p><?php _e('Provisional list of hundreds of waste pickers’ groups around the globe.','globalrec'); ?></p>
 				</div>
-				<!-- box for the Last newsletter ----------------------------------------------------------->
+				<!-- box for the Last newsletter -->
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<?php global $more;   
 					$args = array(		//arguments for showing newsletters custom post type
@@ -75,12 +75,13 @@ $output = '';
 					<?php global $more; 
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
-					 'posts_per_page'=>	4,
+					 'posts_per_page'=>	5,
 					 'cat'=> icl_object_id(858, 'category')
 						);
 					$my_query = new WP_Query($args); ?>
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post();
-							
+						$do_not_duplicate[] = $post->ID; //stores posts of this query in array
+						
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
 							$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. ?>
@@ -98,12 +99,14 @@ $output = '';
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
-					 'posts_per_page'=>	4,
-					 'cat'=>	icl_object_id(964, 'category')
+					 'posts_per_page'=>	5,
+					 'cat'=>	icl_object_id(964, 'category'),
+					 'post__not_in' => $do_not_duplicate,
 						);
 		 
-					$my_query = new 	WP_Query($args); ?>
-						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post();
+					$my_query = new WP_Query($args); ?>
+						<?php if ( $my_query->have_posts()  ) : 	while ( $my_query->have_posts() ) : $my_query->the_post();
+							$do_not_duplicate[] = $post->ID; //stores posts of this query in array
 							
 						global $wp_query;	 //necessary to show the tags 
 							$wp_query->in_the_loop = true; 
@@ -123,8 +126,9 @@ $output = '';
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
-					 'posts_per_page'=>	4,
-					 'cat'=> icl_object_id(970, 'category')
+					 'posts_per_page'=>	5,
+					 'cat'=> icl_object_id(970, 'category'),
+					 'post__not_in' => $do_not_duplicate,
 						);
 		 
 					$my_query = new WP_Query($args); ?>
@@ -142,7 +146,7 @@ $output = '';
 				</div>	
 			</div>	
 			<div class="row">
-			<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-primary btn-lg pull-right"><?php _e('Read more Blog Posts','globalrec'); ?></a>
+				<a href="blog" title="Go to blog" alt="Go to blog" class="btn btn-primary btn-lg pull-right"><?php _e('Read more Blog Posts','globalrec'); ?></a>
 		 	</div>
 		</div>
 

@@ -13,7 +13,7 @@
 			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 			$args = array(
 				'ignore_sticky_posts' => 1,
-				'posts_per_page'=>	12
+				'posts_per_page'=>	15
 				);
 			if ( $paged > 1 ) {
 			 $args['paged'] = $paged;

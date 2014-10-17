@@ -30,6 +30,7 @@ $output2 = ''; ?>
 				echo trim($output, $separator);
 				}
 			?>
+			<?php if ( is_user_logged_in() ) { ?>Included in newsletter: <span class="label label-info"><?php echo get_the_term_list( $post->ID, 'post-newsletter', ' ', ', ', '' ); ?></span><?php } ?>
 			</div>
 			<header>
 				<div class="row">

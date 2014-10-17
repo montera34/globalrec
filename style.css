@@ -304,6 +304,10 @@ nav li.menu-item-has-children {
 	padding-right: 8px;
 }
 
+#comments-container {
+	margin-top:40px;
+}
+
 #footer{
 	border-top:10px solid #fe7c11;
 	margin-top:10px;

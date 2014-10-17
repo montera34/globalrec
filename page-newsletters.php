@@ -24,17 +24,20 @@ get_header(); ?>
 				'post_parent' => 0
 				);
 
-		$my_query = new WP_Query($args);
+		$wp_query = new WP_Query($args);
+		$wp_count = $wp_query->post_count; //The number of posts being displayed
 	
-		if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
-			global $wp_query;
-			$wp_query->in_the_loop = true;?>
-	
-			<div class="size-thumbnail">
-				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?> bio">
-					<?php the_title();?>
-				</a> 
-			</div><br>
+		if ($wp_query->have_posts() ) :
+		$count = 0;
+		while ( $wp_query->have_posts()) : $wp_query->the_post();
+		$count++;
+		if ( $count == 1 || $count % 3 == 1) { echo "<div class='row'>"; }
+		?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4'); ?> >
+			<?php include("loop.boxes.php")?>
+		</article>
+		<?php if ( $count % 3 == 0 || $count == $wp_count){ echo "</div><!-- .row --><hr>";} ?>
+
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; 
@@ -58,10 +61,10 @@ get_header(); ?>
 				)*/	
 		);
 
-		$my_query = new WP_Query($args);
-	
-		if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
-			//necessary to show the tags 
+		$my_query = new WP_Query($args); ?>
+		<h4> <?php _e('Previous GlobalRec Newsletters'); ?></h4>
+		<?php if ( $my_query->have_posts() ) :  while ( $my_query->have_posts() ) :  $my_query->the_post();  
+			//necessary to show the tags
 			global $wp_query;
 			$wp_query->in_the_loop = true;?>
 	

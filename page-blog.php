@@ -23,18 +23,18 @@
 			?>
 
 		<?php if ($wp_query->have_posts() ) :
-		$count = 0;
-		while ( $wp_query->have_posts()) : $wp_query->the_post();
-		$count++;
-		if ( $count == 1 || $count % 3 == 1) { echo "<div class='row'>"; }
-		?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4'); ?> >
-			<?php include("loop.boxes.php")?>
-		</article>
-		<?php if ( $count % 3 == 0 || $count == $wp_count){ echo "</div><!-- .row --><hr>";} ?>
+			$count = 0;
+			while ( $wp_query->have_posts()) : $wp_query->the_post();
+				$count++;
+				if ( $count == 1 || $count % 3 == 1) { echo "<div class='row'>"; }
+				?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4'); ?> >
+					<?php include("loop.boxes.php")?>
+				</article>
+				<?php if ( $count % 3 == 0 || $count == $wp_count){ echo "</div><!-- .row --><hr>";} ?>
 
-		<?php endwhile; else: ?>
-		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
 		<div class="row">
 			<div class="col-md-12">

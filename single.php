@@ -90,7 +90,27 @@ $output2 = ''; ?>
 				</div>
 			</header>
 			
-		 	<hr style="margin:3px 0 3px 0;">
+		 	<?php if ( is_user_logged_in() ) {
+		 		$summary = get_post_meta( $post->ID, '_gr_post-summary', true ); ?>
+		 		<div class="panel-group" id="summary">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<span class="glyphicon glyphicon-lock"> </span><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								  Summary of the article <span class="glyphicon glyphicon-chevron-up"></span>
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body content">
+								<?php echo $summary; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+		 	<?php } else {?>
+		 		<hr style="margin:3px 0 3px 0;">
+		 	<?php } ?>
 
 			<section>
 				<div class="row">
@@ -136,8 +156,9 @@ $output2 = ''; ?>
 				<?php wp_link_pages(); ?>
 				<?php comments_popup_link(__(' '), __('Comments (1)'), __('Comments (%)')); ?>
 			</div>
-		<?php comments_template(); // Get wp-comments.php template ?>
-		
+			<div id="comments-container">
+				<?php comments_template(); // Get wp-comments.php template ?>
+			</div>
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>

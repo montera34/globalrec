@@ -30,7 +30,7 @@ $output2 = ''; ?>
 				echo trim($output, $separator);
 				}
 			?>
-			<?php if ( is_user_logged_in() ) { ?>Included in newsletter: <span class="label label-info"><?php echo get_the_term_list( $post->ID, 'post-newsletter', ' ', ', ', '' ); ?></span><?php } ?>
+			<?php if ( is_user_logged_in() && (get_post_type() == 'post')) { ?>Included in newsletter: <span class="label label-info"><?php echo get_the_term_list( $post->ID, 'post-newsletter', ' ', ', ', '' ); ?></span><?php } ?>
 			</div>
 			<header>
 				<div class="row">
@@ -90,7 +90,7 @@ $output2 = ''; ?>
 				</div>
 			</header>
 			
-		 	<?php if ( is_user_logged_in() ) {
+		 	<?php if ( is_user_logged_in() && (get_post_type() == 'post')) {
 		 		$summary = get_post_meta( $post->ID, '_gr_post-summary', true ); ?>
 		 		<div class="panel-group" id="summary">
 					<div class="panel panel-default">

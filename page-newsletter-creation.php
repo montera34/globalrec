@@ -6,8 +6,11 @@ $latinamerican_posts = -1;
 $latinamerican_offset = 0;
 $african_posts= -1;
 $african_offset= 0;
+$european_posts= -1;
+$european_offset= 0;
+$northamerican_posts= -1;
+$northamerican_offset= 0;
 $newsletter_number = icl_object_id(1675, 'post-newsletter');
-
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -35,12 +38,15 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
-				<a href="#europe"><?php echo _e('Europe','globalrec');?></a>
+				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
+				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
 			</p>
 			
 			<!-----------------Asia ------------------------->
-			<a name="asia"></a>
-			<h2><strong><?php echo _e('Asia','globalrec');?></strong></h2>
+			<h2 id="asia">
+				<img src="http://globalrec.org/wp-content/themes/globalrec/images/asia.png">
+				<strong><?php echo _e('Asia','globalrec');?></strong>
+			</h2>
 			<?php
 				$args = array(
 					'post_status' => array( 'publish', 'future' ),
@@ -80,12 +86,17 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<small>
 					<?php echo _e('by','globalrec');?> <?php //author
 					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
 				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
 						echo $written_by;
 					}
 					else {
 						the_author_posts_link();
-					} ?>
+					} 
+					
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					
+					?>
 				</small>
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
@@ -101,10 +112,13 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
+			<hr>
 			
 			<!-----------------Latin America ------------------------->
-			<a name="latinamerica"></a>
-			<h2><strong><?php echo _e('Latin America','globalrec');?></strong></h2>
+			<h2 id="latinamerica">
+				<img src="http://globalrec.org/wp-content/themes/globalrec/images/latinamerica.png">
+				<strong><?php echo _e('Latin America','globalrec');?></strong>
+			</h2>
 			<?php
 				$args = array(
 					'post_status' => array( 'publish', 'future' ),
@@ -145,12 +159,16 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<small>
 					<?php echo _e('by','globalrec');?> <?php //author
 					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
 				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
 						echo $written_by;
 					}
 					else {
 						the_author_posts_link();
-					} ?>
+					} 
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
+					
 				</small>
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
@@ -166,14 +184,16 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
+			<hr>
 			
 			<!-----------------Africa------------------------->
-			<a name="africa"></a>
-			<h2><strong><?php echo _e('Africa','globalrec');?></strong></h2>
+			<h2 id="africa">
+				<img src="http://globalrec.org/wp-content/themes/globalrec/images/africa.png">
+				<strong><?php echo _e('Africa','globalrec');?></strong>
+			</h2>
 			<?php
 				$args = array(
 					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
 					'posts_per_page' => $african_posts,
 					'ignore_sticky_posts' => 1,
 					'offset' => $african_offset,
@@ -210,12 +230,154 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<small>
 					<?php echo _e('by','globalrec');?> <?php //author
 					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
 				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
 						echo $written_by;
 					}
 					else {
 						the_author_posts_link();
-					} ?>
+					} 
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
+				</small>
+			</h3>
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+				<?php	//the thumbnail 
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				</a>
+			</div>
+			<?php //the summary
+			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+			echo $summary;
+			?>
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endif; ?>
+			<hr>
+			
+			<!-- Europe -->
+			<h2 id="europe">
+				<img src="http://globalrec.org/wp-content/themes/globalrec/images/europe.png">
+				<strong><?php echo _e('Europe','globalrec');?></strong>
+			</h2>
+			<?php
+				$args = array(
+					'post_status' => array( 'publish', 'future' ),
+					//'post_type' => 'post',
+					'posts_per_page' => $european_posts,
+					'offset' => $european_offset,
+					'ignore_sticky_posts' => 1,
+					'taxonomy' => 'post-region',
+					'term' => 'europe',
+					'tax_query' => array(
+							array(
+								'taxonomy' => 'post-newsletter',
+								'field'    => 'term_id',
+								'terms'    => $newsletter_number,
+							),
+						),
+					);
+				$my_query = new WP_Query($args);
+			?>
+
+			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php
+			global $wp_query;
+			$wp_query->in_the_loop = true;
+			?>
+			<h3>
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+					<?php
+					the_title();
+					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$country = get_post( $country_ID );
+					$countrytitle = $country->post_title;
+					echo " (".$countrytitle;
+					//echo the_time('m/d/Y');
+					echo ")";
+					?>
+				</a>
+				<small>
+					<?php echo _e('by','globalrec');?> <?php //author
+					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
+				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+						echo $written_by;
+					}
+					else {
+						the_author_posts_link();
+					} 
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
+				</small>
+			</h3>
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+				<?php	//the thumbnail 
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				</a>
+			</div>
+			<?php //the summary
+			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+			echo $summary;
+			?>
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endif; ?>
+			<hr>
+			
+			<!-- North America -->
+			<h2 id="north-america"><strong><?php echo _e('North America','globalrec');?></strong></h2>
+			<?php
+				$args = array(
+					'post_status' => array( 'publish', 'future' ),
+					//'post_type' => 'post',
+					'posts_per_page' => $northamerican_posts,
+					'offset' => $northamerican_offset,
+					'ignore_sticky_posts' => 1,
+					'taxonomy' => 'post-region',
+					'term' => 'north-america',
+					'tax_query' => array(
+							array(
+								'taxonomy' => 'post-newsletter',
+								'field'    => 'term_id',
+								'terms'    => $newsletter_number,
+							),
+						),
+					);
+				$my_query = new WP_Query($args);
+			?>
+
+			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php
+			global $wp_query;
+			$wp_query->in_the_loop = true;
+			?>
+			<h3>
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+					<?php
+					the_title();
+					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$country = get_post( $country_ID );
+					$countrytitle = $country->post_title;
+					echo " (".$countrytitle;
+					//echo the_time('m/d/Y');
+					echo ")";
+					?>
+				</a>
+				<small>
+					<?php echo _e('by','globalrec');?> <?php //author
+					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
+				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+						echo $written_by;
+					}
+					else {
+						the_author_posts_link();
+					} 
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
 				</small>
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">

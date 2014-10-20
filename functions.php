@@ -1748,4 +1748,11 @@ function custom_pagination() {
         }
 }
 
+//Adds other custom post types to the feed
+function myfeed_request($qv) {
+	if (isset($qv['feed']) && !isset($qv['post_type']))
+		$qv['post_type'] = array('post', 'newsletter');
+	return $qv;
+}
+add_filter('request', 'myfeed_request');
 ?>

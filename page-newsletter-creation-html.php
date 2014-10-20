@@ -328,10 +328,12 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
 				</a>
 			</div>
-			<?php //the summary
-			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-			echo $summary;
-			?>
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+				<?php //the summary
+				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+				echo $summary;
+				?>
+			</div>
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
@@ -399,10 +401,12 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
 				</a>
 			</div>
-			<?php //the summary
-			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-			echo $summary;
-			?>
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+				<?php //the summary
+				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+				echo $summary;
+				?>
+			</div>
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>

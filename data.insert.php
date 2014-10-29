@@ -3,8 +3,8 @@
 Template Name: Insert data script
 */
 get_header();
-		$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert5-from-ods"; // name (no extension)
-		//$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert4"; // name (no extension)
+		//$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert7-from-ods"; // name (no extension)
+		$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert7-from-ods"; // name (no extension)
 		//$csv_filename = get_stylesheet_directory(). "/dbimport/" .$filename; // relative path to data filename
 		$line_length = "5024"; // max line lengh (increase in case you have longer lines than 1024 characters)
 		$delimiter = ";"; // field delimiter character
@@ -152,6 +152,10 @@ get_header();
 						'_wpg_challenges_access_waste' => $challenges_access_waste,
 					);
 
+					/*$terms = array(
+						'wpg-member-type' => $members_type,
+					);*/
+
 					// insert post
 					$wpg = wp_insert_post(array(
 						'post_type' => 'waste-picker-group',
@@ -173,24 +177,34 @@ get_header();
 						//	next($fields);
 						}
 						
+						//insert multickech as array
 						foreach ( $multicheck as $key => $value ) {
-							if ($value != '') {
-								if (gettype($value) == "array") {
-										foreach ( $value as $val ) {
-											add_post_meta($wpg, $key, $val, FALSE);
-										}
-								} else {
-									add_post_meta($wpg, $key, $value, FALSE);
-								}
-							}
+   							update_post_meta($wpg, $key, $value);
 						}
-					} // if project has been inserted
-					echo "
+						
+						// insert terms
+						/*reset($terms);
+						while ( $term = current($terms) ) {
+							if ( $term != '' ) { // if is not an empty value
+								$term_id = term_exists( $term ); // return the term ID or 0 if doesn't exist
+								if ( $term_id == 0 ) { // if the term doesn't exist, then create it
+									$new_term = wp_insert_term( $term, key($terms) );
+									$term_id = $new_term['term_id'];
+								}
+								wp_set_post_terms( $project_id, $term_id, key($terms) );
+							}
+							next($terms);
+						}*/
+
+						echo "
 							<div>
 								<h2>Waste Picker Group " .$wpg. "</h2>
 								<p>Insert ok</p>
 							</div>
 						";
+						
+					} // if project has been inserted
+
 				} // end if not line 0
 				$line++;
 			}

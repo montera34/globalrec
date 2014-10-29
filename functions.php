@@ -253,6 +253,11 @@ register_taxonomy( 'post-newsletter', 'post', array(
 	'label' => 'Newsletters',
 	'query_var' => true,
 	'rewrite' => array( 'slug' => 'post-belongs-to-newsletter' ) ) );
+register_taxonomy( 'wpg-member-type', 'waste-picker-group', array(
+	'hierarchical' => true,
+	'label' => 'Waste Picker Member type',
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'wpg-member-type' ) ) );
 }
 add_action('init', 'my_custom_init');
 
@@ -1259,7 +1264,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Member benefits',
-				'desc' => 'Select if the organization is Waste Pickers bases or supports Waste Pickers',
+				'desc' => '',
 				'id' => $prefixwpg . 'member_benefits',
 				'type' => 'multicheck',
 				'options' => array(
@@ -1272,7 +1277,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'legal assistance' => 'legal assistance',
 					'occupational health & safety' => 'occupational health & safety',
 					'savings or credit system' => 'savings or credit system',
-					'social & pension benefits' => 'social & pension benefits'
+					'social & pension benefits' => 'social & pension benefits',
 					'training & advocacy' => 'training & advocacy',
 					'wedding & funeral benefit' => 'wedding & funeral benefit',
 				),
@@ -1414,7 +1419,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'lack of recognition' => 'lack of recognition',
 					'lack of unity between organisations' => 'lack of unity between organisations',
 					'obtaining licenses' => 'obtaining licenses',
-					'price fluctuations of waste' => 'price fluctuations of waste'
+					'price fluctuations of waste' => 'price fluctuations of waste',
 					'privatisation' => 'privatisation',
 					'transportation' => 'transportation',
 				),

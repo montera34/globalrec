@@ -79,11 +79,10 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$country = get_post( $country_ID );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
 					$countrytitle = $country->post_title;
-					echo " (".$countrytitle;
-					//echo the_time('m/d/Y');
-					echo ")";
+					echo " (".$countrytitle. ")";
 					?>
 				</a>
 				<small>
@@ -153,11 +152,10 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$country = get_post( $country_ID );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
 					$countrytitle = $country->post_title;
-					echo " (".$countrytitle;
-					//echo the_time('m/d/Y');
-					echo ")";
+					echo " (".$countrytitle. ")";
 					?>
 				</a>
 				<small>
@@ -227,11 +225,10 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$country = get_post( $country_ID );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
 					$countrytitle = $country->post_title;
-					echo " (".$countrytitle;
-					//echo the_time('m/d/Y');
-					echo ")";
+					echo " (".$countrytitle. ")";
 					?>
 				</a>
 				<small>
@@ -301,11 +298,10 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$country = get_post( $country_ID );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
 					$countrytitle = $country->post_title;
-					echo " (".$countrytitle;
-					//echo the_time('m/d/Y');
-					echo ")";
+					echo " (".$countrytitle. ")";
 					?>
 				</a>
 				<small>
@@ -374,11 +370,10 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$country = get_post( $country_ID );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
 					$countrytitle = $country->post_title;
-					echo " (".$countrytitle;
-					//echo the_time('m/d/Y');
-					echo ")";
+					echo " (".$countrytitle. ")";
 					?>
 				</a>
 				<small>

@@ -1647,7 +1647,17 @@ add_action( 'wp', 'display_item' );
 
 //Function to get the number of waste picker groups that have certain custom fields
 function get_number_posts ($meta_key,$meta_value) {
-	$args = array( 'posts_per_page' => -1,'meta_key'=> $meta_key, 'meta_value' => $meta_value, 'post_type' => 'waste-picker-group');
+	$args = array(
+				'posts_per_page' => -1,
+				'post_type' => 'waste-picker-group',
+				'meta_query' => array(
+						 array(
+								'key'     => $meta_key,
+								'value'   => $meta_value,
+								'compare' => 'LIKE',
+						 ),
+					 ),
+				);
 	$posts_array = get_posts( $args );
 	$result = count($posts_array);
 	return $result;

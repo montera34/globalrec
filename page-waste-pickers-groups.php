@@ -17,58 +17,78 @@ get_header(); ?>
 			//$wastepickers_orgs = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'Members are Waste Picker Organisations';");
 			//$orgs_india = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'India';");//AND meta_key = 'country' ??
 			
-			$wp_members = get_number_posts ('_wpg_members_type','Members are Waste Pickers');
-			$wp_orgs = get_number_posts ('_wpg_members_type','members are Waste Picker Organizations');
+			$wp_members = get_number_posts ('_wpg_members_type','members are waste pickers');
+			$wp_orgs = get_number_posts ('_wpg_members_type','members are waste picker organizations');
+			$wp_support = get_number_posts ('_wpg_members_type','waste picker support organization');
+			$wp_potential = get_number_posts ('_wpg_members_type','potential supporters');
 			
-			$local_orgs = get_number_posts ('_wpg_organization_scope','local');
-			$regional_orgs = get_number_posts ('_wpg_organization_scope','regional');
-			$national_orgs = get_number_posts ('_wpg_organization_scope','national');
-			$international_orgs = get_number_posts ('_wpg_organization_scope','international');
+			$wp_wp_occupation = get_number_posts ('_wpg_members_occupation','waste pickers');
+			$wp_swm_occupation = get_number_posts ('_wpg_members_occupation','solid waste management');
+			$wp_wc_occupation = get_number_posts ('_wpg_members_occupation','waste collectors');
+			$wp_sd_occupation = get_number_posts ('_wpg_members_occupation','scrap dealers');
 			
-			$tradeunions_orgs = get_number_posts ('_wpg_organization_type','Trade Union');
-			$wpg_orgs = get_number_posts ('_wpg_organization_type','Waste Picker Group');
-			$ngo_orgs = get_number_posts ('_wpg_organization_type','NGO');
-			$coop_orgs = get_number_posts ('_wpg_organization_type','Cooperative');
-			$coopfed_orgs = get_number_posts ('_wpg_organization_type','Cooperative Federation');
+			$local_orgs = get_number_posts_double ('_wpg_organization_scope','local');
+			$regional_orgs = get_number_posts_double ('_wpg_organization_scope','regional');
+			$national_orgs = get_number_posts_double ('_wpg_organization_scope','national');
+			$international_orgs = get_number_posts_double ('_wpg_organization_scope','international');
+			
+			$tradeunions_orgs = get_number_posts_double ('_wpg_organization_type','Trade Union');
+			$wpg_orgs = get_number_posts_double ('_wpg_organization_type','Waste Picker Group');
+			$ngo_orgs = get_number_posts_double ('_wpg_organization_type','NGO');
+			$coop_orgs = get_number_posts_double ('_wpg_organization_type','Cooperative');
+			$coopfed_orgs = get_number_posts_double ('_wpg_organization_type','Cooperative Federation');
 					
-			$wp_india = get_number_posts ('country','India');
-			$wp_bangladesh = get_number_posts ('country','Bangladesh');
-			$wp_colombia = get_number_posts ('country','Colombia');
-			$wp_brazil = get_number_posts ('country','Brazil');
-			$wp_kenya = get_number_posts ('country','Kenya');
-			$wp_south_africa = get_number_posts ('country','South Africa');
+			$wp_india = get_number_posts_double ('country','India');
+			$wp_bangladesh = get_number_posts_double ('country','Bangladesh');
+			$wp_colombia = get_number_posts_double ('country','Colombia');
+			$wp_brazil = get_number_posts_double ('country','Brazil');
+			$wp_kenya = get_number_posts_double ('country','Kenya');
+			$wp_south_africa = get_number_posts_double ('country','South Africa');
+			$wp_organizations =	$wp_orgs+$wp_members;
 			
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p>';
-			//echo '<p>There are ' . $wastepickers . ' that have waste pickers as members (' . round($wastepickers/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. '.</p>';
 			
-			echo '<div class="row"><div class="col-md-4">';
+			echo '<div class="row"><div class="col-md-3">';
 			echo '<h3>Type of members</h3>';
 			echo '<p>Organizations with waste pickers as members: ' . $wp_members. ' (' . round($wp_members/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Organizations with waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Waste picker support organization: ' . $wp_support . ' (' . round($wp_support/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Potential supporters organizations: ' . $wp_potential . ' (' . round($wp_potential/$count_wpo*100,1) .'%).</p>';
+			echo '</div><div class="col-md-2">';
+			
+			echo '<h3>Members\' occupation</h3>';
+			echo '<p>Members are waste pickers: ' . $wp_wp_occupation. ' (' . round($wp_wp_occupation/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Members are waste collectors: ' . $wp_wc_occupation. ' (' . round($wp_wc_occupation/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Members are solid waste management: ' . $wp_swm_occupation. ' (' . round($wp_swm_occupation/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Members are scrap dealers: ' . $wp_sd_occupation. ' (' . round($wp_sd_occupation/$count_wpo*100,1) .'%).</p>';
 			echo '</div><div class="col-md-2">';
 			
 			echo '<h3>Scope</h3>';
-			echo 'Local: ' . $local_orgs. ' (' . round($local_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'Regional: ' . $regional_orgs. ' (' . round($regional_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'National: ' . $national_orgs. ' (' . round($national_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'International: ' . $international_orgs. ' (' . round($international_orgs/$count_wpo*100,1) .'%).</p>';
-			echo '</div><div class="col-md-3">';
+			echo '<p>Local: ' . $local_orgs. ' (' . round($local_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Regional: ' . $regional_orgs. ' (' . round($regional_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>National: ' . $national_orgs. ' (' . round($national_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>International: ' . $international_orgs. ' (' . round($international_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
+			echo '</div><div class="col-md-2">';
 			
 			echo '<h3>Type of organization</h3>';
-			echo 'Trade Unions: ' . $tradeunions_orgs. ' (' . round($tradeunions_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'Waste Picker Group: ' . $wpg_orgs. ' (' . round($wpg_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'NGO: ' . $ngo_orgs. ' (' . round($ngo_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'Cooperative: ' . $coop_orgs. ' (' . round($coop_orgs/$count_wpo*100,1) .'%).</p>';
-			echo 'Cooperative Federation: ' . $coopfed_orgs. ' (' . round($coopfed_orgs/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Trade Unions: ' . $tradeunions_orgs. ' (' . round($tradeunions_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Waste Picker Group: ' . $wpg_orgs. ' (' . round($wpg_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>NGO: ' . $ngo_orgs. ' (' . round($ngo_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Cooperative: ' . $coop_orgs. ' (' . round($coop_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Cooperative Federation: ' . $coopfed_orgs. ' (' . round($coopfed_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
 			echo '</div><div class="col-md-3">';
 			
 			echo '<h3>Country</h3>';
-			echo '<p>In India: ' . $wp_india . '  (' . round($wp_india/$count_wpo*100,1) .'%).</p>';
-			echo '<p>In Bangladesh: ' . $wp_bangladesh . '  (' . round($wp_bangladesh/$count_wpo*100,1) .'%).</p>';
-			echo '<p>In Colombia: ' . $wp_colombia . '  (' . round($wp_colombia/$count_wpo*100,1) .'%).</p>';
-			echo '<p>In Brazil: ' . $wp_brazil . '  (' . round($wp_brazil/$count_wpo*100,1) .'%).</p>';
-			echo '<p>In Kenya: ' . $wp_kenya . '  (' . round($wp_kenya/$count_wpo*100,1) .'%).</p>';
-			echo '<p>In South Africa: ' . $wp_south_africa . '  (' . round($wp_south_africa/$count_wpo*100,1) .'%).</p>';
+			echo '<p>In India: ' . $wp_india . '  (' . round($wp_india/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>In Bangladesh: ' . $wp_bangladesh . '  (' . round($wp_bangladesh/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>In Colombia: ' . $wp_colombia . '  (' . round($wp_colombia/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>In Brazil: ' . $wp_brazil . '  (' . round($wp_brazil/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>In Kenya: ' . $wp_kenya . '  (' . round($wp_kenya/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>In South Africa: ' . $wp_south_africa . '  (' . round($wp_south_africa/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
 			echo '</div></div>';
 			?>
 			

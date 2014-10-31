@@ -1663,6 +1663,30 @@ function get_number_posts ($meta_key,$meta_value) {
 	return $result;
 }
 
+//Function to get the number of waste picker groups that have certain custom fields
+function get_number_posts_double ($meta_key,$meta_value) {
+	$args = array(
+				'posts_per_page' => -1,
+				'post_type' => 'waste-picker-group',
+				'meta_query' => array(
+						'relation' => 'AND',
+						 array(
+								'key'     => $meta_key,
+								'value'   => $meta_value,
+								'compare' => 'LIKE',
+						 ),
+						 array(
+								'key'     => '_wpg_members_occupation',
+								'value'   => 'waste pickers',
+								'compare' => 'LIKE',
+						 ),
+					 ),
+				);
+	$posts_array = get_posts( $args );
+	$result = count($posts_array);
+	return $result;
+}
+
 //formated pagination for bootstrap from http://www.ordinarycoder.com/paginate_links-class-ul-li-bootstrap/
 function custom_pagination() {
     global $wp_query;

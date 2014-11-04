@@ -634,8 +634,11 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$prefixpost = "_post_";
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
-		'post_type' => 'country'
+		'post_type' => 'country',
+		'orderby' => 'title',
+		'order' => 'ASC',
 		));
+		
 	foreach ($posts as $post) {
 		$countries[] = array(
 			'name' => $post->post_title,

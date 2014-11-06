@@ -104,6 +104,13 @@ get_header(); ?>
 				'posts_per_page' => -1,
 				'orderby' => 'title',
 				'order' => 'ASC',
+				'meta_query' => array(
+						 array(
+								'key'     => '_wpg_members_type',
+								'value'   => 'potential supporters',
+								'compare' => 'NOT LIKE',
+						 ),
+					 ),
 				);
 			$my_query = new WP_Query($args);
 			?>

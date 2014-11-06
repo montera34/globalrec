@@ -15,10 +15,11 @@ get_header(); ?>
 			$args = array(
 				//'author' => '4',
 				'post_status' => array( 'publish', 'future' ),
-				'post_type' => 'post',
+				'post_type' => array( 'post', 'newsletter' ),
 				'posts_per_page' => 100,
 				'ignore_sticky_posts' => 1,
 				'suppress_filters' => false //wpml suppress filters false
+				
 				);
 			$my_query = new WP_Query($args);
 			?>

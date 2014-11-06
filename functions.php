@@ -630,6 +630,24 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Summary for newsletter (it is different from the excerpt, that is shown in loop.boxes)
+	$meta_boxes[] = array(
+		'id' => 'newsletter-summary',
+		'title' => 'Summary of post (for translation). It\'s different from Excerpt!',
+		'pages' => array('newsletter'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Newsletter Summary',
+				'desc' => 'This is a summary of the article to send to translators. Do not mistake with the excerpt!',
+				'id' => $prefix . 'post-summary',
+				'type' => 'wysiwyg',
+				'options' => array(),
+			),
+		),
+	);
 	//Custom field to select a Country for a post
 	$prefixpost = "_post_";
 	$posts = query_posts( array(

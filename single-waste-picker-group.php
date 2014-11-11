@@ -69,46 +69,38 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 					<h4>
 						<?php	//location
 						//City
+						$city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$city = get_post($city_id);
-						$city2 = get_post_meta( $post->ID, 'city', true );
+						$city2 = get_post_meta( $post_id, 'city', true );
+						$city2_slug = strtolower (str_replace(" ","-",$city2));
 						$city_link = get_permalink($city->ID);
 						$city_name = $city->post_title;
-						if ($city != '') { //displays the city from the selection list '_wpg_cityselect', if it exists, if not displays the city from the open field 'city'
-							if ($city_name == 'Not specified') {
-								if ($city2 != '') {
-									echo $city2. ", ";
-								}
-							} else {
-								if ($city2 != '') {
-									echo '<a href="'.$city_link.'">'.$city2.'</a>, ';
-								}
+						
+						if (!empty($city2)) {
+								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
 							}
-						} else {
-							if ($city2 != '') {
-								echo $city2. ", ";
-							}
-						}
 						//Region
 						$region = get_post_meta( $post_id, '_wpg_region', true );
 						if ($region != '') {echo $region. ", ";}
 						
 						//Country
-						$country_id = get_post_meta( $post->ID, '_wpg_countryselect', true );
+						$country_id = get_post_meta( $post_id, '_wpg_countryselect', true );
 						$country = get_post($country_id);
-						$country2 = get_post_meta( $post->ID, 'country', true );
-						$country_link = get_permalink($country->ID);
+						$country2 =get_post_meta( $post_id, 'country', true );
+						$country2_slug = strtolower (str_replace(" ","-",$country2));
+						$country_link = get_permalink($post_id);
 						$country_name = $country->post_title;
-						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field 'city'
+						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
 							if ($country_name == 'Not specified') {//if the "not specified" option is selected
 								echo $country2;
 							} else {//if a country has been selected
-								echo '<a href="'.$country_link.'">'.$country2.'</a>';
+								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
 							}
 						} else {
-						echo get_post_meta( $post->ID, 'country', true );
+						echo get_post_meta( $post_id, 'country', true );
 						} ?>
 					</h4>	
-						<?php echo ($website != '') ? "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>" : ''; ?>
+						<?php echo ($website != '') ? "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
 					<div class="row">
 						<div class="col-md-7">
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
@@ -138,7 +130,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								$women_composition_comment =	get_post_meta( $post_id, '_wpg_gender_women_comment', true );
 								
 								if ($women_composition || $women_composition_comment) {
-									echo "<dt>Women composition</dt><dd>".$women_composition."%<small>".$women_composition_comment. "</small></dd>";
+									echo "<dt>Women composition</dt><dd>".$women_composition."% <small>".$women_composition_comment. "</small></dd>";
 								} elseif ($women_composition_comment){
 								 	echo "<dt>Women composition</dt><dd><small>".$women_composition_comment. "</small></dd>";
 								}

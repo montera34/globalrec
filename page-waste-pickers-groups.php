@@ -122,7 +122,11 @@ get_header(); ?>
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
-			<th><?php _e('Members\' occupation','globalrec'); ?></th>
+			<!--<th><?php _e('Members\' occupation','globalrec'); ?></th>-->
+			<th><?php _e('Number of members','globalrec');
+						echo "<br>(";
+						_e('Number of groups','globalrec');
+						echo ")"; ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
 		</tr>
@@ -157,14 +161,17 @@ get_header(); ?>
 					} ?>
 					
 				</td>
-				<td>
+				<td class="text-right">
 					<?php
-					echo list_of_items($post_id,'_wpg_members_occupation','');
+					//echo list_of_items($post_id,'_wpg_members_occupation','');
+					$number_wp = get_post_meta( $post_id, '_wpg_number_individuals', true );
+					$number_wpg = get_post_meta( $post_id, '_wpg_number_groups', true );
+					echo $number_wp !='' ?  number_format($number_wp) : '';
+					echo $number_wpg !='' ? ' ('.number_format($number_wpg).')' : '';
 					?>
 				</td>
 				<td><?php 
 						//City
-						//echo get_post_meta( $post->ID, '_wpg_email', true );
 						$city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$city = get_post($city_id);
 						$city2 = get_post_meta( $post_id, 'city', true );

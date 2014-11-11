@@ -986,6 +986,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'church organisation' => 'church organisation',
 					'community group' => 'community group',
 					'cooperative' => 'cooperative',
+					'cooperative federation' => 'cooperative federation',
 					'environmental' => 'environmental',
 					'emerging movement' => 'emerging movement',
 					'federation' => 'federation',
@@ -1008,6 +1009,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'self-help group' => 'self-help group',
 					'support ngo' => 'support ngo',
 					'trade union' => 'trade union',
+					'trade union informal' => 'trade union informal',
 					'united nations' => 'united nations',
 					'waste management' => 'waste management',
 					'waste picker group' => 'waste picker group',
@@ -1240,7 +1242,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'donor' => 'donor ',
 					'government' => 'government',
 					'ngo' => 'ngo',
-					'waste-picker-organisation' => 'waste wicker organisation',
+					'waste picker organisation' => 'waste picker organisation',
 				)
 			),
 			array(

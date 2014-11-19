@@ -873,7 +873,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'serere' => 'serere',
 					'swaili' => 'swaili',
 					'tieyako bozo' => 'tieyako Bozo',
-					'toucouleur yoruba' => 'toucouleur / yoruba',
+					'toucouleur / yoruba' => 'toucouleur / yoruba',
 					'tshiluba' => 'tshiluba',
 					'walot' => 'walot',
 					'yoruba' => 'yoruba'
@@ -949,6 +949,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				    'waste picker support organization' => 'waste picker support organization',
 				    'members are multi sector' => 'members are multi sector',
 				    'members employ waste pickers' => 'members employ waste pickers',
+				    'potential supporters' => 'potential supporters',
 				)
 			),
 			array(

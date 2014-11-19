@@ -318,3 +318,16 @@ nav li.menu-item-has-children {
 .pagination .current {
 	background-color:#fe7c11;
 }
+
+/* map */
+.legend-map ul{
+	padding:0;
+}
+.legend-map ul li {
+	list-style: none;
+	margin-bottom:1px;
+}
+
+.legend-map h3 {
+	font-size:20px;
+}

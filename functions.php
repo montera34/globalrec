@@ -1744,4 +1744,331 @@ function myfeed_request($qv) {
 	return $qv;
 }
 add_filter('request', 'myfeed_request');
+
+// Waste Pickers Around the World submit form
+//Code based in https://github.com/skotperez/15muebles/blob/master/functions.php
+// get all posts from a post type to be used in select or multicheck forms
+function globalrec_get_list($post_type) {
+	$posts = get_posts(array(
+	'posts_per_page' => -1,
+	'post_type' => $post_type,
+	'order'=>'ASC'
+	));
+	if ( count($posts) > 0 ) {
+		foreach ( $posts as $post ) {
+		$list[$post->ID] = $post->post_title;
+	}
+		return $list;
+	}
+}
+
+// submit WPG form
+function globalrec_waw_form() {
+
+	$action = get_permalink();
+
+	// which badge
+	if ( array_key_exists('badge_id', $_GET) ) {
+		$badge_from = sanitize_text_field( $_GET['badge_id']);
+	} else { $badge_from = ""; }
+
+	$badges = globalrec_get_list("waste-picker-group"); //list waste picker groups
+	$options_badges = "<option></option>";
+	while ( $badge = current($badges) ) {
+		if ( $badge_from == key($badges) ) {
+			$options_badges .= "<option value='" .key($badges). "' selected>" .$badge. "</option>";
+		} else {
+			$options_badges .= "<option value='" .key($badges). "'>" .$badge. "</option>";
+		}
+		next($badges);
+	}
+	
+	$languages = array(
+					'spanish' => 'spanish',
+					'portuguese' => 'portuguese',
+					'english' => 'english',
+					'french' => 'french',
+					'bamanankan' => 'bamanankan',
+					'bambaro' => 'bambaro',
+					'bomu' => 'bomu',
+					'hindi' => 'hindi',
+					'igbo' => 'igbo',
+					'kikongo' => 'kikongo',
+					'lingala' => 'lingala',
+					'malagasy' => 'malagasy',
+					'mandingue' => 'mandingue',
+					'marathi' => 'marathi',
+					'peulh' => 'peulh',
+					'serere' => 'serere',
+					'swaili' => 'swaili',
+					'tieyako bozo' => 'tieyako Bozo',
+					'toucouleur / yoruba' => 'toucouleur / yoruba',
+					'tshiluba' => 'tshiluba',
+					'walot' => 'walot',
+					'yoruba' => 'yoruba'
+				);
+		$options_languages = "<option></option>";
+		while ( $language = current($languages) ) {
+			$options_languages .= "<option value='" .key($languages). "'>" .ucfirst($language). "</option>";
+			next($languages);
+		}
+			
+		
+	$form_out = "
+	<h2>Submit information about your organization</h2>
+<form id='globalrec-form-content' method='post' action='" .$action. "' enctype='multipart/form-data'>
+<div class='row'>
+	<div class='form-horizontal col-md-10'>
+		<legend>Contact information</legend>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-name' class='col-sm-4 control-label'>Name</label>
+			<div class='col-sm-6'>
+				<input class='form-control req' type='text' value='' name='globalrec-form-waw-name' />
+			</div>
+		</div>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-mail' class='col-sm-4 control-label'>Email</label>
+			<div class='col-sm-6'>
+	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-mail' />
+				<p class='help-block'><small></small></p>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-city' class='col-sm-4 control-label'>City</label>
+			<div class='col-sm-6'>
+	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-city' />
+				<p class='help-block'><small>City were the organization belongs to</small></p>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-country' class='col-sm-4 control-label'>Country</label>
+			<div class='col-sm-6'>
+	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-country' />
+				<p class='help-block'><small>Country were the organization belongs to</small></p>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-website' class='col-sm-4 control-label'>Website</label>
+			<div class='col-sm-6'>
+				<input class='form-control req' type='text' value='' name='globalrec-form-waw-website' />
+				<p class='help-block'><small>URL of the organizations website. Ex: http://globalrec.org</small></p>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-language' class='col-sm-4 control-label'>Language</label>
+			<div class='col-sm-6'>
+				<select class='form-control req' name='globalrec-form-waw-language' maxlenght='11' >
+					" .$options_languages. "
+				</select>
+			</div>
+		</div>
+		<!--<div class='form-group'>
+			<label for='globalrec-form-waw-avatar' class='col-sm-4 control-label'>Image or Logo</label>
+			<div class='col-sm-6'>
+				<input type='file' name='globalrec-form-waw-avatar' />
+				<input type='hidden' name='MAX_FILE_SIZE' value='4000000' />
+			<p class='help-block'><small>Image or logotype of the organization. Not bigger than<strong> 4MB</strong> and <strong>must be JPG, PNG or GIF</strong>.</small></p>
+			</div>
+		</div>-->
+
+		<legend>Primary Information</legend>
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Type of members</label>
+			<div class='col-sm-6'>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='members_list[]' value='members are waste pickers'>
+						members are waste pickers
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='members_list[]' value='members are waste picker organizations'>
+						members are waste picker organizations
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='members_list[]' value='waste picker support organization'>
+						waste picker support organization
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='members_list[]' value='members are multi sector'>
+						members are multi sector
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='members_list[]' value='members employ waste pickers'>
+						members employ waste pickers
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label'>
+						<input type='checkbox' name='members_list[]' value='potential supporters'>
+						potential supporters
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Organization's scope</label>
+			<div class='col-sm-6'>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='scope_list[]' value='local'>
+						Local
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='scope_list[]' value='regional'>
+						Regional
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='scope_list[]' value='national'>
+						National
+					</label>
+				</div>
+				<div class='checkbox'>
+					<label>
+						<input type='checkbox' name='scope_list[]' value='international'>
+						International
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class='form-group'>
+		  <div class='col-sm-offset-4 col-sm-6'>
+		  	<input class='btn btn-default' type='submit' value='Send' name='globalrec-form-waw-submit' />
+				<span class='help-block'><small><strong>Al fields are required except the image</strong>.</small></span>
+		  </div>
+  	</div>
+	</div>
+</div>
+</form>
+";
+	echo $form_out;
+
+} // end add WPG
+
+// insert wpg data in database
+function globalrec_insert_wpg() {
+
+	// messages and locations for redirection
+	$perma = get_permalink();
+	$location = $perma."?form=success";
+	$error = "<div class='alert alert-danger'>
+		<p>Uno o varios campos están vacíos o no tienen un formato válido.</p>
+		<p>Si has rellenado el campo de imagen comprueba que no pesa más de 4MB y que está en un formato adecuado (JPG, PNG, GIF).</p>
+		<p>En cualquier caso el formulario no se envió correctamente. Por favor, inténtalo de nuevo.</p>
+	</div>";
+	$success = "<div class='alert alert-success'>El formulario ha sido enviado correctamente: hemos recibido tus datos. Vamos a revisarlos y si todo está correcto recibirás el badge en unos cuantos días.</div><p><strong>¿Quieres solicitar otro badge?</strong>: <a href='" .$perma. "'>vuelve al formulario</a>.</p>";
+
+	if ( array_key_exists('form', $_GET) ) {
+		if ( sanitize_text_field( $_GET['form']) == 'success' ){
+			echo "<strong>" .$success. "</strong>";
+			return;
+		}
+	}
+
+	if ( !array_key_exists('globalrec-form-waw-submit', $_POST) ) {
+		globalrec_waw_form();
+		return;
+
+	} elseif ( sanitize_text_field( $_POST['globalrec-form-waw-submit'] ) != 'Send' ) {
+		globalrec_waw_form();
+		echo "har";
+		return;
+	}
+
+	// check if all fields have been filled
+	// sanitize them all
+	$wpg_name = sanitize_text_field( $_POST['globalrec-form-waw-name'] );
+	$wpg_mail = sanitize_email( $_POST['globalrec-form-waw-mail'] );
+	$wpg_material = sanitize_text_field( $_POST['globalrec-form-waw-website'] );
+	$wpg_badge = sanitize_text_field( $_POST['globalrec-form-waw-language'] );
+	$city = sanitize_text_field( $_POST['globalrec-form-waw-city'] );
+	$country = sanitize_text_field( $_POST['globalrec-form-waw-country'] );
+	$wpg_members_type = $_POST['members_list'];
+	$wpg_scope = $_POST['scope_list'];
+	
+	echo 'wpg_members_type array is: ';
+	print_r($wpg_members_type);
+	print_r($wpg_scope);
+	echo ' .<br>';
+	
+	// check that all required fields were filled
+	$fields = array(
+		//'title' => $wpg_name, TODO how to chack name exists and not include it in this array (used for custom field inserts)
+		'_wpg_email' => $wpg_mail,
+		'_wpg_members_type' => $wpg_members_type[0],//TODO be able to check more than one option
+		'_wpg_organization_scope' => $wpg_scope[0],//TODO be able to check more than one option
+		'city' => $city,
+		'country' => $country,
+		'_wpg_language' => $wpg_badge,
+		'_wpg_website' => $wpg_material,
+	);
+	
+	foreach ( $fields as $name => $field ) {
+		echo $name.' is: '. $field. '<br>';
+		if ( $field == '' ) {
+			echo $error;
+			echo 'alguno vacio'. $field;
+			globalrec_waw_form();
+			return;
+		}
+	}
+	// checking if image file have the right format and size
+	if ( array_key_exists('globalrec-form-waw-avatar', $_FILES) ) {
+		$file = $_FILES['globalrec-form-waw-avatar'];
+		if ( $file['name'] != '' ) {
+			$finfo = new finfo(FILEINFO_MIME_TYPE);
+			$mime = $finfo->file($file['tmp_name']);
+			if ( $mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mime == 'image/gif' ) {}
+			else {
+				echo $error;
+				globalrec_waw_form();
+				return;
+			}
+			if ( $file['size'] > '4000000' ) {
+				echo $error;
+				globalrec_waw_form();
+				return;
+			}
+		} // if filename is not empty
+	} // if file has been uploaded
+
+	// end checking
+
+	// if everything ok, do insert
+
+	// insert waste picker group
+	$wpg_id = wp_insert_post(array(
+		'post_type' => 'waste-picker-group',
+		'post_status' => 'draft',
+		'post_author' => 1,
+		'post_title' => $wpg_name,
+	));
+
+	if ( $wpg_id == 0 ) {
+		echo $error;
+		globalrec_waw_form();
+		return;
+	}
+
+	// insert custom fields
+	reset($fields);
+	while ( $field = current($fields) ) {//do not use current, becasue it is the title, and it is not a custom field
+		add_post_meta($wpg_id, key($fields), $field, TRUE);
+		next($fields);
+	}
+
+	wp_redirect( $location );
+
+} // end insert wpg data in database
 ?>

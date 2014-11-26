@@ -2070,3 +2070,15 @@ function globalrec_insert_wpg() {
 	wp_redirect( $location );
 
 } // end insert wpg data in database
+
+//Translate title in header
+function wpml_custom_wp_title( $title, $sep ) {
+    global $paged, $page;
+ 
+    if( function_exists( 'icl_translate') ) {
+        $title = icl_translate('wpml_custom', 'wpml_custom_' . sanitize_key($title), $title);
+    }
+ 
+    return $title;
+}
+add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );

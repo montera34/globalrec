@@ -1,5 +1,4 @@
 <?php
-
 // add menu para pune2012
 function register_my_menus() {
   register_nav_menus(
@@ -978,7 +977,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'id' => $prefixwpg . 'organization_type',
 				'type' => 'multicheck',
 				'options' => array(
-					'academic' => 'academic',
+					'academic' => __('academic'),
 					'affiliate' => 'affiliate',
 					'alliance' => 'alliance',
 					'association' => 'association',
@@ -1018,15 +1017,15 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				)
 			),
 			array(
-				'name' => 'Organization Scope',
+				'name' => __('Organization Scope'),
 				'desc' => '',
 				'id' => $prefixwpg . 'organization_scope',
 				'type' => 'multicheck',
 				'options' => array(
-					'local' => 'local',
-					'regional' => 'regional',
-					'national' => 'national',
-					'international' => 'international',
+					'local' => __('local'),
+					'regional' => __('regional'),
+					'national' => __( 'national' ),
+					'international' => __('international'),
 				)
 			),
 			array(
@@ -2071,4 +2070,3 @@ function globalrec_insert_wpg() {
 	wp_redirect( $location );
 
 } // end insert wpg data in database
-?>

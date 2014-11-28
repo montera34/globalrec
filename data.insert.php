@@ -152,6 +152,10 @@ get_header();
 						'_wpg_challenges_access_waste' => $challenges_access_waste,
 					);
 
+					// prepare terms to insert if there are more than one
+					$terms = $members_type;
+					$tax = "wpg-member-type";
+
 					/*$terms = array(
 						'wpg-member-type' => $members_type,
 					);*/
@@ -164,6 +168,10 @@ get_header();
 						'post_title' => $tit,
 						'post_content' => $content,
 					));
+					
+					// get group id if already inserted
+					$group = get_page_by_title( $tit, OBJECT, 'waste-picker-group' );
+					$group_id = $group->ID;
 
 					if ( $wpg != 0 ) {
 
@@ -181,9 +189,38 @@ get_header();
 						foreach ( $multicheck as $key => $value ) {
    							update_post_meta($wpg, $key, $value);
 						}
-						
+
+						echo "
+							<div>
+								<h3>Waste Picker Group " .$wpg. " is " .$tit. "</h3>
+								<p>Group Insert ok</p>
+							</div>
+						";
+												
 						// insert terms
-						/*reset($terms);
+						foreach ( $terms as $value ) {
+							if ( $value != '' ) { // if it is not an empty value
+								$term = term_exists( $value, $tax ); // return the term ID or 0 if doesn't exist
+								echo "<br>existing term ";
+								$term_id = $term['term_id'];
+								echo "term_id is now " .$term_id. ".";
+								if ( $term['term_id'] == 0 || $term['term_id'] == null ) { // if the term doesn't exist, then create it
+									echo "<br>new term id din't exist<br>";
+									$new_term = wp_insert_term( $value, $tax );
+									$term_id = $new_term['term_id'];
+									echo "term is now " .$term_id;
+								}
+								wp_set_object_terms( $group_id, $terms, $tax );
+								
+								echo "
+									<p><strong>Inserting value: " .$value. "</strong></p>
+									<p> inserted ok: ID = " .$term_id. "</p>
+								";
+								echo "<hr>";
+							}
+						}
+						
+						/*
 						while ( $term = current($terms) ) {
 							if ( $term != '' ) { // if is not an empty value
 								$term_id = term_exists( $term ); // return the term ID or 0 if doesn't exist
@@ -196,12 +233,7 @@ get_header();
 							next($terms);
 						}*/
 
-						echo "
-							<div>
-								<h2>Waste Picker Group " .$wpg. "</h2>
-								<p>Insert ok</p>
-							</div>
-						";
+
 						
 					} // if project has been inserted
 

@@ -3,6 +3,7 @@ $categories = get_the_category();
 $separator = '&nbsp;';
 $output = '';
 $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
+$post_id = $post->ID;
 ?>
 
 <div class="thumbnail">
@@ -49,17 +50,29 @@ $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 				echo "| ";
 				echo _e('Region','globalrec');
 				echo " ".$region;
-				echo " | ";}
-			if (get_post_type() != 'global-meeting') {the_time('M d, Y');}
+				echo " | ";
+			}
+			if (get_post_type() == 'global-meeting') {
+				//do nothing
+			} else if (get_post_type() == 'waste-picker-group') {
+				echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' );
+				echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' );
+				echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' );
+			} else {
+				the_time('M d, Y');
+			}
 	 	?></small>
 	</div>
 	<?php //related excerpt
 		$post_excerpt = get_the_excerpt();
 		$pattern = '/.{180}/i';
 		preg_match($pattern, $post_excerpt, $matches);
-		if ( $matches[0] != '' ) {
-			$post_excerpt = $matches[0] . "...";
-		} ?> 
+		if (!empty($matches)){
+			if ( $matches[0] != '' ) {
+				$post_excerpt = $matches[0] . "...";
+			}
+		}
+		?>
 	<?php if (get_post_type() != 'global-meeting') { //conditional if is global meeting custom post type, don't show excerpt ?>		
 		<div class="excerpt">
 			<small>
@@ -85,4 +98,3 @@ $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 		</div>
 	</div>
 </div>
-

@@ -66,26 +66,26 @@ get_header(); ?>
 			//$wastepickers_orgs = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'Members are Waste Picker Organisations';");
 			//$orgs_india = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'India';");//AND meta_key = 'country' ??
 			
-			$wp_members = get_number_posts ('_wpg_members_type','members are waste pickers');
-			$wp_orgs = get_number_posts ('_wpg_members_type','members are waste picker organizations');
-			$wp_support = get_number_posts ('_wpg_members_type','waste picker support organization');
-			$wp_potential = get_number_posts ('_wpg_members_type','potential supporters');
+			$wp_waste_pickers = get_number_posts_in_taxonomy ('wpg-member-type','members are waste pickers');
+			$wp_orgs = get_number_posts_in_taxonomy ('wpg-member-type','members are waste picker organizations');
+			$wp_support = get_number_posts_in_taxonomy ('wpg-member-type','waste picker support organization');
+			$wp_potential = get_number_posts_in_taxonomy ('wpg-member-type','potential supporters');
 			
 			$wp_wp_occupation = get_number_posts ('_wpg_members_occupation','waste pickers');
 			$wp_swm_occupation = get_number_posts ('_wpg_members_occupation','solid waste management');
 			$wp_wc_occupation = get_number_posts ('_wpg_members_occupation','waste collectors');
 			$wp_sd_occupation = get_number_posts ('_wpg_members_occupation','scrap dealers');
 			
-			$local_orgs = get_number_posts_double ('_wpg_organization_scope','local');
-			$regional_orgs = get_number_posts_double ('_wpg_organization_scope','regional');
-			$national_orgs = get_number_posts_double ('_wpg_organization_scope','national');
-			$international_orgs = get_number_posts_double ('_wpg_organization_scope','international');
+			$local_orgs = get_number_posts_in_taxonomy ('wpg-scope','local');
+			$regional_orgs = get_number_posts_in_taxonomy ('wpg-scope','regional');
+			$national_orgs = get_number_posts_in_taxonomy ('wpg-scope','national');
+			$international_orgs = get_number_posts_in_taxonomy ('wpg-scope','international');
 			
-			$tradeunions_orgs = get_number_posts_double ('_wpg_organization_type','Trade Union');
-			$wpg_orgs = get_number_posts_double ('_wpg_organization_type','Waste Picker Group');
-			$ngo_orgs = get_number_posts_double ('_wpg_organization_type','NGO');
-			$coop_orgs = get_number_posts_double ('_wpg_organization_type','Cooperative');
-			$coopfed_orgs = get_number_posts_double ('_wpg_organization_type','Cooperative Federation');
+			$tradeunions_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','Trade Union');
+			$wpg_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','Waste Picker Group');
+			$ngo_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','NGO');
+			$coop_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','Cooperative');
+			$coopfed_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','Cooperative Federation');
 					
 			$wp_india = get_number_posts_double ('country','India');
 			$wp_bangladesh = get_number_posts_double ('country','Bangladesh');
@@ -93,15 +93,14 @@ get_header(); ?>
 			$wp_brazil = get_number_posts_double ('country','Brazil');
 			$wp_kenya = get_number_posts_double ('country','Kenya');
 			$wp_south_africa = get_number_posts_double ('country','South Africa');
-			$wp_organizations =	$wp_orgs+$wp_members;
 			
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p>';
-			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. '.</p>';
+			//echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. '.</p>';
 			
 			echo '<div class="row"><div class="col-md-3">';
 			echo '<h3>Type of members</h3>';
-			echo '<p>Organizations with waste pickers as members: ' . $wp_members. ' (' . round($wp_members/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Organizations with waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Organizations with waste pickers as members: ' . $wp_waste_pickers. ' (' . round($wp_waste_pickers/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Organizations that have waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Waste picker support organization: ' . $wp_support . ' (' . round($wp_support/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Potential supporters organizations: ' . $wp_potential . ' (' . round($wp_potential/$count_wpo*100,1) .'%).</p>';
 			echo '</div><div class="col-md-2">';
@@ -195,20 +194,22 @@ get_header(); ?>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
 				<td>
-					<?php echo list_of_items($post_id,'_wpg_organization_scope',''); ?>
+					<?php // echo list_of_items($post_id,'_wpg_organization_scope',''); ?>
+					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>
 				</td>
 				<td>
-					<?php echo list_of_items($post_id,'_wpg_organization_type',''); ?>
+					<?php // echo list_of_items($post_id,'_wpg_organization_type',''); ?>
+					<?php echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' ); ?>
 				</td>
 				<td>
 					<?php 
-					$member_type = get_post_meta( $post_id, '_wpg_members_type', true );
+					/*$member_type = get_post_meta( $post_id, '_wpg_members_type', true );
 					if (gettype($member_type) == 'array') {
 						echo list_of_items($post_id,'_wpg_members_type','');
 					} else {
 						echo get_post_meta( $post_id, '_wpg_members_type', true ); 
-					} ?>
-					
+					} */?>
+					<?php echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' ); ?>
 				</td>
 				<td class="text-right">
 					<?php

@@ -3,8 +3,8 @@
 Template Name: Insert data script
 */
 get_header();
-		//$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert7-from-ods"; // name (no extension)
-		$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert7-from-ods"; // name (no extension)
+		//$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert9-from-ods"; // name (no extension)
+		$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert10-from-ods"; // name (no extension)
 		//$csv_filename = get_stylesheet_directory(). "/dbimport/" .$filename; // relative path to data filename
 		$line_length = "5024"; // max line lengh (increase in case you have longer lines than 1024 characters)
 		$delimiter = ";"; // field delimiter character
@@ -72,19 +72,20 @@ get_header();
 					$member_benefits = explode(", ", strtolower($fp_csv[46])); // cf
 					$credit_members = $fp_csv[47]; // cf
 					$safety_technology = explode(", ", $fp_csv[48]); // cf
-					$relationship_municipality = explode(", ", strtolower($fp_csv[49])); // cf
-					$types_of_materials = explode(", ", $fp_csv[50]); // cf
-					$middlemen = $fp_csv[51]; // cf
-					$activities = explode(", ", strtolower($fp_csv[52])); // cf
-					$sorting_spaces = explode(", ", $fp_csv[53]); // cf
-					$treatment_organic_materials = explode(", ", strtolower($fp_csv[54])); // cf
-					$challenges_access_waste = explode(", ", strtolower($fp_csv[55])); // cf
-					$content = $fp_csv[56]; // content
-					$publications = $fp_csv[57]; // cf
-					$information_source = $fp_csv[58]; // cf
-					$date_data_entry = $fp_csv[59]; // cf
-					$date_data_updated = $fp_csv[60]; // cf
-					$status	 = $fp_csv[61]; // cf
+					$relationship_municipality_how = explode(", ", strtolower($fp_csv[49])); // cf
+					$relationship_municipality_what = explode(", ", strtolower($fp_csv[50])); // cf
+					$types_of_materials = explode(", ", $fp_csv[51]); // cf
+					$middlemen = $fp_csv[52]; // cf
+					$activities = explode(", ", strtolower($fp_csv[53])); // cf
+					$sorting_spaces = explode(", ", $fp_csv[54]); // cf
+					$treatment_organic_materials = explode(", ", strtolower($fp_csv[55])); // cf
+					$challenges_access_waste = explode(", ", strtolower($fp_csv[56])); // cf
+					$content = $fp_csv[57]; // content
+					$publications = $fp_csv[58]; // cf
+					$information_source = $fp_csv[59]; // cf
+					$date_data_entry = $fp_csv[60]; // cf
+					$date_data_updated = $fp_csv[61]; // cf
+					$status	 = $fp_csv[62]; // cf
 						
 						
 					$fields = array(
@@ -144,7 +145,8 @@ get_header();
 						'_wpg_funding' => $funding,
 						'_wpg_member_benefits' => $member_benefits,
 						'_wpg_safety_technology' => $safety_technology,
-						'_wpg_relationship_municipality' => $relationship_municipality,
+						'_wpg_relationship_municipality_how' => $relationship_municipality_how,
+						'_wpg_relationship_municipality_what' => $relationship_municipality_what,
 						'_wpg_types_of_materials' => $types_of_materials,
 						'_wpg_activities' => $activities,
 						'_wpg_sorting_spaces' => $sorting_spaces,
@@ -153,12 +155,11 @@ get_header();
 					);
 
 					// prepare terms to insert if there are more than one
-					$terms = $members_type;
-					$tax = "wpg-member-type";
-
-					/*$terms = array(
+					$terms = array( //taxonomy => values
 						'wpg-member-type' => $members_type,
-					);*/
+						'wpg-scope' => $organization_scope,
+						'wpg-organization-type' => $organization_type
+					);
 
 					// insert post
 					$wpg = wp_insert_post(array(
@@ -197,27 +198,32 @@ get_header();
 							</div>
 						";
 												
-						// insert terms
-						foreach ( $terms as $value ) {
-							if ( $value != '' ) { // if it is not an empty value
-								$term = term_exists( $value, $tax ); // return the term ID or 0 if doesn't exist
-								echo "<br>existing term ";
-								$term_id = $term['term_id'];
-								echo "term_id is now " .$term_id. ".";
-								if ( $term['term_id'] == 0 || $term['term_id'] == null ) { // if the term doesn't exist, then create it
-									echo "<br>new term id din't exist<br>";
-									$new_term = wp_insert_term( $value, $tax );
-									$term_id = $new_term['term_id'];
-									echo "term is now " .$term_id;
+						// insert terms in taxonomies
+						foreach ( $terms as $taxonomy => $values ) { //$values might be string or array
+							foreach ( $values as $value ) {
+								if ( $value != '' ) {
+									$term = term_exists( $value, $taxonomy ); // return the term ID or 0 if doesn't exist
+									echo "<br>existing term ";
+									$term_id = $term['term_id'];
+									echo "term_id is now " .$term_id. ".";
+									if ( $term['term_id'] == 0 || $term['term_id'] == null ) { // if the term doesn't exist, then create it
+										echo "<br>new term id din't exist<br>";
+										$new_term = wp_insert_term( $value, $taxonomy );
+										$term_id = $new_term['term_id'];
+										echo "term is now " .$term_id;
+									}
 								}
-								wp_set_object_terms( $group_id, $terms, $tax );
-								
-								echo "
-									<p><strong>Inserting value: " .$value. "</strong></p>
-									<p> inserted ok: ID = " .$term_id. "</p>
-								";
-								echo "<hr>";
 							}
+	
+							wp_set_object_terms( $group_id, $values, $taxonomy );
+	
+							echo "
+								<p><strong>Inserting value/s: " .print_r($terms). "</strong></p>
+								<p> inserted ok: ID = " .$term_id. "</p>
+							";
+							echo "<hr>";
+	
+							next($terms);
 						}
 						
 						/*
@@ -233,8 +239,6 @@ get_header();
 							next($terms);
 						}*/
 
-
-						
 					} // if project has been inserted
 
 				} // end if not line 0

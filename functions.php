@@ -257,6 +257,16 @@ register_taxonomy( 'wpg-member-type', 'waste-picker-group', array(
 	'label' => 'Waste Picker Member type',
 	'query_var' => true,
 	'rewrite' => array( 'slug' => 'wpg-member-type' ) ) );
+register_taxonomy( 'wpg-scope', 'waste-picker-group', array(
+	'hierarchical' => true,
+	'label' => 'Waste Picker Organization scope',
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'wpg-scope' ) ) );
+register_taxonomy( 'wpg-organization-type', 'waste-picker-group', array(
+	'hierarchical' => true,
+	'label' => 'Waste Picker Organization Type',
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'wpg-organization-type' ) ) );
 }
 add_action('init', 'my_custom_init');
 
@@ -1340,17 +1350,27 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'show_names' => true, // Show field names on the left
 		'fields' => array(
 			array(
-				'name' => 'Relationship with Municipality',
+				'name' => 'How is the relationship with the municipality?',
 				'desc' => '',
-				'id' => $prefixwpg . 'relationship_municipality',
+				'id' => $prefixwpg . 'relationship_municipality_how',
 				'type' => 'multicheck',
 				'options' => array(
-					'excellent' =>'excellent',
-					'forma contract' =>'formal contract',
-					'friendly' =>'friendly',
-					'independent' =>'independent',
-					'non existent' =>'non existent',
-					'poor' =>'poor',
+					'excellent and/or friendly' =>'excellent and/or friendly',
+					'conflictual and/or problematic' =>'conflictual and/or problematic',
+					'poor and/or non existent' =>'poor and/or non existent',
+					'other' =>'other',
+				),
+			),
+			array(
+				'name' => 'What kind of relationship exists with the municipality?',
+				'desc' => '',
+				'id' => $prefixwpg . 'relationship_municipality_what',
+				'type' => 'multicheck',
+				'options' => array(
+					'integrated into formal systems of source segregation' =>'integrated into formal systems of source segregation',
+					'payment for materials collected' =>'payment for materials collected',
+					'providers of infrastructure' =>'providers of infrastructure',
+					'other' =>'other',
 				),
 			),
 			array(
@@ -1686,7 +1706,7 @@ function get_number_posts ($meta_key,$meta_value) {
 	return $result;
 }
 
-//Function to get the number of waste picker groups that have certain custom fields
+//Function to get the number of waste picker groups that have certain custom fields and are 'waste pickers'
 function get_number_posts_double ($meta_key,$meta_value) {
 	$args = array(
 				'posts_per_page' => -1,
@@ -1698,6 +1718,25 @@ function get_number_posts_double ($meta_key,$meta_value) {
 								'value'   => $meta_value,
 								'compare' => 'LIKE',
 						 ),
+						 array(
+								'key'     => '_wpg_members_occupation',
+								'value'   => 'waste pickers',
+								'compare' => 'LIKE',
+						 ),
+					 ),
+				);
+	$posts_array = get_posts( $args );
+	$result = count($posts_array);
+	return $result;
+}
+
+//Funcion to get number of waste picker groups that are in a certain category and are 'waste pickers'
+function get_number_posts_in_taxonomy ($tax,$term) {
+	$args = array(
+				'posts_per_page' => -1,
+				'post_type' => 'waste-picker-group',
+				$tax => $term,
+				'meta_query' => array(
 						 array(
 								'key'     => '_wpg_members_occupation',
 								'value'   => 'waste pickers',

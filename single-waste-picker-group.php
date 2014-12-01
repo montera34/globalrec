@@ -149,7 +149,8 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
 							<dl>
 								<?php	//Services
-								echo list_of_items($post_id,'_wpg_relationship_municipality','Relationship with the Municipality');
+								echo list_of_items($post_id,'_wpg_relationship_municipality_what','What kind of relationship exists with the municipality?');
+								echo list_of_items($post_id,'_wpg_relationship_municipality_how','How is the relationship with the municipality?');
 								echo list_of_items($post_id,'_wpg_types_of_materials','Types of materials');
 								echo display_item($post_id,'_wpg_middlemen','Are they selling to middlemen?');
 								echo list_of_items($post_id,'_wpg_activities','Activities');

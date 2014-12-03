@@ -88,7 +88,7 @@ get_header(); ?>
 			$coop_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','cooperative-2');
 			$coopfed_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','federation of cooperatives');
 			$assoc_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','association');
-			$selfhelp_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','association');
+			$selfhelp_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','self-help group');
 			
 			$wp_india = get_number_posts_double ('country','India');
 			$wp_bangladesh = get_number_posts_double ('country','Bangladesh');
@@ -96,17 +96,44 @@ get_header(); ?>
 			$wp_brazil = get_number_posts_double ('country','Brazil');
 			$wp_kenya = get_number_posts_double ('country','Kenya');
 			$wp_south_africa = get_number_posts_double ('country','South Africa');
+			$wp_ecuador = get_number_posts_double ('country','ecuador');
+			$wp_venezuela = get_number_posts_double ('country','ecuador');
+			$wp_peru = get_number_posts_double ('country','peru');
+			$wp_dominican = get_number_posts_double ('country','dominican republic');
 			
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
 			//echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. '.</p>';
 			
-			echo '<div class="row">';
-			echo '<div class="col-md-4"><h3>Scope</h3>';
-			echo '<p>Local: ' . $local_orgs. ' (' . round($local_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<div class="row" id="waw-stats">';
+			echo '<div class="col-md-6"><h3>Scope</h3>';
+			echo '<div class="row"><div class="col-md-5 text-right"><p>Local: ' . $local_orgs. ' (' . round($local_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Regional: ' . $regional_orgs. ' (' . round($regional_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>National: ' . $national_orgs. ' (' . round($national_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>International: ' . $international_orgs. ' (' . round($international_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
+			echo '</div><div class="col-md-7">';?>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo round($local_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#ff3399;">
+						<span title="<?php echo round($local_orgs/$wp_wp_occupation*100,1); ?>% local">
+							<?php echo round($local_orgs/$wp_wp_occupation*100,1); ?>% local
+						</span>
+				</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-warning progress-bar-striped" style="width:<?php echo round($regional_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#ff3333">
+						<span title="<?php echo round($regional_orgs/$wp_wp_occupation*100,1); ?>% regional">
+							<?php echo round($regional_orgs/$wp_wp_occupation*100,1); ?>% regional
+						</span>
+					</div>
+			</div>
+			<div class="progress">
+					<div class="progress-bar progress-bar-danger" style="width:<?php echo round($national_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#ff9933">
+						<span title="<?php echo round($national_orgs/$wp_wp_occupation*100,1); ?>% national">
+							<?php echo round($national_orgs/$wp_wp_occupation*100,1); ?>% national
+						</span>
+					</div>
+			</div>
+			<?php echo '</div></div>';
 			?>
 				<div class="progress">
 					<div class="progress-bar" style="width:<?php echo round($local_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#ff3399;">
@@ -116,25 +143,70 @@ get_header(); ?>
 					</div>
 					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width:<?php echo round($regional_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#ff3333">
 						<span title="<?php echo round($regional_orgs/$wp_wp_occupation*100,1); ?>% regional">
-							<?php echo round($regional_orgs/$wp_wp_occupation*100); ?>% regional
+							<?php echo round($regional_orgs/$wp_wp_occupation*100,1); ?>% regional
 						</span>
 					</div>
 					<div class="progress-bar progress-bar-danger" style="width:<?php echo round($national_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#ff9933">
 						<span title="<?php echo round($national_orgs/$wp_wp_occupation*100,1); ?>% national">
-							<?php echo round($national_orgs/$wp_wp_occupation*100); ?>% national
+							<?php echo round($national_orgs/$wp_wp_occupation*100,1); ?>% national
 						</span>
 					</div>
 				</div>
 			</div>
 			
-			<?php echo '<div class="col-md-4"><h3>Type of organization</h3>';
-			echo '<p>Cooperative: ' . $coop_orgs. ' (' . round($coop_orgs/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Association: ' . $coopfed_orgs. ' (' . round($assoc_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			<?php echo '<div class="col-md-6"><h3>Type of organization</h3>';
+			echo '<div class="row"><div class="col-md-6 text-right"><p>Cooperative: ' . $coop_orgs. ' (' . round($coop_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Association: ' . $assoc_orgs. ' (' . round($assoc_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Trade Unions: ' . $tradeunions_orgs. ' (' . round($tradeunions_orgs/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Non Governmental Organization: ' . $ngo_orgs. ' (' . round($ngo_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Cooperative Federation: ' . $coopfed_orgs. ' (' . round($coopfed_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Self/help group: ' . $selfhelp_orgs. ' (' . round($selfhelp_orgs/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';?>
+			echo '<p>Non Governmental Organization: ' . $ngo_orgs. ' (' . round($ngo_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
+			echo '</div><div class="col-md-6">';?>
+				<div class="progress">
+					<div class="progress-bar" style="width:<?php echo round($coop_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#99eeee;">
+						<span title="<?php echo round($coop_orgs/$wp_wp_occupation*100,1); ?>% Cooperative">
+							<?php echo round($coop_orgs/$wp_wp_occupation*100,1); ?>% Cooperative
+						</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width:<?php echo round($assoc_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#99cc33">
+						<span title="<?php echo round($assoc_orgs/$wp_wp_occupation*100,1); ?>% Association">
+							<?php echo round($assoc_orgs/$wp_wp_occupation*100,1); ?>% Association
+						</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-danger" style="width:<?php echo round($tradeunions_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#003366">
+						<span title="<?php echo round($tradeunions_orgs/$wp_wp_occupation*100,1); ?>% Trade Union">
+							<?php echo round($tradeunions_orgs/$wp_wp_occupation*100,1); ?>% Trade Unions
+						</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-danger" style="width:<?php echo round($coopfed_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#339999">
+						<span title="<?php echo round($coopfed_orgs/$wp_wp_occupation*100,1); ?>% Cooperative Federation">
+							<?php echo round($coopfed_orgs/$wp_wp_occupation*100,1); ?>% Cooperative Federation
+						</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-danger" style="width:<?php echo round($selfhelp_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#996600">
+						<span title="<?php echo round($selfhelp_orgs/$wp_wp_occupation*100,1); ?>% Self/help group">
+							<?php echo round($selfhelp_orgs/$wp_wp_occupation*100,1); ?>% Self/help group
+						</span>
+					</div>
+				</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-danger" style="width:<?php echo round($ngo_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#609">
+						<span title="<?php echo round($ngo_orgs/$wp_wp_occupation*100,1); ?>% Self/help group">
+							<?php echo round($ngo_orgs/$wp_wp_occupation*100,1); ?>% NGO
+						</span>
+					</div>
+				</div>
+			<?php echo '</div></div>';
+			?>
 				<div class="progress">
 					<div class="progress-bar" style="width:<?php echo round($coop_orgs/$wp_wp_occupation*100,1); ?>%;background-color:#99eeee;">
 						<span title="<?php echo round($coop_orgs/$wp_wp_occupation*100,1); ?>% Cooperative">
@@ -168,16 +240,20 @@ get_header(); ?>
 			echo '</div>';
 			echo '<div class="row">';
 			echo '<div class="col-md-3"><h3>Country</h3>';
-			echo '<p>India: ' . $wp_india . '  (' . round($wp_india/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Bangladesh: ' . $wp_bangladesh . '  (' . round($wp_bangladesh/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Colombia: ' . $wp_colombia . '  (' . round($wp_colombia/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Brazil: ' . $wp_brazil . '  (' . round($wp_brazil/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Kenya: ' . $wp_kenya . '  (' . round($wp_kenya/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>South Africa: ' . $wp_south_africa . '  (' . round($wp_south_africa/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Brazil: ' . $wp_brazil . '  (' . calulate_percentage($wp_brazil,$wp_wp_occupation) .'%).</p>';
+			echo '<p>India: ' . $wp_india . '  (' . calulate_percentage($wp_india,$wp_wp_occupation) .'%).</p>';
+			//echo '<p>Bangladesh: ' . $wp_bangladesh . '  (' . calulate_percentage($wp_bangladesh,$wp_wp_occupation) .'%).</p>';
+			echo '<p>Colombia: ' . $wp_colombia . '  (' . calulate_percentage($wp_colombia,$wp_wp_occupation) .'%).</p>';
+			echo '<p>Kenya: ' . $wp_kenya . '  (' . calulate_percentage($wp_kenya,$wp_wp_occupation) .'%).</p>';
+			echo '<p>South Africa: ' . $wp_south_africa . '  (' . calulate_percentage($wp_south_africa,$wp_wp_occupation) .'%).</p>';
+			echo '<p>Ecuador: ' . $wp_ecuador . '  (' . calulate_percentage($wp_ecuador,$wp_wp_occupation) .'%).</p>';
+			echo '<p>Venezuela: ' . $wp_venezuela . '  (' . calulate_percentage($wp_venezuela,$wp_wp_occupation) .'%).</p>';
+			echo '<p>Peru: ' . $wp_peru . '  (' . calulate_percentage($wp_peru,$wp_wp_occupation) .'%).</p>';
+			echo '<p>Dominican Republic: ' . $wp_dominican . '  (' . calulate_percentage($wp_dominican,$wp_wp_occupation) .'%).</p>';
 			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
 			echo '</div>';
 			
-			echo '<div class="col-md-3">';
+			echo '<div class="col-md-5">';
 			echo '<h3>Type of members</h3>';
 			echo '<p>Organizations with waste pickers as members: ' . $wp_waste_pickers. ' (' . round($wp_waste_pickers/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Organizations that have waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';

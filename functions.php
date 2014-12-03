@@ -1749,6 +1749,11 @@ function get_number_posts_in_taxonomy ($tax,$term) {
 	return $result;
 }
 
+function calulate_percentage ($wp_item,$total) {
+	$result = round($wp_item/$total*100,1);
+	return $result;
+}
+
 //formated pagination for bootstrap from http://www.ordinarycoder.com/paginate_links-class-ul-li-bootstrap/
 function custom_pagination() {
     global $wp_query;

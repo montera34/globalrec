@@ -90,23 +90,23 @@ register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 
 register_post_type( 'waste-picker-group', array( // Defining Waste Picker Group custom post type
 	'labels' => array(
-		'name' => __( 'Waste Picker Groups' ),
-		'singular_name' => __( 'Waste Picker Group' ),
-		'add_new_item' => __( 'Add Waste Picker Group' ),
+		'name' => __( 'Waste Picker Organizations' ),
+		'singular_name' => __( 'Waste Picker Organization' ),
+		'add_new_item' => __( 'Add Waste Picker Organization' ),
 		'edit' => __( 'Edit' ),
 		'edit_item' => __( 'Edit this item' ),
-		'new_item' => __( 'New Waste Picker Group' ),
-		'view' => __( 'View Waste Picker Group' ),
-		'view_item' => __( 'View Waste Picker Group' ),
-		'search_items' => __( 'Search Waste Picker Group' ),
-		'not_found' => __( 'We didn\'t found any Waste Picker Group' ),
-		'not_found_in_trash' => __( 'No Waste Picker Group in the trash bin' ),
+		'new_item' => __( 'New Waste Picker Organization' ),
+		'view' => __( 'View Waste Picker Organization' ),
+		'view_item' => __( 'View Waste Picker Organization' ),
+		'search_items' => __( 'Search Waste Picker Organization' ),
+		'not_found' => __( 'We didn\'t found any Waste Picker Organization' ),
+		'not_found_in_trash' => __( 'No Waste Picker Organization in the trash bin' ),
 		),
 	'hierarchical' => false,
 	'public' => true,
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','thumbnail','excerpt'),
-	'rewrite' => array('slug'=>'group','with_front'=>false),
+	'rewrite' => array('slug'=>'organization','with_front'=>false),
 	'menu_icon' => 'dashicons-groups',
 	)
 );

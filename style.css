@@ -331,3 +331,8 @@ nav li.menu-item-has-children {
 .legend-map h3 {
 	font-size:20px;
 }
+
+/* Progress bars */
+#waw-stats .progress {
+	margin-bottom: 10px;
+}

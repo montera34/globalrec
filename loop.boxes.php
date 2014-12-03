@@ -55,6 +55,9 @@ $post_id = $post->ID;
 			if (get_post_type() == 'global-meeting') {
 				//do nothing
 			} else if (get_post_type() == 'waste-picker-group') {
+				echo get_post_meta( $post_id, 'city', true ). " ";
+				echo get_post_meta( $post_id, 'country', true );
+				echo '<br>';
 				echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' );
 				echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' );
 				echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' );
@@ -76,8 +79,13 @@ $post_id = $post->ID;
 	<?php if (get_post_type() != 'global-meeting') { //conditional if is global meeting custom post type, don't show excerpt ?>		
 		<div class="excerpt">
 			<small>
-				<?php if($post->post_excerpt) : the_excerpt(); else: 
-				echo "" .$post_excerpt; endif; ?> 
+				<?php
+				if (get_post_type() == 'waste-picker-group') {
+					} else {
+						if($post->post_excerpt) : the_excerpt(); else:
+						echo "" .$post_excerpt; endif;
+					}
+				?>
 			</small>
 		</div>
 	<?php }?>

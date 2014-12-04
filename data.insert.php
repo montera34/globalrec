@@ -59,7 +59,8 @@ get_header();
 					$gender_women_composition = $fp_csv[33]; // cf
 					$gender_women_comment = $fp_csv[34]; // cf
 					$structure = $fp_csv[35]; // cf
-					$objectives = explode(", ", strtolower($fp_csv[36])); // cf
+					//$objectives = explode(", ", strtolower($fp_csv[36])); // cf
+					$objectives = $fp_csv[36];
 					$education_training = explode(", ", strtolower($fp_csv[37])); // cf
 					$formally_registered = $fp_csv[38]; // cf
 					//$xxx = $fp_csv[39]; // cf
@@ -117,6 +118,7 @@ get_header();
 						'_wpg_gender_women_composition' => $gender_women_composition,
 						'_wpg_gender_women_comment' => $gender_women_comment,
 						'_wpg_structure' => $structure,
+						'_wpg_objectives' => $objectives,
 						'_wpg_formally_registered' => $formally_registered,
 						'_wpg_year_formed' => $year_formed,
 						'_wpg_registration_year' => $registration_year,
@@ -139,7 +141,6 @@ get_header();
 						'_wpg_organization_type' => $organization_type,
 						'_wpg_organization_scope' => $organization_scope,
 						'_wpg_workplace_members' => $workplace_members,
-						'_wpg_objectives' => $objectives,
 						'_wpg_education_training' => $education_training,
 						'_wpg_affiliations' => $affiliations,
 						'_wpg_funding' => $funding,

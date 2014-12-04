@@ -9,7 +9,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class("col-md-10") ?> id="post-<?php the_ID(); ?>">
 			<ul class="breadcrumb">
-			  <li><a href="<?php echo get_permalink(icl_object_id(10909,'page')) ?>"><?php _e('Waste Picker Groups','globalrec'); ?></a></li>
+			  <li><a href="<?php echo get_permalink(icl_object_id(10909,'page')) ?>"><?php _e('Waste Picker Organizations','globalrec'); ?></a></li>
 			  <li><?php the_title(); ?> </li>
 			</ul>
 			<div class="row">
@@ -110,10 +110,15 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo display_item($post_id,'_wpg_registration_year','Registered in');
 								echo display_item($post_id,'_wpg_formally_registered','Formally registered');
 								echo list_of_items($post_id,'_wpg_language','Language');
-								echo list_of_items($post_id,'_wpg_members_type','Type of members');
+								echo display_item($post_id,'_wpg_number_groups','Number of groups');
+								echo display_item($post_id,'_wpg_number_individuals','Number of members');
+								//echo list_of_items($post_id,'_wpg_members_type','Type of members');
+								echo "<dt>Type of members</dt><dd>".get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' )."</dd>";
 								echo list_of_items($post_id,'_wpg_members_occupation','Members\' occupation');
-								echo list_of_items($post_id,'_wpg_organization_type','Organization type');
-								echo list_of_items($post_id,'_wpg_organization_scope','Organization scope');
+								//echo list_of_items($post_id,'_wpg_organization_type','Organization type');
+								echo "<dt>Organization's type</dt><dd>".get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' )."</dd>";
+								//echo list_of_items($post_id,'_wpg_organization_scope','Organization scope');
+								echo "<dt>Organization scope</dt><dd>".get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' )."</dd>";
 								echo list_of_items($post_id,'_wpg_workplace_members','Workplace of members');
 								echo display_item($post_id,'_wpg_membership','Membership');
 								echo display_item($post_id,'_wpg_structure','Organization Structure');
@@ -123,8 +128,6 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo list_of_items($post_id,'_wpg_affiliations','Affiliations');
 								echo list_of_items($post_id,'_wpg_funding','Funding');
 								echo display_item($post_id,'_wpg_elections','Internal elections');
-								echo display_item($post_id,'_wpg_number_groups','Number of groups');
-								echo display_item($post_id,'_wpg_number_individuals','Number of members');
 								
 								$women_composition = get_post_meta( $post_id, '_wpg_gender_women_composition', true );
 								$women_composition_comment =	get_post_meta( $post_id, '_wpg_gender_women_comment', true );

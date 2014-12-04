@@ -13,12 +13,12 @@ while ( have_posts() ) : the_post();
 
 <div id="<?php echo $parent_slug ?>" class="container-full">
 <div class="container">
+	<?php get_template_part( 'nav', 'waw' ); ?>
 	<header class="row">
 		<div class="col-md-10 col-sm-10">
 			<h1 class="parent-tit"><?php echo $parent_tit; ?></h1>
 		</div>
 	</header>
-
 	<section class="row page-desc">
 		<div class="col-md-8 col-sm-8">
 			<?php the_content();

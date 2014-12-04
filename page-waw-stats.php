@@ -1,6 +1,6 @@
 <?php  /* Template Name: Waste Picker Groups Stats*/ 
 get_header(); ?>
-<div id="page-wpg">
+<div id="waw-stats">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<?php get_template_part( 'nav', 'waw' ); ?>
 		<div class="row">
@@ -20,25 +20,26 @@ get_header(); ?>
 		<?php
 			$count_wpo = wp_count_posts( 'waste-picker-group' )->publish;
 			global $wpdb;
-			//$wastepickers = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'Members are Waste Pickers';");
-			//$wastepickers_orgs = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'Members are Waste Picker Organisations';");
-			//$orgs_india = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->postmeta WHERE meta_value = 'India';");//AND meta_key = 'country' ??
 			
+			//Members' type
 			$wp_waste_pickers = get_number_posts_in_taxonomy ('wpg-member-type','members are waste pickers');
 			$wp_orgs = get_number_posts_in_taxonomy ('wpg-member-type','members are waste picker organizations');
 			$wp_support = get_number_posts_in_taxonomy ('wpg-member-type','waste picker support organization');
 			$wp_potential = get_number_posts_in_taxonomy ('wpg-member-type','potential supporters');
 			
+			//Members' occupation
 			$wp_wp_occupation = get_number_posts ('_wpg_members_occupation','waste pickers');
 			$wp_swm_occupation = get_number_posts ('_wpg_members_occupation','solid waste management');
 			$wp_wc_occupation = get_number_posts ('_wpg_members_occupation','waste collectors');
 			$wp_sd_occupation = get_number_posts ('_wpg_members_occupation','scrap dealers');
 			
+			//Scope
 			$local_orgs = get_number_posts_in_taxonomy ('wpg-scope','local');
 			$regional_orgs = get_number_posts_in_taxonomy ('wpg-scope','regional');
 			$national_orgs = get_number_posts_in_taxonomy ('wpg-scope','national');
 			$international_orgs = get_number_posts_in_taxonomy ('wpg-scope','international');
 			
+			//Organizations type
 			$tradeunions_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','trade Union');
 			$wpg_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','waste picker group');
 			$ngo_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','non governmental organization');
@@ -47,6 +48,7 @@ get_header(); ?>
 			$assoc_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','association');
 			$selfhelp_orgs = get_number_posts_in_taxonomy ('wpg-organization-type','self-help group');
 			
+			//Country
 			$wp_india = get_number_posts_double ('country','India');
 			$wp_bangladesh = get_number_posts_double ('country','Bangladesh');
 			$wp_colombia = get_number_posts_double ('country','Colombia');
@@ -58,10 +60,17 @@ get_header(); ?>
 			$wp_peru = get_number_posts_double ('country','peru');
 			$wp_dominican = get_number_posts_double ('country','dominican republic');
 			
+			//Year formed and Registered
+			$years = range(1990, 2014);
+			foreach ($years as $year) {
+				$yearformed[$year] = get_number_posts_double ('_wpg_year_formed',$year);
+				$yearregistered[$year] = get_number_posts_double ('_wpg_registration_year',$year);
+			}
+			
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
 			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. ' (waste pickers selcted as member occupation)</p>.';
 			
-			echo '<div class="row" id="waw-stats">';
+			echo '<div class="row">';
 			echo '<div class="col-md-6"><h3>Scope <small>number of organizations (%)</small></h3>';
 			echo '<div class="row"><div class="col-md-5 text-right"><p>Local: ' . $local_orgs. ' (' . round($local_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Regional: ' . $regional_orgs. ' (' . round($regional_orgs/$wp_wp_occupation*100,1) .'%).</p>';
@@ -225,6 +234,63 @@ get_header(); ?>
 			echo '<p>Members are scrap dealers: ' . $wp_sd_occupation. ' (' . round($wp_sd_occupation/$count_wpo*100,1) .'%).</p>';
 			echo '</div></div>';
 			?>
+			
+			<div class="row">
+				<div class="col-md-3">
+					<h3>Year Formed</h3>
+						<div class="row">
+							<div class="col-md-4 text-right">
+								<?php
+								foreach ($yearformed as $year => $value) {
+									echo '<p>'.$year.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-8">
+								<?php
+								$max=0;
+								foreach ($yearformed as $year => $value) {
+									$max = max( array( $max, $value) ); //calculates max value
+								}
+								foreach ($yearformed as $year => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?> organizations formed">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<h3>Year Registered</h3>
+						<div class="row">
+							<div class="col-md-4 text-right">
+								<?php
+								foreach ($yearregistered as $year => $value) {
+									echo '<p>'.$year.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-8">
+								<?php
+								foreach ($yearregistered as $year => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?> organizations formed">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+			</div>
 			
 			<?php
 			// set the meta_key to the appropriate custom field meta key

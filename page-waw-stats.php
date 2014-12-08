@@ -68,7 +68,7 @@ get_header(); ?>
 			}
 			
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
-			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. ' (waste pickers selcted as member occupation)</p>.';
+			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. ' (waste pickers selected as member occupation).</p>';
 			
 			echo '<div class="row">';
 			echo '<div class="col-md-6"><h3>Scope <small>number of organizations (%)</small></h3>';
@@ -125,7 +125,7 @@ get_header(); ?>
 			echo '<p>Association: ' . $assoc_orgs. ' (' . round($assoc_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Trade Unions: ' . $tradeunions_orgs. ' (' . round($tradeunions_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Cooperative Federation: ' . $coopfed_orgs. ' (' . round($coopfed_orgs/$wp_wp_occupation*100,1) .'%).</p>';
-			echo '<p>Self/help group: ' . $selfhelp_orgs. ' (' . round($selfhelp_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Self-help group: ' . $selfhelp_orgs. ' (' . round($selfhelp_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p>Non Governmental Organization: ' . $ngo_orgs. ' (' . round($ngo_orgs/$wp_wp_occupation*100,1) .'%).</p>';
 			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
 			echo '</div><div class="col-md-6">';?>
@@ -224,7 +224,7 @@ get_header(); ?>
 			echo '<p>Organizations with waste pickers as members: ' . $wp_waste_pickers. ' (' . round($wp_waste_pickers/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Organizations that have waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
 			echo '<p>Waste picker support organization: ' . $wp_support . ' (' . round($wp_support/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Potential supporters organizations: ' . $wp_potential . ' (' . round($wp_potential/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Potential supporter: ' . $wp_potential . ' (' . round($wp_potential/$count_wpo*100,1) .'%).</p>';
 			echo '</div>';
 			
 			echo '<div class="col-md-4"><h3>Members\' occupation <small>number of orgs (%)</small></h3>';
@@ -296,7 +296,7 @@ get_header(); ?>
 			// set the meta_key to the appropriate custom field meta key
 			$meta_key = '_wpg_number_individuals';
 			$allwp = $wpdb->get_var( $wpdb->prepare("SELECT sum(meta_value) FROM $wpdb->postmeta WHERE meta_key = %s",$meta_key) );
-			echo "<p>There are " .number_format($allwp). " of waste pickers in waste picker organizations.</p>";
+			echo "<p>There are " .number_format($allwp). " 	waste pickers in waste picker organizations.</p>";
 			?> 
 </div>
 <?php get_footer(); ?>

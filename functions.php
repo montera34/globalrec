@@ -252,22 +252,27 @@ register_taxonomy( 'post-newsletter', 'post', array(
 	'label' => 'Newsletters',
 	'query_var' => true,
 	'rewrite' => array( 'slug' => 'post-belongs-to-newsletter' ) ) );
-register_taxonomy( 'wpg-member-type', 'waste-picker-group', array(
-	'hierarchical' => true,
-	'label' => 'Waste Picker Member type',
-	'query_var' => true,
-	'rewrite' => array( 'slug' => 'wpg-member-type' ) ) );
-register_taxonomy( 'wpg-scope', 'waste-picker-group', array(
-	'hierarchical' => true,
-	'label' => 'Waste Picker Organization scope',
-	'query_var' => true,
-	'rewrite' => array( 'slug' => 'wpg-scope' ) ) );
-register_taxonomy( 'wpg-organization-type', 'waste-picker-group', array(
-	'hierarchical' => true,
-	'label' => 'Waste Picker Organization Type',
-	'query_var' => true,
-	'rewrite' => array( 'slug' => 'wpg-organization-type' ) ) );
 }
+
+//create multiple taxonomies for waste picker organizations
+add_action( 'init', 'build_wpo_taxonomies', 0 );
+
+function build_wpo_taxonomies() {
+$wpoTaxonomies = array(
+	'wpg-member-type' => 'Waste Picker Member type',
+	'wpg-scope' => 'Waste Picker Organization scope',
+	'wpg-organization-type' => 'Waste Picker Organization Type',
+);
+
+	foreach ($wpoTaxonomies as $key => $value) {
+		register_taxonomy( $key, 'waste-picker-group', array(
+		'hierarchical' => true,
+		'label' => $value,
+		'query_var' => true,
+		'rewrite' => array( 'slug' => $key ) ) );
+	}
+}
+
 add_action('init', 'my_custom_init');
 
 function my_custom_init() {
@@ -2034,3 +2039,13 @@ function wpml_custom_wp_title( $title, $sep ) {
     return $title;
 }
 add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
+
+//Control position of metaboxes in admin
+add_action('do_meta_boxes', 'position_meta_box');
+
+function position_meta_box(){
+    //remove_meta_box( 'postimagediv', 'waste-picker-group', 'side' );
+   // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-group', 'normal', 'high');
+}
+
+

@@ -985,7 +985,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'desc' => '',
 				'id' => $prefix_wpo . 'workplace-members',
 				'taxonomy' => $prefix_wpo . 'workplace-members',
-				'type' => 'multicheck',
+				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Membership',
@@ -1143,9 +1143,9 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'What kind of relationship exists with the municipality?',
 				'desc' => '',
-				'id' => $prefix_wpo . 'municipality_what',
-				'taxonomy' => $prefix_wpo . '	municipality-what',
-				'type' => 'taxonomy_multicheck',
+				'id' => $prefix_wpo . 'municipality-what',
+				'taxonomy' => $prefix_wpo . 'municipality-what',
+				'type' => 'taxonomy_multicheck'
 			),
 			array(
 				'name' => 'Types of materials collected',
@@ -1227,13 +1227,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 					'id' => $prefixwpg . 'date_data_updated',
 					'type' => 'text_date_timestamp' //TODO, if this is a multiple data entry, we can not use this type of metabox
 			),
-			array(
+			/*array(
 				'name' => 'Status of the organization',
 				'desc' => 'Indicate if the organization is active',
 				'id' => $prefix_wpo . 'status',
 				'taxonomy' => $prefix_wpo . 'status',
 				'type' => 'taxonomy_radio',
-			),
+			),*/
 			array( //TODO study how to better output relatedposts. Tag or author?
 				'name' => 'Type the tag to show related posts in the right column to this Waste piker group',
 				'desc' => 'Ex: "MNCR"',
@@ -1883,10 +1883,12 @@ function edit_meta_box(){
 		'wpg-treatment-organic-materialsdiv',
 		'wpg-challenges-access-wastediv',
 		'wpg-statusdiv',
-		'',
 	);
 	foreach ( $values as $value) {
 		remove_meta_box( $value, 'waste-picker-org', 'side' );
 	}
+	//removes more unnecesary metaboxes in admin panel
+	remove_meta_box( 'postexcerpt', 'waste-picker-org', 'main' );
+	remove_meta_box( 'postcustom', 'waste-picker-org', 'main' );
    // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-org', 'normal', 'high');
 }

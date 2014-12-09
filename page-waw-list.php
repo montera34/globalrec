@@ -18,7 +18,7 @@ get_header(); ?>
 		<div class="row">
 		<?php
 			$args = array(
-				'post_type' => 'waste-picker-group', 
+				'post_type' => 'waste-picker-org',
 				'posts_per_page' => -1,
 				'orderby' => 'title',
 				'order' => 'ASC',

@@ -91,7 +91,7 @@ register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	)
 );
 
-register_post_type( 'waste-picker-group', array( // Defining Waste Picker Group custom post type
+register_post_type( 'waste-picker-org', array( // Defining Waste Picker Group custom post type
 	'labels' => array(
 		'name' => __( 'Waste Picker Organizations' ),
 		'singular_name' => __( 'Waste Picker Organization' ),
@@ -265,17 +265,17 @@ function build_wpo_taxonomies() {
 global $prefix_wpo;
 
 $wpoTaxonomies = array(
+	$prefix_wpo . 'language' => 'Language',
 	$prefix_wpo . 'member-type' => 'Waste Picker Member type',
 	$prefix_wpo . 'scope' => 'Waste Picker Organization scope',
 	$prefix_wpo . 'organization-type' => 'Waste Picker Organization Type',
-	$prefix_wpo . 'language' => 'Language',
 	$prefix_wpo . 'member-occupation' => 'Occupation of Members',
 	$prefix_wpo . 'workplace-members' => 'Workplace of Members',
 	$prefix_wpo . 'membership' => 'Membership',
 	$prefix_wpo . 'education-training' => 'Eucation and training',
 	$prefix_wpo . 'affiliations' => 'Affiliations',
 	$prefix_wpo . 'funding' => 'How are  activities funded?',
-	$prefix_wpo . 'education-training' => 'Member benefits',
+	$prefix_wpo . 'member-benefits' => 'Member benefits',
 	$prefix_wpo . 'safety-technology' => 'Safety & Technology',
 	$prefix_wpo . 'municipality-how' => 'How is the relationship with the municipality?',
 	$prefix_wpo . 'municipality-what' => 'What kind of relationship exists with the municipality?',
@@ -288,7 +288,7 @@ $wpoTaxonomies = array(
 );
 
 	foreach ($wpoTaxonomies as $key => $value) {
-		register_taxonomy( $key, 'waste-picker-group', array(
+		register_taxonomy( $key, 'waste-picker-org', array(
 		'hierarchical' => true,
 		'label' => $value,
 		'query_var' => true,
@@ -463,8 +463,8 @@ function the_post_image_url($size=large) {
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
 
-//adds featured image to 'post', 'page','bio','global-meeting','waste-picker-group'
-add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-group' ) ); 
+//adds featured image to 'post', 'page','bio','global-meeting','waste-picker-org'
+add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-org' ) );
 
 //add posts formats
 add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 'image' ) );
@@ -500,7 +500,7 @@ function sample_metaboxes( $meta_boxes ) {
 	//we need to create the array of Waste Picker Groups
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
-		'post_type' => 'waste-picker-group'
+		'post_type' => 'waste-picker-org'
 		));
 	$groups = '';
 	foreach ($posts as $post) {
@@ -511,7 +511,7 @@ function sample_metaboxes( $meta_boxes ) {
 	}
 	$meta_boxes[] = array(
 		'id' => 'bio-waste-picker-group',
-		'title' => 'Waste Picker Group',
+		'title' => 'Waste Picker Organization',
 		'pages' => array('bio'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
@@ -519,7 +519,7 @@ function sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Waste Picker Group',
-				'desc' => 'Select the main waste picker group where it belongs',
+				'desc' => 'Select the main waste picker organization where the person belongs',
 				'id' => $prefixbio . 'group',
 				'type' => 'select',
 				'options' =>  $groups //one to many relationship. One waste picker group contains multiple members (bios)
@@ -736,7 +736,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'waste-picker-city',
 		'title' => 'Waste Picker Group City',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -765,7 +765,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'waste-picker-country',
 		'title' => 'Waste Picker Group Country',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -784,7 +784,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'wpg-contact-info',
 		'title' => 'Contact Information',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -947,7 +947,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'wpg-primary-info',
 		'title' => 'Primary Information',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -1097,7 +1097,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'wpg-benefits',
 		'title' => 'Benefits information',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -1105,8 +1105,8 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			array(
 				'name' => 'Member benefits',
 				'desc' => '',
-				'id' => $prefix_wpo . 'education-training',
-				'taxonomy' => $prefix_wpo . 'education-training',
+				'id' => $prefix_wpo . 'member-benefits',
+				'taxonomy' => $prefix_wpo . 'member-benefits',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
@@ -1128,7 +1128,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'wpg-services',
 		'title' => 'Services provided by the organization',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -1198,7 +1198,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'wpg-complementary-info',
 		'title' => 'Complementary Info',
-		'pages' => array('waste-picker-group'), // post type
+		'pages' => array('waste-picker-org'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
@@ -1400,6 +1400,16 @@ function list_of_items($postid=1,$value=1,$name=1){
 }
 add_action( 'wp', 'list_of_items' );
 
+// Function to list taxonomy terms of Waste Picker Organization in dt-dd format
+function list_taxonomy_terms($post_id='',$slug='',$name=''){
+	$term_list = get_the_term_list( $post_id, $slug , ' ', ', ', '' );
+	if (!empty($term_list)) {
+		echo "<dt>" .$name. "</dt>";
+		echo "<dd>" .$term_list. "</dd>";
+	}
+}
+add_action( 'wp', 'list_taxonomy_terms' );
+
 //Function to list single values and uppercase firt letter. Used in Waste Picker Group single
 
 function display_item($postid=1,$value=1,$name=1){
@@ -1414,7 +1424,7 @@ add_action( 'wp', 'display_item' );
 function get_number_posts ($meta_key,$meta_value) {
 	$args = array(
 				'posts_per_page' => -1,
-				'post_type' => 'waste-picker-group',
+				'post_type' => 'waste-picker-org',
 				'meta_query' => array(
 						 array(
 								'key'     => $meta_key,
@@ -1432,7 +1442,7 @@ function get_number_posts ($meta_key,$meta_value) {
 function get_number_posts_double ($meta_key,$meta_value) {
 	$args = array(
 				'posts_per_page' => -1,
-				'post_type' => 'waste-picker-group',
+				'post_type' => 'waste-picker-org',
 				'meta_query' => array(
 						'relation' => 'AND',
 						 array(
@@ -1456,7 +1466,7 @@ function get_number_posts_double ($meta_key,$meta_value) {
 function get_number_posts_in_taxonomy ($tax,$term) {
 	$args = array(
 				'posts_per_page' => -1,
-				'post_type' => 'waste-picker-group',
+				'post_type' => 'waste-picker-org',
 				$tax => $term,
 				'meta_query' => array(
 						 array(
@@ -1537,7 +1547,7 @@ function globalrec_waw_form() {
 		$badge_from = sanitize_text_field( $_GET['badge_id']);
 	} else { $badge_from = ""; }
 
-	$badges = globalrec_get_list("waste-picker-group"); //list waste picker groups
+	$badges = globalrec_get_list("waste-picker-org"); //list waste picker groups
 	$options_badges = "<option></option>";
 	while ( $badge = current($badges) ) {
 		if ( $badge_from == key($badges) ) {
@@ -1814,7 +1824,7 @@ function globalrec_insert_wpg() {
 
 	// insert waste picker group
 	$wpg_id = wp_insert_post(array(
-		'post_type' => 'waste-picker-group',
+		'post_type' => 'waste-picker-org',
 		'post_status' => 'draft',
 		'post_author' => 1,
 		'post_title' => $wpg_name,
@@ -1853,8 +1863,8 @@ add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
 add_action('do_meta_boxes', 'position_meta_box');
 
 function position_meta_box(){
-    //remove_meta_box( 'postimagediv', 'waste-picker-group', 'side' );
-   // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-group', 'normal', 'high');
+    //remove_meta_box( 'postimagediv', 'waste-picker-org', 'side' );
+   // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-org', 'normal', 'high');
 }
 
 

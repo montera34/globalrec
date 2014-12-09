@@ -18,7 +18,7 @@ get_header(); ?>
 		<div class="row">
 			<div class="col-md-12">
 		<?php
-			$count_wpo = wp_count_posts( 'waste-picker-group' )->publish;
+			$count_wpo = wp_count_posts( 'waste-picker-org' )->publish;
 			global $wpdb;
 			
 			//Members' type

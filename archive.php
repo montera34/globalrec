@@ -1,8 +1,33 @@
 <?php get_header(); ?>
 <?php
-$termname = $wp_query->queried_object->name;
-$termdesc = $wp_query->queried_object->description;
+$term = $wp_query->get_queried_object();
+$termname = $term->name;
+$termdesc = $term->description;
+$termcount = $term->count;
 $author = get_userdata( get_query_var('author') );
+$prefix_wpo = 'wpg-';
+$waw_taxonomies = array(
+	$prefix_wpo . 'language',
+	$prefix_wpo . 'member-type',
+	$prefix_wpo . 'scope',
+	$prefix_wpo . 'organization-type',
+	$prefix_wpo . 'member-occupation',
+	$prefix_wpo . 'workplace-members',
+	$prefix_wpo . 'membership',
+	$prefix_wpo . 'education-training',
+	$prefix_wpo . 'affiliations',
+	$prefix_wpo . 'funding',
+	$prefix_wpo . 'member-benefits',
+	$prefix_wpo . 'safety-technology',
+	$prefix_wpo . 'municipality-how',
+	$prefix_wpo . 'municipality-what',
+	$prefix_wpo . 'material-type',
+	$prefix_wpo . 'activities',
+	$prefix_wpo . 'sorting-spaces',
+	$prefix_wpo . 'treatment-organic-materials',
+	$prefix_wpo . 'challenges-access-waste',
+	$prefix_wpo . 'status',
+	);
 ?>
 		
 <div id="archive">
@@ -13,12 +38,16 @@ $author = get_userdata( get_query_var('author') );
 				<h2>Pune 2012 posts</h2>
 			<?php } elseif ( is_category() ) { ?>
 				<h2><?php _e('Category:', 'cp'); ?> <?php single_cat_title(); ?></h2>
-			<?php } elseif ( is_author() ) { ?>	
+			<?php } elseif ( is_tax($waw_taxonomies) ) { //if it is a taxonomy from the WAW database ?>
+				<h2><strong><?php single_cat_title(); ?> (<?php echo $termcount; ?>)</strong> <small>&laquo; <a href="/waste-picker-organizations/"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></small></h2>
+			<?php } elseif ( is_tax() ) { ?>
+				<h2><?php single_cat_title(); ?></h2>
+			<?php } elseif ( is_author() ) { ?>
 				<h2><?php _e('Posts by', 'globalrec'); ?> <strong><?php echo $author->display_name;?></strong> </h2>
 			<?php } elseif ( get_post_type() == 'global-meeting' && is_archive()) { ?>
 				<h2><?php _e('Global meeting type:', 'cp'); ?> <?php echo $termname ?></h2>
 			<?php } elseif ( get_post_type() == 'post' && is_archive()) { ?>
-				<h2><?php _e('', 'cp'); ?> <?php echo $termname ?></h2>
+				<h2><?php echo str_replace('@'.ICL_LANGUAGE_CODE, '', $termname) ?></h2>
 			<?php } elseif ( is_tag() ) { ?>
 				<h2><?php _e('Tag:', 'cp'); ?> <span><?php single_tag_title(); ?></span></h2>
 			<?php } elseif ( is_day() ) { ?>

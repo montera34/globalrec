@@ -118,6 +118,19 @@ get_header(); ?>
 				$municipality_whats[$term->name] = $term->count;
 				$max_count_municipality_what = $term->count > $max_count_municipality_what ? $term->count : $max_count_municipality_what;
 			}
+			
+			//Languages
+			$terms = get_terms( 'wpg-language', array(
+				'orderby'    => 'count',
+				'hide_empty' => 1,
+				'order' => 'DESC'
+				)
+			);
+			$max_count_language = 0;
+			foreach ($terms as $term) {
+				$languages[$term->name] = $term->count;
+				$max_count_language = $term->count > $max_count_language? $term->count : $max_count_language;
+			}
 
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
 			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. ' (waste pickers selected as member occupation).</p>';
@@ -439,6 +452,33 @@ get_header(); ?>
 									?>
 								<div class="progress">
 									<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_municipality_what; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?>">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Languages <small>number of organizations</small></h3>
+						<div class="row">
+							<div class="col-md-5 text-right">
+								<?php
+								foreach ($languages as $key => $value) {
+									echo '<p>'.$key.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-7">
+								<?php
+								foreach ($languages as $key => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_language	; ?>%;background-color:#999;color:black">
 										<span title="<?php echo $value; ?>">
 											<?php echo $value; ?>
 										</span>

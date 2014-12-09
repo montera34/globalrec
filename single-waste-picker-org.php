@@ -5,6 +5,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 ?>
 
 <div class="container">
+	<?php get_template_part( 'nav', 'waw' ); ?>
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class("col-md-10") ?> id="post-<?php the_ID(); ?>">

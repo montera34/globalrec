@@ -9,7 +9,8 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class("col-md-10") ?> id="post-<?php the_ID(); ?>">
 			<ul class="breadcrumb">
-			  <li><a href="<?php echo get_permalink(icl_object_id(10909,'page')) ?>"><?php _e('Waste Picker Organizations','globalrec'); ?></a></li>
+			  <li><a href="<?php echo get_permalink(icl_object_id(10909,'page')) ?>"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></li>
+			  <li><a href="<?php echo get_permalink(icl_object_id(23272,'page')) ?>"><?php _e('Organizations','globalrec'); ?></a></li>
 			  <li><?php the_title(); ?> </li>
 			</ul>
 			<div class="row">

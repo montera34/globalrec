@@ -28,10 +28,10 @@ get_header(); ?>
 			$wp_potential = get_number_posts_in_taxonomy ('wpg-member-type','potential supporters');
 			
 			//Members' occupation
-			$wp_wp_occupation = get_number_posts ('_wpg_members_occupation','waste pickers');
-			$wp_swm_occupation = get_number_posts ('_wpg_members_occupation','solid waste management');
-			$wp_wc_occupation = get_number_posts ('_wpg_members_occupation','waste collectors');
-			$wp_sd_occupation = get_number_posts ('_wpg_members_occupation','scrap dealers');
+			$wp_wp_occupation = get_number_posts_in_taxonomy ('wpg-member-occupation','waste pickers');
+			$wp_swm_occupation = get_number_posts_in_taxonomy ('wpg-member-occupation','solid waste management');
+			$wp_wc_occupation = get_number_posts_in_taxonomy ('wpg-member-occupation','waste collectors');
+			$wp_sd_occupation = get_number_posts_in_taxonomy ('wpg-member-occupation','scrap dealers');
 			
 			//Scope
 			$local_orgs = get_number_posts_in_taxonomy ('wpg-scope','local');
@@ -67,6 +67,58 @@ get_header(); ?>
 				$yearregistered[$year] = get_number_posts_double ('_wpg_registration_year',$year);
 			}
 			
+			//Type of materials
+			$terms = get_terms( 'wpg-material-type', array(
+				'orderby'    => 'count',
+				'hide_empty' => 1,
+				'order' => 'DESC'
+				)
+			);
+			$max_count_material = 0;
+			foreach ($terms as $term) {
+				$materials[$term->name] = $term->count;
+				$max_count_material = $term->count > $max_count_material ? $term->count : $max_count_material;
+			}
+			
+			//Activities
+			$terms = get_terms( 'wpg-activities', array(
+				'orderby'    => 'count',
+				'hide_empty' => 1,
+				'order' => 'DESC'
+				)
+			);
+			$max_count_activity = 0;
+			foreach ($terms as $term) {
+				$activities[$term->name] = $term->count;
+				$max_count_activity = $term->count > $max_count_activity ? $term->count : $max_count_activity;
+			}
+			
+			//Workplace of members
+			$terms = get_terms( 'wpg-workplace-members', array(
+				'orderby'    => 'count',
+				'hide_empty' => 1,
+				'order' => 'DESC'
+				)
+			);
+			$max_count_workplace = 0;
+			foreach ($terms as $term) {
+				$workplaces[$term->name] = $term->count;
+				$max_count_workplace = $term->count > $max_count_workplace ? $term->count : $max_count_workplace;
+			}
+			
+			//What kind of relationship exists with the municipality?
+			$terms = get_terms( 'wpg-municipality-what', array(
+				'orderby'    => 'count',
+				'hide_empty' => 1,
+				'order' => 'DESC'
+				)
+			);
+			$max_count_municipality_what = 0;
+			foreach ($terms as $term) {
+				$municipality_whats[$term->name] = $term->count;
+				$max_count_municipality_what = $term->count > $max_count_municipality_what ? $term->count : $max_count_municipality_what;
+			}
+
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
 			echo '<p>Number of organizations that are formed by waste pickers: ' .$wp_wp_occupation. ' (waste pickers selected as member occupation).</p>';
 			
@@ -221,17 +273,19 @@ get_header(); ?>
 			
 			echo '<div class="col-md-5">';
 			echo '<h3>Type of members <small>number of organizations (%)</small></h3>';
-			echo '<p>Organizations with waste pickers as members: ' . $wp_waste_pickers. ' (' . round($wp_waste_pickers/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Organizations that have waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Waste picker support organization: ' . $wp_support . ' (' . round($wp_support/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Potential supporter: ' . $wp_potential . ' (' . round($wp_potential/$count_wpo*100,1) .'%).</p>';
+			echo '<p>Organizations with waste pickers as members: ' . $wp_waste_pickers. ' (' . round($wp_waste_pickers/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Organizations that have waste picker organizations: ' . $wp_orgs . ' (' . round($wp_orgs/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Waste picker support organization: ' . $wp_support . ' (' . round($wp_support/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Potential supporter: ' . $wp_potential . ' (' . round($wp_potential/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
 			echo '</div>';
 			
-			echo '<div class="col-md-4"><h3>Members\' occupation <small>number of orgs (%)</small></h3>';
-			echo '<p>Members are waste pickers: ' . $wp_wp_occupation. ' (' . round($wp_wp_occupation/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Members are waste collectors: ' . $wp_wc_occupation. ' (' . round($wp_wc_occupation/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Members are solid waste management: ' . $wp_swm_occupation. ' (' . round($wp_swm_occupation/$count_wpo*100,1) .'%).</p>';
-			echo '<p>Members are scrap dealers: ' . $wp_sd_occupation. ' (' . round($wp_sd_occupation/$count_wpo*100,1) .'%).</p>';
+			echo '<div class="col-md-4"><h3>Occupation of members<small>number of orgs (%)</small></h3>';
+			echo '<p>Members are waste pickers: ' . $wp_wp_occupation. ' (' . round($wp_wp_occupation/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Members are waste collectors: ' . $wp_wc_occupation. ' (' . round($wp_wc_occupation/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Members are solid waste management: ' . $wp_swm_occupation. ' (' . round($wp_swm_occupation/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p>Members are scrap dealers: ' . $wp_sd_occupation. ' (' . round($wp_sd_occupation/$wp_wp_occupation*100,1) .'%).</p>';
+			echo '<p><small>(total formed by waste pickers: ' . $wp_wp_occupation. ')</small></p>';
 			echo '</div></div>';
 			?>
 			
@@ -290,8 +344,111 @@ get_header(); ?>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-5">
+					<h3>Materials collected <small>number of organizations</small></h3>
+						<div class="row">
+							<div class="col-md-5 text-right">
+								<?php
+								foreach ($materials as $material => $value) {
+									echo '<p>'.$material.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-7">
+								<?php
+								foreach ($materials as $material => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_material; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?>">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
 			</div>
-			
+			<div class="row">
+				<div class="col-md-8">
+					<h3>Activities <small>number of organizations</small></h3>
+						<div class="row">
+							<div class="col-md-6 text-right">
+								<?php
+								foreach ($activities as $key => $value) {
+									echo '<p>'.$key.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-4">
+								<?php
+								foreach ($activities as $key => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_activity; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?>">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Workplace of Members <small>number of organizations</small></h3>
+						<div class="row">
+							<div class="col-md-5 text-right">
+								<?php
+								foreach ($workplaces as $key => $value) {
+									echo '<p>'.$key.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-7">
+								<?php
+								foreach ($workplaces as $key => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_workplace; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?>">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<h3>What kind of relationship exists with the municipality? <small>number of organizations</small></h3>
+						<div class="row">
+							<div class="col-md-9 text-right">
+								<?php
+								foreach ($municipality_whats as $key => $value) {
+									echo '<p>'.$key.': '.$value.'</p>';
+								}
+						?>
+							</div>
+							<div class="col-md-3">
+								<?php
+								foreach ($municipality_whats as $key => $value) {
+									?>
+								<div class="progress">
+									<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_municipality_what; ?>%;background-color:#999;color:black">
+										<span title="<?php echo $value; ?>">
+											<?php echo $value; ?>
+										</span>
+									</div>
+								</div>
+						<?php } ?>
+						</div>
+					</div>
+				</div>
+			</div>
 			<?php
 			// set the meta_key to the appropriate custom field meta key
 			$meta_key = '_wpg_number_individuals';

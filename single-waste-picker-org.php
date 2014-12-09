@@ -56,14 +56,14 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						</div>
 					</div>
 				<div class="col-md-9">
-					<h1> 
+					<h1>
 						<a href="<?php echo $website; ?>" rel="bookmark" title="<?php the_title_attribute( array( 'before' => 'Go to ', 'after' => ' Website' ) ); ?>">
 							<?php the_title_attribute(); ?>
-						</a>	
+						</a>
 					</h1>
-					<?php if ( is_user_logged_in() ) { 
+					<?php if ( is_user_logged_in() ) {
 						echo '<div class="btn btn-sm btn-default pull-right">';
-						edit_post_link(__('Edit This')); 
+						edit_post_link(__('Edit This'));
 						echo "</div>";
 						} ?>
 					<h4>
@@ -99,7 +99,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						} else {
 						echo get_post_meta( $post_id, 'country', true );
 						} ?>
-					</h4>	
+					</h4>
 						<?php echo ($website != '') ? "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
 					<div class="row">
 						<div class="col-md-7">
@@ -109,61 +109,61 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo display_item($post_id,'_wpg_year_formed','Year formed');
 								echo display_item($post_id,'_wpg_registration_year','Registered in');
 								echo display_item($post_id,'_wpg_formally_registered','Formally registered');
-								echo list_of_items($post_id,'_wpg_language','Language');
+								echo list_taxonomy_terms($post_id,'wpg-language','Language');
 								echo display_item($post_id,'_wpg_number_groups','Number of groups');
 								echo display_item($post_id,'_wpg_number_individuals','Number of members');
-								//echo list_of_items($post_id,'_wpg_members_type','Type of members');
-								echo "<dt>Type of members</dt><dd>".get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' )."</dd>";
-								echo list_of_items($post_id,'_wpg_members_occupation','Members\' occupation');
-								//echo list_of_items($post_id,'_wpg_organization_type','Organization type');
-								echo "<dt>Organization's type</dt><dd>".get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' )."</dd>";
-								//echo list_of_items($post_id,'_wpg_organization_scope','Organization scope');
-								echo "<dt>Organization scope</dt><dd>".get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' )."</dd>";
+								echo list_taxonomy_terms($post_id,'wpg-member-type','Type of members');
+								echo list_taxonomy_terms($post_id,'wpg-member-occupation','Occupation of members');
+								echo list_taxonomy_terms($post_id,'wpg-organization-type','Type of Organization');
+								echo list_taxonomy_terms($post_id,'wpg-scope','Organization scope');
 								echo list_of_items($post_id,'_wpg_workplace_members','Workplace of members');
+								echo list_taxonomy_terms($post_id,'wpg-workplace-members','Workplace of members');
 								echo display_item($post_id,'_wpg_membership','Membership');
 								echo display_item($post_id,'_wpg_structure','Organization Structure');
-								echo list_of_items($post_id,'_wpg_objectives','Objectives');
-								echo list_of_items($post_id,'_wpg_education_training','Education and training');
+								echo display_item($post_id,'_wpg_objectives','Objectives');
+								echo list_taxonomy_terms($post_id,'wpg-education-training','Education and training');
 								echo display_item($post_id,'_wpg_partnering_organizations','Partnering organizations');
-								echo list_of_items($post_id,'_wpg_affiliations','Affiliations');
-								echo list_of_items($post_id,'_wpg_funding','Funding');
+								echo list_taxonomy_terms($post_id,'wpg-affiliations','Affiliations');
+								echo list_taxonomy_terms($post_id,'wpg-funding','Funding');
 								echo display_item($post_id,'_wpg_elections','Internal elections');
 								
 								$women_composition = get_post_meta( $post_id, '_wpg_gender_women_composition', true );
 								$women_composition_comment =	get_post_meta( $post_id, '_wpg_gender_women_comment', true );
 								
-								if ($women_composition || $women_composition_comment) {
-									echo "<dt>Women composition</dt><dd>".$women_composition."% <small>".$women_composition_comment. "</small></dd>";
-								} elseif ($women_composition_comment){
-								 	echo "<dt>Women composition</dt><dd><small>".$women_composition_comment. "</small></dd>";
+								if ($women_composition != '') {
+									echo "<dt>Women composition</dt><dd>".$women_composition."% ";
+									echo $women_composition_comment =! '' ? "<small>" .$women_composition_comment. "</small>" : "";
+									echo "</dd>";
+								} else {
+								 	echo "<dt>Women composition</dt><dd><small>" .$women_composition_comment. "</small></dd>";
 								}
-								?> 
+								?>
 							</dl>
 						</div>
 						<div class="col-md-5">
 							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
-								<?php //Benefits 
-								echo list_of_items($post_id,'_wpg_member_benefits','Member benefits');
+								<?php //Benefits
+								echo list_taxonomy_terms($post_id,'wpg-member-benefits','Member benefits');
 								echo display_item($post_id,'_wpg_credit_members','Number of credit / saving members?');
-								echo list_of_items($post_id,'_wpg_safety_technology','Safety & Technology');
-								?> 
+								echo list_taxonomy_terms($post_id,'wpg-safety-technology','Safety & Technology');
+								?>
 							</dl>
 							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
 							<dl>
 								<?php	//Services
-								echo list_of_items($post_id,'_wpg_relationship_municipality_what','What kind of relationship exists with the municipality?');
-								echo list_of_items($post_id,'_wpg_relationship_municipality_how','How is the relationship with the municipality?');
-								echo list_of_items($post_id,'_wpg_types_of_materials','Types of materials');
+								echo list_taxonomy_terms($post_id,'wpg-municipality-what','What kind of relationship exists with the municipality?');
+								echo list_taxonomy_terms($post_id,'wpg-municipality-how','How is the relationship with the municipality?');
+								echo list_taxonomy_terms($post_id,'wpg-material-type','Types of materials');
 								echo display_item($post_id,'_wpg_middlemen','Are they selling to middlemen?');
-								echo list_of_items($post_id,'_wpg_activities','Activities');
-								echo list_of_items($post_id,'_wpg_sorting_spaces','Sorting Spaces');
-								echo list_of_items($post_id,'_wpg_treatment_organic_materials','Treatmet of organic materials');
-								echo list_of_items($post_id,'_wpg_challenges_access_waste','Challenges to access waste');
-								?> 
+								echo list_taxonomy_terms($post_id,'wpg-activities','Activities');
+								echo list_taxonomy_terms($post_id,'wpg-sorting-spaces','Sorting Spaces');
+								echo list_taxonomy_terms($post_id,'wpg-treatment-organic-materials','Treatmet of organic materials');
+								echo list_taxonomy_terms($post_id,'wpg-challenges-access-waste','Challenges to access waste');
+								?>
 							</dl>
 						</div>
-					</div>				
+					</div>
 					<hr>
 					<h4><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h4>
 						<dl>
@@ -178,27 +178,26 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 					<h4>Comments / Narrative</h4>
 					<?php the_content(__('(more...)')); ?>
 				</div>
-			</div>		
+			</div>
 		</div>
 		<!--right column -->
-		<div class="col-md-2"> 
+		<div class="col-md-2">
 			<h4><?php _e('News related to','globalrec'); ?> <?php the_title_attribute(); ?></h4>
 			<?php if (get_post_meta($post_id, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
-			<?php 
+			<?php
 			//includes the loop with the related post according to the custom field gm-tag
 			echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12"> 
+		<div class="col-md-12">
 			<?php include("share.php")?>
 		</div>
 		<?php endwhile; else: ?>
 		<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 		<?php endif; ?>
  		</div>
-	</div>	
-		
+	</div>
 	
 	<?php get_footer(); ?>
 </div><!-- #container -->

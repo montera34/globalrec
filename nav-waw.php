@@ -11,10 +11,10 @@
 		  <span class="glyphicon glyphicon-globe"></span> Maps <span class="caret"></span>
 		</a>
 		<ul class="dropdown-menu" role="menu">
-			<li role="presentation"><a href="/waste-picker-organizations/waste-picker-organizations-map">Waste Pickers' Organizations Map</a></li>
-			<li role="presentation"><a href="/waste-picker-organizations/oganizations-type">Map by Oganizations' type</a></li>
-			<li role="presentation"><a href="/waste-picker-organizations/scope">Map by Scope</a></li>
-			<li role="presentation"><a href="/waste-picker-organizations/supporters">Supporters' Map</a></li>
+			<li role="presentation"><a href="/waste-picker-organizations/waste-picker-organizations-map">Waste Pickers' Organizations</a></li>
+			<li role="presentation"><a href="/waste-picker-organizations/oganizations-type">Type of Oganizations</a></li>
+			<li role="presentation"><a href="/waste-picker-organizations/scope">Scope</a></li>
+			<li role="presentation"><a href="/waste-picker-organizations/supporters">Supporters</a></li>
 		</ul>
 	</li>
 	<li role="presentation"><a href="/waste-picker-organizations/add-organization">Add your organization</a></li>

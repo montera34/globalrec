@@ -54,7 +54,7 @@ $post_id = $post->ID;
 			}
 			if (get_post_type() == 'global-meeting') {
 				//do nothing
-			} else if (get_post_type() == 'waste-picker-group') {
+			} else if (get_post_type() == 'waste-picker-org') {
 				echo get_post_meta( $post_id, 'city', true ). " ";
 				echo get_post_meta( $post_id, 'country', true );
 				echo '<br>';
@@ -80,7 +80,7 @@ $post_id = $post->ID;
 		<div class="excerpt">
 			<small>
 				<?php
-				if (get_post_type() == 'waste-picker-group') {
+				if (get_post_type() == 'waste-picker-org') {
 					} else {
 						if($post->post_excerpt) : the_excerpt(); else:
 						echo "" .$post_excerpt; endif;

@@ -1443,19 +1443,20 @@ function get_number_posts_double ($meta_key,$meta_value) {
 	$args = array(
 				'posts_per_page' => -1,
 				'post_type' => 'waste-picker-org',
+				'tax_query' => array(
+					array(
+						'taxonomy' => 'wpg-member-occupation',
+						'field'    => 'slug',
+						'terms'    => 'waste-pickers',
+					),
+				),
 				'meta_query' => array(
-						'relation' => 'AND',
-						 array(
-								'key'     => $meta_key,
-								'value'   => $meta_value,
-								'compare' => 'LIKE',
-						 ),
-						 array(
-								'key'     => '_wpg_members_occupation',
-								'value'   => 'waste pickers',
-								'compare' => 'LIKE',
-						 ),
-					 ),
+					 array(
+						'key'     => $meta_key,
+						'value'   => $meta_value,
+						'compare' => 'LIKE',
+						),
+					),
 				);
 	$posts_array = get_posts( $args );
 	$result = count($posts_array);
@@ -1468,13 +1469,6 @@ function get_number_posts_in_taxonomy ($tax,$term) {
 				'posts_per_page' => -1,
 				'post_type' => 'waste-picker-org',
 				$tax => $term,
-				'meta_query' => array(
-						 array(
-								'key'     => '_wpg_members_occupation',
-								'value'   => 'waste pickers',
-								'compare' => 'LIKE',
-						 ),
-					 ),
 				);
 	$posts_array = get_posts( $args );
 	$result = count($posts_array);

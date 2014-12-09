@@ -272,7 +272,7 @@ $wpoTaxonomies = array(
 	$prefix_wpo . 'member-occupation' => 'Occupation of Members',
 	$prefix_wpo . 'workplace-members' => 'Workplace of Members',
 	$prefix_wpo . 'membership' => 'Membership',
-	$prefix_wpo . 'education-training' => 'Eucation and training',
+	$prefix_wpo . 'education-training' => 'Education and training',
 	$prefix_wpo . 'affiliations' => 'Affiliations',
 	$prefix_wpo . 'funding' => 'How are  activities funded?',
 	$prefix_wpo . 'member-benefits' => 'Member benefits',
@@ -1031,7 +1031,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'textarea',
 			),
 			array(
-				'name' => 'Eucation and training',
+				'name' => 'Education and training',
 				'desc' => '',
 				'id' => $prefixwpg . 'education_training',
 				'taxonomy' => $prefix_wpo . 'education-training',
@@ -1849,22 +1849,44 @@ function globalrec_insert_wpg() {
 
 //Translate title in header
 function wpml_custom_wp_title( $title, $sep ) {
-    global $paged, $page;
- 
-    if( function_exists( 'icl_translate') ) {
-        $title = icl_translate('wpml_custom', 'wpml_custom_' . sanitize_key($title), $title);
-    }
- 
-    return $title;
+  global $paged, $page;
+
+  if( function_exists( 'icl_translate') ) {
+      $title = icl_translate('wpml_custom', 'wpml_custom_' . sanitize_key($title), $title);
+  }
+  return $title;
 }
 add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
 
-//Control position of metaboxes in admin
-add_action('do_meta_boxes', 'position_meta_box');
+//Removes duplicated custom taxonomy metaboxes  from side column (they are already included as custom meta boxes in the main column) in waste-picker-org admin edit panel
+add_action('admin_menu', 'edit_meta_box');
 
-function position_meta_box(){
-    //remove_meta_box( 'postimagediv', 'waste-picker-org', 'side' );
+function edit_meta_box(){
+	$values = array(
+		'wpg-languagediv',
+		'wpg-member-typediv',
+		'wpg-scopediv',
+		'wpg-organization-typediv',
+		'wpg-member-occupationdiv',
+		'wpg-workplace-membersdiv',
+		'wpg-membershipdiv',
+		'wpg-education-trainingdiv',
+		'wpg-affiliationsdiv',
+		'wpg-fundingdiv',
+		'wpg-member-benefitsdiv',
+		'wpg-safety-technologydiv',
+		'wpg-municipality-howdiv',
+		'wpg-municipality-whatdiv',
+		'wpg-material-typediv',
+		'wpg-activitiesdiv',
+		'wpg-sorting-spacesdiv',
+		'wpg-treatment-organic-materialsdiv',
+		'wpg-challenges-access-wastediv',
+		'wpg-statusdiv',
+		'',
+	);
+	foreach ( $values as $value) {
+		remove_meta_box( $value, 'waste-picker-org', 'side' );
+	}
    // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-org', 'normal', 'high');
 }
-
-

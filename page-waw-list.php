@@ -22,13 +22,6 @@ get_header(); ?>
 				'posts_per_page' => -1,
 				'orderby' => 'title',
 				'order' => 'ASC',
-				'meta_query' => array(
-						 array(
-								'key'     => '_wpg_members_type',
-								'value'   => 'potential supporters',
-								'compare' => 'NOT LIKE',
-						 ),
-					 ),
 				);
 			$my_query = new WP_Query($args);
 			?>
@@ -39,7 +32,6 @@ get_header(); ?>
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
-			<!--<th><?php _e('Members\' occupation','globalrec'); ?></th>-->
 			<th><?php _e('Number of members','globalrec');
 						echo "<br>(";
 						_e('Number of groups','globalrec');
@@ -64,11 +56,9 @@ get_header(); ?>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
 				<td>
-					<?php // echo list_of_items($post_id,'_wpg_organization_scope',''); ?>
 					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>
 				</td>
 				<td>
-					<?php // echo list_of_items($post_id,'_wpg_organization_type',''); ?>
 					<?php echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' ); ?>
 				</td>
 				<td>
@@ -138,10 +128,8 @@ get_header(); ?>
 							echo " (".$yearregistred.")";
 						} ?>
 				</td>
-				<td> 
-					<?php 
-						echo list_of_items($post_id,'_wpg_members_occupation','');
-						 ?>
+				<td>
+				 <?php echo get_the_term_list( $post_id, 'wpg-member-occupation', ' ', ', ', '' ); ?>
 				</td>
 			</tr>
 		</div>

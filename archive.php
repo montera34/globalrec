@@ -4,6 +4,7 @@ $term = $wp_query->get_queried_object();
 $termname = $term->name;
 $termdesc = $term->description;
 $termcount = $term->count;
+$term_taxonomy = $term->taxonomy;
 $author = get_userdata( get_query_var('author') );
 $prefix_wpo = 'wpg-';
 $waw_taxonomies = array(
@@ -32,14 +33,30 @@ $waw_taxonomies = array(
 		
 <div id="archive">
 	<div class="row">
-		<header class="col-md-10">
-			<strong>
+		<header class="col-md-12">
 			<?php if ( is_tag('pune2012') ) { ?>
 				<h2>Pune 2012 posts</h2>
 			<?php } elseif ( is_category() ) { ?>
 				<h2><?php _e('Category:', 'cp'); ?> <?php single_cat_title(); ?></h2>
 			<?php } elseif ( is_tax($waw_taxonomies) ) { //if it is a taxonomy from the WAW database ?>
-				<h2><strong><?php single_cat_title(); ?> (<?php echo $termcount; ?>)</strong> <small>&laquo; <a href="/waste-picker-organizations/"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></small></h2>
+			<?php
+				get_template_part( 'nav', 'waw' );
+				
+				$args=array(
+				'name' => $term_taxonomy
+				);
+				$output = 'objects'; // or names
+				$taxonomies = get_taxonomies($args,$output);
+				if ($taxonomies) {
+					foreach ($taxonomies  as $taxonomy ) {
+						$labels[] = $taxonomy->labels;
+						foreach ($labels as $label ) {
+							$taxonomy_name = $label->singular_name; //name of the taxonomy where this taxonomy term belongs to
+						}
+					}
+				}
+				?>
+				<h2><?php echo $taxonomy_name; ?>: <strong><?php single_cat_title(); ?> (<?php echo $termcount; ?>)</strong> <small>&laquo; <a href="/waste-picker-organizations/"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></small></h2>
 			<?php } elseif ( is_tax() ) { ?>
 				<h2><?php single_cat_title(); ?></h2>
 			<?php } elseif ( is_author() ) { ?>
@@ -59,9 +76,7 @@ $waw_taxonomies = array(
 			<?php } elseif ( isset($_GET['paged']) && !empty($_GET['paged']) ) { ?>
 				<h2><?php __('Blog Archives', 'cp'); ?></h2>
 			<?php } ?>
-			</strong>
 		</header>
-		<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 	</div>
 	<?php $cat_desc = category_description();
 		if ($cat_desc != '') {echo '<span>'.$cat_desc.'</span>';} ?>

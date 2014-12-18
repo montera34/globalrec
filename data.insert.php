@@ -11,8 +11,8 @@ function print_r2($val){
 }
 
 get_header();
-		//$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert11-from-ods"; // name (no extension)
-		$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert11-from-ods"; // name (no extension)
+		$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert12-from-ods"; // name (no extension)
+		//$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert11-from-ods"; // name (no extension)
 		//$csv_filename = get_stylesheet_directory(). "/dbimport/" .$filename; // relative path to data filename
 		$line_length = "5024"; // max line lengh (increase in case you have longer lines than 1024 characters)
 		$delimiter = ";"; // field delimiter character
@@ -94,7 +94,10 @@ get_header();
 					$information_source = $fp_csv[59]; // cf
 					$date_data_entry = $fp_csv[60]; // cf
 					$date_data_updated = $fp_csv[61]; // cf
-					$status	 = $fp_csv[62]; // cf
+					$status	= $fp_csv[62]; // cf
+					$street	= $fp_csv[63]; // cf
+					$street_number = $fp_csv[64]; // cf
+					$zip_code	= $fp_csv[65]; // cf
 						
 						
 					$fields = array(
@@ -140,30 +143,11 @@ get_header();
 						'_wpg_date_data_entry' => $date_data_entry,
 						'_wpg_date_data_updated' => $date_data_updated,
 						//'_wpg_status' => $status,
+						'_wpg_street' => $street,
+						'_wpg_street_number' => $street_number,
+						'_wpg_zip_code' => $zip_code,
 					);
 					
-					//when using multiple answer option
-					/*$multicheck = array(
-						'_wpg_language' => $language,
-						'_wpg_members_type' => $members_type,
-						'_wpg_members_occupation' => $members_occupation,
-						'_wpg_organization_type' => $organization_type,
-						'_wpg_organization_scope' => $organization_scope,
-						'_wpg_workplace_members' => $workplace_members,
-						'_wpg_education_training' => $education_training,
-						'_wpg_affiliations' => $affiliations,
-						'_wpg_funding' => $funding,
-						'_wpg_member_benefits' => $member_benefits,
-						'_wpg_safety_technology' => $safety_technology,
-						'_wpg_relationship_municipality_how' => $relationship_municipality_how,
-						'_wpg_relationship_municipality_what' => $relationship_municipality_what,
-						'_wpg_types_of_materials' => $types_of_materials,
-						'_wpg_activities' => $activities,
-						'_wpg_sorting_spaces' => $sorting_spaces,
-						'_wpg_treatment_organic_materials' => $treatment_organic_materials,
-						'_wpg_challenges_access_waste' => $challenges_access_waste,
-					);*/
-
 					// prepare terms to insert if there are more than one
 					$terms = array( //taxonomy => values
 						$prefix_wpo . 'language' => $language,

@@ -11,11 +11,11 @@ get_header(); ?>
 		</div>
 		<div class="row">
 			<div class="col-md-3 legend-map">
-			<h3><a href="/waste-picker-organizations/"><span class="glyphicon glyphicon-user"></span> Waste Picker's map</a></h3>
+			<h3><a href="/waste-picker-organizations/waste-picker-organizations-map"><span class="glyphicon glyphicon-user"></span> Waste Pickers' Organizations</a></h3>
 			<ul>
 				<li><span class="label" style="background-color: #428bca;">Waste Picker Organizations</span></li>
 			</ul>
-			<h3><a href="/waste-picker-organizations/oganizations-type"><span class="glyphicon glyphicon-tag"></span> Organizations' type</a></h3>
+			<h3><a href="/waste-picker-organizations/oganizations-type"><span class="glyphicon glyphicon-tag"></span> Type of Organization</a></h3>
 			<ul>
 				<li><span class="label" style="background-color: #003366">Trade Union</span></li>
 				<li><span class="label" style="background-color: #339999">Cooperative federation</span></li>

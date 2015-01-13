@@ -48,6 +48,13 @@ $output2 = ''; ?>
 								$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
 								$author = get_the_author();
 								$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+								$translated_by = get_post_meta( $post->ID, '_gr_translator', true );
+								$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
+								$country_id = get_post_meta( $post->ID, '_post_country', true ); //get id of country selected
+								$country = get_post($country_id);
+								$country_name = $country->post_title;
+								$country_slug = strtolower(str_replace(" ","-",$country_name));
+								
 							 	if ($written_by != '')  { //if the text is written by someone the field "written" by will be filled
 							 		if ($written_by == $author) { //if the writer has a user
 							 			//temporary hack while creating all the users. Displays author as link if the autor exists.
@@ -73,12 +80,17 @@ $output2 = ''; ?>
 					</div>
 					<div class="col-md-4">
 						<?php   
-							$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 							if ( $region != '')  : 
-							echo "<h4><small>";
-							echo _e('Region','globalrec')."</small> ";	
-							echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); 
-							echo "</h4>";
+								echo "<h4><small>";
+								echo _e('Region','globalrec')."</small> ";
+								echo $region;
+								echo "</h4>";
+							endif;
+							if ( $country_name != '-' && ( is_user_logged_in() ))  : //TODO remove is_user_logged_in when country pages are public
+								echo "<h4><small>";
+								echo _e('Country','globalrec')."</small> ";
+								echo "<a href='/country/".$country_slug."'>".$country_name."</a>";
+								echo "</h4>";
 							endif;
 						 	?>
 					</div>
@@ -86,6 +98,15 @@ $output2 = ''; ?>
 						<h4><small class="pull-right">
 							<?php the_time('F d, Y') ?>					
 						</small></h4>
+							<?php
+								if (($translated_by == '-') || ($translated_by == '')) {
+									//Do nothing. ($translated_by != '-') was not working
+								} else {
+									echo "<p class='text-right'><small>";
+									_e('Translated by','globalrec');
+									echo " ". $translated_by. "</small></p>";
+								}
+							?>
 					</div>
 				</div>
 			</header>

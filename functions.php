@@ -289,10 +289,11 @@ $wpoTaxonomies = array(
 
 	foreach ($wpoTaxonomies as $key => $value) {
 		register_taxonomy( $key, 'waste-picker-org', array(
-		'hierarchical' => true,
-		'label' => $value,
-		'query_var' => true,
-		'rewrite' => array( 'slug' => $key ) ) );
+			'hierarchical' => true,
+			'label' => $value,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => $key ) )
+		);
 	}
 }
 
@@ -665,6 +666,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'wysiwyg',
 				'options' => array(),
 			),
+			array(
+				'name' => 'Translator',
+				'desc' => 'Type "-" if you are not the translator. Ej: -',
+				'default' => '-',
+				'id' => $prefix . 'translator',
+				'type' => 'text_small'
+			),
 		),
 	);
 	//Summary for newsletter (it is different from the excerpt, that is shown in loop.boxes)
@@ -713,7 +721,8 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'desc' => 'Select the country in a post',
 				'id' => $prefixpost . 'country',
 				'type' => 'select',
-				'options' =>  $countries
+				'options' =>  $countries,
+				'default' => '-',
 			),
 		),
 	);

@@ -255,6 +255,11 @@ register_taxonomy( 'post-newsletter', 'post', array(
 	'label' => 'Newsletters',
 	'query_var' => true,
 	'rewrite' => array( 'slug' => 'post-belongs-to-newsletter' ) ) );
+register_taxonomy( 'law-type', 'law-report', array(
+	'hierarchical' => true,
+	'label' => 'Type',
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'law-type' ) ) );
 }
 
 //create multiple taxonomies for waste picker organizations

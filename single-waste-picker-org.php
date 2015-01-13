@@ -93,7 +93,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$country_link = get_permalink($post_id);
 						$country_name = $country->post_title;
 						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
-							if ($country_name == 'Not specified') {//if the "not specified" option is selected
+							if (($country_name == 'Not specified') || ($country_name == '-')) {//if the "not specified" option is selected. The default option is "-"
 								echo $country2;
 							} else {//if a country has been selected
 								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';

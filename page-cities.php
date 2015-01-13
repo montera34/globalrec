@@ -1,6 +1,6 @@
 <?php  /* Template Name: City List*/ 
 get_header(); ?>
-<div id="page-law-reports" <?php post_class(''); ?>>
+<div id="page-city-reports" <?php post_class(''); ?>>
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<div class="row">
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10">
@@ -8,7 +8,11 @@ get_header(); ?>
 			</h2>		
 			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 		</div>
-		<?php the_content(); ?>	
+		<div class="row content">
+			<div class="col-md-8">
+				<?php the_content(); ?>
+			</div>
+		</div>
 		<?php endwhile; endif;?>
 		
 		<?php

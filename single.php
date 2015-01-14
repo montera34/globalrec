@@ -86,7 +86,7 @@ $output2 = ''; ?>
 								echo $region;
 								echo "</h4>";
 							endif;
-							if ( $country_name != '-' && ( is_user_logged_in() ))  : //TODO remove is_user_logged_in when country pages are public
+							if ( $country_name != '-' && ( is_user_logged_in() ) && (get_post_type() == 'post'))  : //TODO remove is_user_logged_in when country pages are public
 								echo "<h4><small>";
 								echo _e('Country','globalrec')."</small> ";
 								echo "<a href='/country/".$country_slug."'>".$country_name."</a>";

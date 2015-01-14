@@ -24,7 +24,8 @@ get_header(); ?>
 				);
 			$my_query = new WP_Query($args);
 			?>
-
+	
+	<?php if ( $my_query->have_posts() ) : ?>
   <table class="table table-hover table-condensed">
 	<thead>
 		<tr>
@@ -34,7 +35,7 @@ get_header(); ?>
 		</tr>
 	</thead>
     <tbody>
-	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+	<?php while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
 	<?php
 		global $wp_query;
 		$wp_query->in_the_loop = true;
@@ -65,7 +66,7 @@ get_header(); ?>
 			</tr>
 
 	<?php endwhile; else: ?>
-	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+	<p><?php _e('Sorry, this part of the content is not available in this language'); ?></p>
 	<?php endif; ?>
     </tbody>
   </table>

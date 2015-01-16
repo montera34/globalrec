@@ -823,6 +823,24 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'type' => 'text_medium',
 			),
 			array(
+				'name' => 'Street Name',
+				'desc' => 'ex: ',
+				'id' => $prefixwpg . 'street_name',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Street Number',
+				'desc' => 'ex: ',
+				'id' => $prefixwpg . 'street_number',
+				'type' => 'text_medium',
+			),
+			array(
+				'name' => 'Postal Code',
+				'desc' => 'ex: ',
+				'id' => $prefixwpg . 'postal_code',
+				'type' => 'text_medium',
+			),
+			array(
 				'name' => 'Postal Address',
 				'desc' => 'ex: ',
 				'id' => $prefixwpg . 'postal_address',

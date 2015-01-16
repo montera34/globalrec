@@ -22,7 +22,27 @@ get_header(); ?>
 				'posts_per_page' => -1,
 				'orderby' => 'title',
 				'order' => 'ASC',
-				);
+				'tax_query' => array(
+					'relation' => 'AND',
+					array(
+						'taxonomy' => 'wpg-member-occupation',
+						'field'    => 'slug',
+						'terms'    => 'waste-pickers',
+					),
+					array(
+						'taxonomy' => 'wpg-member-type',
+						'field'    => 'slug',
+						'terms'    => array('members-are-waste-pickers', 'members-are-waste-picker-organizations'),
+						'operator' => 'IN',
+					),
+					/*array(
+						'taxonomy' => 'wpg-member-type',
+						'field'    => 'slug',
+						'terms'    => array('waste-picker-support-organization', 'members are waste collectors'),
+						'operator' => 'NOT IN',
+					),*/
+				),
+			);
 			$my_query = new WP_Query($args);
 			?>
   <table class="table table-hover table-condensed" id="wpg-list">

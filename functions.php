@@ -271,9 +271,9 @@ global $prefix_wpo;
 
 $wpoTaxonomies = array(
 	$prefix_wpo . 'language' => 'Language',
-	$prefix_wpo . 'member-type' => 'Waste Picker Member type',
-	$prefix_wpo . 'scope' => 'Waste Picker Organization scope',
-	$prefix_wpo . 'organization-type' => 'Waste Picker Organization Type',
+	$prefix_wpo . 'member-type' => 'Member type',
+	$prefix_wpo . 'scope' => 'Scope',
+	$prefix_wpo . 'organization-type' => 'Type',
 	$prefix_wpo . 'member-occupation' => 'Occupation of Members',
 	$prefix_wpo . 'workplace-members' => 'Workplace of Members',
 	$prefix_wpo . 'membership' => 'Membership',
@@ -1498,9 +1498,17 @@ function get_number_posts_double ($meta_key,$meta_value) {
 //Funcion to get number of waste picker groups that are in a certain category and are 'waste pickers'
 function get_number_posts_in_taxonomy ($tax,$term) {
 	$args = array(
-				'posts_per_page' => -1,
-				'post_type' => 'waste-picker-org',
-				$tax => $term,
+					'posts_per_page' => -1,
+					'post_type' => 'waste-picker-org',
+					$tax => $term,
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'wpg-member-type',
+							'field'    => 'slug',
+							'terms'    => array('waste picker support organization','potential supporters'),
+							'operator' => 'NOT IN',
+						),
+					),
 				);
 	$posts_array = get_posts( $args );
 	$result = count($posts_array);
@@ -1918,3 +1926,16 @@ function edit_meta_box(){
 	remove_meta_box( 'postcustom', 'waste-picker-org', 'main' );
    // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-org', 'normal', 'high');
 }
+
+//Creates array that count number of taxonomy terms
+function count_tax_array($the_array) {
+	foreach ($the_array as $key => $value) { //Flattens array
+		$the_array_clean[$key] = isset($value[0]->name) ? $value[0]->name : "not set"; //prevents from crashing when value is empty
+	}
+	$the_array_count = array_count_values($the_array_clean); //counts values of organizations with the same organization type
+	unset($the_array);
+	$the_array = $the_array_count;
+	arsort($the_array);
+	return $the_array;
+}
+			

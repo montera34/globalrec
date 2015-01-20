@@ -48,6 +48,7 @@ get_header(); ?>
   <table class="table table-hover table-condensed" id="wpg-list">
 	<thead>
 		<tr>
+			<th>#</th>
 			<th><?php _e('Name','globalrec'); ?></th>
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
@@ -62,6 +63,7 @@ get_header(); ?>
 		</tr>
 	</thead>
     <tbody>
+  <?php $i = 1; ?>
 	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
 	<?php 	 //necessary to show the tags 
 		global $wp_query;
@@ -71,6 +73,10 @@ get_header(); ?>
 		?>
 
 			<tr <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
+				<td>
+					<?php echo "<small>". $i ."</small>";
+						$i++; ?>
+				</td>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
 					<strong><?php the_title(); ?></strong></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>

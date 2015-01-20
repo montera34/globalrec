@@ -31,6 +31,7 @@ get_header(); ?>
 			<th><?php _e('# Newsletter','globalrec'); ?></th>
 			<th><?php _e('Date','globalrec'); ?></th>
 			<th><?php _e('Author','globalrec'); ?></th>
+			<th><span style="background-color:yellow;""><?php _e('Translator','globalrec'); ?><span></th>
 			<th><?php _e('Country','globalrec'); ?></th>
 			<th><?php _e('Categories','globalrec'); ?></th>
 			<th><?php _e('Region','globalrec'); ?></th>
@@ -69,6 +70,9 @@ get_header(); ?>
 							}
 						}
 					?>
+				</td>
+				<td>
+					<?php echo get_post_meta( $post->ID, '_gr_translator', true ); ?>
 				</td>
 				<td>
 				<?php

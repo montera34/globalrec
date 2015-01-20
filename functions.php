@@ -1592,37 +1592,42 @@ function globalrec_waw_form() {
 		next($badges);
 	}
 	
-	$languages = array(
-					'spanish' => 'spanish',
-					'portuguese' => 'portuguese',
-					'english' => 'english',
-					'french' => 'french',
-					'bamanankan' => 'bamanankan',
-					'bambaro' => 'bambaro',
-					'bomu' => 'bomu',
-					'hindi' => 'hindi',
-					'igbo' => 'igbo',
-					'kikongo' => 'kikongo',
-					'lingala' => 'lingala',
-					'malagasy' => 'malagasy',
-					'mandingue' => 'mandingue',
-					'marathi' => 'marathi',
-					'peulh' => 'peulh',
-					'serere' => 'serere',
-					'swaili' => 'swaili',
-					'tieyako bozo' => 'tieyako Bozo',
-					'toucouleur / yoruba' => 'toucouleur / yoruba',
-					'tshiluba' => 'tshiluba',
-					'walot' => 'walot',
-					'yoruba' => 'yoruba'
-				);
-		$options_languages = "<option></option>";
-		while ( $language = current($languages) ) {
-			$options_languages .= "<option value='" .key($languages). "'>" .ucfirst($language). "</option>";
-			next($languages);
-		}
-			
-		
+	//Stores terms for language taxonomy
+	$language_terms = get_terms( 'wpg-language' );
+	$member_type_terms = get_terms( 'wpg-member-type' );
+	$scope_terms = get_terms( 'wpg-scope' );
+	
+	//Creates array
+	foreach ($language_terms as $key) {
+		$languages[$key->name] = $key->name;
+	}
+	foreach ($member_type_terms as $key) {
+		$member_types[$key->name] = $key->name;
+	}
+	foreach ($scope_terms as $key) {
+		$scopes[$key->name] = $key->name;
+	}
+	$scopes= array_merge(array_flip(array('local','regional','national')), $scopes);
+	
+	//Creates options for multicheck in html
+	$options_languages = "";
+	while ( $language = current($languages) ) {
+		$options_languages .= "<div class='checkbox'><label><input type='checkbox' name='language_list[]' value='" .key($languages). "'>" .ucfirst(key($languages)). "</label></div>";
+		next($languages);
+	}
+	
+	$options_member_types = "";
+	while ( $member_type = current($member_types) ) {
+		$options_member_types .= "<div class='checkbox'><label><input type='checkbox' name='members_list[]'' value='" .key($member_types). "'>" .ucfirst(key($member_types)). "</label></div>";
+		next($member_types);
+	}
+	
+	$options_scopes = "";
+	while ( $scope = current($scopes) ) {
+		$options_scopes .= "<div class='checkbox'><label><input type='checkbox' name='scopes_list[]'' value='" .key($scopes). "'>" .ucfirst(key($scopes)). "</label></div>";
+		next($scopes);
+	}
+	
 	$form_out = "
 	<h2>Submit information about your organization</h2>
 <form id='globalrec-form-content' method='post' action='" .$action. "' enctype='multipart/form-data'>
@@ -1664,11 +1669,9 @@ function globalrec_waw_form() {
 			</div>
 		</div>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-language' class='col-sm-4 control-label'>Language</label>
+			<label class='col-sm-4 control-label'>Language</label>
 			<div class='col-sm-6'>
-				<select class='form-control req' name='globalrec-form-waw-language' maxlenght='11' >
-					" .$options_languages. "
-				</select>
+				" .$options_languages. "
 			</div>
 		</div>
 		<!--<div class='form-group'>
@@ -1684,71 +1687,13 @@ function globalrec_waw_form() {
 		<div class='form-group'>
 			<label class='col-sm-4 control-label'>Type of members</label>
 			<div class='col-sm-6'>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='members_list[]' value='members are waste pickers'>
-						members are waste pickers
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='members_list[]' value='members are waste picker organizations'>
-						members are waste picker organizations
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='members_list[]' value='waste picker support organization'>
-						waste picker support organization
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='members_list[]' value='members are multi sector'>
-						members are multi sector
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='members_list[]' value='members employ waste pickers'>
-						members employ waste pickers
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label'>
-						<input type='checkbox' name='members_list[]' value='potential supporters'>
-						potential supporters
-					</label>
-				</div>
+				" .$options_member_types. "
 			</div>
 		</div>
 		<div class='form-group'>
 			<label class='col-sm-4 control-label'>Organization's scope</label>
 			<div class='col-sm-6'>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='scope_list[]' value='local'>
-						Local
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='scope_list[]' value='regional'>
-						Regional
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='scope_list[]' value='national'>
-						National
-					</label>
-				</div>
-				<div class='checkbox'>
-					<label>
-						<input type='checkbox' name='scope_list[]' value='international'>
-						International
-					</label>
-				</div>
+				". $options_scopes ."
 			</div>
 		</div>
 		<div class='form-group'>
@@ -1773,10 +1718,9 @@ function globalrec_insert_wpg() {
 	$location = $perma."?form=success";
 	$error = "<div class='alert alert-danger'>
 		<p>Uno o varios campos están vacíos o no tienen un formato válido.</p>
-		<p>Si has rellenado el campo de imagen comprueba que no pesa más de 4MB y que está en un formato adecuado (JPG, PNG, GIF).</p>
 		<p>En cualquier caso el formulario no se envió correctamente. Por favor, inténtalo de nuevo.</p>
 	</div>";
-	$success = "<div class='alert alert-success'>El formulario ha sido enviado correctamente: hemos recibido tus datos. Vamos a revisarlos y si todo está correcto recibirás el badge en unos cuantos días.</div><p><strong>¿Quieres solicitar otro badge?</strong>: <a href='" .$perma. "'>vuelve al formulario</a>.</p>";
+	$success = "<div class='alert alert-success'>El formulario ha sido enviado correctamente: hemos recibido tus datos. Vamos a revisarlos y nos pondremos en contacto con el email que nos has proporcionado.</div>";
 
 	if ( array_key_exists('form', $_GET) ) {
 		if ( sanitize_text_field( $_GET['form']) == 'success' ){
@@ -1799,12 +1743,12 @@ function globalrec_insert_wpg() {
 	// sanitize them all
 	$wpg_name = sanitize_text_field( $_POST['globalrec-form-waw-name'] );
 	$wpg_mail = sanitize_email( $_POST['globalrec-form-waw-mail'] );
-	$wpg_material = sanitize_text_field( $_POST['globalrec-form-waw-website'] );
-	$wpg_badge = sanitize_text_field( $_POST['globalrec-form-waw-language'] );
+	$wpg_website = sanitize_text_field( $_POST['globalrec-form-waw-website'] );
 	$city = sanitize_text_field( $_POST['globalrec-form-waw-city'] );
 	$country = sanitize_text_field( $_POST['globalrec-form-waw-country'] );
+	$wpg_language = $_POST['language_list'];
 	$wpg_members_type = $_POST['members_list'];
-	$wpg_scope = $_POST['scope_list'];
+	$wpg_scope = $_POST['scopes_list'];
 	
 	echo 'wpg_members_type array is: ';
 	print_r($wpg_members_type);
@@ -1813,21 +1757,24 @@ function globalrec_insert_wpg() {
 	
 	// check that all required fields were filled
 	$fields = array(
-		//'title' => $wpg_name, TODO how to chack name exists and not include it in this array (used for custom field inserts)
+		//'title' => $wpg_name, TODO how to check name exists and not include it in this array (used for custom field inserts)
 		'_wpg_email' => $wpg_mail,
-		'_wpg_members_type' => $wpg_members_type[0],//TODO be able to check more than one option
-		'_wpg_organization_scope' => $wpg_scope[0],//TODO be able to check more than one option
 		'city' => $city,
 		'country' => $country,
-		'_wpg_language' => $wpg_badge,
-		'_wpg_website' => $wpg_material,
+		'_wpg_website' => $wpg_website,
+	);
+	
+	$terms = array(
+		'wpg-language' => $wpg_language,
+		'wpg-member-type' => $wpg_members_type,
+		'wpg-scope' => $wpg_scope,
 	);
 	
 	foreach ( $fields as $name => $field ) {
 		echo $name.' is: '. $field. '<br>';
 		if ( $field == '' ) {
 			echo $error;
-			echo 'alguno vacio'. $field;
+			echo 'alguno vacio '. $field;
 			globalrec_waw_form();
 			return;
 		}
@@ -1872,11 +1819,19 @@ function globalrec_insert_wpg() {
 
 	// insert custom fields
 	reset($fields);
-	while ( $field = current($fields) ) {//do not use current, becasue it is the title, and it is not a custom field
+	while ( $field = current($fields) ) {//TODO do not use current, becasue it is the title, and it is not a custom field
 		add_post_meta($wpg_id, key($fields), $field, TRUE);
 		next($fields);
 	}
-
+	
+	echo "the id is " .$wpg_id. ".<br>";
+	
+	// insert taxonomies
+	foreach ( $terms as $key => $value ) {
+		//echo "insert: ".$value." in" . $key .".<br>";
+		wp_set_object_terms( $wpg_id, $value, $key);
+	}
+	
 	wp_redirect( $location );
 
 } // end insert wpg data in database

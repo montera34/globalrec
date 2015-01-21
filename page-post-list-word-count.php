@@ -46,6 +46,7 @@ get_header(); ?>
 	<?php
 		global $wp_query;
 		$wp_query->in_the_loop = true;
+		$post_id = get_the_ID();
 		?>
 
 			<tr>
@@ -54,14 +55,14 @@ get_header(); ?>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
 				<td>
-					<span class="label"><?php echo get_the_term_list( $post->ID, 'post-newsletter', ' ', ', ', '' ); ?></span> 
+					<span class="label"><?php echo get_the_term_list( $post_id , 'post-newsletter', ' ', ', ', '' ); ?></span>
 				</td>
 				<td>
 					<?php the_time('m/d/Y') ?>
 				</td>
 				<td>
 					<?php if (get_post_type() == 'post') {
-						$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+						$written_by = get_post_meta( $post_id. '_gr_written-by', true );
 						 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
 								echo $written_by;
 							}
@@ -72,11 +73,11 @@ get_header(); ?>
 					?>
 				</td>
 				<td>
-					<?php echo get_post_meta( $post->ID, '_gr_translator', true ); ?>
+					<?php echo get_post_meta( $post_id , '_gr_translator', true ); ?>
 				</td>
 				<td>
 				<?php
-					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$country_ID = get_post_meta( $post_id , '_post_country', true );
 					$country = get_post( $country_ID );
 					$countrytitle = $country->post_title;
 					echo $countrytitle;
@@ -86,7 +87,7 @@ get_header(); ?>
 				<?php the_category(', ','single'); ?>
 				</td>
 				<td>
-				<?php echo get_the_term_list( $post->ID, 'post-region', '', ', ', '' ); ?>
+				<?php echo get_the_term_list( $post_id , 'post-region', '', ', ', '' ); ?>
 				</td>
 				<td>
 					<?php
@@ -103,7 +104,7 @@ get_header(); ?>
 				</td>
 				<td>
 					<?php
-						$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+						$summary = get_post_meta( $post_id , '_gr_post-summary', true );
 						$stripped_summary = strip_tags($summary);
 						//echo str_word_count($summary);
 						echo str_word_count($stripped_summary); 

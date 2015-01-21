@@ -45,15 +45,18 @@ $output2 = ''; ?>
 					<div class="col-md-5">
 						<h4>
 							<?php
+								$post_id = get_the_ID();
 								$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
 								$author = get_the_author();
-								$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
-								$translated_by = get_post_meta( $post->ID, '_gr_translator', true );
-								$region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
-								$country_id = get_post_meta( $post->ID, '_post_country', true ); //get id of country selected
-								$country = get_post($country_id);
-								$country_name = $country->post_title;
-								$country_slug = strtolower(str_replace(" ","-",$country_name));
+								$written_by = get_post_meta( $post_id, '_gr_written-by', true );
+								$translated_by = get_post_meta( $post_id, '_gr_translator', true );
+								$region = get_the_term_list( $post_id, 'post-region', '', ', ', '' );
+								$country_id = get_post_meta( $post_id, '_post_country', true ); //get id of country selected
+								if ($country_id != '') {
+									$country = get_post($country_id);
+									$country_name = $country->post_title;
+									$country_slug = strtolower(str_replace(" ","-",$country_name));
+								}
 								
 							 	if ($written_by != '')  { //if the text is written by someone the field "written" by will be filled
 							 		if ($written_by == $author) { //if the writer has a user
@@ -86,7 +89,7 @@ $output2 = ''; ?>
 								echo $region;
 								echo "</h4>";
 							endif;
-							if ( $country_name != '-' && ( is_user_logged_in() ) && (get_post_type() == 'post'))  : //TODO remove is_user_logged_in when country pages are public
+							if ( isset($country_name) && is_user_logged_in() )  : //TODO remove is_user_logged_in when country pages are public
 								echo "<h4><small>";
 								echo _e('Country','globalrec')."</small> ";
 								echo "<a href='/country/".$country_slug."'>".$country_name."</a>";
@@ -112,7 +115,7 @@ $output2 = ''; ?>
 			</header>
 			
 		 	<?php if ( is_user_logged_in() && (get_post_type() == 'post')) {
-		 		$summary = get_post_meta( $post->ID, '_gr_post-summary', true ); ?>
+		 		$summary = get_post_meta( $post_id, '_gr_post-summary', true ); ?>
 		 		<div class="panel-group" id="summary">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -142,16 +145,16 @@ $output2 = ''; ?>
 
 			<div id="post-content">
 				<?php 
-				$article_url = get_post_meta( $post->ID, '_gr_article-url', true );
-				$article_title = get_post_meta( $post->ID, '_gr_article-title', true );
-				$article_published_in = get_post_meta( $post->ID, '_gr_published-in', true );
+				$article_url = get_post_meta( $post_id, '_gr_article-url', true );
+				$article_title = get_post_meta( $post_id, '_gr_article-title', true );
+				$article_published_in = get_post_meta( $post_id, '_gr_published-in', true );
 				if ($article_url != '') {
 						echo "<div class='row'><div class='col-md-12'><a href='".$article_url."'>".$article_title."</a><br>";
 						echo $written_by. ". ";
 						if ($article_published_in != '') {
 							echo $article_published_in. ". ";	
 						}
-						echo get_post_meta( $post->ID, '_gr_article-date', true );
+						echo get_post_meta( $post_id, '_gr_article-date', true );
 						echo "</div></div>";	
 					}
 				the_content(__('(more...)')); ?>

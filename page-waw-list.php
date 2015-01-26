@@ -85,7 +85,10 @@ get_header(); ?>
 					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>
 				</td>
 				<td>
-					<?php echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' ); ?>
+					<?php
+					$org_type = get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' );
+					echo $org_type == 'ngo' ? 'NGO' : $org_type;
+					?>
 				</td>
 				<td>
 					<?php 

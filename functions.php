@@ -1581,17 +1581,6 @@ function globalrec_waw_form() {
 		$badge_from = sanitize_text_field( $_GET['badge_id']);
 	} else { $badge_from = ""; }
 
-	$badges = globalrec_get_list("waste-picker-org"); //list waste picker groups
-	$options_badges = "<option></option>";
-	while ( $badge = current($badges) ) {
-		if ( $badge_from == key($badges) ) {
-			$options_badges .= "<option value='" .key($badges). "' selected>" .$badge. "</option>";
-		} else {
-			$options_badges .= "<option value='" .key($badges). "'>" .$badge. "</option>";
-		}
-		next($badges);
-	}
-	
 	//Stores terms for language taxonomy
 	$language_terms = get_terms( 'wpg-language' );
 	$member_type_terms = get_terms( 'wpg-member-type' );
@@ -1635,7 +1624,7 @@ function globalrec_waw_form() {
 	<div class='form-horizontal col-md-10'>
 		<legend>Contact information</legend>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-name' class='col-sm-4 control-label'>Name</label>
+			<label for='globalrec-form-waw-name' class='col-sm-4 control-label'>Name of Organization</label>
 			<div class='col-sm-6'>
 				<input class='form-control req' type='text' value='' name='globalrec-form-waw-name' />
 			</div>
@@ -1645,6 +1634,13 @@ function globalrec_waw_form() {
 			<div class='col-sm-6'>
 	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-mail' />
 				<p class='help-block'><small></small></p>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label for='globalrec-form-waw-telephone' class='col-sm-4 control-label'>Telephone</label>
+			<div class='col-sm-6'>
+	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-telephone' />
+				<p class='help-block'><small>Please write it with the country code</small></p>
 			</div>
 		</div>
 		<div class='form-group'>
@@ -1715,7 +1711,7 @@ function globalrec_insert_wpg() {
 
 	// messages and locations for redirection
 	$perma = get_permalink();
-	$location = $perma."?form=success";
+	$location_form = $perma."?form=success";
 	$error = "<div class='alert alert-danger'>
 		<p>Uno o varios campos están vacíos o no tienen un formato válido.</p>
 		<p>En cualquier caso el formulario no se envió correctamente. Por favor, inténtalo de nuevo.</p>
@@ -1743,6 +1739,7 @@ function globalrec_insert_wpg() {
 	// sanitize them all
 	$wpg_name = sanitize_text_field( $_POST['globalrec-form-waw-name'] );
 	$wpg_mail = sanitize_email( $_POST['globalrec-form-waw-mail'] );
+	$wpg_telephone = sanitize_email( $_POST['globalrec-form-waw-telephone'] );
 	$wpg_website = sanitize_text_field( $_POST['globalrec-form-waw-website'] );
 	$city = sanitize_text_field( $_POST['globalrec-form-waw-city'] );
 	$country = sanitize_text_field( $_POST['globalrec-form-waw-country'] );
@@ -1759,6 +1756,7 @@ function globalrec_insert_wpg() {
 	$fields = array(
 		//'title' => $wpg_name, TODO how to check name exists and not include it in this array (used for custom field inserts)
 		'_wpg_email' => $wpg_mail,
+		'_wpg_phone1' => $wpg_telephone,
 		'city' => $city,
 		'country' => $country,
 		'_wpg_website' => $wpg_website,
@@ -1832,7 +1830,8 @@ function globalrec_insert_wpg() {
 		wp_set_object_terms( $wpg_id, $value, $key);
 	}
 	
-	wp_redirect( $location );
+	wp_redirect( $location_form );
+	exit;
 
 } // end insert wpg data in database
 

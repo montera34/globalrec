@@ -105,9 +105,9 @@ $output2 = ''; ?>
 								if (($translated_by == '-') || ($translated_by == '')) {
 									//Do nothing. ($translated_by != '-') was not working
 								} else {
-									echo "<p class='text-right'><small>";
+									echo "<h4 class='text-right'><small>";
 									_e('Translated by','globalrec');
-									echo " ". $translated_by. "</small></p>";
+									echo " ". $translated_by. "</small></h4>";
 								}
 							?>
 					</div>

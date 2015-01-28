@@ -10,8 +10,96 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(1675, 'post-newsletter');
+$newsletter_number = icl_object_id(1749, 'post-newsletter');
+
+$argsasia = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $asian_posts,
+	'ignore_sticky_posts' => 1,
+	'offset' => $asian_offset,
+	'taxonomy' => 'post-region',
+	'term' => 'asia',
+	'tax_query' => array(
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+		),
+	);
+$my_query_asia = new WP_Query($argsasia);
+
+$args_latinamerica = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $latinamerican_posts,
+	'ignore_sticky_posts' => 1,
+	'offset' => $latinamerican_offset,
+	'taxonomy' => 'post-region',
+	'term' => 'latin-america',
+	'tax_query' => array(
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+		),
+	);
+$my_query_latinamerica = new WP_Query($args_latinamerica);
+
+$args_africa = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $african_posts,
+	'ignore_sticky_posts' => 1,
+	'offset' => $african_offset,
+	'taxonomy' => 'post-region',
+	'term' => 'africa',
+	'tax_query' => array(
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+		),
+	);
+$my_query_africa = new WP_Query($args_africa);
+
+$args_europe = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $european_posts,
+	'offset' => $european_offset,
+	'ignore_sticky_posts' => 1,
+	'taxonomy' => 'post-region',
+	'term' => 'europe',
+	'tax_query' => array(
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+		),
+	);
+$my_query_europe = new WP_Query($args_europe);
+
+$args_northamerica = array(
+	'post_status' => array( 'publish', 'future' ),
+	//'post_type' => 'post',
+	'posts_per_page' => $northamerican_posts,
+	'offset' => $northamerican_offset,
+	'ignore_sticky_posts' => 1,
+	'taxonomy' => 'post-region',
+	'term' => 'north-america',
+	'tax_query' => array(
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+		),
+	);
+$my_query_northamerica = new WP_Query($args_northamerica);
+
 ?>
+
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 	<div class="row">
@@ -34,6 +122,52 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				</tbody>
 			</table>
 			<br>
+			<strong id="short">Asia</strong><br>
+			<?php
+				$i = 1;
+				$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
+				foreach ($my_query_asia_posts as $key => $value ) {
+					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
+					$i++;
+				}
+			?>
+			<strong>Latin America</strong><br>
+			<?php
+				$i = 1;
+				$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
+				foreach ($my_query_latinamerica_posts as $key => $value ) {
+					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
+					$i++;
+				}
+			?>
+			<strong>Africa</strong><br>
+			<?php
+				$i = 1;
+				$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
+				foreach ($my_query_africa_posts as $key => $value ) {
+					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
+					$i++;
+				}
+			?>
+			<strong>Europe</strong><br>
+			<?php
+				$i = 1;
+				$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
+				foreach ($my_query_europe_posts as $key => $value ) {
+					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
+					$i++;
+				}
+			?>
+			<strong>North America</strong><br>
+			<?php
+				$i = 1;
+				$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
+				foreach ($my_query_northamerica_posts as $key => $value ) {
+					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
+					$i++;
+				}
+			?>
+			<hr>			
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
@@ -47,26 +181,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/asia.png">
 				<strong><?php echo _e('Asia','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					'posts_per_page' => $asian_posts,
-					'ignore_sticky_posts' => 1,
-					'offset' => $asian_offset,
-					'taxonomy' => 'post-region',
-					'term' => 'asia',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_asia->have_posts() ) : while ( $my_query_asia->have_posts() ) :  $my_query_asia->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
@@ -118,27 +233,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/latinamerica.png">
 				<strong><?php echo _e('Latin America','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $latinamerican_posts,
-					'ignore_sticky_posts' => 1,
-					'offset' => $latinamerican_offset,
-					'taxonomy' => 'post-region',
-					'term' => 'latin-america',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_latinamerica->have_posts() ) : while ( $my_query_latinamerica->have_posts() ) :  $my_query_latinamerica->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
@@ -189,26 +284,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/africa.png">
 				<strong><?php echo _e('Africa','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					'posts_per_page' => $african_posts,
-					'ignore_sticky_posts' => 1,
-					'offset' => $african_offset,
-					'taxonomy' => 'post-region',
-					'term' => 'africa',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_africa->have_posts() ) : while ( $my_query_africa->have_posts() ) :  $my_query_africa->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
@@ -258,27 +334,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/europe.png">
 				<strong><?php echo _e('Europe','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $european_posts,
-					'offset' => $european_offset,
-					'ignore_sticky_posts' => 1,
-					'taxonomy' => 'post-region',
-					'term' => 'europe',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_europe->have_posts() ) : while ( $my_query_europe->have_posts() ) :  $my_query_europe->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
@@ -325,27 +381,7 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			
 			<!-- North America -->
 			<h2 id="north-america"><strong><?php echo _e('North America','globalrec');?></strong></h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $northamerican_posts,
-					'offset' => $northamerican_offset,
-					'ignore_sticky_posts' => 1,
-					'taxonomy' => 'post-region',
-					'term' => 'north-america',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_northamerica->have_posts() ) : while ( $my_query_northamerica->have_posts() ) : $my_query_northamerica->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;

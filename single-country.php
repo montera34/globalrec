@@ -26,14 +26,28 @@ $post_id = $post->ID;
 				<?php 
 					//List of Waste Picker Groups that belong to the Country
 					$waste_picker_groups = get_posts( array(
-						'post_type' => 'waste-picker-group',
+						'post_type' => 'waste-picker-org',
 						//'meta_key' => '_wpg_countryselect',
 						//'meta_value' => $post_id,
 						'meta_key' => 'country',
 						'meta_value' => $title,
-						'posts_per_page'   => -1,
+						'posts_per_page' => -1,
 						'order' => 'ASC',
-						'orderby' => 'title'
+						'orderby' => 'title',
+						'tax_query' => array(
+							'relation' => 'AND',
+							array(
+								'taxonomy' => 'wpg-member-occupation',
+								'field'    => 'slug',
+								'terms'    => 'waste-pickers',
+							),
+							array(
+								'taxonomy' => 'wpg-member-type',
+								'field'    => 'slug',
+								'terms'    => array('members-are-waste-pickers', 'members-are-waste-picker-organizations'),
+								'operator' => 'IN',
+							),
+						),
 					));
 					$result = count($waste_picker_groups);
 					?>

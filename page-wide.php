@@ -37,7 +37,7 @@ get_header(); ?>
 				<li><span class="label" style="background-color: #FFaaaa">Waste picker support organization</span></li>
 				<li><span class="label" style="background-color: #77FF77">Potential supporter</span></li>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-9 content">
 			<?php the_content(); ?>
 			</div>
 		</div>

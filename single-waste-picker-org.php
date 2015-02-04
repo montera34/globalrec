@@ -129,11 +129,12 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo list_taxonomy_terms($post_id,'wpg-funding','Funding');
 								echo display_item($post_id,'_wpg_elections','Internal elections');
 								
+								$number_individuals = get_post_meta( $post_id, '_wpg_number_individuals', true );
 								$women_composition = get_post_meta( $post_id, '_wpg_gender_women_composition', true );
 								$women_composition_comment =	get_post_meta( $post_id, '_wpg_gender_women_comment', true );
 								
-								if ($women_composition != '') {
-									echo "<dt>Women composition</dt><dd>".$women_composition."% ";
+								if (($women_composition != '') && ($number_individuals != '')) {
+									echo "<dt>Women composition</dt><dd>".number_format(100*$women_composition/$number_individuals, 1, ',', '.')."% ";
 									echo $women_composition_comment =! '' ? "<small>" .$women_composition_comment. "</small>" : "";
 									echo "</dd>";
 								} else {

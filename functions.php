@@ -1040,7 +1040,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Gender Composition Women (Number)',
-				'desc' => 'Indicate the percentage of women. If there are 60% of women input "60"',
+				'desc' => 'Indicate the number of women in the organization.',
 				'id' => $prefixwpg . 'gender_women_composition',
 				'type' => 'text_small',
 			),

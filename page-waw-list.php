@@ -1,5 +1,38 @@
 <?php  /* Template Name: Waste Picker Groups List */ 
-get_header(); ?>
+get_header();
+
+if ( !empty($_GET['continent'])) {
+	$continent = sanitize_text_field( $_GET['continent'] );
+}
+
+$asia = array('india','indonesia','philippines');
+$africa = array('South Africa','Ghana','Mali','Kenya'.'Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
+$europe = array('india','indonesia','philippines');
+$latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
+$all = array_merge($asia , $africa, $europe , $latinamerica );
+
+//$continent = sanitize_text_field( $_GET['continent'] );
+if ($continent == '' ) {
+	$active_continent = $all;
+} else if ( $continent == 'asia') {
+	$active_continent = $asia;
+} else if ( $continent == 'latinamerica') {
+	$active_continent = $latinamerica;
+} else if ( $continent == 'africa') {
+	$active_continent = $africa;
+} else if ( $continent == 'all') {
+	$active_continent = $all;
+}
+
+$meta_query = array(
+	array(
+		'key'     => 'country',
+		'value'   => $active_continent,
+		'compare' => 'IN',
+	)
+);
+
+?>
 <div id="page-wpg">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<?php get_template_part( 'nav', 'waw' ); ?>
@@ -42,6 +75,7 @@ get_header(); ?>
 						'operator' => 'NOT IN',
 					),*/
 				),
+				'meta_query' => $meta_query,
 			);
 			$my_query = new WP_Query($args);
 			?>

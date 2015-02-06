@@ -8,56 +8,15 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 																																																																																																																																																																																																																																																																																																																			<?php get_template_part( 'nav', 'waw' ); ?>
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class("col-md-10") ?> id="post-<?php the_ID(); ?>">
+		<div <?php post_class("col-md-9") ?> id="post-<?php the_ID(); ?>">
 			<ul class="breadcrumb">
 			  <li><a href="<?php echo get_permalink(icl_object_id(10909,'page')) ?>"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></li>
 			  <li><a href="<?php echo get_permalink(icl_object_id(23272,'page')) ?>"><?php _e('Organizations','globalrec'); ?></a></li>
 			  <li><?php the_title(); ?> </li>
 			</ul>
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-12">
 					<?php the_post_thumbnail( 'medium', array('class' => 'img-responsive'));?>
-					<?php
-					$facebook = get_post_meta( $post_id, '_wpg_facebook', true );
-					$twitter = get_post_meta( $post_id, '_wpg_twitter', true );
-					echo $facebook ? "<a href='".$facebook. "'>Facebook</a> " : '';
-					echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'>Twitter</a><br>" : '';
-					echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4><span class="glyphicon glyphicon-lock"></span> <span class="glyphicon glyphicon-envelope"></span> <?php _e('Contact information','globalrec'); ?></h4>
-						</div>
-						<div class="panel-body">
-						<?php if ( is_user_logged_in() ) { //Only display this information if user is logged in ?>
-							<dl>
-							<?php
-								echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
-								echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
-								echo "<dt>Physical Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical_address', true ). "</dd>";
-								echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal_address', true ). "</dd>";
-								// echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
-								echo "<dt>Phone 1</dt><dd>". get_post_meta( $post_id, '_wpg_phone1', true ). "</dd>";
-								echo "<dt>Phone 2</dt><dd>".get_post_meta( $post_id, '_wpg_phone2', true ). "</dd>";
-								echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell_phone', true ). "</dd>";
-								echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
-								echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_name', true ). "</dd>";
-								echo "<dt>position</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_position', true ). "</dd>";
-								echo "<dt>phone</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_phone', true ). "</dd>";
-								echo "<dt>email</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_email', true ). "</dd>";
-								echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_name', true ). "</dd>";
-								echo "<dt>phone </dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_phone', true ). "</dd>";
-								echo "<dt>email</dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_email', true ). "</dd>";
-							?>
-							</dl>
-							<?php	} else {
-								echo '<a href="/contact">';
-								_e('Available information upon request','globalrec');
-								echo '.</a>';
-							} ?>
-							</div>
-						</div>
-					</div>
-				<div class="col-md-9">
 					<h1>
 						<a href="<?php echo $website; ?>" rel="bookmark" title="<?php the_title_attribute( array( 'before' => 'Go to ', 'after' => ' Website' ) ); ?>">
 							<?php the_title_attribute(); ?>
@@ -104,7 +63,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 					</h4>
 						<?php echo ($website != '') ? "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
 					<div class="row">
-						<div class="col-md-7">
+						<div class="col-md-12">
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
@@ -143,7 +102,9 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								?>
 							</dl>
 						</div>
-						<div class="col-md-5">
+					</div>
+					<div class="row">
+						<div class="col-md-12">
 							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
 								<?php //Benefits
@@ -167,24 +128,69 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 							</dl>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<hr>
-					<h4><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h4>
-						<dl>
-							<?php	//Complementary information
-							echo display_item($post_id,'_wpg_publications','Other publications');
-							echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information_source', true ). "</dd>";
-							//echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date_data-entry', true ). "</dd>";
-							//echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date_data_updated', true ). "</dd>";
-							echo display_item($post_id,'_wpg_status','Active');
-							?>
-						</dl>
-					<h4>Comments / Narrative</h4>
-					<?php the_content(__('(more...)')); ?>
+					<div class="col-md-9">
+						<h4><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h4>
+							<dl>
+								<?php	//Complementary information
+								echo display_item($post_id,'_wpg_publications','Other publications');
+								echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information_source', true ). "</dd>";
+								//echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date_data-entry', true ). "</dd>";
+								//echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date_data_updated', true ). "</dd>";
+								echo display_item($post_id,'_wpg_status','Active');
+								?>
+							</dl>
+						<h4>Comments / Narrative</h4>
+						<?php the_content(__('(more...)')); ?>
+						<hr>
+						<?php //contact information
+						$facebook = get_post_meta( $post_id, '_wpg_facebook', true );
+						$twitter = get_post_meta( $post_id, '_wpg_twitter', true );
+						echo $facebook ? "<a href='".$facebook. "'>Facebook</a> " : '';
+						echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'>Twitter</a><br>" : '';
+						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4><span class="glyphicon glyphicon-lock"></span> <span class="glyphicon glyphicon-envelope"></span> <?php _e('Contact information','globalrec'); ?></h4>
+							</div>
+							<div class="panel-body">
+							
+							<?php if ( is_user_logged_in() ) { //Only display this information if user is logged in ?>
+								<dl class="dl-horizontal">
+								<?php
+									echo "<dt>Skype</dt><dd>".get_post_meta( $post_id, '_wpg_skype', true ). "</dd>";
+									echo "<dt>Email</dt><dd>".get_post_meta( $post_id, '_wpg_email', true ). "</dd>";
+									echo "<dt>Physical Adress</dt><dd>".get_post_meta( $post_id, '_wpg_physical_address', true ). "</dd>";
+									echo "<dt>Postal Adress</dt><dd>".get_post_meta( $post_id, '_wpg_postal_address', true ). "</dd>";
+									// echo get_post_meta( $post_id, '_wpg_country-code-telephone', true ). "</dd>";
+									echo "<dt>Phone 1</dt><dd>". get_post_meta( $post_id, '_wpg_phone1', true ). "</dd>";
+									echo "<dt>Phone 2</dt><dd>".get_post_meta( $post_id, '_wpg_phone2', true ). "</dd>";
+									echo "<dt>Cellphone</dt><dd>".get_post_meta( $post_id, '_wpg_cell_phone', true ). "</dd>";
+									echo "<dt>Fax</dt><dd>".get_post_meta( $post_id, '_wpg_fax', true ). "</dd>";
+									echo "<dt>Primary contact</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_name', true ). "</dd>";
+									echo "<dt>position</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_position', true ). "</dd>";
+									echo "<dt>phone</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_phone', true ). "</dd>";
+									echo "<dt>email</dt><dd>".get_post_meta( $post_id, '_wpg_primary_contact_email', true ). "</dd>";
+									echo "<dt>Secondary contact</dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_name', true ). "</dd>";
+									echo "<dt>phone </dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_phone', true ). "</dd>";
+									echo "<dt>email</dt><dd>".get_post_meta( $post_id, '_wpg_secondary_contact_email', true ). "</dd>";
+								?>
+								</dl>
+								<?php	} else {
+									echo '<a href="/contact">';
+									_e('Available information upon request','globalrec');
+									echo '.</a>';
+								} ?>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<!--right column -->
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<h4><?php _e('News related to','globalrec'); ?> <?php the_title_attribute(); ?></h4>
 			<?php if (get_post_meta($post_id, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
 			<?php

@@ -8,7 +8,7 @@ if ( !empty($_GET['continent'])) {
 }
 
 $asia = array('india','indonesia','philippines');
-$africa = array('South Africa','Ghana','Mali','Kenya'.'Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
+$africa = array('South Africa','Ghana','Ghana','Mali','Kenya','Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
 $europe = array('india','indonesia','philippines');
 $latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
 $all = array_merge($asia , $africa, $europe , $latinamerica );

@@ -135,7 +135,7 @@ $prefixwpg = '_wpg_';
 		<div class="col-md-6">
 			<h3>Type of organization <small>number of organizations (%)</small></h3>
 			<div class="row">
-				<div class="col-md-6 text-right">
+				<div class="col-md-6 col-sm-6 col-xs-6 text-right">
 				<?php
 				$color_type = array('cooperative' => '#99eeee', 'cooperative federation' => '#339999', 'association' => '#99cc33', 'trade union' => '#003366','not set' => '#ccc');
 			
@@ -149,7 +149,7 @@ $prefixwpg = '_wpg_';
 				echo '<p><small>(Total organizations formed<br>by waste pickers: ' .$count_orgs. ')</small></p>';
 				?>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-sm-6 col-xs-6 ">
 					<?php foreach ($organization_type_count as $key => $value) { ?>
 					<div class="progress">
 						<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_org_type; ?>%;background-color:<?php echo isset($color_type[$key]) ? $color_type[$key]: '#ccc'; ?>;color:#000;">
@@ -215,10 +215,10 @@ $prefixwpg = '_wpg_';
 		<div class="col-md-3">
 			<h3>Year Formed</h3>
 				<div class="row">
-					<div class="col-md-4 text-right">
+					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
 						foreach ($year_formed_count as $key => $value) {
-							echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+							echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 						?>
 					</div>
@@ -244,14 +244,14 @@ $prefixwpg = '_wpg_';
 		<div class="col-md-3">
 			<h3>Year Registered</h3>
 				<div class="row">
-					<div class="col-md-4 text-right">
+					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
 						foreach ($year_registered_count as $key => $value) {
-							echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+							echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 						?>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-8 col-sm-8 col-xs-8 ">
 						<?php
 						$max_year_registered = 0;
 						foreach ($year_registered_count as $key => $value) {
@@ -273,14 +273,14 @@ $prefixwpg = '_wpg_';
 		<div class="col-md-5">
 			<h3>Materials collected <small>number of organizations</small></h3>
 				<div class="row">
-					<div class="col-md-5 text-right">
+					<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 						<?php
 						foreach ($material_type_count as $key => $value) {
-							echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+							echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 				?>
 					</div>
-					<div class="col-md-7">
+					<div class="col-md-7 col-sm-7 col-xs-7">
 						<?php
 						$max_material_type = 0;
 						foreach ($material_type_count as $key => $value) {
@@ -304,14 +304,14 @@ $prefixwpg = '_wpg_';
 				<div class="col-md-8">
 					<h3>Activities <small>number of organizations</small></h3>
 						<div class="row">
-							<div class="col-md-6 text-right">
+							<div class="col-md-6 col-sm-6 col-xs-6 text-right">
 								<?php
 								foreach ($activities_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4 col-sm-4 col-xs-4">
 								<?php
 								$max_activities = 0;
 								foreach ($activities_count as $key => $value) {
@@ -335,14 +335,14 @@ $prefixwpg = '_wpg_';
 				<div class="col-md-4">
 					<h3>Workplace of Members <small>number of organizations</small></h3>
 						<div class="row">
-							<div class="col-md-5 text-right">
+							<div class="col-md-5  col-sm-5 col-xs-5 text-right">
 								<?php
 								foreach ($workplace_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-7 col-sm-7 col-xs-7">
 								<?php
 								$max_workplace = 0;
 								foreach ($activities_count as $key => $value) {
@@ -364,14 +364,14 @@ $prefixwpg = '_wpg_';
 				<div class="col-md-8">
 					<h3>What kind of relationship exists with the municipality? <small>number of organizations</small></h3>
 						<div class="row">
-							<div class="col-md-9 text-right">
+							<div class="col-md-9 col-sm-9 col-xs-9 text-right">
 								<?php
 								foreach ($municipality_what_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-3 col-xs-3">
 								<?php
 								$max_municipality_what = 0;
 								foreach ($activities_count as $key => $value) {
@@ -395,14 +395,14 @@ $prefixwpg = '_wpg_';
 				<div class="col-md-4">
 					<h3>Languages <small>number of organizations</small></h3>
 						<div class="row">
-							<div class="col-md-5 text-right">
+							<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 								<?php
 								foreach ($language_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.$key.'</p>';
+									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-7 col-sm-7 col-xs-7">
 								<?php
 								$max_language = 0;
 								foreach ($language_count as $key => $value) {

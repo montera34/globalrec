@@ -1,6 +1,8 @@
 <?php  /* Template Name: Waste Picker Groups List */ 
 get_header();
 
+$continent = '';
+
 if ( !empty($_GET['continent'])) {
 	$continent = sanitize_text_field( $_GET['continent'] );
 }
@@ -41,6 +43,17 @@ $meta_query = array(
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10	">
 				<?php the_title();?> &laquo; Waste pickers Around the World (WAW)
 			</h2>		
+		</div>
+		<div class="row">
+			<div class="col-md-10">
+				<ul class="nav nav-pills">
+					<li role="presentation" class="disabled"><a href="?continent=all" title=""><?php _e('Filter by continent','globalrec'); ?>: </a></li>
+					<li role="presentation"><a href="?continent=all" title="<?php _e('All','globalrec'); ?>"><?php _e('All','globalrec'); ?></a></li>
+					<li role="presentation"><a href="?continent=asia" title="<?php _e('Asia','globalrec'); ?>"><?php _e('Asia','globalrec'); ?></a></li>
+					<li role="presentation"><a href="?continent=latinamerica" title="<?php _e('Latin America','globalrec'); ?><"><?php _e('Latin America','globalrec'); ?></a></li>
+					<li role="presentation"><a href="?continent=africa" title="<?php _e('Africa','globalrec'); ?>	"><?php _e('Africa','globalrec'); ?></a></li>
+				</ul>
+			</div>
 		</div>
 		<div class="row content">
 			<div class="col-md-9 col-md-offset-3">

@@ -1424,7 +1424,7 @@ function list_of_items($postid=1,$value=1,$name=1){
 		echo "<dt>".$name."</dt>";
 		echo "<dd>";
 		foreach($items as $item) {
-			echo  $item == 'ngo' ? 'NGO' : ucfirst ($item);
+			echo  $item == 'ngo' ? 'NGO' : ucfirst($item);
 			echo "<br>";
 		}
 		echo "</dd>";
@@ -1434,20 +1434,20 @@ add_action( 'wp', 'list_of_items' );
 
 // Function to list taxonomy terms of Waste Picker Organization in dt-dd format
 function list_taxonomy_terms($post_id='',$slug='',$name=''){
-	$term_list = get_the_term_list( $post_id, $slug , ' ', ', ', '' );
-	if (!empty($term_list)) {
-		echo "<dt>" .$name. "</dt>";
-		echo "<dd>" .$term_list. "</dd>";
+	$term_list = wp_get_post_terms($post_id, $slug, array("fields" => "all"));
+	if (!empty($term_list)) { //checks in the array is not empty
+	$term_name = $term_list[0]->name;
+			echo "<dt>" .$name. "</dt>";
+			echo "<dd><a href='".$slug."/".$term_list[0]->slug."' title='".$term_name."'>".ucfirst($term_name)."</a></dd>";
 	}
 }
 add_action( 'wp', 'list_taxonomy_terms' );
 
 //Function to list single values and uppercase firt letter. Used in Waste Picker Group single
-
 function display_item($postid=1,$value=1,$name=1){
 	$item = get_post_meta($postid,$value,true);
 	if ($item!='') {
-		echo "<dt>".$name."</dt><dd>".$item."</dd>";
+		echo "<dt>".$name."</dt><dd>".ucfirst($item)."</dd>";
 	}
 }
 add_action( 'wp', 'display_item' );

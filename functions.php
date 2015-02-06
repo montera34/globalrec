@@ -1892,4 +1892,38 @@ function count_tax_array($the_array) {
 	arsort($the_array);
 	return $the_array;
 }
-			
+
+//Hooks archive.php to display unlimited waste picker organizations in taxonomy term pages
+add_action( 'pre_get_posts', 'be_change_event_posts_per_page' );
+function be_change_event_posts_per_page( $query ) {
+$prefix_wpo = 'wpg-';
+$waw_taxonomies = array( //TODO deduplicate from archive.php
+	$prefix_wpo . 'language',
+	$prefix_wpo . 'member-type',
+	$prefix_wpo . 'scope',
+	$prefix_wpo . 'organization-type',
+	$prefix_wpo . 'member-occupation',
+	$prefix_wpo . 'workplace-members',
+	$prefix_wpo . 'membership',
+	$prefix_wpo . 'education-training',
+	$prefix_wpo . 'affiliations',
+	$prefix_wpo . 'funding',
+	$prefix_wpo . 'member-benefits',
+	$prefix_wpo . 'safety-technology',
+	$prefix_wpo . 'municipality-how',
+	$prefix_wpo . 'municipality-what',
+	$prefix_wpo . 'material-type',
+	$prefix_wpo . 'activities',
+	$prefix_wpo . 'sorting-spaces',
+	$prefix_wpo . 'treatment-organic-materials',
+	$prefix_wpo . 'challenges-access-waste',
+	$prefix_wpo . 'status',
+	);
+	if (is_tax($waw_taxonomies)) {//TODO change if new taxonomies are created for the standard post
+		if( $query->is_main_query() && $query->is_archive() ) {
+			$query->set( 'posts_per_page', '-1' );
+			$query->set( 'orderby', 'title' );
+			$query->set( 'order', 'ASC' );
+		}
+	}
+}

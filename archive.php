@@ -56,7 +56,7 @@ $waw_taxonomies = array(
 					}
 				}
 				?>
-				<h2><?php echo $taxonomy_name; ?>: <strong><?php single_cat_title(); ?> (<?php echo $termcount; ?>)</strong> <small>&laquo; <a href="/waste-picker-organizations/"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></small></h2>
+				<h2><?php echo $taxonomy_name; ?>: <strong><?php single_cat_title(); ?> (<?php echo $termcount; ?>)</strong> <small>&laquo; <a href="<?php echo get_permalink(icl_object_id(10909,'page')) ?>"><?php _e('Waste pickers Around the World (WAW)','globalrec'); ?></a></small></h2>
 			<?php } elseif ( is_tax() ) { ?>
 				<h2><?php single_cat_title(); ?></h2>
 			<?php } elseif ( is_author() ) { ?>

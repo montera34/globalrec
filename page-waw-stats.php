@@ -88,13 +88,29 @@ $prefixwpg = '_wpg_';
 			$workplace_count = count_tax_array($workplace);
 			$municipality_what_count = count_tax_array($municipality_what);
 			$language_count = count_tax_array($language);
-
-			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
-			echo '<p>Number of organizations that are formed by waste pickers: ' .$count_orgs. ' (waste pickers selected as member occupation).</p>';
-			// set the meta_key to the appropriate custom field meta key
-			print_r($number_individuals);
-			$allwp =array_sum($number_individuals);
-			echo "<p>There are " .number_format($allwp). " 	waste pickers in waste picker organizations.</p>";
+			?>
+			<div class="row">
+				<div class="col-md-4">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<strong>WAW in numbers</strong>
+						</li>
+						<li class="list-group-item">
+							<span class="badge"><?php echo $count_wpo; ?></span>
+							Number of organizations in the data base
+						</li>
+						<li class="list-group-item">
+							<span class="badge"><?php echo $count_orgs; ?></span>
+							Number of organizations in the data base<br>(waste pickers selected as member occupation)
+						</li>
+						<li class="list-group-item">
+							<span class="badge"><?php echo number_format(array_sum($number_individuals)); ?></span>
+							Waste pickers in waste picker organizations.
+						</li>
+				</ul>
+				</div>
+			</div>
+			<?php
 			
 			echo '<div class="row">';
 			echo '<div class="col-md-6">';

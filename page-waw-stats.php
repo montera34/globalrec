@@ -53,19 +53,21 @@ $prefixwpg = '_wpg_';
 			
 			//Get all the post ids
 			foreach ($posts_array as $key => $value) {
-				$posts_ids[$key] = $value->ID;
-				$country_names[$key] = get_post_meta( $value->ID, 'country', true );
-				$organization_scope[$key] = wp_get_post_terms($value->ID, $prefix_wpo .'scope');
-				$organization_type[$key] = wp_get_post_terms($value->ID, $prefix_wpo .'organization-type');
-				$member_type[$key] = wp_get_post_terms($value->ID, $prefix_wpo .'member-type');
-				$member_occupation[$key] = wp_get_post_terms($value->ID, $prefix_wpo . 'member-occupation');
-				$year_formed[$key] = get_post_meta( $value->ID, $prefixwpg . 'year_formed', true );
-				$year_registered[$key] = get_post_meta( $value->ID, $prefixwpg . 'registration_year', true );
-				$material_type[$key] = wp_get_post_terms($value->ID, $prefix_wpo . 'material-type');
-				$activities[$key] = wp_get_post_terms($value->ID, $prefix_wpo . 'activities');
-				$workplace[$key] = wp_get_post_terms($value->ID, $prefix_wpo . 'workplace-members');
-				$municipality_what[$key] = wp_get_post_terms($value->ID, $prefix_wpo . 'municipality-what');
-				$language[$key] = wp_get_post_terms($value->ID, $prefix_wpo . 'language');
+				$post_id = $value->ID;
+				$posts_ids[$key] = $post_id;
+				$country_names[$key] = get_post_meta( $post_id, 'country', true );
+				$organization_scope[$key] = wp_get_post_terms($post_id, $prefix_wpo .'scope');
+				$organization_type[$key] = wp_get_post_terms($post_id, $prefix_wpo .'organization-type');
+				$member_type[$key] = wp_get_post_terms($post_id, $prefix_wpo .'member-type');
+				$member_occupation[$key] = wp_get_post_terms($post_id, $prefix_wpo . 'member-occupation');
+				$year_formed[$key] = get_post_meta( $post_id, $prefixwpg . 'year_formed', true );
+				$year_registered[$key] = get_post_meta( $post_id, $prefixwpg . 'registration_year', true );
+				$material_type[$key] = wp_get_post_terms($post_id, $prefix_wpo . 'material-type');
+				$activities[$key] = wp_get_post_terms($post_id, $prefix_wpo . 'activities');
+				$workplace[$key] = wp_get_post_terms($post_id, $prefix_wpo . 'workplace-members');
+				$municipality_what[$key] = wp_get_post_terms($post_id, $prefix_wpo . 'municipality-what');
+				$language[$key] = wp_get_post_terms($post_id, $prefix_wpo . 'language');
+				$number_individuals[$key] = get_post_meta( $post_id, '_wpg_number_individuals', true );
 			}
 			$country_names_count = array_count_values($country_names); //counts values of gogle page rank
 			arsort($country_names_count);
@@ -89,6 +91,10 @@ $prefixwpg = '_wpg_';
 
 			echo '<p>Number of organizations in the data base: ' .$count_wpo. '.</p></div></div>';
 			echo '<p>Number of organizations that are formed by waste pickers: ' .$count_orgs. ' (waste pickers selected as member occupation).</p>';
+			// set the meta_key to the appropriate custom field meta key
+			print_r($number_individuals);
+			$allwp =array_sum($number_individuals);
+			echo "<p>There are " .number_format($allwp). " 	waste pickers in waste picker organizations.</p>";
 			
 			echo '<div class="row">';
 			echo '<div class="col-md-6">';
@@ -422,11 +428,6 @@ $prefixwpg = '_wpg_';
 					</div>
 				</div>
 			</div>
-			<?php
-			// set the meta_key to the appropriate custom field meta key
-			$meta_key = '_wpg_number_individuals';
-			$allwp = $wpdb->get_var( $wpdb->prepare("SELECT sum(meta_value) FROM $wpdb->postmeta WHERE meta_key = %s",$meta_key) );
-			echo "<p>There are " .number_format($allwp). " 	waste pickers in waste picker organizations.</p>";
-			?> 
+
 </div>
 <?php get_footer(); ?>

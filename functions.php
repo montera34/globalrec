@@ -757,7 +757,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Waste Picker Group City',
-				'desc' => 'Select the city of the Waste Picker Group',
+				'desc' => 'Select the city where the waste picker group operates. If more than one (e.g. a national based organization), select the city of their main headquarters or office.',
 				'id' => $prefixwpg . 'cityselect', //"cityselect" because "city" is alread used
 				'type' => 'select',
 				'options' =>  $cities //one to many relationship. One waste picker group contains multiple members (bios)
@@ -786,7 +786,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Waste Picker Group Country',
-				'desc' => 'Select the country of the Waste Picker Group',
+				'desc' => 'Select the country where the waste picker group operates. If more than one (e.g. an international organization), select the country of their main headquarters or office.',
 				'id' => $prefixwpg . 'countryselect', //"countryselect" beacuse "country" is alread used
 				'type' => 'select',
 				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
@@ -986,35 +986,47 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'Type of members',
-				'desc' => 'Select if the organization is Waste Pickers based, Waste Picker Organization based or just supports Waste Pickers',
+				'desc' => 'Select if the organization is<br><strong>Members are multi sector</strong>: if waste pickers and other workers in the informal economy are part of the same organization.<br>
+									<strong>Members are waste picker organizations</strong>: if the organization comprises several waste pickers groups<br>
+									<strong>Members are waste pickers</strong>: if the organization is formed exclusively or mostly by waste pickers<br>
+									<strong>Members employ waste pickers</strong>: if waste pickers are paid by members of the organization to work for them<br>
+									<strong>Potential supporters</strong>: an organization that could potentially work with or support the activity of waste pickers<br>
+									<strong>Waste picker Support organization</strong>: an organization that is working to support waste pickers’ livelihoods<br>',
 				'id' => $prefix_wpo . 'member-type',
 				'taxonomy' => $prefix_wpo . 'member-type',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Occupation of Members',
-				'desc' => '',
+				'desc' => '<strong>Itinerant buyers</strong>: collect recyclables in exchange for payment or barter, generally using vehicles into fixed routes<br>
+<strong>Itinerant workers</strong>: work is temporary, not all year round or it is not their main activity or source of income<br>
+<strong>Scrap dealers</strong>: buy scrap to sell for profit<br>
+<strong>Solid Waste managers</strong>:
+in charge of waste prevention, collection, disposal (among other) activities<br>
+<strong>Street Sweepers</strong>: cleans the streets<br>
+<strong>Waste collectors</strong>: collect waste as main activity (sorting or selling materials is not their primary activity)<br>
+<strong>Waste pickers</strong>: collect, sort, sell and recover materials that someone else has thrown away. (e.g of names: <em>rag picker, reclaimer, binner, informal recycler, poacher, salvager, scavenger</em>)',
 				'id' => $prefix_wpo . 'member-occupation',
 				'taxonomy' => $prefix_wpo . 'member-occupation',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => __('Organization Type'),
-				'desc' => '',
+				'desc' => 'Select one type or more depending on your organization.',
 				'id' => $prefix_wpo . 'organization-type',
 				'taxonomy' => $prefix_wpo . 'organization-type',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => __('Organization Scope'),
-				'desc' => '',
+				'desc' => 'Select where the organization has members.',
 				'id' => $prefix_wpo . 'scope',
 				'taxonomy' => $prefix_wpo . 'scope',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Workplace of Members',
-				'desc' => '',
+				'desc' => 'Select the main sites where members work.',
 				'id' => $prefix_wpo . 'workplace-members',
 				'taxonomy' => $prefix_wpo . 'workplace-members',
 				'type' => 'taxonomy_multicheck',
@@ -1052,9 +1064,9 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Organization Structure',
-				'desc' => ' ',
+				'desc' => 'Describe how the organization is organized/structured.',
 				'id' => $prefixwpg . 'structure',
-				'type' => 'text_small',
+				'type' => 'textarea',
 			),
 			array(
 				'name' => 'Objectives',
@@ -1064,14 +1076,14 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Education and training',
-				'desc' => '',
+				'desc' => 'Select one or more activities the organization is involved in.',
 				'id' => $prefixwpg . 'education_training',
 				'taxonomy' => $prefix_wpo . 'education-training',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Formally registered',
-				'desc' => '',
+				'desc' => 'Select if the organization is officially registered and has legal status.',
 				'id' => $prefixwpg . 'formally_registered',
 				'type' => 'checkbox',
 			),
@@ -1089,13 +1101,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Partnering Organizations',
-				'desc' => '',
+				'desc' => 'Input the names of the organizations you currently have a partnership with separated by commas.',
 				'id' => $prefixwpg . 'partnering_organizations',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Affiliations',
-				'desc' => '',
+				'desc' => 'Select one or more type of organization you are affiliated to.',
 				'id' => $prefix_wpo . 'affiliations',
 				'taxonomy' => $prefix_wpo . 'affiliations',
 				'type' => 'taxonomy_multicheck',
@@ -1143,13 +1155,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Number of credit / saving members?',
-				'desc' => 'Ex: "125"',
+				'desc' => 'Add the number of people that are members of  your organizations’ credit or savings scheme. Ex: "125"',
 				'id' => $prefixwpg . 'credit_members',
 				'type' => 'text_small',
 			),
 			array(
 				'name' => 'Safety & Technology',
-				'desc' => '',
+				'desc' => 'Select one or more items of equipment used by your members.',
 				'id' => $prefix_wpo . 'safety-technology',
 				'taxonomy' => $prefix_wpo . 'safety-technology',
 				'type' => 'taxonomy_multicheck',
@@ -1167,21 +1179,21 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'fields' => array(
 			array(
 				'name' => 'How is the relationship with the municipality?',
-				'desc' => '',
+				'desc' => 'Select the one that is more frequent / likely to happen.',
 				'id' => $prefix_wpo . 'municipality-how',
 				'taxonomy' => $prefix_wpo . 'municipality-how',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'What kind of relationship exists with the municipality?',
-				'desc' => '',
+				'desc' => 'Select the one according to your situation.',
 				'id' => $prefix_wpo . 'municipality-what',
 				'taxonomy' => $prefix_wpo . 'municipality-what',
 				'type' => 'taxonomy_multicheck'
 			),
 			array(
 				'name' => 'Types of materials collected',
-				'desc' => '',
+				'desc' => 'Select all the materials your organization collects.',
 				'id' => $prefix_wpo . 'material-type',
 				'taxonomy' => $prefix_wpo . 'material-type',
 				'type' => 'taxonomy_multicheck',
@@ -1198,28 +1210,28 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 			array(
 				'name' => 'Activities', 
-				'desc' => '',
+				'desc' => 'Select all the activities your organization does.',
 				'id' => $prefix_wpo . 'activities',
 				'taxonomy' => $prefix_wpo . 'activities',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Sorting spaces',
-				'desc' => 'Where waste is sored or broken down, for example,electrical household items are taken to a sorting workshop where the same types of goods are picked apart by someone and all the reusable components extracted and sorted.',
+				'desc' => 'Select if your organization has any one.',
 				'id' => $prefix_wpo  . 'sorting-spaces',
 				'taxonomy' => $prefix_wpo . 'sorting-spaces',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Treatment of organic materials',
-				'desc' => '',
+				'desc' => 'Select all the ones your organization is involved in.',
 				'id' => $prefix_wpo . 'treatment-organic-materials',
 				'taxonomy' => $prefix_wpo . 'treatment-organic-materials',
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
 				'name' => 'Challenges to access waste',
-				'desc' => '',
+				'desc' => 'Select all the challenges your organization faces.',
 				'id' => $prefix_wpo . 'challenges-access-waste',
 				'taxonomy' => $prefix_wpo . 'challenges-access-waste',
 				'type' => 'taxonomy_multicheck',

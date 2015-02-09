@@ -11,8 +11,8 @@ function print_r2($val){
 }
 
 get_header();
-		//$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert13-from-ods"; // name (no extension)
-		$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert13-from-ods"; // name (no extension)
+		//$csv_filename = "http://localhost/globalrec/wp-content/themes/globalrec/insert/data.insert14-from-ods"; // name (no extension)
+		$csv_filename = "http://globalrec.org/wp-content/themes/globalrec/insert/data.insert15-from-ods"; // name (no extension)
 		//$csv_filename = get_stylesheet_directory(). "/dbimport/" .$filename; // relative path to data filename
 		$line_length = "5024"; // max line lengh (increase in case you have longer lines than 1024 characters)
 		$delimiter = ";"; // field delimiter character
@@ -61,7 +61,7 @@ get_header();
 					$secondary_contact_email = $fp_csv[27]; // cf
 					$members_type = explode(", ", strtolower($fp_csv[28])); //taxonomy
 					$members_occupation = explode(", ", strtolower($fp_csv[29])); //taxonomy
-					$organization_type = explode(", ", strtolower($fp_csv[30])); //taxonomy
+					$organization_type = explode(", ", strtolower($fp_csv[31])); //taxonomy
 					$organization_scope = explode(", ", strtolower($fp_csv[32])); //taxonomy
 					$workplace_members = explode(", ", strtolower($fp_csv[34])); //taxonomy
 					$membership = explode(", ", strtolower($fp_csv[35])); //taxonomy
@@ -232,7 +232,8 @@ get_header();
 									}
 								}
 							}
-	
+							
+							//Relates the organization to a term and taxonomy type
 							wp_set_object_terms( $group_id, $values, $taxonomy );
 	
 							echo  "	<p>Final. Terms inserted ok: ID = " .$term_id. "; value:";

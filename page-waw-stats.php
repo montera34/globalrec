@@ -107,14 +107,35 @@ $prefixwpg = '_wpg_';
 							<span class="badge"><?php echo number_format(array_sum($number_individuals)); ?></span>
 							Waste pickers in waste picker organizations.
 						</li>
-				</ul>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Table of contents</h3>
+					<nav>
+						<ul>
+							<li><a href="#scope">Scope</a></li>
+							<li><a href="#type-organization">Type of organization</a></li>
+							<li><a href="#country">Country</a></li>
+							<li><a href="#type-organization">Type of members</a></li>
+							<li><a href="#member-occupation">Occupation of members</a></li>
+							<li><a href="#year-formed">Year Formed</a></li>
+							<li><a href="#year-registered">Year Registered</a></li>
+							<li><a href="#materials">Materials collected</a></li>
+							<li><a href="#activitites">Activities</a></li>
+							<li><a href="#workplace">Workplace of Members</a></li>
+							<li><a href="#what-municipal">What kind of relationship exists with the municipality?</a></li>
+							<li><a href="#languages">Languages</a></li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 			<?php
 			
 			echo '<div class="row">';
 			echo '<div class="col-md-6">';
-			echo '<h3>Scope <small>number of organizations (%)</small></h3>';
+			echo '<h3 id="scope">Scope <small>number of organizations (%)</small></h3>';
 			//reoders array manually
 			$organization_scope_count = array_merge(array_flip(array('local','regional','national','not set')), $organization_scope_count);
 			//sets colors for scope
@@ -155,7 +176,7 @@ $prefixwpg = '_wpg_';
 			</div>
 		</div>
 		<div class="col-md-6">
-			<h3>Type of organization <small>number of organizations (%)</small></h3>
+			<h3 id="type-organization">Type of organization <small>number of organizations (%)</small></h3>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-6 text-right">
 				<?php
@@ -203,7 +224,7 @@ $prefixwpg = '_wpg_';
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-3"><h3>Country <small>number (%)</small></h3>
+		<div id="country" class="col-md-3"><h3>Country <small>number (%)</small></h3>
 			<div class="row">
 				<div class="col-md-12">
 				<?php
@@ -217,7 +238,7 @@ $prefixwpg = '_wpg_';
 			</div>
 		</div>
 		<div class="col-md-5">
-			<h3>Type of members <small>number of organizations (%)</small></h3>
+			<h3 id="member-type">Type of members <small>number of organizations (%)</small></h3>
 			<?php
 			foreach ($member_type_count as $key => $value) {
 				echo '<p>'. ucfirst($key) .' '. $value . ' ('. round(100*$value/$count_orgs,1) . '%)</p>';
@@ -225,7 +246,7 @@ $prefixwpg = '_wpg_';
 			?>
 		</div>
 		<div class="col-md-4">
-			<h3>Occupation of members <small>number of orgs (%)</small></h3>
+			<h3 id="member-occupation">Occupation of members <small>number of orgs (%)</small></h3>
 			<?php
 			foreach ($member_occupation_count as $key => $value) {
 				echo '<p>'. ucfirst($key) .' '. $value . ' ('. round(100*$value/$count_orgs,1) . '%)</p>';
@@ -235,7 +256,7 @@ $prefixwpg = '_wpg_';
 	</div>
 	<div class="row">
 		<div class="col-md-3">
-			<h3>Year Formed</h3>
+			<h3 id="year-formed">Year Formed</h3>
 				<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
@@ -264,7 +285,7 @@ $prefixwpg = '_wpg_';
 			</div>
 		</div>
 		<div class="col-md-3">
-			<h3>Year Registered</h3>
+			<h3 id="year-registered">Year Registered</h3>
 				<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
@@ -293,7 +314,7 @@ $prefixwpg = '_wpg_';
 			</div>
 		</div>
 		<div class="col-md-5">
-			<h3>Materials collected <small>number of organizations</small></h3>
+			<h3 id="materials">Materials collected <small>number of organizations</small></h3>
 				<div class="row">
 					<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 						<?php
@@ -324,7 +345,7 @@ $prefixwpg = '_wpg_';
 	</div>
 			<div class="row">
 				<div class="col-md-8">
-					<h3>Activities <small>number of organizations</small></h3>
+					<h3 id="activities">Activities <small>number of organizations</small></h3>
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-6 text-right">
 								<?php
@@ -355,7 +376,7 @@ $prefixwpg = '_wpg_';
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<h3>Workplace of Members <small>number of organizations</small></h3>
+					<h3 id="workplace">Workplace of Members <small>number of organizations</small></h3>
 						<div class="row">
 							<div class="col-md-5  col-sm-5 col-xs-5 text-right">
 								<?php
@@ -384,7 +405,7 @@ $prefixwpg = '_wpg_';
 					</div>
 				</div>
 				<div class="col-md-8">
-					<h3>What kind of relationship exists with the municipality? <small>number of organizations</small></h3>
+					<h3 id="what-municipal">What kind of relationship exists with the municipality? <small>number of organizations</small></h3>
 						<div class="row">
 							<div class="col-md-9 col-sm-9 col-xs-9 text-right">
 								<?php
@@ -415,7 +436,7 @@ $prefixwpg = '_wpg_';
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<h3>Languages <small>number of organizations</small></h3>
+					<h3 id="languages">Languages <small>number of organizations</small></h3>
 						<div class="row">
 							<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 								<?php

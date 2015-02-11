@@ -1707,7 +1707,7 @@ function globalrec_waw_form() {
 		<div class='form-group'>
 		  <div class='col-sm-offset-4 col-sm-6'>
 		  	<input class='btn btn-default' type='submit' value='Send' name='globalrec-form-waw-submit' />
-				<span class='help-block'><small><strong>Al fields are required except the image</strong>.</small></span>
+				<span class='help-block'><small><strong>All fields are required. Do not leave them empty!</strong>.</small></span>
 		  </div>
   	</div>
 	</div>
@@ -1725,10 +1725,14 @@ function globalrec_insert_wpg() {
 	$perma = get_permalink();
 	$location_form = $perma."?form=success";
 	$error = "<div class='alert alert-danger'>
+		<p>One or more fields were empty or did not have a correct format. Please try again.</p>
 		<p>Uno o varios campos están vacíos o no tienen un formato válido.</p>
 		<p>En cualquier caso el formulario no se envió correctamente. Por favor, inténtalo de nuevo.</p>
 	</div>";
-	$success = "<div class='alert alert-success'>El formulario ha sido enviado correctamente: hemos recibido tus datos. Vamos a revisarlos y nos pondremos en contacto con el email que nos has proporcionado.</div>";
+	$success = "<div class='alert alert-success'>
+		<p>Your form has been sent correctly: we havereceived your data. We'll get in contact with you for further steps before publication in the WAW database. Thanks!</p>
+		<p>El formulario ha sido enviado correctamente: hemos recibido tus datos. Vamos a revisarlos y nos pondremos en contacto con el email que nos has proporcionado. Gracias.</p>
+		</div>";
 
 	if ( array_key_exists('form', $_GET) ) {
 		if ( sanitize_text_field( $_GET['form']) == 'success' ){
@@ -1751,18 +1755,14 @@ function globalrec_insert_wpg() {
 	// sanitize them all
 	$wpg_name = sanitize_text_field( $_POST['globalrec-form-waw-name'] );
 	$wpg_mail = sanitize_email( $_POST['globalrec-form-waw-mail'] );
-	$wpg_telephone = sanitize_email( $_POST['globalrec-form-waw-telephone'] );
+	$wpg_telephone = sanitize_text_field( $_POST['globalrec-form-waw-telephone'] );
 	$wpg_website = sanitize_text_field( $_POST['globalrec-form-waw-website'] );
 	$city = sanitize_text_field( $_POST['globalrec-form-waw-city'] );
 	$country = sanitize_text_field( $_POST['globalrec-form-waw-country'] );
+	//terms
 	$wpg_language = $_POST['language_list'];
 	$wpg_members_type = $_POST['members_list'];
 	$wpg_scope = $_POST['scopes_list'];
-	
-	echo 'wpg_members_type array is: ';
-	print_r($wpg_members_type);
-	print_r($wpg_scope);
-	echo ' .<br>';
 	
 	// check that all required fields were filled
 	$fields = array(
@@ -1784,31 +1784,11 @@ function globalrec_insert_wpg() {
 		echo $name.' is: '. $field. '<br>';
 		if ( $field == '' ) {
 			echo $error;
-			echo 'alguno vacio '. $field;
+			echo 'alguno vacio // one field is empty '. $name. $field;
 			globalrec_waw_form();
 			return;
 		}
 	}
-	// checking if image file have the right format and size
-	if ( array_key_exists('globalrec-form-waw-avatar', $_FILES) ) {
-		$file = $_FILES['globalrec-form-waw-avatar'];
-		if ( $file['name'] != '' ) {
-			$finfo = new finfo(FILEINFO_MIME_TYPE);
-			$mime = $finfo->file($file['tmp_name']);
-			if ( $mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mime == 'image/gif' ) {}
-			else {
-				echo $error;
-				globalrec_waw_form();
-				return;
-			}
-			if ( $file['size'] > '4000000' ) {
-				echo $error;
-				globalrec_waw_form();
-				return;
-			}
-		} // if filename is not empty
-	} // if file has been uploaded
-
 	// end checking
 
 	// if everything ok, do insert
@@ -1834,7 +1814,7 @@ function globalrec_insert_wpg() {
 		next($fields);
 	}
 	
-	echo "the id is " .$wpg_id. ".<br>";
+	//echo "the id is " .$wpg_id. ".<br>";
 	
 	// insert taxonomies
 	foreach ( $terms as $key => $value ) {

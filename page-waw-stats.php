@@ -90,7 +90,7 @@ $prefixwpg = '_wpg_';
 			$language_count = count_tax_array($language);
 			?>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-5	">
 					<ul class="list-group">
 						<li class="list-group-item">
 							<strong>WAW in numbers</strong>
@@ -101,7 +101,7 @@ $prefixwpg = '_wpg_';
 						</li>
 						<li class="list-group-item">
 							<span class="badge"><?php echo $count_orgs; ?></span>
-							Number of organizations in the data base<br>(waste pickers selected as member occupation)
+							Number of organizations that are Waste Picker Organizations <br>(waste pickers selected as member occupation)
 						</li>
 						<li class="list-group-item">
 							<span class="badge"><?php echo number_format(array_sum($number_individuals)); ?></span>
@@ -157,8 +157,13 @@ $prefixwpg = '_wpg_';
 					<?php foreach ($organization_scope_count as $key => $value) { ?>
 					<div class="progress">
 						<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_org_scope; ?>%;background-color:<?php echo $color_scope[$key]; ?>;color:black">
-							<span title="<?php echo $value; ?>">
-								<small><?php echo $value. " (".round($value/$count_orgs*100,1); ?>%)</small>
+							<span title="<?php echo round($value/$count_orgs*100,1). '% '. ucfirst($key); ?>">
+								<small>
+								<?php echo $value;
+									if (($value/$count_orgs*100) > 6) {
+										echo " (".round($value/$count_orgs*100,1) ."%)";
+									}	?>
+							</small>
 							</span>
 						</div>
 					</div>
@@ -199,7 +204,7 @@ $prefixwpg = '_wpg_';
 							<span title="<?php echo $value; ?>">
 								<small><?php
 								echo $value;
-								if (($value/$count_orgs*100) > 4.4) {
+								if (($value/$count_orgs*100) > 6) {
 									echo " (".round($value/$count_orgs*100,1) ."%)";
 								} ?>
 								</small>

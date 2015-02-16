@@ -10,7 +10,7 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(1675, 'post-newsletter');
+$newsletter_number = icl_object_id(1749, 'post-newsletter');
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -101,8 +101,11 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive', 'width' => '300') );?>
+				<?php	//the thumbnail
+				$post_thumbnail_id = get_post_thumbnail_id();
+				$thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+				?>
+					<img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
 			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
@@ -174,8 +177,11 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				<?php	//the thumbnail
+        $post_thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+        ?>
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
 			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
@@ -247,8 +253,11 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				<?php	//the thumbnail
+        $post_thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+        ?>
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
 			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
@@ -320,8 +329,11 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				<?php	//the thumbnail
+        $post_thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+        ?>
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
 			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
@@ -338,7 +350,8 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			<!-- North America -->
 			<a name="north-america"></a>
 			<h2>
-			<strong><?php echo _e('North America','globalrec');?></strong>
+				<img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png">
+				<strong><?php echo _e('North America','globalrec');?></strong>
 			</h2>
 			<?php
 				$args = array(
@@ -392,8 +405,11 @@ $newsletter_number = icl_object_id(1675, 'post-newsletter');
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail 
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				<?php	//the thumbnail
+        $post_thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+        ?>
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
 			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">

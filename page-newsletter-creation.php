@@ -123,50 +123,50 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			</table>
 			<br>
 			<strong id="short">Asia</strong><br>
+			<ol>
 			<?php
-				$i = 1;
 				$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_asia_posts as $key => $value ) {
-					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
-					$i++;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
 			?>
+			</ol>
 			<strong>Latin America</strong><br>
+			<ol>
 			<?php
-				$i = 1;
 				$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_latinamerica_posts as $key => $value ) {
-					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
-					$i++;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
 			?>
+			</ol>
 			<strong>Africa</strong><br>
+			<ol>
 			<?php
-				$i = 1;
 				$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_africa_posts as $key => $value ) {
-					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
-					$i++;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
 			?>
+			</ol>
 			<strong>Europe</strong><br>
+			<ol>
 			<?php
-				$i = 1;
 				$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_europe_posts as $key => $value ) {
-					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
-					$i++;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
 			?>
+			</ol>
 			<strong>North America</strong><br>
+			<ol>
 			<?php
-				$i = 1;
 				$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_northamerica_posts as $key => $value ) {
-					echo "<small>".$i. ".</small> <a href='". $value->guid ."'>". $value->post_title ."</a><br/>";
-					$i++;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
 			?>
+			</ol>
 			<hr>			
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
@@ -241,11 +241,11 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			<h3>
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
-					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
 					$id = icl_object_id($country_ID, 'country', true);
 					$country = get_post( $id );
 					$countrytitle = $country->post_title;
+					the_title();
 					echo " (".$countrytitle. ")";
 					?>
 				</a>
@@ -380,7 +380,10 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			<hr>
 			
 			<!-- North America -->
-			<h2 id="north-america"><strong><?php echo _e('North America','globalrec');?></strong></h2>
+			<h2 id="north-america">
+				<img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png">
+				<strong><?php echo _e('North America','globalrec');?></strong>
+			</h2>
 			<?php if ( $my_query_northamerica->have_posts() ) : while ( $my_query_northamerica->have_posts() ) : $my_query_northamerica->the_post(); ?>
 			<?php
 			global $wp_query;

@@ -739,8 +739,12 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	//Custom field to select a City for a Waste Picker Group
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
-		'post_type' => 'city'
+		'post_type' => 'city',
+		'orderby' => 'title',
+		'order' => 'ASC',
 		));
+	
+	$cities = array();
 	foreach ($posts as $post) {
 		$cities[] = array(
 			'name' => $post->post_title,
@@ -760,7 +764,8 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'desc' => 'Select the city where the waste picker group operates. If more than one (e.g. a national based organization), select the city of their main headquarters or office.',
 				'id' => $prefixwpg . 'cityselect', //"cityselect" because "city" is alread used
 				'type' => 'select',
-				'options' =>  $cities //one to many relationship. One waste picker group contains multiple members (bios)
+				'options' =>  $cities, //one to many relationship. One waste picker group contains multiple members (bios)
+				'default' => '-',
 			),
 		),
 	);
@@ -1415,6 +1420,7 @@ function initialize_cmb_meta_boxes() {
 add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
 
 function languages_list(){
+	if ( function_exists ( 'icl_get_languages' ) ) { //check if fuction rom wpml exists
     $languages = icl_get_languages('skip_missing=0&orderby=code');
     if(!empty($languages)){
         echo '<div id="language_list"><ul class="nav nav-pills">';
@@ -1427,6 +1433,23 @@ function languages_list(){
         }
         echo '</ul></div>';
     }
+	}
+}
+
+//Creates functions to work if WPML is not active
+function icl_link_to_element_check($id,$type){
+	if ( function_exists ( 'icl_link_to_element' ) ) { //check if fuction rom wpml exists
+		icl_link_to_element( $id , $type );
+	} else {
+		//TODO insert element title with link
+	}
+}
+function icl_object_id_check($id,$type){
+	if ( function_exists ( 'icl_object_id' ) ) { //check if fuction rom wpml exists
+		icl_object_id( $id , $type );
+	} else {
+		echo $id;
+	}
 }
 
 // Function to list values of custom metaboxes with multiple values (multicheck). Used in Waste Picker Group list and single
@@ -1445,7 +1468,7 @@ function list_of_items($postid=1,$value=1,$name=1){
 add_action( 'wp', 'list_of_items' );
 
 // Function to list taxonomy terms of Waste Picker Organization in dt-dd format
-function list_taxonomy_terms($post_id='',$slug='',$name=''){
+function list_taxonomy_terms($post_id=0,$slug='',$name=''){
 	$term_list = wp_get_post_terms($post_id, $slug, array("fields" => "all"));
 	if (!empty($term_list)) { //checks in the array is not empty
 	$term_name = $term_list[0]->name;

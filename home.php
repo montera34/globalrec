@@ -8,23 +8,23 @@ $output = '';
 		<div class="col-md-9">
 			<div class="row"> <!-- space for banners X -->
 				 <div class="col-md-12">
-					<?php dynamic_sidebar( 'front-page-widget-area-main' ) ?>
+					<?php dynamic_sidebar( 'front-page-widget-area-main' ); ?>
 				</div>
 			</div>
-			<div class="row" id="home-boxes"> 
+			<div class="row" id="home-boxes">
 				<!-- box for Life and Voices -->
 				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="<?php echo get_permalink(icl_object_id(2856,'page')) ?>">
+					<a href="<?php echo get_permalink(icl_object_id_check(2856,'page')); ?>">
 						<img src="<?php bloginfo('template_url'); ?>/images/wastepicker-faces_p.png" alt="Life and Voices of Waste pickers" class="img-responsive"/>
-						<h3><?php icl_link_to_element(2856,'page'); ?></h3>
+						<h3><?php icl_link_to_element_check(2856,'page'); ?></h3>
 					</a>
 					<p><?php _e('Get to know waste picker leaders who have actively participated in the Global Alliance of Waste Pickers process.','globalrec'); ?></p>
 				</div>
 				<!-- box for Where we are? -->
 				<div class="col-xs-12 col-sm-6 col-md-4">
-						<a href="<?php echo get_permalink(icl_object_id(7618,'page')) ?>">
+						<a href="<?php echo get_permalink(icl_object_id_check(7618,'page')); ?>">
 							<img src="<?php bloginfo('template_url'); ?>/images/map-waste-pickers-groups_p.png" class="img-responsive"/>
-							<h3><?php icl_link_to_element(7618,'page'); ?></h3>
+							<h3><?php icl_link_to_element_check(7618,'page'); ?></h3>
 						</a>
 						<p><?php _e('Provisional list of hundreds of waste pickers’ groups around the globe.','globalrec'); ?></p>
 				</div>
@@ -55,7 +55,7 @@ $output = '';
 							<div style="background-size:100% auto;background-image:url('<?php echo $image_attributes[0] ;?>');height:130px;margin-bottom: 4px;max-width:300px;background-repeat:no-repeat;background-position: center;"></div>
 								<h3><?php _e('Recent newsletter','globalrec'); ?></h3>
 						</a> 	
-						<p><?php _e('Check out the latest GlobalRec newsletter.','globalrec'); ?> <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><?php _e('You can also subscribe to receive it by email','globalrec'); ?></a>. <a href="<?php echo get_permalink(icl_object_id(4491,'page')) ?>"><button class="btn btn-xs btn-default"> <?php _e('Subscribe to newsletter','globalrec'); ?></button></a></p>
+						<p><?php _e('Check out the latest GlobalRec newsletter.','globalrec'); ?> <a href="<?php echo get_permalink(icl_object_id_check(4491,'page')) ?>"><?php _e('You can also subscribe to receive it by email','globalrec'); ?></a>. <a href="<?php echo get_permalink(icl_object_id_check(4491,'page')) ?>"><button class="btn btn-xs btn-default"> <?php _e('Subscribe to newsletter','globalrec'); ?></button></a></p>
 						<?php endwhile; else: ?>
 						<p><?php _e('Sorry, no posts matched your criteria.','globalrec'); ?></p>
 						<?php endif; ?>
@@ -71,12 +71,12 @@ $output = '';
 			<div class="row" id="home-boxes-2">
 				<div class="col-md-4">
 					<!-- Organizing post column -->
-					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-hand-in-hand.png"/><br><?php icl_link_to_element(858, 'category'); ?></h3>
+					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-hand-in-hand.png"/><br><?php icl_link_to_element_check(858, 'category'); ?></h3>
 					<?php global $more; 
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	5,
-					 'cat'=> icl_object_id(858, 'category')
+					 'cat'=> icl_object_id_check(858, 'category')
 						);
 					$my_query = new WP_Query($args); ?>
 						<?php if ( $my_query->have_posts() ) : 	while ( $my_query->have_posts() ) : $my_query->the_post();
@@ -94,13 +94,13 @@ $output = '';
 				</div>
 				<div class="col-md-4">
 					<!-- Threats posts column-->
-					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-march.png"/><br><?php icl_link_to_element(964, 'category'); ?></h3>
+					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-march.png"/><br><?php icl_link_to_element_check(964, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	5,
-					 'cat'=>	icl_object_id(964, 'category'),
+					 'cat'=>	icl_object_id_check(964, 'category'),
 					 'post__not_in' => $do_not_duplicate,
 						);
 		 
@@ -121,13 +121,13 @@ $output = '';
 				<div class="col-md-4">
 					<!-- Publications posts column-->
 					
-					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-publication.png"/><br><?php icl_link_to_element(970, 'category'); ?></h3>
+					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-publication.png"/><br><?php icl_link_to_element_check(970, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	5,
-					 'cat'=> icl_object_id(970, 'category'),
+					 'cat'=> icl_object_id_check(970, 'category'),
 					 'post__not_in' => $do_not_duplicate,
 						);
 		 

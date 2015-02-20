@@ -75,7 +75,9 @@
 				<div class="row">
 					<div class="col-xs-12 col-md-7">
 						<div class="pull-right">
-							<?php languages_list(); ?>
+							<?php if( function_exists ( 'languages_list' ) ) {
+									languages_list();
+								} ?>
 						</div>
 					</div>
 		    	<div class="pull-right">

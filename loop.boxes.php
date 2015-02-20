@@ -83,7 +83,7 @@ $post_id = $post->ID;
 				if (get_post_type() == 'waste-picker-org') {
 					} else {
 						if($post->post_excerpt) : the_excerpt(); else:
-						echo "" .$post_excerpt; endif;
+						echo $post_excerpt; endif;
 					}
 				?>
 			</small>

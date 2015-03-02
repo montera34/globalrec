@@ -11,31 +11,31 @@ get_header(); ?>
 		</div>
 		<div class="row">
 			<div class="col-md-3 legend-map">
-			<h3><a href="/waste-picker-organizations/waste-picker-organizations-map"><span class="glyphicon glyphicon-user"></span> Waste Pickers' Organizations</a></h3>
+			<h3><a href="<?php echo get_permalink( icl_object_id( 23274 , 'page' , false)); ?>"><span class="glyphicon glyphicon-user"></span> <?php _e("Waste Pickers' Organizations","globalrec"); ?></a></h3>
 			<ul>
-				<li><span class="label" style="background-color: #428bca;">Waste Picker Organizations</span></li>
+				<li><span class="label" style="background-color: #428bca;"><?php _e("Waste Pickers' Organizations","globalrec"); ?></span></li>
 			</ul>
-			<h3><a href="/waste-picker-organizations/oganizations-type"><span class="glyphicon glyphicon-tag"></span> Type of Organization</a></h3>
+			<h3><a href="<?php echo get_permalink( icl_object_id( 23848 , 'page' , false)); ?>"><span class="glyphicon glyphicon-tag"></span> <?php _e("Type of Organization","globalrec"); ?></a></h3>
 			<ul>
-				<li><span class="label" style="background-color: #003366">Trade Union</span></li>
-				<li><span class="label" style="background-color: #339999">Cooperative federation</span></li>
-				<li><span class="label" style="background-color: #99EEEE">Cooperative</span></li>
-				<li><span class="label" style="background-color: #99CC33">Association</span></li>
-				<li><span class="label" style="background-color: #660099">Non Governmental Organization</span></li>
-				<li><span class="label" style="background-color: #FFFF99;color:black">Community Based Organization</span></li>
-				<li><span class="label" style="background-color: #996600">Self-help group</span></li>
+				<li><span class="label" style="background-color: #003366"> <?php _e("Trade Union","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #339999"> <?php _e("Cooperative federation","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #99EEEE"> <?php _e("Cooperative","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #99CC33"> <?php _e("Association","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #660099"> <?php _e("Non Governmental Organization","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #FFFF99;color:black"> <?php _e("Community Based Organization","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #996600"> <?php _e("Self-help group","globalrec"); ?></span></li>
 			</ul>
-			<h3><a href="/waste-picker-organizations/scope"><span class="glyphicon glyphicon-globe"></span> Scope</a></h3>
+			<h3><a href="<?php echo get_permalink( icl_object_id( 20830 , 'page' , false)); ?>"><span class="glyphicon glyphicon-globe"></span> <?php _e("Scope","globalrec"); ?></a></h3>
 			<ul>
-				<li><span class="label" style="background-color: #ff3399;">Local</span></li>
-				<li><span class="label" style="background-color: #ff3333;">Regional</span></li>
-				<li><span class="label" style="background-color: #ff9933;">National</span></li>
-				<li><span class="label" style="background-color: #ffff66; color: black;">International</span></li>
+				<li><span class="label" style="background-color: #ff3399;"><?php _e("Local","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #ff3333;"><?php _e("Regional","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #ff9933;"><?php _e("National","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #ffff66; color: black;"><?php _e("International","globalrec"); ?></span></li>
 			</ul>
-			<h3><a href="/waste-picker-organizations/supporters">Supporters</a></h3>
+			<h3><a href="<a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e("Supporters","globalrec"); ?></a></h3>
 			<ul>
-				<li><span class="label" style="background-color: #FFaaaa">Waste picker support organization</span></li>
-				<li><span class="label" style="background-color: #77FF77">Potential supporter</span></li>
+				<li><span class="label" style="background-color: #FFaaaa"><?php _e("Waste picker support organization","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #77FF77"><?php _e("Potential supporter","globalrec"); ?></span></li>
 			</div>
 			<div class="col-md-9 content">
 			<?php the_content(); ?>

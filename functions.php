@@ -1469,15 +1469,23 @@ function list_of_items($postid=1,$value=1,$name=1){
 add_action( 'wp', 'list_of_items' );
 
 // Function to list taxonomy terms of Waste Picker Organization in dt-dd format
-function list_taxonomy_terms($post_id=0,$slug='',$name=''){
+function list_taxonomy_terms($post_id=0,$slug='',$name='') {
 	$term_list = wp_get_post_terms($post_id, $slug, array("fields" => "all"));
 	if (!empty($term_list)) { //checks in the array is not empty
-	$term_name = $term_list[0]->name;
-			echo "<dt>" .$name. "</dt>";
-			echo "<dd><a href='".$slug."/".$term_list[0]->slug."' title='".$term_name."'>".ucfirst($term_name)."</a></dd>";
+		foreach ( $term_list as $key => $item) {
+			$term_name = $item->name;
+			$term_slug = $item->slug;
+			if ( $key == 0) { //for the first item
+				echo "<dt>" .$name. "</dt>";
+				echo "<dd>";
+			} else { //if there is more than one item adds a comma to separate items
+				echo ", ";
+			}
+			echo "<a href='".$slug."/".$term_slug."' title='".$term_name."'>".ucfirst($term_name)."</a>";
+		}
+		echo "</dd>";
 	}
 }
-add_action( 'wp', 'list_taxonomy_terms' );
 
 //Function to list single values and uppercase firt letter. Used in Waste Picker Group single
 function display_item($postid=1,$value=1,$name=1){

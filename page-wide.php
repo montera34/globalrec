@@ -13,7 +13,7 @@ get_header(); ?>
 			<div class="col-md-3 legend-map">
 			<h3><a href="<?php echo get_permalink( icl_object_id( 23274 , 'page' , false)); ?>"><span class="glyphicon glyphicon-user"></span> <?php _e("Waste Pickers' Organizations","globalrec"); ?></a></h3>
 			<ul>
-				<li><span class="label" style="background-color: #428bca;"><?php _e("Waste Pickers' Organizations","globalrec"); ?></span></li>
+				<li><span class="label" style="background-color: #FE7C11;"><?php _e("Waste Pickers' Organizations","globalrec"); ?></span></li>
 			</ul>
 			<h3><a href="<?php echo get_permalink( icl_object_id( 23848 , 'page' , false)); ?>"><span class="glyphicon glyphicon-tag"></span> <?php _e("Type of Organization","globalrec"); ?></a></h3>
 			<ul>

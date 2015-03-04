@@ -339,3 +339,8 @@ nav li.menu-item-has-children {
 	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1) inset;
 	border-radius: 0px
 }
+
+/* Waste Picker Organization */
+.waste-picker-org dl dd{
+	margin-bottom:5px;
+}

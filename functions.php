@@ -1442,13 +1442,14 @@ function icl_link_to_element_check($id,$type){
 		icl_link_to_element( $id , $type );
 	} else {
 		//TODO insert element title with link
+		echo get_cat_name( $id  );
 	}
 }
 function icl_object_id_check($id,$type){
 	if ( function_exists ( 'icl_object_id' ) ) { //check if fuction rom wpml exists
-		icl_object_id( $id , $type );
+		return icl_object_id( $id , $type, true );
 	} else {
-		echo $id;
+		return $id;
 	}
 }
 

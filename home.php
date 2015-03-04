@@ -72,7 +72,7 @@ $output = '';
 				<div class="col-md-4">
 					<!-- Organizing post column -->
 					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-hand-in-hand.png"/><br><?php icl_link_to_element_check(858, 'category'); ?></h3>
-					<?php global $more; 
+					<?php global $more;
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
 					 'posts_per_page'=>	5,
@@ -99,8 +99,8 @@ $output = '';
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 					$args = array(
 					 'ignore_sticky_posts' => 	0,
-					 'posts_per_page'=>	5,
-					 'cat'=>	icl_object_id_check(964, 'category'),
+					 'posts_per_page' =>	5,
+					 'cat' =>	icl_object_id_check(964, 'category'),
 					 'post__not_in' => $do_not_duplicate,
 						);
 		 
@@ -120,7 +120,6 @@ $output = '';
 				</div>	
 				<div class="col-md-4">
 					<!-- Publications posts column-->
-					
 					<h3><img src="<?php bloginfo('template_url'); ?>/images/icon-publication.png"/><br><?php icl_link_to_element_check(970, 'category'); ?></h3>
 					<?php global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 					//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html

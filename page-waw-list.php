@@ -9,9 +9,10 @@ if ( !empty($_GET['continent'])) {
 
 $asia = array('india','indonesia','philippines');
 $africa = array('South Africa','Ghana','Ghana','Mali','Kenya','Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
-$europe = array('india','indonesia','philippines');
+$europe = array('France','Spain','Germany');
 $latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
-$all = array_merge($asia , $africa, $europe , $latinamerica );
+$northamerica = array('Canada','USA','United States of America');
+$all = array_merge($asia , $africa, $europe , $latinamerica , $northamerica );
 
 //$continent = sanitize_text_field( $_GET['continent'] );
 if ($continent == '' ) {
@@ -22,6 +23,10 @@ if ($continent == '' ) {
 	$active_continent = $latinamerica;
 } else if ( $continent == 'africa') {
 	$active_continent = $africa;
+} else if ( $continent == 'northamerica') {
+	$active_continent = $northamerica;
+} else if ( $continent == 'europe') {
+	$active_continent = $europe;
 } else if ( $continent == 'all') {
 	$active_continent = $all;
 }
@@ -52,6 +57,8 @@ $meta_query = array(
 					<li role="presentation"><a href="?continent=asia" title="<?php _e('Asia','globalrec'); ?>"><?php _e('Asia','globalrec'); ?></a></li>
 					<li role="presentation"><a href="?continent=latinamerica" title="<?php _e('Latin America','globalrec'); ?><"><?php _e('Latin America','globalrec'); ?></a></li>
 					<li role="presentation"><a href="?continent=africa" title="<?php _e('Africa','globalrec'); ?>	"><?php _e('Africa','globalrec'); ?></a></li>
+					<li role="presentation"><a href="?continent=northamerica" title="<?php _e('North America','globalrec'); ?>	"><?php _e('North America','globalrec'); ?></a></li>
+					<li role="presentation"><a href="?continent=europe" title="<?php _e('Europe','globalrec'); ?>	"><?php _e('Europe','globalrec'); ?></a></li>
 				</ul>
 			</div>
 		</div>

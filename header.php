@@ -97,21 +97,24 @@
 				</div>
 			</div>
 		</div>
-		<nav id="main-menu">	
-			<div class="navbar">
+		<div class="row">
+			<div class="col-md-12">
 				<div class="pull-right">
 					<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
 						<div class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/tw.gif" alt="" width="16" height="16" /> Twitter </a></div>
 						<div class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/fb.gif" alt="" width="16" height="16" /> Facebook</a></div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<nav id="main-menu">
+			<div class="navbar">
 				<?php $defaults = array(
 					'theme_location'  => 'main-menu',
 					'menu_id' => 'pre-menu',
 					'menu_class' => 'nav nav-pills'
 					);
 				wp_nav_menu( $defaults );?>	
-
 			</div>
 		</nav>
 	</header>

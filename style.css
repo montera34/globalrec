@@ -332,6 +332,10 @@ nav li.menu-item-has-children {
 	font-size:20px;
 }
 
+/* WAW */
+.nav > li > a {
+    padding: 10px 10px;
+}
 /* Progress bars */
 #waw-stats .progress {
 	margin-bottom: 10px;

@@ -15,7 +15,7 @@ get_header(); ?>
 			<ul>
 				<li><span class="label" style="background-color: #FE7C11;"><?php _e("Waste Pickers' Organizations","globalrec"); ?></span></li>
 			</ul>
-			<h3><a href="<?php echo get_permalink( icl_object_id( 23848 , 'page' , false)); ?>"><span class="glyphicon glyphicon-tag"></span> <?php _e("Type of Organization","globalrec"); ?></a></h3>
+			<h3><a href="<?php echo get_permalink( icl_object_id( 20848 , 'page' , false)); ?>"><span class="glyphicon glyphicon-tag"></span> <?php _e("Type of Organization","globalrec"); ?></a></h3>
 			<ul>
 				<li><span class="label" style="background-color: #003366"> <?php _e("Trade Union","globalrec"); ?></span></li>
 				<li><span class="label" style="background-color: #339999"> <?php _e("Cooperative federation","globalrec"); ?></span></li>
@@ -32,7 +32,7 @@ get_header(); ?>
 				<li><span class="label" style="background-color: #ff9933;"><?php _e("National","globalrec"); ?></span></li>
 				<li><span class="label" style="background-color: #ffff66; color: black;"><?php _e("International","globalrec"); ?></span></li>
 			</ul>
-			<h3><a href="<a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e("Supporters","globalrec"); ?></a></h3>
+			<h3><a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e("Supporters","globalrec"); ?></a></h3>
 			<ul>
 				<li><span class="label" style="background-color: #FFaaaa"><?php _e("Waste picker support organization","globalrec"); ?></span></li>
 				<li><span class="label" style="background-color: #77FF77"><?php _e("Potential supporter","globalrec"); ?></span></li>

@@ -12,7 +12,7 @@
 		</a>
 		<ul class="dropdown-menu" role="menu">
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 23274 , 'page' , false)); ?>"><?php _e("Waste Pickers' Organizations","globalrec"); ?></a></li>
-			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 23848 , 'page' , false)); ?>"><?php _e('Type of Oganizations','globalrec'); ?></a></li>
+			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 20848 , 'page' , false)); ?>"><?php _e('Type of Oganizations','globalrec'); ?></a></li>
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 20830 , 'page' , false)); ?>"><?php _e('Scope','globalrec'); ?></a></li>
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e('Supporters','globalrec'); ?></a></li>
 		</ul>

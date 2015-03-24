@@ -11,7 +11,7 @@ $prefixwpg = '_wpg_';
 		<div class="row">
 			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10	">
-				<?php the_title();?> &laquo; Waste pickers Around the World (WAW)
+				<?php the_title();?> &laquo; <?php _e('Waste pickers Around the World (WAW)','globalrec'); ?>
 			</h2>		
 		</div>
 		<div class="row content">

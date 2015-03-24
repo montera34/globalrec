@@ -1363,6 +1363,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 		'orderby' => 'title',
 		'order' => 'ASC',
 		));
+	//$countries = ''; TODO test if define variable outside works
 	foreach ($posts as $post) {
 		$countries[] = array(
 			'name' => $post->post_title,
@@ -1481,7 +1482,7 @@ function list_taxonomy_terms($post_id=0,$slug='',$name='') {
 			} else { //if there is more than one item adds a comma to separate items
 				echo ", ";
 			}
-			echo "<a href='".$slug."/".$term_slug."' title='".$term_name."'>".ucfirst($term_name)."</a>";
+			echo "<a href='/".$slug."/".$term_slug."' title='".$term_name."'>".ucfirst($term_name)."</a>";
 		}
 		echo "</dd>";
 	}
@@ -1662,13 +1663,13 @@ function globalrec_waw_form() {
 	}
 	
 	$form_out = "
-	<h2>Submit information about your organization</h2>
+	<h2>". __('Submit information about your organization','globalrec') ."</h2>
 <form id='globalrec-form-content' method='post' action='" .$action. "' enctype='multipart/form-data'>
 <div class='row'>
 	<div class='form-horizontal col-md-10'>
-		<legend>Contact information</legend>
+		<legend>". __('Contact information','globalrec') ."</legend>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-name' class='col-sm-4 control-label'>Name of Organization</label>
+			<label for='globalrec-form-waw-name' class='col-sm-4 control-label'>". __('Name of Organization','globalrec') ."</label>
 			<div class='col-sm-6'>
 				<input class='form-control req' type='text' value='' name='globalrec-form-waw-name' />
 			</div>
@@ -1681,65 +1682,65 @@ function globalrec_waw_form() {
 			</div>
 		</div>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-telephone' class='col-sm-4 control-label'>Telephone</label>
+			<label for='globalrec-form-waw-telephone' class='col-sm-4 control-label'>". __('Telephone','globalrec') ."</label>
 			<div class='col-sm-6'>
 	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-telephone' />
-				<p class='help-block'><small>Please write it with the country code</small></p>
+				<p class='help-block'><small>". __('Please write it with the country code','globalrec') ."</small></p>
 			</div>
 		</div>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-city' class='col-sm-4 control-label'>City</label>
+			<label for='globalrec-form-waw-city' class='col-sm-4 control-label'>". __('City','globalrec') ."</label>
 			<div class='col-sm-6'>
 	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-city' />
-				<p class='help-block'><small>City were the organization belongs to</small></p>
+				<p class='help-block'><small>". __('City were the organization belongs to','globalrec') ."</small></p>
 			</div>
 		</div>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-country' class='col-sm-4 control-label'>Country</label>
+			<label for='globalrec-form-waw-country' class='col-sm-4 control-label'>". __('Country','globalrec') ."</label>
 			<div class='col-sm-6'>
 	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-country' />
-				<p class='help-block'><small>Country were the organization belongs to</small></p>
+				<p class='help-block'><small>". __('Country were the organization belongs to','globalrec') ."</small></p>
 			</div>
 		</div>
 		<div class='form-group'>
-			<label for='globalrec-form-waw-website' class='col-sm-4 control-label'>Website</label>
+			<label for='globalrec-form-waw-website' class='col-sm-4 control-label'>". __('Website','globalrec') ."</label>
 			<div class='col-sm-6'>
 				<input class='form-control req' type='text' value='' name='globalrec-form-waw-website' />
-				<p class='help-block'><small>URL of the organizations website. Ex: http://globalrec.org</small></p>
+				<p class='help-block'><small>". __('URL of the organizations website. Ex: http://globalrec.org','globalrec') ."</small></p>
 			</div>
 		</div>
 		<div class='form-group'>
-			<label class='col-sm-4 control-label'>Language</label>
+			<label class='col-sm-4 control-label'>". __('Language','globalrec') ."</label>
 			<div class='col-sm-6'>
 				" .$options_languages. "
 			</div>
 		</div>
 		<!--<div class='form-group'>
-			<label for='globalrec-form-waw-avatar' class='col-sm-4 control-label'>Image or Logo</label>
+			<label for='globalrec-form-waw-avatar' class='col-sm-4 control-label'>". __('Image or Logo','globalrec') ."</label>
 			<div class='col-sm-6'>
 				<input type='file' name='globalrec-form-waw-avatar' />
 				<input type='hidden' name='MAX_FILE_SIZE' value='4000000' />
-			<p class='help-block'><small>Image or logotype of the organization. Not bigger than<strong> 4MB</strong> and <strong>must be JPG, PNG or GIF</strong>.</small></p>
+			<p class='help-block'><small>". __('Image or logotype of the organization. Not bigger than<strong> 4MB</strong> and <strong>must be JPG, PNG or GIF</strong>.','globalrec') ."</small></p>
 			</div>
 		</div>-->
 
-		<legend>Primary Information</legend>
+		<legend>". __('Primary Information','globalrec') ."</legend>
 		<div class='form-group'>
-			<label class='col-sm-4 control-label'>Type of members</label>
+			<label class='col-sm-4 control-label'>". __('Type of members','globalrec') ."</label>
 			<div class='col-sm-6'>
 				" .$options_member_types. "
 			</div>
 		</div>
 		<div class='form-group'>
-			<label class='col-sm-4 control-label'>Organization's scope</label>
+			<label class='col-sm-4 control-label'>". __('Scope of Organization','globalrec') ."</label>
 			<div class='col-sm-6'>
 				". $options_scopes ."
 			</div>
 		</div>
 		<div class='form-group'>
 		  <div class='col-sm-offset-4 col-sm-6'>
-		  	<input class='btn btn-default' type='submit' value='Send' name='globalrec-form-waw-submit' />
-				<span class='help-block'><small><strong>All fields are required. Do not leave them empty!</strong>.</small></span>
+		  	<input class='btn btn-default' type='submit' value='". __('Send','globalrec') ."' name='globalrec-form-waw-submit' />
+				<span class='help-block'><small><strong>". __('All fields are required. Do not leave them empty!','globalrec') ."</strong></small></span>
 		  </div>
   	</div>
 	</div>

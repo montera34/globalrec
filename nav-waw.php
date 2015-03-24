@@ -2,7 +2,7 @@
 	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 10909 , 'page' , false)); ?>" title="Home WAW"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
 	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 20914 , 'page' , false)); ?>"><?php _e('About WAW','globalrec'); ?></a></li>
 	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 23270 , 'page' , false)); ?>"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> <?php _e('Statistics','globalrec'); ?></a></li>
-	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 23272 , 'page' , false)); ?>">
+	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 30757 , 'page' , false)); ?>">
 		<span class="glyphicon glyphicon-list" aria-hidden="true"></span> <?php _e('List of Waste Picker Organizations','globalrec'); ?></a>
 	</li>
 	<li><a href="<?php echo get_permalink( icl_object_id( 23274 , 'page' , false)); ?>"><?php _e("Waste Pickers' Organizations Map","globalrec"); ?></a></li>
@@ -17,5 +17,5 @@
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e('Supporters','globalrec'); ?></a></li>
 		</ul>
 	</li>
-	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 21914 , 'page' , false)); ?>"><?php _e('Add your organization','globalrec'); ?></a></li>
+	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 30746 , 'page' , false)); ?>"><?php _e('Add your organization','globalrec'); ?></a></li>
 </ul>

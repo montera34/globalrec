@@ -133,8 +133,8 @@ $prefixwpg = '_wpg_';
 			</div>
 			
 			<div class="row">
-				<div class="col-md-6">
-					<h3 id="scope"><?php _e('Scope','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?>(%)</small></h3>
+				<div class="col-md-5">
+					<h3 id="scope"><?php _e('Scope','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>
 					<?php
 					//reoders array manually
 					$organization_scope_count = array_merge(array_flip(array('local','regional','national','not set')), $organization_scope_count);
@@ -153,7 +153,7 @@ $prefixwpg = '_wpg_';
 						</div>
 						<div class="col-md-8 col-sm-8 col-xs-8">
 							<div class="progress">
-								<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_org_scope; ?>%;background-color:<?php echo $color_scope[$key]; ?>;color:black">
+								<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_org_scope; ?>%;background-color:<?php echo isset($color_scope[$key]) ? $color_scope[$key]: '#eee'; ?>;color:black">
 									<span title="<?php echo round($value/$count_orgs*100,1). '% '. ucfirst($key); ?>">
 										<small>
 										<?php echo $value;
@@ -178,44 +178,48 @@ $prefixwpg = '_wpg_';
 						</div>
 						<?php } ?>
 					</div>
-				</div>
-				<div class="col-md-6">
+				</div><!-- ends Scope -->
+				<div class="col-md-6 col-md-offset-1">
 					<h3 id="type-organization"><?php _e('Type of organization','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>
+					<?php
+					//calculates max organization type value
+					$max_count_org_type = 0;
+					foreach ($organization_type_count as $value) {
+						$max_count_org_type = $value > $max_count_org_type ? $value : $max_count_org_type;
+					}
+					//sets up colors for each taxonomy term
+					$color_type = array('cooperative' => '#99eeee', 'cooperative federation' => '#339999', 'association' => '#99cc33', 'trade union' => '#003366','not set' => '#ccc');
+					foreach ($organization_type_count as $key => $value) {
+					$percent_org_type = round($value/$count_orgs*100,1); ?>
 					<div class="row">
 						<div class="col-md-6 col-sm-6 col-xs-6 text-right">
-						<?php
-						$color_type = array('cooperative' => '#99eeee', 'cooperative federation' => '#339999', 'association' => '#99cc33', 'trade union' => '#003366','not set' => '#ccc');
-			
-						foreach ($organization_type_count as $key => $value) {
-							echo '<p>'.ucfirst($key). ' <small>(' . round($value/$count_orgs*100,1) .'%)</small></p>';
-						}
-						$max_count_org_type = 0;
-						foreach ($organization_type_count as $value) {
-							$max_count_org_type = $value > $max_count_org_type ? $value : $max_count_org_type;
-						}
-						echo '<p><small>('. __('Total organizations formed by waste pickers','globalrec'). ': ' .$count_orgs. ')</small></p>';
-						?>
+							<?php echo '<p>'.ucfirst($key). ' <small>';
+							 if ($percent_org_type > 4) {
+											echo " (". $percent_org_type ."%)";
+								}
+							 
+							 echo '</small></p>'; ?>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-6 ">
-							<?php foreach ($organization_type_count as $key => $value) { ?>
 							<div class="progress">
 								<div class="progress-bar" style="width:<?php echo 100*$value/$max_count_org_type; ?>%;background-color:<?php echo isset($color_type[$key]) ? $color_type[$key]: '#ccc'; ?>;color:#000;">
 									<span title="<?php echo $value; ?>">
 										<small><?php
 										echo $value;
-										if (($value/$count_orgs*100) > 6) {
-											echo " (".round($value/$count_orgs*100,1) ."%)";
+										if ($percent_org_type > 6) {
+											echo " (". $percent_org_type ."%)";
 										} ?>
 										</small>
 									</span>
 								</div>
 							</div>
-							<?php } ?>
 						</div>
 					</div>
+					<?php }
+					echo '<p><small>('. __('Total organizations formed by waste pickers','globalrec'). ': ' .$count_orgs. ')</small></p>';?>
 					<div class="progress">
-				<?php foreach ($organization_type_count as $key => $value) { ?>
-						<div class="progress-bar" style="width:<?php echo 100*$value/$count_orgs; ?>%;background-color:<?php echo isset($color_type[$key]) ? $color_type[$key]: '#ccc'; ?>;color:#000;">
+					<?php foreach ($organization_type_count as $key => $value) { ?>
+						<div class="progress-bar" style="width:<?php echo 100*$value/$count_orgs; ?>%;background-color:<?php echo isset($color_type[$key]) ? $color_type[$key]: '#eee'; ?>;color:#000;">
 							<span title="<?php echo round($value/$count_orgs*100,1). '% '. $key; ?>">
 								<?php
 								if (($value/$count_orgs*100) > 4) {
@@ -225,8 +229,8 @@ $prefixwpg = '_wpg_';
 						</div>
 					<?php } ?>
 					</div>
-				</div>
-			</div>
+				</div> <!-- ends Type of organization -->
+			</div> <!-- ends row -->
 
 	<div class="row">
 		<div id="country" class="col-md-3"><h3><?php _e('Country','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>

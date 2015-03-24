@@ -46,11 +46,12 @@ $meta_query = array(
 		<div class="row">
 			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10	">
-				<?php the_title();?> &laquo; Waste pickers Around the World (WAW)
+				<?php the_title();?> &laquo; <?php _e('Waste pickers Around the World (WAW)','globalrec'); ?>
 			</h2>		
 		</div>
 		<div class="row">
 			<div class="col-md-10">
+				<h3> <?php if (current_user_can( 'moderate_comments' )) { echo 'number of queries: '. get_num_queries(); }?> </h3>
 				<ul class="nav nav-pills">
 					<li role="presentation" class="disabled"><a href="?continent=all" title=""><?php _e('Filter by continent','globalrec'); ?>: </a></li>
 					<li role="presentation"><a href="?continent=all" title="<?php _e('All','globalrec'); ?>"><?php _e('All','globalrec'); ?></a></li>
@@ -75,6 +76,7 @@ $meta_query = array(
 				'posts_per_page' => -1,
 				'orderby' => 'title',
 				'order' => 'ASC',
+				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
 				'tax_query' => array(
 					'relation' => 'AND',
 					array(

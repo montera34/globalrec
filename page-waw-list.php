@@ -1,18 +1,14 @@
 <?php  /* Template Name: Waste Picker Groups List */
 get_header();
 
+// Grabs continent from url to filter the list of organization displayed by continent
 $continent = '';
 
 if ( !empty($_GET['continent'])) {
 	$continent = sanitize_text_field( $_GET['continent'] );
 }
 
-$asia = array('india','indonesia','philippines');
-$africa = array('South Africa','Ghana','Ghana','Mali','Kenya','Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
-$europe = array('France','Spain','Germany');
-$latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
-$northamerica = array('Canada','USA','United States of America');
-$all = array_merge($asia , $africa, $europe , $latinamerica , $northamerica );
+// Countries in contintents are defined in functions.php
 
 //$continent = sanitize_text_field( $_GET['continent'] );
 if ($continent == '' ) {
@@ -90,12 +86,6 @@ $meta_query = array(
 						'terms'    => array('members-are-waste-pickers', 'members-are-waste-picker-organizations'),
 						'operator' => 'IN',
 					),
-					/*array(
-						'taxonomy' => 'wpg-member-type',
-						'field'    => 'slug',
-						'terms'    => array('waste-picker-support-organization', 'members are waste collectors'),
-						'operator' => 'NOT IN',
-					),*/
 				),
 				'meta_query' => $meta_query,
 			);

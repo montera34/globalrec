@@ -1952,3 +1952,11 @@ $waw_taxonomies = array( //TODO deduplicate from archive.php
 		}
 	}
 }
+
+// Countries in continents for filtering organizations in the WAW database
+$asia = array('india','indonesia','philippines');
+$africa = array('South Africa','Ghana','Ghana','Mali','Kenya','Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
+$europe = array('France','Spain','Germany');
+$latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
+$northamerica = array('Canada','USA','United States of America');
+$all = array_merge($asia , $africa, $europe , $latinamerica , $northamerica );

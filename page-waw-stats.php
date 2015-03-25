@@ -4,6 +4,40 @@ get_header();
 $prefixpost = "_post_";
 $prefix_wpo = 'wpg-';
 $prefixwpg = '_wpg_';
+
+// Grabs continent from url to filter the list of organization displayed by continent
+$continent = '';
+
+if ( !empty($_GET['continent'])) {
+	$continent = sanitize_text_field( $_GET['continent'] );
+}
+
+// Countries in contintents are defined in functions.php
+
+//$continent = sanitize_text_field( $_GET['continent'] );
+if ($continent == '' ) {
+	$active_continent = $all;
+} else if ( $continent == 'asia') {
+	$active_continent = $asia;
+} else if ( $continent == 'latinamerica') {
+	$active_continent = $latinamerica;
+} else if ( $continent == 'africa') {
+	$active_continent = $africa;
+} else if ( $continent == 'northamerica') {
+	$active_continent = $northamerica;
+} else if ( $continent == 'europe') {
+	$active_continent = $europe;
+} else if ( $continent == 'all') {
+	$active_continent = $all;
+}
+
+$meta_query = array(
+	array(
+		'key'     => 'country',
+		'value'   => $active_continent,
+		'compare' => 'IN',
+	)
+);
 ?>
 <div id="waw-stats">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -15,7 +49,7 @@ $prefixwpg = '_wpg_';
 			</h2>		
 		</div>
 		<div class="row content">
-			<div class="col-md-9 col-md-offset-3">
+			<div class="col-md-9">
 			<?php the_content(); ?>
 			</div>
 			<?php endwhile; endif; ?>
@@ -46,6 +80,7 @@ $prefixwpg = '_wpg_';
 						'operator' => 'IN',
 					),
 				),
+				'meta_query' => $meta_query,
 			);
 			$posts_array = get_posts( $args );
 			$count_orgs = count($posts_array);
@@ -101,12 +136,27 @@ $prefixwpg = '_wpg_';
 						</li>
 						<li class="list-group-item">
 							<span class="badge"><?php echo $count_orgs; ?></span>
-							<?php _e('Number of organizations that are Waste Picker Organizations','globalrec'); ?>
+							<?php _e('Number of organizations that are Waste Picker Organizations','globalrec'); ?> 
+							<?php
+							//Displays the name of the continent being used as filter
+							echo $continent == 'all' || $continent == '' ? '' : '(<strong>'. ucfirst($continent) .'</strong>)'; ?>
 						</li>
 						<li class="list-group-item">
 							<span class="badge"><?php echo number_format(array_sum($number_individuals)); ?></span>
 							<?php _e('Waste pickers in waste picker organizations','globalrec'); ?>
 						</li>
+					</ul>
+				</div>
+				<div class="col-md-7">
+					<h3> <?php if (current_user_can( 'moderate_comments' )) { echo 'number of queries: '. get_num_queries(); }?> </h3>
+					<ul class="nav nav-pills">
+						<li role="presentation" class="disabled"><a href="?continent=all" title=""><?php _e('Filter by continent','globalrec'); ?>: </a></li>
+						<li role="presentation"><a href="?continent=all" title="<?php _e('All','globalrec'); ?>"><?php _e('All','globalrec'); ?></a></li>
+						<li role="presentation"><a href="?continent=asia" title="<?php _e('Asia','globalrec'); ?>"><?php _e('Asia','globalrec'); ?></a></li>
+						<li role="presentation"><a href="?continent=latinamerica" title="<?php _e('Latin America','globalrec'); ?><"><?php _e('Latin America','globalrec'); ?></a></li>
+						<li role="presentation"><a href="?continent=africa" title="<?php _e('Africa','globalrec'); ?>	"><?php _e('Africa','globalrec'); ?></a></li>
+						<li role="presentation"><a href="?continent=northamerica" title="<?php _e('North America','globalrec'); ?>	"><?php _e('North America','globalrec'); ?></a></li>
+						<li role="presentation"><a href="?continent=europe" title="<?php _e('Europe','globalrec'); ?>	"><?php _e('Europe','globalrec'); ?></a></li>
 					</ul>
 				</div>
 			</div>

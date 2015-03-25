@@ -1,4 +1,4 @@
-<?php  /* Template Name: Waste Picker Groups List */
+<?php  /* Template Name: WAW List Supporters */
 get_header();
 
 $continent = '';
@@ -78,24 +78,12 @@ $meta_query = array(
 				'order' => 'ASC',
 				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
 				'tax_query' => array(
-					'relation' => 'AND',
-					array(
-						'taxonomy' => 'wpg-member-occupation',
-						'field'    => 'slug',
-						'terms'    => 'waste-pickers',
-					),
 					array(
 						'taxonomy' => 'wpg-member-type',
 						'field'    => 'slug',
-						'terms'    => array('members-are-waste-pickers', 'members-are-waste-picker-organizations'),
+						'terms'    => array('waste-picker-support-organization', 'potential-supporters'),
 						'operator' => 'IN',
 					),
-					/*array(
-						'taxonomy' => 'wpg-member-type',
-						'field'    => 'slug',
-						'terms'    => array('waste-picker-support-organization', 'members are waste collectors'),
-						'operator' => 'NOT IN',
-					),*/
 				),
 				'meta_query' => $meta_query,
 			);

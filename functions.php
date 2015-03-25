@@ -736,70 +736,6 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	//Custom Fields for Waste Picker Groups
 	global $prefix_wpo,$prefixwpg; //global prefix variable for waste picker organizations
 	
-	//Custom field to select a City for a Waste Picker Group
-	$posts = query_posts( array(
-		'posts_per_page' => -1,
-		'post_type' => 'city',
-		'orderby' => 'title',
-		'order' => 'ASC',
-		));
-	
-	$cities = array();
-	foreach ($posts as $post) {
-		$cities[] = array(
-			'name' => $post->post_title,
-			'value' => $post->ID
-		);
-	}
-	$meta_boxes[] = array(
-		'id' => 'waste-picker-city',
-		'title' => 'Waste Picker Group City',
-		'pages' => array('waste-picker-org'), // post type
-		'context' => 'normal',
-		'priority' => 'high',
-		'show_names' => true, // Show field names on the left
-		'fields' => array(
-			array(
-				'name' => 'Waste Picker Group City',
-				'desc' => 'Select the city where the waste picker group operates. If more than one (e.g. a national based organization), select the city of their main headquarters or office.',
-				'id' => $prefixwpg . 'cityselect', //"cityselect" because "city" is alread used
-				'type' => 'select',
-				'options' =>  $cities, //one to many relationship. One waste picker group contains multiple members (bios)
-				'default' => '-',
-			),
-		),
-	);
-	wp_reset_query();
-	//Custom field to select a Country for a Waste Picker Group
-	$posts = query_posts( array(
-		'posts_per_page' => -1,
-		'post_type' => 'country'
-		));
-	foreach ($posts as $post) {
-		$countries[] = array(
-			'name' => $post->post_title,
-			'value' => $post->ID
-		);
-	}
-	$meta_boxes[] = array(
-		'id' => 'waste-picker-country',
-		'title' => 'Waste Picker Group Country',
-		'pages' => array('waste-picker-org'), // post type
-		'context' => 'normal',
-		'priority' => 'high',
-		'show_names' => true, // Show field names on the left
-		'fields' => array(
-			array(
-				'name' => 'Waste Picker Group Country',
-				'desc' => 'Select the country where the waste picker group operates. If more than one (e.g. an international organization), select the country of their main headquarters or office.',
-				'id' => $prefixwpg . 'countryselect', //"countryselect" beacuse "country" is alread used
-				'type' => 'select',
-				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
-			),
-		),
-	);
-	wp_reset_query();
-	
 	$meta_boxes[] = array(
 		'id' => 'wpg-contact-info',
 		'title' => 'Contact Information',
@@ -1069,7 +1005,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),
 			array(
 				'name' => 'Organization Structure',
-				'desc' => 'Describe how the organization is organized/structured.',
+				'desc' => 'Describe how the organization is organized/structured (e.g: if has president).',
 				'id' => $prefixwpg . 'structure',
 				'type' => 'textarea',
 			),
@@ -1222,7 +1158,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),
 			array(
 				'name' => 'Sorting spaces',
-				'desc' => 'Select if your organization has any one.',
+				'desc' => 'Select if your organization has any. Sorting workshop: A space used to sort recyclables and new items are made from materials collected. Sorting center: a space where materials collected are sorted by type, stored and sold on.',
 				'id' => $prefix_wpo  . 'sorting-spaces',
 				'taxonomy' => $prefix_wpo . 'sorting-spaces',
 				'type' => 'taxonomy_multicheck',
@@ -1404,6 +1340,70 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),
 		),
 	);
+	
+	//Custom field to select a City for a Waste Picker Group
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'city',
+		'orderby' => 'title',
+		'order' => 'ASC',
+		));
+	
+	$cities = array();
+	foreach ($posts as $post) {
+		$cities[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'waste-picker-city',
+		'title' => 'Waste Picker Group City',
+		'pages' => array('waste-picker-org'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Waste Picker Group City',
+				'desc' => 'Select the city where the waste picker group operates. If more than one (e.g. a national based organization), select the city of their main headquarters or office.',
+				'id' => $prefixwpg . 'cityselect', //"cityselect" because "city" is alread used
+				'type' => 'select',
+				'options' =>  $cities, //one to many relationship. One waste picker group contains multiple members (bios)
+				'default' => '-',
+			),
+		),
+	);
+	wp_reset_query();
+	//Custom field to select a Country for a Waste Picker Group
+	$posts = query_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'country'
+		));
+	foreach ($posts as $post) {
+		$countries[] = array(
+			'name' => $post->post_title,
+			'value' => $post->ID
+		);
+	}
+	$meta_boxes[] = array(
+		'id' => 'waste-picker-country',
+		'title' => 'Waste Picker Group Country',
+		'pages' => array('waste-picker-org'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Waste Picker Group Country',
+				'desc' => 'Select the country where the waste picker group operates. If more than one (e.g. an international organization), select the country of their main headquarters or office.',
+				'id' => $prefixwpg . 'countryselect', //"countryselect" beacuse "country" is alread used
+				'type' => 'select',
+				'options' =>  $countries //one to many relationship. One waste picker group contains multiple members (bios)
+			),
+		),
+	);
+	wp_reset_query();
 	
 	return $meta_boxes;
 }

@@ -165,7 +165,7 @@ $meta_query = array(
 					<h3><?php _e('Table of contents','globalrec'); ?></h3>
 					<nav>
 						<ul>
-							<li><a href="#scope"><?php _e('Scope','globalrec'); ?></a></li>
+							<li><a href="#scope"><?php _e('Organizational Reach','globalrec'); ?></a></li>
 							<li><a href="#type-organization"><?php _e('Type of organization','globalrec'); ?></a></li>
 							<li><a href="#country"><?php _e('Country','globalrec'); ?></a></li>
 							<li><a href="#type-organization"><?php _e('Type of members','globalrec'); ?></a></li>
@@ -184,7 +184,7 @@ $meta_query = array(
 			
 			<div class="row">
 				<div class="col-md-5">
-					<h3 id="scope"><?php _e('Scope','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>
+					<h3 id="scope"><?php _e('Organizational Reach','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>
 					<?php
 					//reoders array manually
 					$organization_scope_count = array_merge(array_flip(array('local','regional','national','not set')), $organization_scope_count);

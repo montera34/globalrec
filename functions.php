@@ -272,7 +272,7 @@ global $prefix_wpo;
 $wpoTaxonomies = array(
 	$prefix_wpo . 'language' => 'Language',
 	$prefix_wpo . 'member-type' => 'Member type',
-	$prefix_wpo . 'scope' => 'Scope',
+	$prefix_wpo . 'scope' => 'Organizational Reach',
 	$prefix_wpo . 'organization-type' => 'Type',
 	$prefix_wpo . 'member-occupation' => 'Occupation of Members',
 	$prefix_wpo . 'workplace-members' => 'Workplace of Members',
@@ -959,7 +959,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 				'type' => 'taxonomy_multicheck',
 			),
 			array(
-				'name' => __('Organization Scope'),
+				'name' => __('Organization Reach'),
 				'desc' => 'Select where the organization has members.',
 				'id' => $prefix_wpo . 'scope',
 				'taxonomy' => $prefix_wpo . 'scope',
@@ -1732,7 +1732,7 @@ function globalrec_waw_form() {
 			</div>
 		</div>
 		<div class='form-group'>
-			<label class='col-sm-4 control-label'>". __('Scope of Organization','globalrec') ."</label>
+			<label class='col-sm-4 control-label'>". __('Organizational Reach','globalrec') ."</label>
 			<div class='col-sm-6'>
 				". $options_scopes ."
 			</div>

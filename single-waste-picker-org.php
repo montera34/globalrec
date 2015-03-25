@@ -76,7 +76,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo list_taxonomy_terms($post_id,'wpg-member-type','Type of members');
 								echo list_taxonomy_terms($post_id,'wpg-member-occupation','Occupation of members');
 								echo list_taxonomy_terms($post_id,'wpg-organization-type','Type of Organization');
-								echo list_taxonomy_terms($post_id,'wpg-scope','Organization scope');
+								echo list_taxonomy_terms($post_id,'wpg-scope','Organizational Reach');
 								echo list_of_items($post_id,'_wpg_workplace_members','Workplace of members');
 								echo list_taxonomy_terms($post_id,'wpg-workplace-members','Workplace of members');
 								echo list_taxonomy_terms($post_id,'wpg-membership','Membership');

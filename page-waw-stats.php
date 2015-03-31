@@ -19,16 +19,22 @@ if ($continent == '' ) {
 	$active_continent = $all;
 } else if ( $continent == 'asia') {
 	$active_continent = $asia;
+	$continent_name = __('Asia','globalrec');
 } else if ( $continent == 'latinamerica') {
 	$active_continent = $latinamerica;
+	$continent_name = __('Latin America','globalrec');
 } else if ( $continent == 'africa') {
 	$active_continent = $africa;
+	$continent_name = __('Africa','globalrec');
 } else if ( $continent == 'northamerica') {
 	$active_continent = $northamerica;
+	$continent_name = __('North America','globalrec');
 } else if ( $continent == 'europe') {
 	$active_continent = $europe;
+	$continent_name = __('Europe','globalrec');
 } else if ( $continent == 'all') {
 	$active_continent = $all;
+	$continent_name = __('All','globalrec');
 }
 
 $meta_query = array(
@@ -139,7 +145,7 @@ $meta_query = array(
 							<?php _e('Number of organizations that are Waste Picker Organizations','globalrec'); ?> 
 							<?php
 							//Displays the name of the continent being used as filter
-							echo $continent == 'all' || $continent == '' ? '' : '(<strong>'. ucfirst($continent) .'</strong>)'; ?>
+							echo $continent == 'all' || $continent == '' ? '' : '(<strong>'. $continent_name .'</strong>)'; ?>
 						</li>
 						<li class="list-group-item">
 							<span class="badge"><?php echo number_format(array_sum($number_individuals)); ?></span>
@@ -148,7 +154,6 @@ $meta_query = array(
 					</ul>
 				</div>
 				<div class="col-md-7">
-					<h3> <?php if (current_user_can( 'moderate_comments' )) { echo 'number of queries: '. get_num_queries(); }?> </h3>
 					<ul class="nav nav-pills">
 						<li role="presentation" class="disabled"><a href="?continent=all" title=""><?php _e('Filter by continent','globalrec'); ?>: </a></li>
 						<li role="presentation"><a href="?continent=all" title="<?php _e('All','globalrec'); ?>"><?php _e('All','globalrec'); ?></a></li>
@@ -158,6 +163,7 @@ $meta_query = array(
 						<li role="presentation"><a href="?continent=northamerica" title="<?php _e('North America','globalrec'); ?>	"><?php _e('North America','globalrec'); ?></a></li>
 						<li role="presentation"><a href="?continent=europe" title="<?php _e('Europe','globalrec'); ?>	"><?php _e('Europe','globalrec'); ?></a></li>
 					</ul>
+					<h3><?php echo $continent == 'all' || $continent == '' ? '' : '<strong>'. $continent_name .'</strong>'; ?></h3>
 				</div>
 			</div>
 			<div class="row">

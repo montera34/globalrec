@@ -974,7 +974,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),
 			array(
 				'name' => 'Membership',
-				'desc' => 'Select yes if they are paying or non paying members.',
+				'desc' => 'Select yes if they are paying a membership fee or have another kind of affiliation in order to become a member of the organization.',
 				'id' => $prefix_wpo . 'membership',
 				'taxonomy' => $prefix_wpo . 'membership',
 				'type' => 'taxonomy_radio',

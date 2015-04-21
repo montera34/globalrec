@@ -27,7 +27,8 @@ get_header(); ?>
   <table class="table table-hover table-condensed">
 	<thead>
 		<tr>
-			<th><?php _e('Posts','globalrec'); ?></th>
+			<th><?php _e('Original post id','globalrec'); ?></th>
+			<th><?php _e('Title','globalrec'); ?></th>
 			<th><?php _e('# Newsletter','globalrec'); ?></th>
 			<th><?php _e('Date','globalrec'); ?></th>
 			<th><?php _e('Author','globalrec'); ?></th>
@@ -39,6 +40,7 @@ get_header(); ?>
 			<th><?php _e('# words Article without html','globalrec'); ?></th>
 			<th><?php _e('# words Summary without html','globalrec'); ?></th>
 			<th><?php _e('# words Summary + title','globalrec'); ?></th>
+			<th><?php _e('# words Summary + title (original language)','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -50,6 +52,13 @@ get_header(); ?>
 		?>
 
 			<tr>
+				<td>
+					<?php global $sitepress;
+					$current_main_id = icl_object_id( $post_id, 'post', true, $sitepress->get_default_language() );
+					//$current_slug = get_post( $current_main_id );
+					//$slug = $current_slug->post_name;
+					echo "<small>". $current_main_id ."</small>"; //Will display the ID of the original post. ?>
+ 				</td>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title();?></a>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
@@ -58,7 +67,7 @@ get_header(); ?>
 					<span class="label"><?php echo get_the_term_list( $post_id , 'post-newsletter', ' ', ', ', '' ); ?></span>
 				</td>
 				<td>
-					<?php the_time('m/d/Y') ?>
+					<small><?php the_time('m/d/Y') ?></small>
 				</td>
 				<td>
 					<?php if (get_post_type() == 'post') {
@@ -118,6 +127,16 @@ get_header(); ?>
 							echo ' <span class="glyphicon glyphicon-ok"></span>';
 						} ?>
 				</td>
+				<td>
+					<?php
+						$original_post_summary = get_post_meta( $current_main_id , '_gr_post-summary', true );
+						$original_post_title = get_post_field('post_title', $current_main_id);
+						$original_summary_title = $original_post_summary .' '. $original_post_title;
+						$stripped_original_summary_title = strip_tags($original_summary_title);
+						echo str_word_count($stripped_original_summary_title);
+						?>
+				</td>
+				
 			</tr>
 
 	<?php endwhile; else: ?>

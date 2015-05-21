@@ -10,20 +10,26 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(1749, 'post-newsletter');
+$newsletter_number = icl_object_id(2247, 'post-newsletter');
+
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),
 	'posts_per_page' => $asian_posts,
 	'ignore_sticky_posts' => 1,
 	'offset' => $asian_offset,
-	'taxonomy' => 'post-region',
-	'term' => 'asia',
+	'ignore_sticky_posts' => 1,
 	'tax_query' => array(
+			'relation' => 'AND',
 			array(
 				'taxonomy' => 'post-newsletter',
 				'field'    => 'term_id',
 				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(12, 'post-region'), //id of the post-region (Asia) in English
 			),
 		),
 	);
@@ -34,13 +40,17 @@ $args_latinamerica = array(
 	'posts_per_page' => $latinamerican_posts,
 	'ignore_sticky_posts' => 1,
 	'offset' => $latinamerican_offset,
-	'taxonomy' => 'post-region',
-	'term' => 'latin-america',
 	'tax_query' => array(
+			'relation' => 'AND',
 			array(
 				'taxonomy' => 'post-newsletter',
 				'field'    => 'term_id',
 				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(900, 'post-region'), //id of the post-region in English
 			),
 		),
 	);
@@ -51,13 +61,17 @@ $args_africa = array(
 	'posts_per_page' => $african_posts,
 	'ignore_sticky_posts' => 1,
 	'offset' => $african_offset,
-	'taxonomy' => 'post-region',
-	'term' => 'africa',
 	'tax_query' => array(
+			'relation' => 'AND',
 			array(
 				'taxonomy' => 'post-newsletter',
 				'field'    => 'term_id',
 				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(36, 'post-region'), //id of the post-region in English
 			),
 		),
 	);
@@ -68,13 +82,17 @@ $args_europe = array(
 	'posts_per_page' => $european_posts,
 	'offset' => $european_offset,
 	'ignore_sticky_posts' => 1,
-	'taxonomy' => 'post-region',
-	'term' => 'europe',
 	'tax_query' => array(
+			'relation' => 'AND',
 			array(
 				'taxonomy' => 'post-newsletter',
 				'field'    => 'term_id',
 				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(901, 'post-region'), //id of the post-region in English
 			),
 		),
 	);
@@ -82,17 +100,20 @@ $my_query_europe = new WP_Query($args_europe);
 
 $args_northamerica = array(
 	'post_status' => array( 'publish', 'future' ),
-	//'post_type' => 'post',
 	'posts_per_page' => $northamerican_posts,
 	'offset' => $northamerican_offset,
 	'ignore_sticky_posts' => 1,
-	'taxonomy' => 'post-region',
-	'term' => 'north-america',
 	'tax_query' => array(
+			'relation' => 'AND',
 			array(
 				'taxonomy' => 'post-newsletter',
 				'field'    => 'term_id',
 				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(955, 'post-region'), //id of the post-region in English
 			),
 		),
 	);

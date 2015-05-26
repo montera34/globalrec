@@ -148,15 +148,20 @@ $output2 = ''; ?>
 				$article_url = get_post_meta( $post_id, '_gr_article-url', true );
 				$article_title = get_post_meta( $post_id, '_gr_article-title', true );
 				$article_published_in = get_post_meta( $post_id, '_gr_published-in', true );
-				if ($article_url != '') {
-						echo "<div class='row'><div class='col-md-12'><a href='".$article_url."'>".$article_title."</a><br>";
-						echo $written_by. ". ";
-						if ($article_published_in != '') {
-							echo $article_published_in. ". ";	
-						}
-						echo get_post_meta( $post_id, '_gr_article-date', true );
-						echo "</div></div>";	
-					}
+				echo "<div class='row'><div class='col-md-12'>";
+				if ($article_url != '') { //if url of reference article is not empty
+						echo "<a href='".$article_url."'>".$article_title."</a>";
+				} else {
+						echo $article_title;
+				}
+				if ($written_by != '') {
+					echo "<br>". __('Written by','globalrec') ." ". $written_by. ". ";
+				}
+				if ($article_published_in != '') {
+					echo $article_published_in. ". ";
+				}
+				echo get_post_meta( $post_id, '_gr_article-date', true );
+				echo "</div></div>";
 				the_content(__('(more...)')); ?>
 			</div>
 

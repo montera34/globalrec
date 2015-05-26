@@ -164,8 +164,9 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				<thead>
 					<tr>
 						<th><?php echo strtoupper(ICL_LANGUAGE_CODE); ?> (current)</th>
+						<th>EN</th>
 						<th>ES</th>
-						<th>PT</th>
+						<th>PT-BR</th>
 						<th>FR</th>
 					</tr>
 				</thead>

@@ -1965,10 +1965,12 @@ $all = array_merge($asia , $africa, $europe , $latinamerica , $northamerica );
 function translated_post_table ($title,$array) {
 	$result = "<tr><td><h4>".$title."</h4></td><td></td><td></td><td></td></tr>";
 	foreach ($array as $key => $value ) {
+		$id_en = icl_object_id($value->ID, 'post', false, 'en');
 		$id_es = icl_object_id($value->ID, 'post', false, 'es');
-		$id_pt= icl_object_id($value->ID, 'post', false, 'pt');
+		$id_pt= icl_object_id($value->ID, 'post', false, 'pt-br');
 		$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
-		$result .= "<tr><td><a href='". $value->guid ."'>". $value->post_title . "</a></td>";
+		$result .= "<tr><td style='background-color:#FF0;'><a href='". $value->guid ."'>". $value->post_title . "</a></td>";
+		$result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a></td>";
 		$result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a></td>";
 		$result .= empty($id_pt) ? "<td></td>" : "<td><a href='". get_permalink($id_pt) ."'>". get_the_title( $id_pt ) ."</a></td>";
 		$result .= empty($id_fr) ? "<td></td>" : "<td><a href='". get_permalink($id_fr) ."'>". get_the_title( $id_fr ) ."</a></td>";

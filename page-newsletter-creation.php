@@ -148,38 +148,34 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			</table>
 		</div>
 	</div>
-	
+
+	<?php
+		$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
+	?>
+
 	<div class="row">
 		<div class="col-md-12">
-			<?php
-				$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
-				$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
-				$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
-				$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
-				$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
-			?>
+			<h2>Table of posts</h2>
 			<table class="table table-hover table-condensed" id="wpg-list" style="font-size: 10px;">
 				<thead>
 					<tr>
-						<th>EN</th>
+						<th><?php echo strtoupper(ICL_LANGUAGE_CODE); ?> (current)</th>
 						<th>ES</th>
 						<th>PT</th>
 						<th>FR</th>
 					</tr>
 				</thead>
 			 	<tbody>
-			 		<tr><td>Asia</td></tr>
 					<?php
-					foreach ($my_query_asia_posts as $key => $value ) {
-						$id_es = icl_object_id($value->ID, 'post', false, 'es');
-						$id_pt= icl_object_id($value->ID, 'post', false, 'pt');
-						$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
-						echo "<tr><td><a href='". $value->guid ."'>". $value->post_title . "</a></td>";
-						echo empty($id_es) ? "<td></td>": "<td>". get_the_title( $id_es ) ."</td>";
-						echo empty($id_pt) ? "<td></td>": "<td>". get_the_title( $id_pt ) ."</td>";
-						echo empty($id_fr) ? "<td></td>": "<td>". get_the_title( $id_fr ) ."</td>";
-						echo "</tr>";
-					}
+					echo translated_post_table ('Asia',$my_query_asia_posts);
+					echo translated_post_table ('Latin America',$my_query_latinamerica_posts);
+					echo translated_post_table ('Africa',$my_query_africa_posts);
+					echo translated_post_table ('Europe',$my_query_europe_posts);
+					echo translated_post_table ('North America',$my_query_northamerica_posts);
 					?>
 			 	</tbody>
 			</table>

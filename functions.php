@@ -1960,3 +1960,19 @@ $europe = array('France','Spain','Germany');
 $latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
 $northamerica = array('Canada','USA','United States of America');
 $all = array_merge($asia , $africa, $europe , $latinamerica , $northamerica );
+
+//Adds table of translated posts. Used in page-newsletter-creation.php
+function translated_post_table ($title,$array) {
+	$result = "<tr><td><h4>".$title."</h4></td><td></td><td></td><td></td></tr>";
+	foreach ($array as $key => $value ) {
+		$id_es = icl_object_id($value->ID, 'post', false, 'es');
+		$id_pt= icl_object_id($value->ID, 'post', false, 'pt');
+		$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
+		$result .= "<tr><td><a href='". $value->guid ."'>". $value->post_title . "</a></td>";
+		$result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a></td>";
+		$result .= empty($id_pt) ? "<td></td>" : "<td><a href='". get_permalink($id_pt) ."'>". get_the_title( $id_pt ) ."</a></td>";
+		$result .= empty($id_fr) ? "<td></td>" : "<td><a href='". get_permalink($id_fr) ."'>". get_the_title( $id_fr ) ."</a></td>";
+		$result .= "</tr>";
+	}
+	return $result;
+}

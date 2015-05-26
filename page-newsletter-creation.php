@@ -19,6 +19,10 @@ $argsasia = array(
 	'ignore_sticky_posts' => 1,
 	'offset' => $asian_offset,
 	'ignore_sticky_posts' => 1,
+	/*'order' => 'ASC',
+	'orderby' => 'meta_value_num',
+	'meta_key'  => '_gr_article-date', //TODO Reorder is not working the reorder because it is stored as text_date https://github.com/WebDevStudios/CMB2/wiki/Field-Types#text_date and not as text_date_timestamp
+	'meta_type' => 'DATE',*/
 	'tax_query' => array(
 			'relation' => 'AND',
 			array(
@@ -142,11 +146,51 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 					</tr>
 				</tbody>
 			</table>
-			<br>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<?php
+				$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
+				$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
+				$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
+				$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
+				$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
+			?>
+			<table class="table table-hover table-condensed" id="wpg-list" style="font-size: 10px;">
+				<thead>
+					<tr>
+						<th>EN</th>
+						<th>ES</th>
+						<th>PT</th>
+						<th>FR</th>
+					</tr>
+				</thead>
+			 	<tbody>
+			 		<tr><td>Asia</td></tr>
+					<?php
+					foreach ($my_query_asia_posts as $key => $value ) {
+						$id_es = icl_object_id($value->ID, 'post', false, 'es');
+						$id_pt= icl_object_id($value->ID, 'post', false, 'pt');
+						$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
+						echo "<tr><td><a href='". $value->guid ."'>". $value->post_title . "</a></td>";
+						echo empty($id_es) ? "<td></td>": "<td>". get_the_title( $id_es ) ."</td>";
+						echo empty($id_pt) ? "<td></td>": "<td>". get_the_title( $id_pt ) ."</td>";
+						echo empty($id_fr) ? "<td></td>": "<td>". get_the_title( $id_fr ) ."</td>";
+						echo "</tr>";
+					}
+					?>
+			 	</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-8 content">
 			<strong id="short">Asia</strong><br>
 			<ol>
 			<?php
-				$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_asia_posts as $key => $value ) {
 					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
@@ -155,7 +199,6 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			<strong>Latin America</strong><br>
 			<ol>
 			<?php
-				$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_latinamerica_posts as $key => $value ) {
 					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
@@ -164,7 +207,6 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			<strong>Africa</strong><br>
 			<ol>
 			<?php
-				$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_africa_posts as $key => $value ) {
 					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
@@ -173,7 +215,6 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			<strong>Europe</strong><br>
 			<ol>
 			<?php
-				$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_europe_posts as $key => $value ) {
 					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}
@@ -182,7 +223,6 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 			<strong>North America</strong><br>
 			<ol>
 			<?php
-				$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
 				foreach ($my_query_northamerica_posts as $key => $value ) {
 					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
 				}

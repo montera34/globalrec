@@ -1970,10 +1970,10 @@ function translated_post_table ($title,$array) {
 		$id_pt= icl_object_id($value->ID, 'post', false, 'pt-br');
 		$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
 		$result .= "<tr><td style='background-color:#FF0;'><a href='". $value->guid ."'>". $value->post_title . "</a></td>";
-		$result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a></td>";
-		$result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a></td>";
-		$result .= empty($id_pt) ? "<td></td>" : "<td><a href='". get_permalink($id_pt) ."'>". get_the_title( $id_pt ) ."</a></td>";
-		$result .= empty($id_fr) ? "<td></td>" : "<td><a href='". get_permalink($id_fr) ."'>". get_the_title( $id_fr ) ."</a></td>";
+		if (ICL_LANGUAGE_CODE == 'en') { } else { $result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a></td>";}	
+		if (ICL_LANGUAGE_CODE == 'es') { } else { $result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a></td>";}
+		if (ICL_LANGUAGE_CODE == 'pt-br') { } else { $result .= empty($id_pt) ? "<td></td>" : "<td><a href='". get_permalink($id_pt) ."'>". get_the_title( $id_pt ) ."</a></td>";}
+		if (ICL_LANGUAGE_CODE == 'fr') { } else { $result .= empty($id_fr) ? "<td></td>" : "<td><a href='". get_permalink($id_fr) ."'>". get_the_title( $id_fr ) ."</a></td>";}
 		$result .= "</tr>";
 	}
 	return $result;

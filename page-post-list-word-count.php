@@ -61,7 +61,7 @@ get_header(); ?>
  				</td>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 					<?php the_title();?></a>
-					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+					<?php if ( is_user_logged_in() ) { ?> <?php echo "("; edit_post_link(__('Edit This')); echo ")"; ?> <?php } ?>
 				</td>
 				<td>
 					<span class="label"><?php echo get_the_term_list( $post_id , 'post-newsletter', ' ', ', ', '' ); ?></span>

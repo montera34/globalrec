@@ -3,16 +3,65 @@
 
 <head>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-	<title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
-		<meta name="description" content="<?php if ( is_single() || is_page() ) {
-        single_post_title('', true); 
-    } else {
-        bloginfo('description');
-    }
-    ?>" />
-	<meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
-	<meta content="Global Alliance of Waste Pickers" name="organization" />
+<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+<meta name="description" content="
+	<?php if ( is_single() || is_page() ) {
+		single_post_title('', true);
+	} else {
+		bloginfo('description');
+	}
+	?>"
+/>
+<meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
+<meta content="Global Alliance of Waste Pickers" name="organization" />
+
+<?php // metatags generation
+if ( is_single() || is_page() ) {
+  $metadesc = $post->post_excerpt;
+  if ( $metadesc == '' ) { $metadesc = $post->post_content; }
+  $metadesc = wp_strip_all_tags($metadesc);
+  $metadesc = strip_shortcodes( $metadesc );
+  $metadesc_fb = substr( $metadesc, 0, 297 );
+  if (is_home()){
+		$metadesc_tw = bloginfo('description');
+		} else {
+  	$metadesc_tw = substr( $metadesc, 0, 200 ); }
+  $metadesc = substr( $metadesc, 0, 154 );
+  $metatit = $post->post_title;
+  $metatype = "article";
+  if (is_home()){
+		$metaimage = "http://globalrec.org/wp-content/uploads/2012/04/logo_globalrec_shari.png";
+		} else {
+  	$metaimage = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large'); }
+} else {
+  $metadesc = get_bloginfo('description');
+  $metadesc_tw = $metadesc;
+  $metadesc_fb = $metadesc;
+  $metatit = get_bloginfo('name');
+  $metatype = "blog";
+  $metaimage = "http://globalrec.org/wp-content/uploads/2012/04/logo_globalrec_shari.png";
+}
+  $metaperma = get_permalink();
+?>
+
+<!-- generic meta -->
+<meta content="global_rec" name="author" />
+<meta name="title" content="<?php echo $metatit ?>" />
+<meta content="<?php echo $metadesc ?>" name="description" />
+<!-- facebook meta -->
+<meta property="og:title" content="<?php echo $metatit ?>" />
+<meta property="og:type" content="<?php echo $metatype ?>" />
+<meta property="og:description" content="<?php echo $metadesc_fb ?>" />
+<meta property="og:url" content="<?php echo $metaperma ?>" />
+<!-- twitter meta -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@global_rec">
+<meta name="twitter:title" content="<?php echo $metatit ?>" />
+<meta name="twitter:description" content="<?php echo $metadesc_tw ?>" />
+<meta name="twitter:creator" content="@global_rec">
+<meta name="twitter:image:src" content="<?php if (is_home()) {echo $metaimage;} else {echo $metaimage[0];} ?>">
+<meta property="twitter:account_id" content="121067923" />
 	
 <!-- Bootstrap -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
@@ -86,7 +135,8 @@
 				</div>	
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
-						<small><?php echo get_bloginfo( 'description' ) ?></small>
+						<small><?php echo get_bloginfo( 'description' ) ?>
+						<?php if (current_user_can( 'moderate_comments' )) { echo ' '. get_num_queries() .' queries'; echo ' in '; timer_stop(1); }?></small>
 					</div>
 					<div class="col-md-4">
 						<div style="font-size:10px;margin-top: 10px;" class="pull-right ">

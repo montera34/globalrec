@@ -10,7 +10,118 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(1749, 'post-newsletter');
+$newsletter_number = icl_object_id(2247, 'post-newsletter');
+
+$argsasia = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $asian_posts,
+	'ignore_sticky_posts' => 1,
+	'offset' => $asian_offset,
+	'ignore_sticky_posts' => 1,
+	/*'order' => 'ASC',
+	'orderby' => 'meta_value_num',
+	'meta_key'  => '_gr_article-date', //TODO Reorder is not working the reorder because it is stored as text_date https://github.com/WebDevStudios/CMB2/wiki/Field-Types#text_date and not as text_date_timestamp
+	'meta_type' => 'DATE',*/
+	'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(12, 'post-region'), //id of the post-region (Asia) in English
+			),
+		),
+	);
+$my_query_asia = new WP_Query($argsasia);
+
+$args_latinamerica = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $latinamerican_posts,
+	'ignore_sticky_posts' => 1,
+	'offset' => $latinamerican_offset,
+	'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(900, 'post-region'), //id of the post-region in English
+			),
+		),
+	);
+$my_query_latinamerica = new WP_Query($args_latinamerica);
+
+$args_africa = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $african_posts,
+	'ignore_sticky_posts' => 1,
+	'offset' => $african_offset,
+	'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(36, 'post-region'), //id of the post-region in English
+			),
+		),
+	);
+$my_query_africa = new WP_Query($args_africa);
+
+$args_europe = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $european_posts,
+	'offset' => $european_offset,
+	'ignore_sticky_posts' => 1,
+	'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(901, 'post-region'), //id of the post-region in English
+			),
+		),
+	);
+$my_query_europe = new WP_Query($args_europe);
+
+$args_northamerica = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $northamerican_posts,
+	'offset' => $northamerican_offset,
+	'ignore_sticky_posts' => 1,
+	'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(955, 'post-region'), //id of the post-region in English
+			),
+		),
+	);
+$my_query_northamerica = new WP_Query($args_northamerica);
+
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -22,7 +133,7 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 	</div>
 	<div class="row">
 		<div class="col-md-8 content">
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 			<?php the_content(); ?>
 			</div>
 			<?php endwhile; endif; ?>
@@ -43,39 +154,27 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
 				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
 			</p>
-			
+	<?php
+		$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
+	?>
 			<!-----------------Asia ------------------------->
 			<a name="asia"></a>
 			<h2>
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/asia.png">
 				<strong><?php echo _e('Asia','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					'posts_per_page' => $asian_posts,
-					'ignore_sticky_posts' => 1,
-					'offset' => $asian_offset,
-					'taxonomy' => 'post-region',
-					'term' => 'asia',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
 
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_asia->have_posts() ) : while ( $my_query_asia->have_posts() ) :  $my_query_asia->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -108,7 +207,7 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 					<img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -125,33 +224,13 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/latinamerica.png">
 				<strong><?php echo _e('Latin America','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $latinamerican_posts,
-					'ignore_sticky_posts' => 1,
-					'offset' => $latinamerican_offset,
-					'taxonomy' => 'post-region',
-					'term' => 'latin-america',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_latinamerica->have_posts() ) : while ( $my_query_latinamerica->have_posts() ) :  $my_query_latinamerica->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -184,7 +263,7 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
           <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -201,33 +280,13 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/africa.png">
 				<strong><?php echo _e('Africa','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $african_posts,
-					'ignore_sticky_posts' => 1,
-					'offset' => $african_offset,
-					'taxonomy' => 'post-region',
-					'term' => 'africa',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_africa->have_posts() ) : while ( $my_query_africa->have_posts() ) :  $my_query_africa->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -260,7 +319,7 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
           <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -277,33 +336,13 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/europe.png">
 				<strong><?php echo _e('Europe','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $european_posts,
-					'offset' => $european_offset,
-					'ignore_sticky_posts' => 1,
-					'taxonomy' => 'post-region',
-					'term' => 'europe',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_europe->have_posts() ) : while ( $my_query_europe->have_posts() ) :  $my_query_europe->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -336,7 +375,7 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
           <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -353,33 +392,13 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png">
 				<strong><?php echo _e('North America','globalrec');?></strong>
 			</h2>
-			<?php
-				$args = array(
-					'post_status' => array( 'publish', 'future' ),
-					//'post_type' => 'post',
-					'posts_per_page' => $northamerican_posts,
-					'offset' => $northamerican_offset,
-					'ignore_sticky_posts' => 1,
-					'taxonomy' => 'post-region',
-					'term' => 'north-america',
-					'tax_query' => array(
-							array(
-								'taxonomy' => 'post-newsletter',
-								'field'    => 'term_id',
-								'terms'    => $newsletter_number,
-							),
-						),
-					);
-				$my_query = new WP_Query($args);
-			?>
-
-			<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
+			<?php if ( $my_query_northamerica->have_posts() ) : while ( $my_query_northamerica->have_posts() ) : $my_query_northamerica->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;
 			?>
 			<h3>
-				<a style="font-size: 18px;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
 					<?php
 					the_title();
 					$country_ID = get_post_meta( $post->ID, '_post_country', true );
@@ -412,7 +431,7 @@ $newsletter_number = icl_object_id(1749, 'post-newsletter');
           <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;">
+			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;

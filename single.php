@@ -142,7 +142,15 @@ $output2 = ''; ?>
 					<div class="col-md-2 ontop"><?php do_action('icl_language_selector'); ?></div>
 				</div>
 			</section>
-
+			
+			<?php if (is_singular( 'newsletter' ) ) {?>
+				<div class="row">
+					<div class="col-md-12">
+						<p class="bg-warning"><?php _e('The updates we publish in this newsletter are by waste pickers and allies. Sometimes we re-post directly from what individuals or groups have shared via social media, websites or emails; sometimes we edit, organize and translate. The goal is to disseminate information from waste pickers across borders. As usual, we invite waste pickers&rsquo; organizations and allies to keep sending updates of their struggles and victories. We want to make this information-sharing platform more inclusive and participatory! This process is supported by Women in Informal Employment: Globalizing and Organizing. <br><strong>If you want to be part of the editorial committee or learn how to post your own updates on <a href="http://globalrec.org"><font color="#fff">globalrec.org</font></a> please write an email to info@globalrec.org.</strong>','globalrec');?></p>
+					</div>
+				</div>
+			<?php    } ?>
+			
 			<div id="post-content">
 				<?php 
 				$article_url = get_post_meta( $post_id, '_gr_article-url', true );

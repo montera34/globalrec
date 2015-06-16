@@ -331,6 +331,14 @@ nav li.menu-item-has-children {
 .legend-map h3 {
 	font-size:20px;
 }
+/* Newsletter */
+.bg-warning{
+	padding: 20px;
+  font-size: 12px;
+}
+.bg-warning a font {
+	color:#000 !important;
+}
 
 /* WAW */
 .nav > li > a {

@@ -39,7 +39,7 @@ if ( post_password_required() ) : ?>
 <p><?php printf(__('You must be <a href="%s">logged in</a> to post a comment.'), wp_login_url( get_permalink() ) );?></p>
 <?php else : ?>
 
-<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform" role="form">
+<form action="<?php echo get_option('siteurl'); ?>/wp-my-comments-post-globalrec.php" method="post" id="commentform" role="form">
 	<div class="form-group">
 		<label for="comment"><?php _e('Comment'); ?></label>
 		<textarea name="comment" id="comment"  class="form-control" rows="3"></textarea>

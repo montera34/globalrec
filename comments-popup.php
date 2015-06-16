@@ -52,7 +52,7 @@ if ( post_password_required($commentstatus) ) {  // and it doesn't match the coo
 	<p><cite><?php comment_type(_x('Comment', 'noun'), __('Trackback'), __('Pingback')); ?> <?php _e("by"); ?> <?php comment_author_link() ?> &#8212; <?php comment_date() ?> @ <a href="#comment-<?php comment_ID() ?>"><?php comment_time() ?></a></cite></p>
 	</li>
 
-<?php } // end for each comment ?>
+<?php } //end for each comment ?>
 </ol>
 <?php } else { // this is displayed if there are no comments so far ?>
 	<p><?php _e("No comments yet."); ?></p>
@@ -62,7 +62,7 @@ if ( post_password_required($commentstatus) ) {  // and it doesn't match the coo
 <h2><?php _e("Leave a comment"); ?></h2>
 <p><?php _e("Line and paragraph breaks automatic, e-mail address never displayed, <acronym title=\"Hypertext Markup Language\">HTML</acronym> allowed:"); ?> <code><?php echo allowed_tags(); ?></code></p>
 
-<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
+<form action="<?php echo get_option('siteurl'); ?>/wp-my-comments-post-globalrec.php" method="post" id="commentform">
 <?php if ( is_user_logged_in() ) : ?>
 <p><?php printf(__('Logged in as %s.'), '<a href="'.get_option('siteurl').'/wp-admin/profile.php">'.$user_identity.'</a>'); ?> <a href="<?php echo wp_logout_url(); ?>" title="<?php echo esc_attr(__('Log out of this account')); ?>"><?php _e('Log out &raquo;'); ?></a></p>
 <?php else : ?>

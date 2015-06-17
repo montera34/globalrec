@@ -151,6 +151,34 @@ $output = '';
 
 		<!-- begin sidebar -->
 		<div id="menu" class="col-md-3">
+			<div classs="widget-container-feed">
+				<h4 class="widget-title"><?php _e('News by Region'); ?></h4>
+				<?php
+					$terms = get_terms( 'post-region' );
+					echo '<ul style="list-style:none;margin:0;padding:0;">';
+					foreach ( $terms as $term ) { //TODO remove India from the list
+
+							// The $term is an object, so we don't need to specify the $taxonomy.
+							$term_link = get_term_link( $term );
+						 
+							// If there was an error, continue to the next term.
+							if ( is_wp_error( $term_link ) ) {
+									continue;
+							}
+
+							// We successfully got a link. Print it out.
+							echo '<li style="font-size:14px;font-weight:bold;padding:0 0 10px;"><a href="' . esc_url( $term_link ) . '">' . $term->name . '</a><li>';
+					}
+
+					echo '</ul>';
+				?>
+					<!-- original widget with images for each region
+				<a href="/post-region/latin-america/"><img src="http://globalrec.org/wp-content/themes/globalrec/images/latinamerica.png">Latin America</a><br>
+				<a href="/post-region/africa/"><img src="http://globalrec.org/wp-content/themes/globalrec/images/africa.png">Africa</a><br>
+				<a href="/post-region/asia/"><img src="http://globalrec.org/wp-content/themes/globalrec/images/asia.png">Asia</a><br>
+				<a href="/post-region/europe/"><img src="http://globalrec.org/wp-content/themes/globalrec/images/europe.png">Europe</a><br>
+				<a href="/post-region/north-america/"><img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png">North America</a>-->
+			</div>
 			<?php get_sidebar(); ?>
 		</div>
 		<!-- end sidebar -->

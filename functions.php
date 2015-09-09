@@ -1811,7 +1811,7 @@ function globalrec_insert_wpg() {
 		'_wpg_phone1' => $wpg_telephone,
 		'city' => $city,
 		'country' => $country,
-		'_wpg_website' => $wpg_website,
+		//'_wpg_website' => $wpg_website, Website doesn-t need to be obligatory
 	);
 	
 	$terms = array(

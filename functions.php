@@ -616,7 +616,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 	//Custom fields for articles (posts)
 	$meta_boxes[] = array(
 		'id' => 'post-extra-fields',
-		'title' => 'Post in category Press',
+		'title' => 'Post written by someone else different from the user in GlobalRec',
 		'pages' => array('post'), // post type
 		'context' => 'normal',
 		'priority' => 'high',
@@ -1906,7 +1906,7 @@ function edit_meta_box(){
    // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-org', 'normal', 'high');
 }
 
-//Creates array that count number of taxonomy terms
+//Creates array that counts number of taxonomy terms
 function count_tax_array($the_array) {
 	foreach ($the_array as $key => $value) { //Flattens array
 		$the_array_clean[$key] = isset($value[0]->name) ? $value[0]->name : "not set"; //prevents from crashing when value is empty

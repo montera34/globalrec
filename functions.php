@@ -1738,6 +1738,12 @@ function globalrec_waw_form() {
 			</div>
 		</div>
 		<div class='form-group'>
+			<label for='globalrec-form-waw-comments' class='col-sm-4 control-label'>". __('Comments','globalrec') ."</label>
+			<div class='col-sm-6'>
+				<textarea class='form-control' name='globalrec-form-waw-comments' rows='3'></textarea>
+			</div>
+		</div>
+		<div class='form-group'>
 		  <div class='col-sm-offset-4 col-sm-6'>
 		  	<input class='btn btn-default' type='submit' value='". __('Send','globalrec') ."' name='globalrec-form-waw-submit' />
 				<span class='help-block'><small><strong>". __('All fields are required. Do not leave them empty!','globalrec') ."</strong></small></span>
@@ -1796,6 +1802,7 @@ function globalrec_insert_wpg() {
 	$wpg_language = $_POST['language_list'];
 	$wpg_members_type = $_POST['members_list'];
 	$wpg_scope = $_POST['scopes_list'];
+	$wpg_comments = sanitize_text_field( $_POST['globalrec-form-waw-comments'] );
 	
 	// check that all required fields were filled
 	$fields = array(
@@ -1817,7 +1824,7 @@ function globalrec_insert_wpg() {
 		echo $name.' is: '. $field. '<br>';
 		if ( $field == '' ) {
 			echo $error;
-			echo 'alguno vacio // one field is empty '. $name. $field;
+			echo 'Por lo menos un campo está vacio. // At least one field is empty: '. $name. $field;
 			globalrec_waw_form();
 			return;
 		}
@@ -1832,6 +1839,7 @@ function globalrec_insert_wpg() {
 		'post_status' => 'draft',
 		'post_author' => 1,
 		'post_title' => $wpg_name,
+		'post_content' => $wpg_comments,
 	));
 
 	if ( $wpg_id == 0 ) {

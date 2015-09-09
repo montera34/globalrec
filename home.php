@@ -152,11 +152,11 @@ $output = '';
 		<!-- begin sidebar -->
 		<div id="menu" class="col-md-3">
 			<div classs="widget-container-feed">
-				<h4 class="widget-title"><?php _e('News by Region'); ?></h4>
+				<h4 class="widget-title" style="font-weight: bold;"><?php _e('News by Region'); ?></h4>
 				<?php
 					$terms = get_terms( 'post-region' );
 					echo '<ul style="list-style:none;margin:0;padding:0;">';
-					foreach ( $terms as $term ) { //TODO remove India from the list
+					foreach ( $terms as $term ) {
 
 							// The $term is an object, so we don't need to specify the $taxonomy.
 							$term_link = get_term_link( $term );
@@ -166,8 +166,14 @@ $output = '';
 									continue;
 							}
 
-							// We successfully got a link. Print it out.
-							echo '<li style="font-size:14px;font-weight:bold;padding:0 0 10px;"><a href="' . esc_url( $term_link ) . '">' . $term->name . '</a><li>';
+							$region_name = $term->name;
+							
+							if ( $region_name == 'India' || $region_name == 'Inde' || $region_name == 'Índia' ) {
+								//Do not display India
+							} else {
+								// We successfully got a link. Print it out.
+								echo '<li><a href="' . esc_url( $term_link ) . '"><h4>' . $region_name . '</h4></a><li>';
+							}
 					}
 
 					echo '</ul>';

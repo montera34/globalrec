@@ -10,7 +10,7 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(2247, 'post-newsletter');
+$newsletter_number = icl_object_id(2862, 'post-newsletter');
 
 
 $argsasia = array(
@@ -160,6 +160,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Table of posts</h2>
+			<p>Legend: <span class="glyphicon glyphicon-ok"></span> indicates that there is a summary available.</p>
 			<table class="table table-hover table-condensed" id="wpg-list" style="font-size: 10px;">
 				<thead>
 					<tr>

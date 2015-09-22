@@ -1917,7 +1917,7 @@ function edit_meta_box(){
 //Creates array that counts number of taxonomy terms
 function count_tax_array($the_array) {
 	foreach ($the_array as $key => $value) { //Flattens array
-		$the_array_clean[$key] = isset($value[0]->name) ? $value[0]->name : "not set"; //prevents from crashing when value is empty
+		$the_array_clean[$key] = isset($value[0]->name) ? $value[0]->name : "not known"; //prevents from crashing when value is empty
 	}
 	$the_array_count = array_count_values($the_array_clean); //counts values of organizations with the same organization type
 	unset($the_array);

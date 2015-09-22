@@ -193,9 +193,9 @@ $meta_query = array(
 					<h3 id="scope"><?php _e('Organizational Reach','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>
 					<?php
 					//reoders array manually
-					$organization_scope_count = array_merge(array_flip(array('local','regional','national','not set')), $organization_scope_count);
+					$organization_scope_count = array_merge(array_flip(array('local','regional','national','not known')), $organization_scope_count);
 					//sets colors for scope
-					$color_scope = array('local' => '#ff3399','regional' => '#ff3333','national' => '#ff9933','not set' => '#ccc');
+					$color_scope = array('local' => '#ff3399','regional' => '#ff3333','national' => '#ff9933','not known' => '#ccc');
 					//calculates max scope value
 					$max_count_org_scope = 0;
 					foreach ($organization_scope_count as $value) {
@@ -244,7 +244,7 @@ $meta_query = array(
 						$max_count_org_type = $value > $max_count_org_type ? $value : $max_count_org_type;
 					}
 					//sets up colors for each taxonomy term
-					$color_type = array('cooperative' => '#99eeee', 'cooperative federation' => '#339999', 'association' => '#99cc33', 'trade union' => '#003366','not set' => '#ccc');
+					$color_type = array('cooperative' => '#99eeee', 'cooperative federation' => '#339999', 'association' => '#99cc33', 'trade union' => '#003366','not known' => '#ccc');
 					foreach ($organization_type_count as $key => $value) {
 					$percent_org_type = round($value/$count_orgs*100,1); ?>
 					<div class="row">
@@ -326,7 +326,7 @@ $meta_query = array(
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
 						foreach ($year_formed_count as $key => $value) {
-							echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+							echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 						?>
 					</div>
@@ -355,7 +355,7 @@ $meta_query = array(
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
 						foreach ($year_registered_count as $key => $value) {
-							echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+							echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 						?>
 					</div>
@@ -384,7 +384,7 @@ $meta_query = array(
 					<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 						<?php
 						foreach ($material_type_count as $key => $value) {
-							echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+							echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 				?>
 					</div>
@@ -415,7 +415,7 @@ $meta_query = array(
 							<div class="col-md-6 col-sm-6 col-xs-6 text-right">
 								<?php
 								foreach ($activities_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
@@ -446,7 +446,7 @@ $meta_query = array(
 							<div class="col-md-5  col-sm-5 col-xs-5 text-right">
 								<?php
 								foreach ($workplace_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>Not Known</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
@@ -475,7 +475,7 @@ $meta_query = array(
 							<div class="col-md-9 col-sm-9 col-xs-9 text-right">
 								<?php
 								foreach ($municipality_what_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
@@ -506,7 +506,7 @@ $meta_query = array(
 							<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 								<?php
 								foreach ($language_count as $key => $value) {
-									echo $key=='' ? '<p>Not set</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>

@@ -395,14 +395,6 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 //--------------------------------------------------------------------------------//
 
-if ( function_exists('register_sidebar') )
-	register_sidebar(array(
-		'before_widget' => '<li id="%1$s" class="widget %2$s">',
-		'after_widget' => '</li>',
-		'before_title' => '',
-		'after_title' => '',
-	));
-
 /* Translation: To make categories id work via http://wpml.org/es/documentation-2/soporte/crear-temas-multilingues-en-wordpress/numeros-id-dependientes-del-idioma/*/
 /*Si está escribiendo un Tema que necesita ser utilizado con WPML, pero también desea que se ejecute adecuadamente sin WPML, debería realizar esas llamadas por medio de la función function_exists(). Por ejemplo: puede crear esta función en su archivo functions.php:*/
 

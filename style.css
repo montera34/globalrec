@@ -356,3 +356,8 @@ nav li.menu-item-has-children {
 .waste-picker-org dl dd{
 	margin-bottom:5px;
 }
+
+/* Single aticle design */
+.news-reference {
+	margin: 0px 0px 1em;
+}

@@ -1988,3 +1988,10 @@ function translated_post_table ($title,$array) {
 	}
 	return $result;
 }
+
+// Remove WPML Widget from Wordpress dashboard
+function wpml_remove_dashboard_widget() {
+    remove_meta_box( 'icl_dashboard_widget', 'dashboard', 'side' );
+}
+add_action('wp_dashboard_setup', 'wpml_remove_dashboard_widget' );
+

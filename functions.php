@@ -1970,11 +1970,11 @@ function translated_post_table ($title,$array) {
 		$id_es = icl_object_id($value->ID, 'post', false, 'es');
 		$id_pt= icl_object_id($value->ID, 'post', false, 'pt-br');
 		$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
-		//gest summaries of articles in each lenguage
+		//gets summaries of articles in each lenguage
 		$summary_en = get_post_meta( $id_en , '_gr_post-summary', true );
 		$summary_es = get_post_meta( $id_es , '_gr_post-summary', true );
 		$summary_pt = get_post_meta( $id_pt , '_gr_post-summary', true );
-		$summary_fr = get_post_meta( $id_br , '_gr_post-summary', true );
+		$summary_fr = get_post_meta( $id_fr , '_gr_post-summary', true );
 			if (!empty($summary_en) || !empty($summary_es) || !empty($summary_pt) || !empty($summary_br)) { //checks if the summary of the article in each language is not empty
 				$tick = ' <span class="glyphicon glyphicon-ok"></span>';
 			}

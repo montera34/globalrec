@@ -14,7 +14,7 @@ get_header(); ?>
 		<?php
 			$args = array(
 				//'author' => '4',
-				'post_status' => array( 'publish', 'future' ),
+				'post_status' => array( 'publish', 'future','draft' ),
 				'post_type' => array( 'post', 'newsletter' ),
 				'posts_per_page' => 100,
 				'ignore_sticky_posts' => 1,

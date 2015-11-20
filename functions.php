@@ -111,6 +111,15 @@ register_post_type( 'waste-picker-org', array( // Defining Waste Picker Group cu
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'organization','with_front'=>false),
 	'menu_icon' => 'dashicons-groups',
+	'capabilities' => array(
+				'publish_posts' => 'publish_wporgs',
+				'edit_posts' => 'edit_wporgs',
+				'edit_others_posts' => 'edit_others_wporgs',
+				'read_private_posts' => 'read_private_wporgs',
+				'edit_post' => 'edit_wporgs',
+				'delete_post' => 'delete_wporgs',
+				'read_post' => 'read_wporgs',
+			),
 	)
 );
 
@@ -1995,3 +2004,14 @@ function wpml_remove_dashboard_widget() {
 }
 add_action('wp_dashboard_setup', 'wpml_remove_dashboard_widget' );
 
+//Add role for editors of WAW database. They are able to edit their own Waste Picker organizations and submit articles for review.
+$result = add_role(
+    'globalrec_collab',
+    __( 'GlobalRec Collab' ),
+    array(
+        'read'         => true,  // true allows this capability
+        'edit_posts'   => true,
+        'delete_posts' => false, // Use false to explicitly deny
+				'edit_wporgs' => true,
+    )
+);

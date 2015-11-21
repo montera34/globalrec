@@ -1,5 +1,40 @@
-<?php  /* Template Name: Waste Picker Groups Candidates List */
+<?php  /* Template Name: Waste Picker Groups List */
 get_header();
+
+// Grabs continent from url to filter the list of organization displayed by continent
+$continent = '';
+
+if ( !empty($_GET['continent'])) {
+	$continent = sanitize_text_field( $_GET['continent'] );
+}
+
+// Countries in contintents are defined in functions.php
+
+//$continent = sanitize_text_field( $_GET['continent'] );
+if ($continent == '' ) {
+	$active_continent = $all;
+} else if ( $continent == 'asia') {
+	$active_continent = $asia;
+} else if ( $continent == 'latinamerica') {
+	$active_continent = $latinamerica;
+} else if ( $continent == 'africa') {
+	$active_continent = $africa;
+} else if ( $continent == 'northamerica') {
+	$active_continent = $northamerica;
+} else if ( $continent == 'europe') {
+	$active_continent = $europe;
+} else if ( $continent == 'all') {
+	$active_continent = $all;
+}
+
+$meta_query = array(
+	array(
+		'key'     => 'country',
+		'value'   => $active_continent,
+		'compare' => 'IN',
+	)
+);
+
 ?>
 <div id="page-wpg">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -35,10 +70,24 @@ get_header();
 			$args = array(
 				'post_type' => 'waste-picker-org',
 				'posts_per_page' => -1,
-				'post_status' => array( 'pending', 'draft' ),
-				'orderby' => 'title',
+				'orderby' => 'modified',
 				'order' => 'ASC',
 				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
+				'tax_query' => array(
+					'relation' => 'AND',
+					array(
+						'taxonomy' => 'wpg-member-occupation',
+						'field'    => 'slug',
+						'terms'    => 'waste-pickers',
+					),
+					array(
+						'taxonomy' => 'wpg-member-type',
+						'field'    => 'slug',
+						'terms'    => array('members-are-waste-pickers', 'members-are-waste-picker-organizations'),
+						'operator' => 'IN',
+					),
+				),
+				'meta_query' => $meta_query,
 			);
 			$my_query = new WP_Query($args);
 			?>
@@ -46,16 +95,11 @@ get_header();
 	<thead>
 		<tr>
 			<th>#</th>
+			<th><?php _e('Last modified','globalrec'); ?></th>
 			<th><?php _e('Name','globalrec'); ?></th>
-			<th><?php _e('Scope','globalrec'); ?></th>
-			<th><?php _e('Type of Organization','globalrec'); ?></th>
-			<th><?php _e('Type of Member','globalrec'); ?></th>
-			<th><?php _e('Number of members','globalrec');
-						echo "<br>(";
-						_e('Number of groups','globalrec');
-						echo ")"; ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
+			<th>Member occupation</th>
 		</tr>
 	</thead>
     <tbody>
@@ -73,30 +117,12 @@ get_header();
 					<?php echo "<small>". $i ."</small>";
 						$i++; ?>
 				</td>
+				<td class="text-right">
+					<?php the_modified_date(); ?> at <?php the_modified_date('g:i a'); ?>
+				</td>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
 					<strong><?php the_title(); ?></strong></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
-				</td>
-				<td>
-					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>
-				</td>
-				<td>
-					<?php
-					$org_type = get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' );
-					echo $org_type == 'ngo' ? 'NGO' : $org_type;
-					?>
-				</td>
-				<td>
-					<?php echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' ); ?>
-				</td>
-				<td class="text-right">
-					<?php
-					//echo list_of_items($post_id,'_wpg_members_occupation','');
-					$number_wp = get_post_meta( $post_id, '_wpg_number_individuals', true );
-					$number_wpg = get_post_meta( $post_id, '_wpg_number_groups', true );
-					echo $number_wp !='' ?  number_format($number_wp) : '';
-					echo $number_wpg !='' ? ' ('.number_format($number_wpg).')' : '';
-					?>
 				</td>
 				<td><?php 
 						//City
@@ -108,15 +134,6 @@ get_header();
 						$city_name = $city->post_title;
 						
 						if (!empty($city2)) {
-							/*if ($city_name == 'Not specified' ) {
-								echo $city2. ", ";
-							} else {
-								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
-							}
-						} else {
-							echo $city2;
-							if (!empty($city2)) { echo ", ";};
-						}*/
 								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
 							}
 						
@@ -145,6 +162,9 @@ get_header();
 						if (!empty($yearregistred)) {
 							echo " (".$yearregistred.")";
 						} ?>
+				</td>
+				<td>
+				 <?php echo get_the_term_list( $post_id, 'wpg-member-occupation', ' ', ', ', '' ); ?>
 				</td>
 			</tr>
 		</div>

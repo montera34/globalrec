@@ -71,7 +71,7 @@ $meta_query = array(
 				'post_type' => 'waste-picker-org',
 				'posts_per_page' => -1,
 				'orderby' => 'modified',
-				'order' => 'ASC',
+				'order' => 'DESC',
 				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
 				'tax_query' => array(
 					'relation' => 'AND',
@@ -99,7 +99,6 @@ $meta_query = array(
 			<th><?php _e('Name','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
-			<th>Member occupation</th>
 		</tr>
 	</thead>
     <tbody>
@@ -118,10 +117,10 @@ $meta_query = array(
 						$i++; ?>
 				</td>
 				<td class="text-right">
-					<?php the_modified_date(); ?> at <?php the_modified_date('g:i a'); ?>
+					<?php the_modified_date(); ?> at <?php the_modified_date('g:i a'); ?> by <?php the_modified_author(); ?>
 				</td>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
-					<strong><?php the_title(); ?></strong></a> 
+					<strong><?php the_title(); ?></strong></a>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
 				<td><?php 
@@ -162,9 +161,6 @@ $meta_query = array(
 						if (!empty($yearregistred)) {
 							echo " (".$yearregistred.")";
 						} ?>
-				</td>
-				<td>
-				 <?php echo get_the_term_list( $post_id, 'wpg-member-occupation', ' ', ', ', '' ); ?>
 				</td>
 			</tr>
 		</div>

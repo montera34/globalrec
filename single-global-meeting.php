@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div <?php post_class("col-md-8") ?> id="post-<?php the_ID(); ?>">
+		<div <?php post_class("col-md-8 content") ?> id="post-<?php the_ID(); ?>">
 			<ul class="breadcrumb">
 			  <li><a href="<?php echo get_permalink(icl_object_id(2721,'page')) ?>"><?php _e('Global Meetings','globalrec'); ?></a></li>
 			  <li><?php the_title(); ?> </li>
@@ -46,10 +46,10 @@
 		<div class="col-md-12"> 
 		<?php include("share.php")?>
 		<div >
-			<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?>  &nbsp;&nbsp;| <?php the_tags( ); ?> 
+			<?php if(function_exists('pf_show_link')){echo pf_show_link();} ?> <?php //the_tags( ); ?> 
 		</div>
 
-		<?php comments_template(); // Get wp-comments.php template ?>
+		<?php //comments_template(); // Get wp-comments.php template TODO: avoid templates from the related posts ?>
 
 		</div>
 		<?php endwhile; else: ?>
@@ -60,4 +60,4 @@
 		
 	
 	<?php get_footer(); ?>
-</div><!-- #container -->row
+</div><!-- #container -->

@@ -37,6 +37,7 @@ get_header();
 				'posts_per_page' => -1,
 				'post_status' => array( 'pending', 'draft' ),
 				'orderby' => 'title',
+				'orderby' => 'modified',
 				'order' => 'ASC',
 				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
 			);
@@ -48,14 +49,9 @@ get_header();
 			<th>#</th>
 			<th><?php _e('Name','globalrec'); ?></th>
 			<th><?php _e('Scope','globalrec'); ?></th>
-			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
-			<th><?php _e('Number of members','globalrec');
-						echo "<br>(";
-						_e('Number of groups','globalrec');
-						echo ")"; ?></th>
+			<th><?php _e('Submitted','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
-			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
 		</tr>
 	</thead>
     <tbody>
@@ -81,22 +77,11 @@ get_header();
 					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>
 				</td>
 				<td>
-					<?php
-					$org_type = get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' );
-					echo $org_type == 'ngo' ? 'NGO' : $org_type;
-					?>
-				</td>
-				<td>
 					<?php echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' ); ?>
 				</td>
-				<td class="text-right">
-					<?php
-					//echo list_of_items($post_id,'_wpg_members_occupation','');
-					$number_wp = get_post_meta( $post_id, '_wpg_number_individuals', true );
-					$number_wpg = get_post_meta( $post_id, '_wpg_number_groups', true );
-					echo $number_wp !='' ?  number_format($number_wp) : '';
-					echo $number_wpg !='' ? ' ('.number_format($number_wpg).')' : '';
-					?>
+					<td class="text-right">
+					<?php the_modified_date(); ?>
+				</td>
 				</td>
 				<td><?php 
 						//City

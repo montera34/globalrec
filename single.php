@@ -25,7 +25,7 @@ $output2 = ''; ?>
 			<?php
 				if($categories){
 					foreach($categories as $category) {
-						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right" style="margin-right:5px">'.str_replace('@'.ICL_LANGUAGE_CODE, '', $category->cat_name).' </a> '.$separator;
+						$output .= '<a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" class="label pull-right" style="margin-right:5px">'.$category->cat_name.' </a> '.$separator;
 					}
 				echo trim($output, $separator);
 				}
@@ -158,7 +158,9 @@ $output2 = ''; ?>
 				$article_published_in = get_post_meta( $post_id, '_gr_published-in', true ); ?>
 				<div class='row news-reference'>
 					<div class='col-md-1 text-right'>
-						<span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+						<?php if (is_single() && $article_url != '') { 
+							echo '<span class="glyphicon glyphicon-link" aria-hidden="true"></span>';
+						} ?>
 					</div>
 					<div class='col-md-11'>
 					<?php if ($article_url != '') { //if url of reference article is not empty
@@ -187,7 +189,7 @@ $output2 = ''; ?>
 						foreach($categories as $category) {
 							$output2 .= '<a href="'.get_category_link( $category->term_id ).'" title="' 
 							. esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) 
-							. '" class="label">'.str_replace('@'.ICL_LANGUAGE_CODE, '', $category->cat_name).'</a>'.$separator;
+							. '" class="label">'.$category->cat_name.'</a>'.$separator;
 						}
 					echo trim($output2, $separator);
 					} 

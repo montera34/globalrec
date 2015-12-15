@@ -98,7 +98,7 @@ $post_id = $post->ID;
 			<?php
 				if($categories){
 					foreach($categories as $category) {
-						$output .= '<a href="'.get_category_link( $category->term_id ).'"title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" ><span class="label">'.str_replace('@'.ICL_LANGUAGE_CODE, '', $category->cat_name).'</span></a>'.$separator; //removed the ".$separator"
+						$output .= '<a href="'.get_category_link( $category->term_id ).'"title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '" ><span class="label">'.$category->cat_name.'</span></a>'.$separator; //removed the ".$separator"
 					}
 				echo trim($output, $separator);
 				}	

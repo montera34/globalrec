@@ -172,7 +172,7 @@ $output2 = ''; ?>
 						echo "<br>". __('Written by','globalrec') ." ". $written_by. ". ";
 					}
 					if ($article_published_in != '') {
-						echo $article_published_in. ". ";
+						echo " " .$article_published_in. ". ";
 					}
 					echo get_post_meta( $post_id, '_gr_article-date', true ); ?>
 					</div>

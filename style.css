@@ -364,15 +364,25 @@ nav li.menu-item-has-children {
 
 /* dashicons */
 .groups-dashicon:before {
-    font-family: "dashicons";
-    content: "\f307";
+	font-family: "dashicons";
+	content: "\f307";
 }
 .book-dashicon:before {
-    font-family: "dashicons";
-    content: "\f331";
+	font-family: "dashicons";
+	content: "\f331";
 }
 .document-dashicon:before {
-    font-family: "dashicons";
-    content: "\f123";
+	font-family: "dashicons";
+	content: "\f123";
 }
-
+/* Pullquotes styling */
+.simplePullQuote {
+	width: 280px !important;
+	float: right !important;
+	text-indent: 0px !important;
+	padding: 13px !important;
+	border-top: 3px #fe7c11 solid !important;
+	border-bottom:0px !important;
+	box-shadow: 7px 7px 8px 0px rgba(129,129,129,0.5) !important;
+	font-size: 130% !important;
+}

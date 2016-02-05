@@ -89,7 +89,7 @@ $output2 = ''; ?>
 								echo $region;
 								echo "</h4>";
 							endif;
-							if ( isset($country_name) && is_user_logged_in() )  : //TODO remove is_user_logged_in when country pages are public
+							if ( isset($country_name) ) :
 								echo "<h4><small>";
 								echo _e('Country','globalrec')."</small> ";
 								echo "<a href='/country/".$country_slug."'>".$country_name."</a>";
@@ -168,7 +168,7 @@ $output2 = ''; ?>
 					} else {
 							echo $article_title;
 					}
-					if ($written_by != '') {
+					if (($written_by != '') && ($article_title != '')){
 						echo "<br>". __('Written by','globalrec') ." ". $written_by. ". ";
 					}
 					if ($article_published_in != '') {

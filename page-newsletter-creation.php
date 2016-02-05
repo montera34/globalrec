@@ -188,7 +188,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 	
 	<div class="row">
 		<div class="col-md-8 content">
-			<strong id="short">Asia</strong><br>
+			<strong id="short"><?php _e('Asia','globalrec'); ?></strong><br>
 			<ol>
 			<?php
 				foreach ($my_query_asia_posts as $key => $value ) {
@@ -196,7 +196,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				}
 			?>
 			</ol>
-			<strong>Latin America</strong><br>
+			<strong><?php _e('Latin America','globalrec'); ?></strong><br>
 			<ol>
 			<?php
 				foreach ($my_query_latinamerica_posts as $key => $value ) {
@@ -204,7 +204,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				}
 			?>
 			</ol>
-			<strong>Africa</strong><br>
+			<strong><?php _e('Africa','globalrec'); ?></strong><br>
 			<ol>
 			<?php
 				foreach ($my_query_africa_posts as $key => $value ) {
@@ -212,7 +212,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				}
 			?>
 			</ol>
-			<strong>Europe</strong><br>
+			<strong><?php _e('Europe','globalrec'); ?></strong><br>
 			<ol>
 			<?php
 				foreach ($my_query_europe_posts as $key => $value ) {
@@ -220,7 +220,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				}
 			?>
 			</ol>
-			<strong>North America</strong><br>
+			<strong><?php _e('North America','globalrec'); ?></strong><br>
 			<ol>
 			<?php
 				foreach ($my_query_northamerica_posts as $key => $value ) {

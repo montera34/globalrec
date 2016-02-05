@@ -361,3 +361,18 @@ nav li.menu-item-has-children {
 .news-reference {
 	margin: 0px 0px 1em;
 }
+
+/* dashicons */
+.groups-dashicon:before {
+    font-family: "dashicons";
+    content: "\f307";
+}
+.book-dashicon:before {
+    font-family: "dashicons";
+    content: "\f331";
+}
+.document-dashicon:before {
+    font-family: "dashicons";
+    content: "\f123";
+}
+

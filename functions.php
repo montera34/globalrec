@@ -2015,3 +2015,9 @@ $result = add_role(
 				'edit_wporgs' => true,
     )
 );
+
+//Adding dashicons to frontend
+add_action( 'wp_enqueue_scripts', 'themename_scripts' );
+function themename_scripts() {
+    wp_enqueue_style( 'themename-style', get_stylesheet_uri(), array( 'dashicons' ), '1.0' );
+}

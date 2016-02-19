@@ -11,7 +11,6 @@
 </div>
 <?php wp_footer(); ?>
 
-
 <!-- Place this render call where appropriate -->
 <script type="text/javascript">
   (function() {
@@ -24,5 +23,9 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
+<?php
+//Include stats javascript if user is not loged in
+is_user_logged_in() ? "": include_once("stats.php");
+?>
 </body>
 </html>

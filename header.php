@@ -64,7 +64,7 @@ if ( is_single() || is_page() ) {
 <meta property="twitter:account_id" content="121067923" />
 	
 <!-- Bootstrap -->
-<link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<?php bloginfo('template_url'); ?>/css/bootstrap.css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- /Bootstrap -->
 

@@ -104,7 +104,8 @@ $post_id = $post->ID;
 						'post_type' => 'city',
 						'meta_key' => '_city_countryselect',
 						'meta_value' => $post_id,
-						'posts_per_page'   => -1
+						'posts_per_page'   => -1,
+						'order' => 'ASC'
 				));
 				if ($city_reports) {?>
 					<h3><?php _e('City reports','globalrec'); ?></h3>

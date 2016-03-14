@@ -185,16 +185,17 @@ $meta_query = array(
 						//orgs without country selected
 						$country2 =get_post_meta( $post_id, 'country', true );
 						$country2_slug = strtolower (str_replace(" ","-",$country2));
-						if (!empty($country)	) { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
+						if ( !empty($country) ) { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
 							if (empty($country_id)) {//if no country selected from list
 								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
+								echo is_user_logged_in() ? " <span class='label label-danger'>select country</span>" : "";
 							} else if ($country_name == "-" || $country_name == "Not specified") {//if not specified country from list
 								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
+								echo is_user_logged_in() ? " <span class='label label-danger'>select country</span>" : "";
 							} else {//country selected
 								echo '<a href="/country/'.$country_link.'">'.$country_name.'</a>';
 							}
 						} else {
-						//echo get_post_meta( $post_id, 'country', true );
 						} ?>
 				</td>
 				<td>

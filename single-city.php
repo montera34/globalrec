@@ -1,5 +1,7 @@
-<?php get_header(); 
-$post_id = $post->ID;?>
+<?php get_header();
+$post_id = $post->ID; //gest ID of current city
+$city_name = get_the_title();
+?>
 
 <div class="container">
 	<div class="row">
@@ -9,12 +11,25 @@ $post_id = $post->ID;?>
 				<div class="col-md-10">
 					<ul class="breadcrumb">
 						<li><a href="<?php echo get_permalink(icl_object_id(11177,'page')) ?>"><?php _e('Cities','globalrec'); ?></a></li>
-						<li><?php the_title(); ?></li>
+						<li><?php echo $city_name; ?></li>
 					</ul>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-1">
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default pull-right"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</div>
+			</div>
+		</div>
+		<div class="row">
+				<div class="col-md-10">
+					<h1><?php echo $city_name; ?>
+					<?php //Country
+					$country_id = get_post_meta( $post_id, '_city_countryselect', true );
+					$country = get_post($country_id);
+					$country_link = get_permalink($country->ID);
+					$country_name = $country->post_title;
+					echo '<small><a href="'.$country_link.'">'.$country_name.'</a></small>';
+					?>
+				</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -30,28 +45,45 @@ $post_id = $post->ID;?>
 						</div>
 					</div>
 				<?php } ?>
-				<h3>List of Waste Picker Groups in the City</h3>
+				<h3 class="groups-dashicon">List of Waste Picker Groups in <?php echo $city_name; ?></h3>
 				<?php 
-					//List of Waste Picker Groups that belong to the City
-					$waste_picker_groups = get_posts( array(
-						'post_type' => 'waste-picker-group',
-						'meta_key' => '_wpg_cityselect', //city2 because city is used as open field
-						'meta_value' => $post->ID
-				));
-				foreach($waste_picker_groups as $waste_picker_group) {
-					echo '<a href="'.get_permalink($waste_picker_group->ID).'">'.$waste_picker_group->post_title.'</a><br>' ;
-				}?>
+				//List of Waste Picker Groups that belong to the City
+				$args = array(
+						'post_type' => 'waste-picker-org',
+						'meta_key' => '_wpg_cityselect',
+						'meta_value' => $post_id,
+						'posts_per_page' => -1,
+						'order' => 'ASC',
+						'orderby' => 'title',
+						'tax_query' => array(
+							'relation' => 'AND',
+							array(
+								'taxonomy' => 'wpg-member-occupation',
+								'field'    => 'slug',
+								'terms'    => 'waste-pickers',
+							),
+							array(
+								'taxonomy' => 'wpg-member-type',
+								'field'    => 'slug',
+								'terms'    => array('members-are-waste-pickers', 'members-are-waste-picker-organizations'),
+								'operator' => 'IN',
+							),
+						),
+					);
+				$waste_picker_groups = get_posts( $args );
+				$result = count($waste_picker_groups); ?>
+				<table class="table table-condensed table-hover ">
+					<thead><tr><th>Waste Picker Groups (<?php echo $result; ?>)</th></tr></thead>
+					<tbody>
+						<?php
+						foreach($waste_picker_groups as $waste_picker_group) {
+						echo '<tr><td><a href="'.get_permalink($waste_picker_group->ID).'">'.$waste_picker_group->post_title.'</a></td></tr>' ;
+						}
+						?>
+					</tbody>
+				</table>
 			</div>
 			<div class="col-md-7">
-			<h1><?php the_title(); ?>
-			<?php //Country
-				$country_id = get_post_meta( $post_id, '_city_countryselect', true );
-				$country = get_post($country_id);
-				$country_link = get_permalink($country->ID);
-				$country_name = $country->post_title;
-				echo '<small><a href="'.$country_link.'">'.$country_name.'</a></small>';
-				?>
-			</h1>
 				<?php
 					$content = get_the_content(); 
 				 	if ($content !='') {?>

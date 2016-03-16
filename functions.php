@@ -1368,9 +1368,11 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 	);
 	wp_reset_query();
 	//Custom field to select a Country for a Waste Picker Group
-	$posts = query_posts( array(
+	$posts = query_posts( array( //TODO the dropdown list in dashboard when selecting a country: items are cuadruplicated (the four languages)
 		'posts_per_page' => -1,
-		'post_type' => 'country'
+		'post_type' => 'country',
+		'orderby' => 'title',
+		'order' => 'ASC',
 		));
 	foreach ($posts as $post) {
 		$countries[] = array(
@@ -1906,10 +1908,33 @@ function edit_meta_box(){
    // add_meta_box('postimagediv', __('Featured Image'), 'post_thumbnail_meta_box', 'waste-picker-org', 'normal', 'high');
 }
 
-//Creates array that counts number of taxonomy terms
+//Creates array that counts number of taxonomy terms for unique terms!
 function count_tax_array($the_array) {
 	foreach ($the_array as $key => $value) { //Flattens array
 		$the_array_clean[$key] = isset($value[0]->name) ? $value[0]->name : "not known"; //prevents from crashing when value is empty
+	}
+	$the_array_count = array_count_values($the_array_clean); //counts values of organizations with the same organization type
+	unset($the_array);
+	$the_array = $the_array_count;
+	arsort($the_array);
+	return $the_array;
+}
+
+//Creates array that counts number of taxonomy terms for multiple terms, like types of materials collected
+function count_multiterm_tax_array($the_array) {
+	$j = 0;
+	$the_array_clean = [];
+	foreach ($the_array as $key => $value) {
+		if ( empty($the_array[$key]) ) {//if the item is empty
+			//do nothing
+		} else { //the item is not empty
+			$number_items = count($the_array[$key]);
+			for ($i = 0; $i < $number_items; $i++) {
+				$number_items = count($the_array[$key]);
+				$the_array_clean[$j] = $the_array[$key][$i]->name;
+				$j = $j + 1;
+			}
+		}
 	}
 	$the_array_count = array_count_values($the_array_clean); //counts values of organizations with the same organization type
 	unset($the_array);

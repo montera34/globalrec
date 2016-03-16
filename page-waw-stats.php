@@ -121,14 +121,14 @@ $meta_query = array(
 			
 			//Creates arrays which term as key and number of organizations as value
 			$organization_scope_count = count_tax_array($organization_scope);
-			$organization_type_count = count_tax_array($organization_type);
+			$organization_type_count = count_multiterm_tax_array($organization_type);
 			$member_type_count = count_tax_array($member_type);
-			$member_occupation_count = count_tax_array($member_occupation);
+			$member_occupation_count = count_multiterm_tax_array($member_occupation);
 			$material_type_count = count_multiterm_tax_array($material_type);
-			$activities_count = count_tax_array($activities);
-			$workplace_count = count_tax_array($workplace);
+			$activities_count = count_multiterm_tax_array($activities);
+			$workplace_count = count_multiterm_tax_array($workplace);
 			$municipality_what_count = count_tax_array($municipality_what);
-			$language_count = count_tax_array($language);
+			$language_count = count_multiterm_tax_array($language);
 			?>
 			<div class="row">
 				<div class="col-md-5	">
@@ -384,7 +384,7 @@ $meta_query = array(
 					<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 						<?php
 						foreach ($material_type_count as $key => $value) {
-							echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
+							echo '<p><a href="/wpg-material-type/'.strtolower( str_replace(" ","-",$key) ).'">'.ucfirst($key).'</a></p>';
 						}
 				?>
 					</div>
@@ -440,7 +440,7 @@ $meta_query = array(
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<h3 id="workplace"><?php _e('Workplace of Members','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?></small></h3>
 						<div class="row">
 							<div class="col-md-5  col-sm-5 col-xs-5 text-right">
@@ -453,7 +453,7 @@ $meta_query = array(
 							<div class="col-md-7 col-sm-7 col-xs-7">
 								<?php
 								$max_workplace = 0;
-								foreach ($activities_count as $key => $value) {
+								foreach ($workplace_count as $key => $value) {
 									$max_workplace = max( array( $max_workplace, $value) ); //calculates max value
 								}
 								foreach ($workplace_count as $key => $value) {
@@ -469,7 +469,7 @@ $meta_query = array(
 						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<h3 id="what-municipal"><?php _e('What kind of relationship exists with the municipality?','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?></small></h3>
 						<div class="row">
 							<div class="col-md-9 col-sm-9 col-xs-9 text-right">
@@ -482,7 +482,7 @@ $meta_query = array(
 							<div class="col-md-3 col-sm-3 col-xs-3">
 								<?php
 								$max_municipality_what = 0;
-								foreach ($activities_count as $key => $value) {
+								foreach ($municipality_what_count as $key => $value) {
 									$max_municipality_what = max( array( $max_municipality_what, $value) ); //calculates max value
 								}
 								foreach ($municipality_what_count as $key => $value) {

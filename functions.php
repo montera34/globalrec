@@ -750,6 +750,13 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 				'protocols' => array( 'http', 'https')
 			),
 			array(
+				'name' => 'Feed/RSS of the organization',
+				'desc' => 'ex: http://globalrec.org/feed',
+				'id' => $prefixwpg . 'rss',
+				'type' => 'text_url',
+				'protocols' => array( 'http', 'https')
+			),
+			array(
 				'name' => 'Physical Address',
 				'desc' => 'ex: ',
 				'id' => $prefixwpg . 'physical_address',

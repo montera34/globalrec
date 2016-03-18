@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="container">
+<div class="">
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class("col-md-8 content") ?> id="post-<?php the_ID(); ?>">

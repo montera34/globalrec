@@ -122,12 +122,12 @@ $meta_query = array(
 			//Creates arrays which term as key and number of organizations as value
 			$organization_scope_count = count_tax_array($organization_scope);
 			$organization_type_count = count_multiterm_tax_array($organization_type);
-			$member_type_count = count_tax_array($member_type);
+			$member_type_count = count_multiterm_tax_array($member_type);
 			$member_occupation_count = count_multiterm_tax_array($member_occupation);
 			$material_type_count = count_multiterm_tax_array($material_type);
 			$activities_count = count_multiterm_tax_array($activities);
 			$workplace_count = count_multiterm_tax_array($workplace);
-			$municipality_what_count = count_tax_array($municipality_what);
+			$municipality_what_count = count_multiterm_tax_array($municipality_what);
 			$language_count = count_multiterm_tax_array($language);
 			?>
 			<div class="row">

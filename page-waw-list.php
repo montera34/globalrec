@@ -96,6 +96,7 @@ $meta_query = array(
 		<tr>
 			<th>#</th>
 			<th><?php _e('Name','globalrec'); ?></th>
+			<th><?php _e('Web','globalrec'); ?></th>
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
@@ -126,6 +127,18 @@ $meta_query = array(
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
 					<strong><?php the_title(); ?></strong></a> 
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
+				</td>
+				<td>
+					<?php
+						$website = get_post_meta( $post_id, '_wpg_website', true );
+						$remove_this = array("http://","https://","www.","/");
+						$mainurl_stripped = str_replace($remove_this, "", $website);
+						$max_length = 20;
+						if ( strlen($mainurl_stripped) > $max_length ) {
+							$mainurl_stripped = substr($mainurl_stripped,0,$max_length).'...';
+						}
+				 		echo ($website != '') ? "<a href='" .$website. "'>" .$mainurl_stripped. "</a>" : '';
+				 	?>
 				</td>
 				<td>
 					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>
@@ -159,12 +172,13 @@ $meta_query = array(
 						//City
 						$city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$city = get_post($city_id);
+						$city_name = $city->post_title;
+						$city_link = get_permalink($city->ID);
+						//orgs without city selected
 						$city2 = get_post_meta( $post_id, 'city', true );
 						$city2_slug = strtolower (str_replace(" ","-",$city2));
-						$city_link = get_permalink($city->ID);
-						$city_name = $city->post_title;
 						
-						if (!empty($city2)) {
+						if ( !empty($city) ) {
 							/*if ($city_name == 'Not specified' ) {
 								echo $city2. ", ";
 							} else {
@@ -174,9 +188,12 @@ $meta_query = array(
 							echo $city2;
 							if (!empty($city2)) { echo ", ";};
 						}*/
-								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
+							if ($city_name == "-" || $city_name == "Not specified") {
+								echo is_user_logged_in() ? "<span class='label label-danger'>!</span> " : "";
 							}
-						
+							echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
+						}
+
 						//Country
 						$country_id = get_post_meta( $post_id, '_wpg_countryselect', true );
 						$country = get_post($country_id);
@@ -186,7 +203,7 @@ $meta_query = array(
 						$country2 =get_post_meta( $post_id, 'country', true );
 						$country2_slug = strtolower (str_replace(" ","-",$country2));
 						if ( !empty($country) ) { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
-							if (empty($country_id)) {//if no country selected from list
+							if ( empty($country_id) ) {//if no country selected from list
 								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
 								echo is_user_logged_in() ? " <span class='label label-danger'>select country</span>" : "";
 							} else if ($country_name == "-" || $country_name == "Not specified") {//if not specified country from list

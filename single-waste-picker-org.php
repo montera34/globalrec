@@ -4,7 +4,7 @@ $website = get_post_meta( $post_id, '_wpg_website', true );
 $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 ?>
 
-<div class="container">
+<div class="">
 																																																																																																																																																																																																																																																																																																																			<?php get_template_part( 'nav', 'waw' ); ?>
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -64,13 +64,11 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						<?php
 							$remove_this = array("http://","https://","www.");
 							$mainurl_stripped = str_replace($remove_this, "", $website);
-							$max_length = 30;
+							$max_length = 40;
 							if ( strlen($mainurl_stripped) > $max_length ) {
 								$mainurl_stripped = substr($mainurl_stripped,0,$max_length).'...';
 							}
 					 		echo ($website != '') ? "<a href='" .$website. "'>Website: " .$mainurl_stripped. " <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
-					<div class="row">
-						<div class="col-md-12">
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
 							<dl class="dl-horizontal">
 								<?php //Primary information
@@ -108,10 +106,6 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								}
 								?>
 							</dl>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
 							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
 							<dl>
 								<?php //Benefits
@@ -134,7 +128,6 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								?>
 							</dl>
 						</div>
-					</div>
 				</div>
 				<div class="row">
 					<hr>
@@ -191,28 +184,27 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 									echo '.</a>';
 								} ?>
 							</div>
-						</div>
+						</div> <!-- close panel -->
 					</div>
-				</div>
-			</div>
-		</div>
+				</div><!-- close col-md-9 complementary info -->
+			</div><!-- close col-md-9 left column -->
 		<!--right column -->
 		<div class="col-md-3">
-			<h3>
-					<?php _e('Last updates from','globalrec'); ?> <?php the_title_attribute(); ?>
+			<h3 class="document-dashicon">
+				<?php _e('Last updates from','globalrec'); ?> <?php the_title_attribute(); ?>
 			</h3>
 			<h4>
 				<?php _e('At','globalrec'); ?> GlobalRec.org
 			</h4>
-			<?php //includes the loop with the related post according to the custom field gm-tag
-				echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
+				<?php //includes the loop with the related post according to the custom field gm-tag
+					echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
+			<?php $web_feed = get_post_meta( $post_id, '_wpg_rss', true );
+			if ( !empty($web_feed) ) { //if a feed/rss is indicated	?>
 			<h4>
 				<?php _e('At','globalrec'); ?> <?php _e("organization's website","globalrec"); ?>
 			</h4>
 				<?php // Get RSS Feed(s). Code retrieved from http://codex.wordpress.org/Function_Reference/fetch_feed
 				include_once( ABSPATH . WPINC . '/feed.php' );
-				$web_feed = get_post_meta( $post_id, '_wpg_rss', true );
-				if ( !empty($web_feed) ) { //if a feed/rss is indicated	
 					// Get a SimplePie feed object from the specified feed source
 					$rss = fetch_feed( $web_feed );
 					$maxitems = 0;
@@ -223,22 +215,20 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$rss_items = $rss->get_items( 0, $maxitems );
 					endif;
 					?>
-					<ul>
+					<div class="list-group">
 						<?php if ( $maxitems == 0 ) : ?>
-							<li><?php _e( 'No items', 'my-text-domain' ); ?></li>
+							<?php _e( 'No items', 'globlarec' ); ?>
 						<?php else : ?>
 							<?php // Loop through each feed item and display each item as a hyperlink. ?>
 							<?php foreach ( $rss_items as $item ) : ?>
-							<li>
-								<a href="<?php echo esc_url( $item->get_permalink() ); ?>"
+								<a href="<?php echo esc_url( $item->get_permalink() ); ?>" class="list-group-item"
 								title="<?php printf( __( 'Posted %s', 'voragine.net' ), $item->get_date('j F Y | g:i a') ); ?>">
 								<?php echo esc_html( $item->get_title() ); ?>
 								</a>
-							</li>
 							<?php endforeach; ?>
 						<?php endif; ?>
-					</ul>
-					<?php } ?>
+					</div>
+			<?php } ?>
 		</div>
 	</div>
 	<div class="row">

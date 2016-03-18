@@ -61,7 +61,14 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						echo get_post_meta( $post_id, 'country', true );
 						} ?>
 					</h4>
-						<?php echo ($website != '') ? "<a href='".$website. "'>Website <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
+						<?php
+							$remove_this = array("http://","https://","www.");
+							$mainurl_stripped = str_replace($remove_this, "", $website);
+							$max_length = 30;
+							if ( strlen($mainurl_stripped) > $max_length ) {
+								$mainurl_stripped = substr($mainurl_stripped,0,$max_length).'...';
+							}
+					 		echo ($website != '') ? "<a href='" .$website. "'>Website: " .$mainurl_stripped. " <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
 					<div class="row">
 						<div class="col-md-12">
 							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
@@ -191,43 +198,47 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 		</div>
 		<!--right column -->
 		<div class="col-md-3">
+			<h3>
+					<?php _e('Last updates from','globalrec'); ?> <?php the_title_attribute(); ?>
+			</h3>
 			<h4>
-				<?php _e('News related to','globalrec'); ?> <?php the_title_attribute(); ?> <?php _e('in','globalrec'); ?> GlobalRec.org
+				<?php _e('At','globalrec'); ?> GlobalRec.org
 			</h4>
-			<?php if (get_post_meta($post_id, 'gm_tag', true)) { echo '<h4>Related posts</h4>';}
-				//includes the loop with the related post according to the custom field gm-tag
+			<?php //includes the loop with the related post according to the custom field gm-tag
 				echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
 			<h4>
-				<?php _e('News related to','globalrec'); ?> <?php the_title_attribute(); ?> <?php _e("organization's website","globalrec"); ?>
+				<?php _e('At','globalrec'); ?> <?php _e("organization's website","globalrec"); ?>
 			</h4>
 				<?php // Get RSS Feed(s). Code retrieved from http://codex.wordpress.org/Function_Reference/fetch_feed
 				include_once( ABSPATH . WPINC . '/feed.php' );
 				$web_feed = get_post_meta( $post_id, '_wpg_rss', true );
-				// Get a SimplePie feed object from the specified feed source
-				$rss = fetch_feed( $web_feed );
-				$maxitems = 0;
-				if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
-					// Figure out how many total items there are, but limit it to 5.
-					$maxitems = $rss->get_item_quantity( 5 );
-					// Build an array of all the items, starting with element 0 (first element).
-					$rss_items = $rss->get_items( 0, $maxitems );
-				endif;
-				?>
-				<ul>
-					<?php if ( $maxitems == 0 ) : ?>
-						<li><?php _e( 'No items', 'my-text-domain' ); ?></li>
-					<?php else : ?>
-						<?php // Loop through each feed item and display each item as a hyperlink. ?>
-						<?php foreach ( $rss_items as $item ) : ?>
-						<li>
-							<a href="<?php echo esc_url( $item->get_permalink() ); ?>"
-							title="<?php printf( __( 'Posted %s', 'voragine.net' ), $item->get_date('j F Y | g:i a') ); ?>">
-							<?php echo esc_html( $item->get_title() ); ?>
-							</a>
-						</li>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</ul>
+				if ( !empty($web_feed) ) { //if a feed/rss is indicated	
+					// Get a SimplePie feed object from the specified feed source
+					$rss = fetch_feed( $web_feed );
+					$maxitems = 0;
+					if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
+						// Figure out how many total items there are, but limit it to 5.
+						$maxitems = $rss->get_item_quantity( 5 );
+						// Build an array of all the items, starting with element 0 (first element).
+						$rss_items = $rss->get_items( 0, $maxitems );
+					endif;
+					?>
+					<ul>
+						<?php if ( $maxitems == 0 ) : ?>
+							<li><?php _e( 'No items', 'my-text-domain' ); ?></li>
+						<?php else : ?>
+							<?php // Loop through each feed item and display each item as a hyperlink. ?>
+							<?php foreach ( $rss_items as $item ) : ?>
+							<li>
+								<a href="<?php echo esc_url( $item->get_permalink() ); ?>"
+								title="<?php printf( __( 'Posted %s', 'voragine.net' ), $item->get_date('j F Y | g:i a') ); ?>">
+								<?php echo esc_html( $item->get_title() ); ?>
+								</a>
+							</li>
+							<?php endforeach; ?>
+						<?php endif; ?>
+					</ul>
+					<?php } ?>
 		</div>
 	</div>
 	<div class="row">

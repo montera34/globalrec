@@ -20,18 +20,27 @@ if ( $postType == 'country' ) {
 } else if ( $postType == 'global-meeting' ) {
 	$postTypeTitle = __('Global Meeting','globalrec');
 } else if ( $postType == 'waste-picker-org' ) {
-} else {
+}
+else {
 }
 
 //icons for custom post types
 if ( $postType == 'country' ) {
+	$postTypeIcon = 'dashicons-media-default';
 } else if ( $postType == 'city' ) {
+	$postTypeIcon = 'dashicons-building';
 } else if ( $postType == 'law-report' ) {
 	$postTypeIcon = 'book-dashicon';
 } else if ( $postType == 'newsletter' ) {
+	$postTypeIcon = 'dashicons-media-document';
 } else if ( $postType == 'global-meeting' ) {
+	$postTypeIcon = 'dashicons-admin-site';
 } else if ( $postType == 'waste-picker-org' ) {
 	$postTypeIcon = 'groups-dashicon';
+} else if ( $postType == 'page' ) {
+	$postTypeIcon = 'dashicons-media-document';
+} else if ( $postType == 'post' ) {
+	$postTypeIcon = 'dashicons-format-aside';
 } else {
 }
 ?>
@@ -52,7 +61,8 @@ if ( $postType == 'country' ) {
 			//echo '<img width="150" src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.png" />';
 		endif; ?>
 	</a>
-	<h4 <?php echo !empty($postTypeIcon) ? 'class="'. $postTypeIcon. '	"' : ''; ?>>
+	<h4>
+		<span class="dashicons <?php echo !empty($postTypeIcon) ? $postTypeIcon : ''; ?>"></span>
 		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
 			<?php echo !empty($postTypeTitle) ? $postTypeTitle. ': ' : ''; ?>
 			<?php the_title(); ?>

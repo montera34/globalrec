@@ -13,7 +13,14 @@ get_header(); ?>
 				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 			</div>
 		</div>
-		<?php the_content(); ?>
+		<div class="row">
+			<div class="col-md-8">
+				<?php the_content(); ?>
+				<h3>
+					Legend: <span class="label year-2013">2012</span>  <span class="label year-2013">2013</span> <span class="label year-2014">2014</span> <span class="label year-2015" style="color:#000">2015</span> <span class="label year-2016">2016</span>
+				</h3>
+			</div>
+		</div>
 	<?php endwhile; endif; ?>
 
 	<div class="row">
@@ -55,7 +62,7 @@ get_header(); ?>
 								$post = $posts[$i];
 								$published_year = get_the_date('Y');
 								$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
-								echo '<li class="list-group-item year-' .$published_year . '"><a href="'.get_permalink($post->ID).'">'. $post->post_title . get_the_date(' (m/Y)') .'</a></li>';
+								echo '<li class="list-group-item year-' .$published_year . '"><a href="'.get_permalink($post->ID).'">'. $post->post_title .'<strong>'. get_the_date(' (m/Y)') .'</strong></a></li>';
 								//echo $published_date != ''? ' ('.$published_date.')</a>' : '</a>';
 							}
 						} ?>

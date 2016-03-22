@@ -386,3 +386,21 @@ nav li.menu-item-has-children {
 	box-shadow: 7px 7px 8px 0px rgba(129,129,129,0.5) !important;
 	font-size: 130% !important;
 }
+
+/* Country post list. Styles year according to publication date */
+.year-2012 {
+	background-color:red;
+}
+.year-2013 {
+	background-color:red;
+}
+.year-2014 {
+	background-color:orange;
+}
+.year-2015 {
+	background-color:lightcyan;
+}
+.year-2016 {
+	background-color:lightgreen;
+}
+

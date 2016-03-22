@@ -2,8 +2,21 @@
 get_header(); ?>
 
 <div id="page-wpg">
+	<?php if (have_posts()) : while (have_posts()) : the_post();?>
+		<div class="row">
+			<div class="col-md-8">
+				<h1 id="post-<?php the_ID(); ?>">
+					<?php the_title();?>
+				</h1>
+			</div>
+			<div class="col-md-4">
+				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
+			</div>
+		</div>
+		<?php the_content(); ?>
+	<?php endwhile; endif; ?>
+
 	<div class="row">
-		<div class="col-md-8">
 		<?php //Posts about this Country
 
 		$countries = get_posts( array(
@@ -13,7 +26,7 @@ get_header(); ?>
 				'orderby' => 'title',
 				'order' => 'ASC',
 			));
-
+		$countCountries = count($countries);
 		foreach($countries as $country) {
 			$posts = get_posts( array(
 				'post_type' => 'post',
@@ -24,6 +37,7 @@ get_header(); ?>
 			$count = count($posts);
 
 			if ($posts) {?>
+			<div class="col-md-4">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
 					<div class="panel-heading">
@@ -47,12 +61,18 @@ get_header(); ?>
 						} ?>
 					</ul>
 				</div>
+			</div>
 				<?php
 				} else { ?>
-				<h4 class="document-dashicon">
-					<?php _e('No updates from','globalrec'); ?>
-					<?php echo $country->post_title. " (0)"; ?>
-				</h4>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<?php _e('No updates from','globalrec'); ?>
+						<strong><?php echo $country->post_title; ?></strong>
+						<span class="badge">0</span>
+					</div>
+				</div>
+			</div>
 		<?php }
 			wp_reset_query();
 		} ?>

@@ -102,6 +102,9 @@ color: black;
 #home-boxes-2 ul li, #blog ul li, #archive ul li{
 	list-style-type: none;
 }
+#home-boxes-2 span.dashicons, #blog span.dashicons {
+	display:none;
+}
 /* Widgets*/
 #main-sidebar{
 	border-left: 4px solid #ccc;

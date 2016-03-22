@@ -4,6 +4,36 @@ $separator = '&nbsp;';
 $output = '';
 $region = get_the_term_list( $post->ID, 'post-region', '', ', ', '' );
 $post_id = $post->ID;
+$postType = get_post_type();
+$postTypeTitle = '';
+$postTypeIcon = '';
+
+//Titles for custom post types
+if ( $postType == 'country' ) {
+	$postTypeTitle = __('Country','globalrec');
+} else if ( $postType == 'city' ) {
+	$postTypeTitle = __('City','globalrec');
+} else if ( $postType == 'law-report' ) {
+	$postTypeTitle = __('Law Report','globalrec');
+} else if ( $postType == 'newsletter' ) {
+	$postTypeTitle = __('Newsletter','globalrec');
+} else if ( $postType == 'global-meeting' ) {
+	$postTypeTitle = __('Global Meeting','globalrec');
+} else if ( $postType == 'waste-picker-org' ) {
+} else {
+}
+
+//icons for custom post types
+if ( $postType == 'country' ) {
+} else if ( $postType == 'city' ) {
+} else if ( $postType == 'law-report' ) {
+	$postTypeIcon = 'book-dashicon';
+} else if ( $postType == 'newsletter' ) {
+} else if ( $postType == 'global-meeting' ) {
+} else if ( $postType == 'waste-picker-org' ) {
+	$postTypeIcon = 'groups-dashicon';
+} else {
+}
 ?>
 
 <div class="thumbnail">
@@ -22,12 +52,15 @@ $post_id = $post->ID;
 			//echo '<img width="150" src="' . get_bloginfo( 'stylesheet_directory' ) . '/images/thumbnail-default.png" />';
 		endif; ?>
 	</a>
-	<h4>
-		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+	<h4 <?php echo !empty($postTypeIcon) ? 'class="'. $postTypeIcon. '	"' : ''; ?>>
+		<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>">
+			<?php echo !empty($postTypeTitle) ? $postTypeTitle. ': ' : ''; ?>
+			<?php the_title(); ?>
+		</a>
 	</h4>
 	<div class="post-metadata">
 		<small> 
-		<?php if (get_post_type() == 'post') {
+		<?php if ( $postType == 'post') {
 			$author_url = get_author_posts_url( get_the_author_meta( 'ID' ) );
 			$author = get_the_author_meta('display_name');
 			$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
@@ -52,14 +85,14 @@ $post_id = $post->ID;
 				echo " ".$region;
 				echo " | ";
 			}
-			if (get_post_type() == 'global-meeting') {
+			if ($postType == 'global-meeting') {
 				//do nothing
-			} else if (get_post_type() == 'waste-picker-org') {
-				echo get_post_meta( $post_id, 'city', true ). " ";
+			} else if ($postType == 'waste-picker-org') {
+				echo get_post_meta( $post_id, 'city', true ). ", ";
 				echo get_post_meta( $post_id, 'country', true );
 				echo '<br>';
-				echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' );
-				echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' );
+				echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ). " | ";
+				echo get_the_term_list( $post_id, 'wpg-organization-type', ' ', ', ', '' ). " | ";
 				echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' );
 			} else {
 				the_time('M d, Y');
@@ -76,11 +109,11 @@ $post_id = $post->ID;
 			}
 		}
 		?>
-	<?php if (get_post_type() != 'global-meeting') { //conditional if is global meeting custom post type, don't show excerpt ?>		
+	<?php if ($postType != 'global-meeting') { //conditional if is global meeting custom post type, don't show excerpt ?>		
 		<div class="excerpt">
 			<small>
 				<?php
-				if (get_post_type() == 'waste-picker-org') {
+				if ($postType == 'waste-picker-org') {
 					} else {
 						if($post->post_excerpt) : the_excerpt(); else:
 						echo $post_excerpt; endif;

@@ -89,12 +89,16 @@ $output2 = ''; ?>
 								echo $region;
 								echo "</h4>";
 							endif;
-							if ( isset($country_name) ) :
-								echo "<h4><small>";
-								echo _e('Country','globalrec')."</small> ";
-								echo "<a href='/country/".$country_slug."'>".$country_name."</a>";
-								echo "</h4>";
-							endif;
+							if ( isset($country_name) ) {
+								if ( $country_name == "-" ) {
+								//do nothing
+								} else {
+									echo "<h4><small>";
+									echo _e('Country','globalrec')."</small> ";
+									echo "<a href='/country/".$country_slug."'>".$country_name."</a>";
+									echo "</h4>";
+								}
+							}
 						 	?>
 					</div>
 					<div class="col-md-3">

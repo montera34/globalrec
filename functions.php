@@ -1423,7 +1423,7 @@ add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Fun
 
 function languages_list(){
 	if ( function_exists ( 'icl_get_languages' ) ) { //check if fuction rom wpml exists
-    $languages = icl_get_languages('skip_missing=0&orderby=code');
+    $languages = icl_get_languages('skip_missing=0');
     if(!empty($languages)){
         echo '<div id="language_list"><ul class="nav nav-pills">';
         foreach($languages as $l){

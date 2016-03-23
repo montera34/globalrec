@@ -122,12 +122,30 @@ if ( is_single() || is_page() ) {
 			</div>
 			<div id="tagline" class="col-xs-12 col-md-7 col-lg-8">
 				<div class="row">
-					<div class="col-xs-12 col-md-7">
+					<div class="col-xs-12 col-md-5">
 						<div class="pull-right">
 							<?php if( function_exists ( 'languages_list' ) ) {
 									languages_list();
 								} ?>
 						</div>
+					</div>
+					<div class="col-xs-12 col-md-2">
+					<?php if ( is_user_logged_in() ) { ?>
+						<small>
+						<ul class="nav nav-pills">
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+									<span class="glyphicon glyphicon-lock"></span> Admin pages <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+								  <li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16170 , 'page' , false)); ?>"><?php _e("Post word count list","globalrec"); ?></a></li>
+								  <li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 33589 , 'page' , false)); ?>"><?php _e("Posts in countries","globalrec"); ?></a></li>
+								  <li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16667 , 'page' , false)); ?>"><?php _e("Creating newsletter","globalrec"); ?></a></li>
+								</ul>
+							</li>
+						</ul>
+						</small>
+					<?php } ?>
 					</div>
 		    	<div class="pull-right">
 						<?php get_search_form(); ?>

@@ -37,7 +37,7 @@
 						$group = get_post($group_id);
 						$group_link = get_permalink($group->ID);
 						$group_name = $group->post_title;
-						echo '<dt>Waste Picker Group</dt><dd><a href="'.$group_link.'">'.$group_name.'</a></dd>';
+						echo '<dt><span class="dashicons groups-dashicon"></span>Waste Picker Group</dt><dd><a href="'.$group_link.'">'.$group_name.'</a></dd>';
 					}?>
 				</dl>
 			</div>

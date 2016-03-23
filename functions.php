@@ -496,9 +496,11 @@ function sample_metaboxes( $meta_boxes ) {
 	);
 	//Custom field to select a Waste Picker group
 	//we need to create the array of Waste Picker Groups
-	$posts = query_posts( array(
+	$posts = get_posts( array(
 		'posts_per_page' => -1,
-		'post_type' => 'waste-picker-org'
+		'post_type' => 'waste-picker-org',
+		'orderby' => 'title',
+		'order' => 'ASC',
 		));
 	$groups = '';
 	foreach ($posts as $post) {
@@ -528,7 +530,9 @@ function sample_metaboxes( $meta_boxes ) {
 	//Custom field to select a Country for a Waste Picker (bio)
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
-		'post_type' => 'country'
+		'post_type' => 'country',
+		'orderby' => 'title',
+		'order' => 'ASC',
 		));
 	foreach ($posts as $post) {
 		$countries[] = array(
@@ -545,7 +549,7 @@ function sample_metaboxes( $meta_boxes ) {
 		'show_names' => true, // Show field names on the left
 		'fields' => array(
 			array(
-				'name' => 'Waste Picker Group',
+				'name' => 'Country',
 				'desc' => 'Select the country of the waste picker',
 				'id' => $prefixbio . 'country',
 				'type' => 'select',

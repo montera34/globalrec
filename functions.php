@@ -111,6 +111,18 @@ register_post_type( 'waste-picker-org', array( // Defining Waste Picker Group cu
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'organization','with_front'=>false),
 	'menu_icon' => 'dashicons-groups',
+	'capability_type' => 'wpo',
+	'capabilities' => array(
+		'publish_posts' => 'publish_wpos',
+		'edit_posts' => 'edit_wpos',
+		'edit_others_posts' => 'edit_others_wpos',
+		'delete_posts' => 'delete_wpos',
+		'delete_others_posts' => 'delete_others_wpos',
+		'read_private_posts' => 'read_private_wpos',
+		'edit_post' => 'edit_wpo',
+		'delete_post' => 'delete_wpo',
+		'read_post' => 'read_wpo',
+	),
 	)
 );
 
@@ -224,6 +236,7 @@ register_post_type( 'country', array( // Defining Country custom post type
 	'menu_icon' => 'dashicons-minus',
 	)
 );
+flush_rewrite_rules( false );
 }
 
 
@@ -306,6 +319,77 @@ add_action('init', 'my_custom_init');
 
 function my_custom_init() {
 		add_post_type_support( 'global-meeting', 'excerpt' ); //adds excerpt to global meeting post type
+}
+
+/* Map wpo post type capabilities */
+add_filter( 'map_meta_cap', 'globalrec_map_meta_cap', 10, 4 );
+function globalrec_map_meta_cap( $caps, $cap, $user_id, $args ) {
+
+	/* If editing, deleting, or reading a wpo, get the post and post type object. */
+	if ( 'edit_wpo' == $cap || 'delete_wpo' == $cap || 'read_wpo' == $cap ) {
+		$post = get_post( $args[0] );
+		$post_type = get_post_type_object( $post->post_type );
+		/* Set an empty array for the caps. */
+		$caps = array();
+	}
+
+	/* If editing a wpo, assign the required capability. */
+	if ( 'edit_wpo' == $cap ) {
+		if ( $user_id == $post->post_author )
+			$caps[] = $post_type->cap->edit_posts;
+		else
+			$caps[] = $post_type->cap->edit_others_posts;
+	}
+
+	/* If deleting a wpo, assign the required capability. */
+	elseif ( 'delete_wpo' == $cap ) {
+		if ( $user_id == $post->post_author )
+			$caps[] = $post_type->cap->delete_posts;
+		else
+			$caps[] = $post_type->cap->delete_others_posts;
+	}
+
+	/* If reading a private wpo, assign the required capability. */
+	elseif ( 'read_wpo' == $cap ) {
+		if ( 'private' != $post->post_status )
+			$caps[] = 'read';
+		elseif ( $user_id == $post->post_author )
+			$caps[] = 'read';
+		else
+			$caps[] = $post_type->cap->read_private_posts;
+	}
+
+	/* Return the capabilities required by the user. */
+	return $caps;
+}
+
+/*
+ * Create Waste Picker Organizer rol
+ * which can create new Waste Picker Organization
+ * to be published by an editor
+ */
+add_action('init', 'globalrec_add_custom_roles');
+function globalrec_add_custom_roles() {
+	$wpo_caps = array(
+		'publish_wpos' => false,
+		'edit_wpos' => true,
+		'edit_others_wpos' => false,
+		'delete_wpos' => true,
+		'delete_others_wpos' => false,
+		'read_private_wpos' => true,
+		'edit_wpo' => true,
+		'delete_wpo' => true,
+		'read_wpo' => true,
+		// more standard capabilities here
+		'read' => true,
+	);
+	$wpo = add_role( 'globalrec_wpo','Waste Picker Organizer',$wpo_caps);
+
+	if ( null !== $wpo ) { return; }
+	else {
+		remove_role('globalrec_wpo');
+		$wpo = add_role( 'globalrec_wpo','Waste Picker Organizer',$wpo_caps);
+	}
 }
 
 /*

@@ -2085,25 +2085,32 @@ $all = array_merge($asia , $africa, $europe , $latinamerica , $northamerica );
 function translated_post_table ($title,$array) {
 	$result = "<tr><td><h4>".$title."</h4></td><td></td><td></td><td></td></tr>";
 	foreach ($array as $key => $value ) {
+		$idValue = $value->ID;
 		//gets id of articles in each language
-		$id_en = icl_object_id($value->ID, 'post', false, 'en');
-		$id_es = icl_object_id($value->ID, 'post', false, 'es');
-		$id_pt= icl_object_id($value->ID, 'post', false, 'pt-br');
-		$id_fr = icl_object_id($value->ID, 'post', false, 'fr');
+		$id_en = icl_object_id($idValue, 'post', false, 'en');
+		$id_es = icl_object_id($idValue, 'post', false, 'es');
+		$id_pt= icl_object_id($idValue, 'post', false, 'pt-br');
+		$id_fr = icl_object_id($idValue, 'post', false, 'fr');
 		//gets summaries of articles in each lenguage
 		$summary_en = get_post_meta( $id_en , '_gr_post-summary', true );
 		$summary_es = get_post_meta( $id_es , '_gr_post-summary', true );
 		$summary_pt = get_post_meta( $id_pt , '_gr_post-summary', true );
 		$summary_fr = get_post_meta( $id_fr , '_gr_post-summary', true );
+
 			if (!empty($summary_en) || !empty($summary_es) || !empty($summary_pt) || !empty($summary_br)) { //checks if the summary of the article in each language is not empty
 				$tick = ' <span class="glyphicon glyphicon-ok"></span>';
 			}
 		$result .= "<tr><td style='background-color:#FF0;'><a href='". $value->guid ."'>". $value->post_title . "</a>". $tick ."</td>";
 		$tick = ""; //resets value of tick to nothing in case there is no summary for that article
-		if (ICL_LANGUAGE_CODE == 'en') { } else { $result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a></td>";}	
-		if (ICL_LANGUAGE_CODE == 'es') { } else { $result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a></td>";}
-		if (ICL_LANGUAGE_CODE == 'pt-br') { } else { $result .= empty($id_pt) ? "<td></td>" : "<td><a href='". get_permalink($id_pt) ."'>". get_the_title( $id_pt ) ."</a></td>";}
-		if (ICL_LANGUAGE_CODE == 'fr') { } else { $result .= empty($id_fr) ? "<td></td>" : "<td><a href='". get_permalink($id_fr) ."'>". get_the_title( $id_fr ) ."</a></td>";}
+		if (ICL_LANGUAGE_CODE == 'en') { } else {
+			$result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a> <strong>[" . get_post_status ( $id_en )  ."]</strong></td>";}	
+		if (ICL_LANGUAGE_CODE == 'es') { } else {
+			$result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a> <strong>[" . get_post_status ( $id_es )  ."]</strong></td>";}
+		if (ICL_LANGUAGE_CODE == 'pt-br') { } else {
+			$result .= empty($id_pt) ? "<td></td>" : "<td><a href='". get_permalink($id_pt) ."'>". get_the_title( $id_pt ) ."</a> <strong>[" . get_post_status ( $id_pt )  ."]</strong></td>";}
+		if (ICL_LANGUAGE_CODE == 'fr') { } else {
+			$result .= empty($id_fr) ? "<td></td>" : "<td><a href='". get_permalink($id_fr) ."'>". get_the_title( $id_fr ) ."</a> <strong>[" . get_post_status ( $id_fr )  ."]</strong></td>";
+		}
 		$result .= "</tr>";
 	}
 	return $result;

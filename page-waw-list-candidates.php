@@ -79,9 +79,8 @@ get_header();
 				<td>
 					<?php echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' ); ?>
 				</td>
-					<td class="text-right">
+				<td class="text-right">
 					<?php the_modified_date(); ?>
-				</td>
 				</td>
 				<td><?php 
 						//City

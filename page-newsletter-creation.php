@@ -12,7 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3214, 'post-newsletter');
+$newsletter_number = icl_object_id(3216, 'post-newsletter');
 
 
 $argsasia = array(
@@ -261,13 +261,13 @@ $my_query_global = new WP_Query($args_global);
 				}
 			?>
 			</ol>
-			<hr>			
+			<hr>
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
-				<a href="#north-america"><?php echo _e('North America','globalrec');?></a><br>
+				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
 				<a href="#global"><?php echo _e('Global','globalrec');?></a>
 			</p>
 			
@@ -373,7 +373,7 @@ $my_query_global = new WP_Query($args_global);
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
 			<hr>
-			
+
 			<!-----------------Africa------------------------->
 			<h2 id="africa">
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/africa.png">
@@ -553,14 +553,14 @@ $my_query_global = new WP_Query($args_global);
 					}
 					else {
 						the_author_posts_link();
-					} 
+					}
 					echo $published_date != ''? ' ('.$published_date.')' : '';
 					?>
 				</small>
 			</h3>
 			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail 
+				<?php	//the thumbnail
 				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
 				</a>
 			</div>

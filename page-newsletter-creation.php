@@ -10,7 +10,9 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(2862, 'post-newsletter');
+$global_posts= -1;
+$global_offset= 0;
+$newsletter_number = icl_object_id(3214, 'post-newsletter');
 
 
 $argsasia = array(
@@ -123,6 +125,27 @@ $args_northamerica = array(
 	);
 $my_query_northamerica = new WP_Query($args_northamerica);
 
+$args_global = array(
+	'post_status' => array( 'publish', 'future' ),
+	'posts_per_page' => $global_posts,
+	'offset' => $global_offset,
+	'ignore_sticky_posts' => 1,
+	'tax_query' => array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-newsletter',
+				'field'    => 'term_id',
+				'terms'    => $newsletter_number,
+			),
+			array(
+				'taxonomy' => 'post-region',
+				'field'    => 'term_id',
+				'terms'    => icl_object_id(954, 'post-region'), //id of the post-region in English
+			),
+		),
+	);
+$my_query_global = new WP_Query($args_global);
+
 ?>
 
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
@@ -155,6 +178,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 		$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_global_posts = $my_query_global->posts; //accesses the object "posts" inside the my query asia object
 	?>
 
 	<div class="row">
@@ -180,6 +204,7 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 					echo translated_post_table ('Africa',$my_query_africa_posts);
 					echo translated_post_table ('Europe',$my_query_europe_posts);
 					echo translated_post_table ('North America',$my_query_northamerica_posts);
+					echo translated_post_table ('Global',$my_query_global_posts);
 					?>
 			 	</tbody>
 			</table>
@@ -228,13 +253,22 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				}
 			?>
 			</ol>
+			<strong><?php _e('Global','globalrec'); ?></strong><br>
+			<ol>
+			<?php
+				foreach ($my_query_global_posts as $key => $value ) {
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+				}
+			?>
+			</ol>
 			<hr>			
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
-				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
+				<a href="#north-america"><?php echo _e('North America','globalrec');?></a><br>
+				<a href="#global"><?php echo _e('Global','globalrec');?></a>
 			</p>
 			
 			<!-----------------Asia ------------------------->
@@ -446,6 +480,55 @@ $my_query_northamerica = new WP_Query($args_northamerica);
 				<strong><?php echo _e('North America','globalrec');?></strong>
 			</h2>
 			<?php if ( $my_query_northamerica->have_posts() ) : while ( $my_query_northamerica->have_posts() ) : $my_query_northamerica->the_post(); ?>
+			<?php
+			global $wp_query;
+			$wp_query->in_the_loop = true;
+			?>
+			<h3>
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+					<?php
+					the_title();
+					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo " (".$countrytitle. ")";
+					?>
+				</a>
+				<small>
+					<?php echo _e('by','globalrec');?> <?php //author
+					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
+				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+						echo $written_by;
+					}
+					else {
+						the_author_posts_link();
+					} 
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
+				</small>
+			</h3>
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+				<?php	//the thumbnail 
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				</a>
+			</div>
+			<?php //the summary
+			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+			echo $summary;
+			?>
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endif; ?>
+
+			<!-- Global -->
+			<h2 id="nglobal">
+				<!-- img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png" -->
+				<strong><?php echo _e('Global','globalrec');?></strong>
+			</h2>
+			<?php if ( $my_query_global->have_posts() ) : while ( $my_query_global->have_posts() ) : $my_query_global->the_post(); ?>
 			<?php
 			global $wp_query;
 			$wp_query->in_the_loop = true;

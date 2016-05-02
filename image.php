@@ -1,11 +1,11 @@
 <?php get_header(); ?>
-<div class="container">
+<div class="container-fluid">
 	<article id="post-<?php the_ID(); ?>">
 		<div class="row">
 			<div class="col-md-12">
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 				<h3>
-					<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment" title="<?php echo _e('Back to','globalrec').' '.get_the_title($post->post_parent) ?>" alt="<?php echo get_the_title($post->post_parent); ?>">
+					<a href="<?php echo get_permalink($post->post_parent); ?>" rev="attachment" title="<?php echo _e('Back to','globalrec').' '.get_the_title($post->post_parent) ?>" alt="<?php echo _e('Back to','globalrec').' '.get_the_title($post->post_parent) ?>">
 					&laquo; <?php echo _e("Back to","globalrec").' "'.get_the_title($post->post_parent).'"' ?>
 					</a>
 				</h3>

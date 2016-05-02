@@ -593,11 +593,8 @@ class cmb_Meta_Box_types {
 
 	public function taxonomy_radio() {
 		$names      = $this->get_object_terms();
-		$saved_terms   = is_wp_error( $names ) || empty( $names )
-			? $this->field->args( 'default' )
-			: wp_list_pluck( $names, 'slug' );
-		$terms   = get_terms( $this->field->args( 'taxonomy' ), 'hide_empty=0' );
-		$name    = $this->_name() .'[]';
+		$saved_term = is_wp_error( $names ) || empty( $names ) ? $this->field->args( 'default' ) : $names[0]->slug;
+		$terms      = get_terms( $this->field->args( 'taxonomy' ), 'hide_empty=0' );
 		$options    = ''; $i = 1;
 
 		if ( ! $terms ) {
@@ -609,13 +606,13 @@ class cmb_Meta_Box_types {
 					'label' => $term->name,
 				);
 
-				if (  is_array( $saved_terms ) && in_array( $term->slug, $saved_terms ) ) {
+				if ( $saved_term == $term->slug ) {
 					$args['checked'] = 'checked';
 				}
 				$options .= $this->list_input( $args, $i );
 				$i++;
 			}
-		}	
+		}
 
 		return $this->radio( array( 'options' => $options ), 'taxonomy_radio' );
 	}

@@ -2095,6 +2095,7 @@ function translated_post_table ($title,$array) {
 		$summary_es = get_post_meta( $id_es , '_gr_post-summary', true );
 		$summary_pt = get_post_meta( $id_pt , '_gr_post-summary', true );
 		$summary_fr = get_post_meta( $id_fr , '_gr_post-summary', true );
+		$tick = "";
 			if (!empty($summary_en) || !empty($summary_es) || !empty($summary_pt) || !empty($summary_br)) { //checks if the summary of the article in each language is not empty
 				$tick = ' <span class="glyphicon glyphicon-ok"></span>';
 			}

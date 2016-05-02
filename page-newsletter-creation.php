@@ -267,10 +267,10 @@ $my_query_global = new WP_Query($args_global);
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
-				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
+				<a href="#north-america"><?php echo _e('North America','globalrec');?></a><br>
 				<a href="#global"><?php echo _e('Global','globalrec');?></a>
 			</p>
-			
+
 			<!-----------------Asia ------------------------->
 			<h2 id="asia">
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/asia.png">

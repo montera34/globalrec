@@ -10,7 +10,7 @@ $european_posts= -1;
 $european_offset= 0;
 $northamerican_posts= -1;
 $northamerican_offset= 0;
-$newsletter_number = icl_object_id(2862, 'post-newsletter');
+$newsletter_number = icl_object_id(3216, 'post-newsletter');
 
 
 $argsasia = array(

@@ -392,7 +392,7 @@ nav li.menu-item-has-children {
 
 /* Country post list. Styles year according to publication date */
 .year-2012 {
-	background-color:red;
+	background-color:red !important;
 }
 .year-2013 {
 	background-color:red;

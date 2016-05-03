@@ -12,8 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3216, 'post-newsletter');
-
+$newsletter_number = icl_object_id(3214, 'post-newsletter');
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),

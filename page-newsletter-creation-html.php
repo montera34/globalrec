@@ -12,7 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3216, 'post-newsletter');
+$newsletter_number = icl_object_id(3214, 'post-newsletter');
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),
@@ -145,6 +145,7 @@ $args_global = array(
 	);
 $my_query_global = new WP_Query($args_global);
 
+
 ?>
 <div id="page-word-post-count"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -175,16 +176,16 @@ $my_query_global = new WP_Query($args_global);
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
-				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
-				<a href="#global"><?php echo _e('Global','globalrec');?></a><br>
+				<a href="#north-america"><?php echo _e('North America','globalrec');?></a><br>
+				<a href="#global"><?php echo _e('Global','globalrec');?></a>
 			</p>
 	<?php
 		$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
-		$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
-		$my_query_global_posts = $my_query_global->posts; //accesses the object "posts" inside the my query asia object
+		$my_query_northamerica_posts = $my_query_northamerica->posts;
+		$my_query_global_posts = $my_query_global->posts;
 	?>
 			<!-----------------Asia ------------------------->
 			<a name="asia"></a>
@@ -465,11 +466,11 @@ $my_query_global = new WP_Query($args_global);
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
+			<hr>
 
 			<!-- Global -->
 			<a name="global"></a>
 			<h2>
-				<!--<img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png">-->
 				<strong><?php echo _e('Global','globalrec');?></strong>
 			</h2>
 			<?php if ( $my_query_global->have_posts() ) : while ( $my_query_global->have_posts() ) : $my_query_global->the_post(); ?>

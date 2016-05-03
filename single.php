@@ -102,9 +102,14 @@ $output2 = ''; ?>
 						 	?>
 					</div>
 					<div class="col-md-3">
-						<h4><small class="pull-right">
-							<?php the_time('F d, Y') ?>					
-						</small></h4>
+						<div class="row">
+							<h4 class="pull-right">
+								<small>
+								<?php the_time('F d, Y') ?>
+								</small>
+							</h4>
+						</div>
+						<div class="row">
 							<?php
 								if (($translated_by == '-') || ($translated_by == '')) {
 									//Do nothing. ($translated_by != '-') was not working
@@ -114,6 +119,7 @@ $output2 = ''; ?>
 									echo " ". $translated_by. "</small></h4>";
 								}
 							?>
+						</div>
 					</div>
 				</div>
 			</header>

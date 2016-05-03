@@ -138,9 +138,10 @@ if ( is_single() || is_page() ) {
 									<span class="glyphicon glyphicon-lock"></span> Admin pages <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-								  <li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16170 , 'page' , false)); ?>"><?php _e("Post word count list","globalrec"); ?></a></li>
-								  <li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 33589 , 'page' , false)); ?>"><?php _e("Posts in countries","globalrec"); ?></a></li>
-								  <li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16667 , 'page' , false)); ?>"><?php _e("Creating newsletter","globalrec"); ?></a></li>
+									<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16170 , 'page' , false)); ?>"><?php _e("Post word count list","globalrec"); ?></a></li>
+									<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 33589 , 'page' , false)); ?>"><?php _e("Posts in countries","globalrec"); ?></a></li>
+									<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16667 , 'page' , false)); ?>"><?php _e("Creating newsletter","globalrec"); ?></a></li>
+									<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 16727 , 'page' , false)); ?>"><?php _e("Creating newsletter html","globalrec"); ?></a></li>
 								</ul>
 							</li>
 						</ul>

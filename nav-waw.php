@@ -26,6 +26,7 @@
 		<ul class="dropdown-menu" role="menu">
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 33027 , 'page' , false)); ?>"><?php _e("Last updated Organizations","globalrec"); ?></a></li>
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 33025 , 'page' , false)); ?>"><?php _e('Candidate organizations','globalrec'); ?></a></li>
+			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 34607 , 'page' , false)); ?>"><?php _e("Contact list","globalrec"); ?></a></li>
 		</ul>
 	</li>
 	<?php } ?>

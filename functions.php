@@ -2101,7 +2101,7 @@ function translated_post_table ($title,$array) {
 			if (!empty($summary_en) || !empty($summary_es) || !empty($summary_pt) || !empty($summary_br)) { //checks if the summary of the article in each language is not empty
 				$tick = ' <span class="glyphicon glyphicon-ok"></span>';
 			}
-		$result .= "<tr><td style='background-color:#FF0;'><a href='". $value->guid ."'>". $value->post_title . "</a>". $tick ."</td>";
+		$result .= "<tr><td style='background-color:#FF0;'><a href='". $value->guid ."'>". $value->post_title . "</a>". $tick . " [" .get_post_status ( $idValue )  . "]" ."</td>";
 		$tick = ""; //resets value of tick to nothing in case there is no summary for that article
 		if (ICL_LANGUAGE_CODE == 'en') { } else {
 			$result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a> <strong>[" . get_post_status ( $id_en )  ."]</strong></td>";}	

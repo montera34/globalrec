@@ -77,13 +77,13 @@ if ( is_single() || is_page() ) {
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
 
 <!-- Less -->
-<link rel="stylesheet/less" type="text/css" href="<?php bloginfo('template_url'); ?>/less/magic-bootstrap.less" />
-<script src="<?php bloginfo('template_url'); ?>/less/less-1.3.3.min.js" type="text/javascript"></script>
+<!--<link rel="stylesheet/less" type="text/css" href="<?php bloginfo('template_url'); ?>/less/magic-bootstrap.less" />
+<script src="<?php bloginfo('template_url'); ?>/less/less-1.3.3.min.js" type="text/javascript"></script>-->
 <!-- /Less -->
 
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-	<?php wp_get_archives('type=monthly&format=link'); ?>
+	<?php //wp_get_archives('type=monthly&format=link'); ?>
 	
 	<?php //comments_popup_script(); // off by default ?>
 	<script type="text/javascript">

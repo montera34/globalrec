@@ -1,11 +1,15 @@
 </div><!-- close container-->
 <!-- begin footer -->
-<div id="footer" class="container">	
-	<div class="row">	
-		<div class="col-md-12"> 
+<div id="footer" class="container">
+	<div class="row">
+		<div class="col-md-10">
 			<small>
 				<?php  dynamic_sidebar( 'footer-sidebar' ) ?>
 			</small>
+		</div>
+		<div class="col-md-2">
+			<div class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/twitter.png" alt="" width="15" height="15" /></a> </div>
+			<div class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/facebook.png" alt="" width="15" height="15" /></a></div>
 		</div>
 	</div>
 </div>

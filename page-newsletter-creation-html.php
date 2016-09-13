@@ -12,7 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3214, 'post-newsletter');
+$newsletter_number = icl_object_id(3001, 'post-newsletter');
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),
@@ -165,7 +165,7 @@ $my_query_global = new WP_Query($args_global);
 				<tbody>
 					<tr>
 						<td>
-							<p><font style="font-size: 14px;" color="#fff"><?php echo _e('The updates we publish in this newsletter are by waste pickers and allies. Sometimes we re-post directly from what individuals or groups have shared via social media, websites or emails; sometimes we edit, organize and translate. The goal is to disseminate information from waste pickers across borders. As usual, we invite waste pickers&rsquo; organizations and allies to keep sending updates of their struggles and victories. We want to make this information-sharing platform more inclusive and participatory! This process is supported by Women in Informal Employment: Globalizing and Organizing. <br><strong>If you want to be part of the editorial committee or learn how to post your own updates on <a href="http://globalrec.org"><font color="#fff">globalrec.org</font></a> please write an email to info@globalrec.org.</strong>','globalrec');?></font></p>
+							<p style="margin: 10px;"><font style="font-size: 14px;" color="#fff"><?php echo _e('The updates we publish in this newsletter are by waste pickers and allies. Sometimes we re-post directly from what individuals or groups have shared via social media, websites or emails; sometimes we edit, organize and translate. The goal is to disseminate information from waste pickers across borders. As usual, we invite waste pickers&rsquo; organizations and allies to keep sending updates of their struggles and victories. We want to make this information-sharing platform more inclusive and participatory! This process is supported by Women in Informal Employment: Globalizing and Organizing. <br><strong>If you want to be part of the editorial committee or learn how to post your own updates on <a href="http://globalrec.org"><font color="#fff">globalrec.org</font></a> please write an email to info@globalrec.org.</strong>','globalrec');?></font></p>
 						</td>
 					</tr>
 				</tbody>
@@ -184,8 +184,7 @@ $my_query_global = new WP_Query($args_global);
 		$my_query_latinamerica_posts = $my_query_latinamerica->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_africa_posts = $my_query_africa->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
-		$my_query_northamerica_posts = $my_query_northamerica->posts;
-		$my_query_global_posts = $my_query_global->posts;
+		$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
 	?>
 			<!-----------------Asia ------------------------->
 			<a name="asia"></a>
@@ -224,16 +223,16 @@ $my_query_global = new WP_Query($args_global);
 					?>
 				</small>
 			</h3>
-			<div class="size-thumbnail" style="width:350px;margin:0 0 10px 0;">
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail
 				$post_thumbnail_id = get_post_thumbnail_id();
 				$thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
 				?>
-					<img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="350" >
+					<img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -280,16 +279,16 @@ $my_query_global = new WP_Query($args_global);
 					?>
 				</small>
 			</h3>
-			<div class="size-thumbnail" style="width:350px;margin:0 0 10px 0;">
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail
         $post_thumbnail_id = get_post_thumbnail_id();
         $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
         ?>
-          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="350" >
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -336,16 +335,16 @@ $my_query_global = new WP_Query($args_global);
 					?>
 				</small>
 			</h3>
-			<div class="size-thumbnail" style="width:350px;margin:0 0 10px 0;">
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail
         $post_thumbnail_id = get_post_thumbnail_id();
         $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
         ?>
-          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="350" >
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -392,16 +391,16 @@ $my_query_global = new WP_Query($args_global);
 					?>
 				</small>
 			</h3>
-			<div class="size-thumbnail" style="width:350px;margin:0 0 10px 0;">
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail
         $post_thumbnail_id = get_post_thumbnail_id();
         $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
         ?>
-          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="350" >
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -448,16 +447,16 @@ $my_query_global = new WP_Query($args_global);
 					?>
 				</small>
 			</h3>
-			<div class="size-thumbnail" style="width:350px;margin:0 0 10px 0;">
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail
         $post_thumbnail_id = get_post_thumbnail_id();
         $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
         ?>
-          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="350" >
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;
@@ -503,16 +502,16 @@ $my_query_global = new WP_Query($args_global);
 					?>
 				</small>
 			</h3>
-			<div class="size-thumbnail" style="width:350px;margin:0 0 10px 0;">
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
 				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
 				<?php	//the thumbnail
         $post_thumbnail_id = get_post_thumbnail_id();
         $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
         ?>
-          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="350" >
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
 				</a>
 			</div>
-			<div style="font-size: 10pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
 				<?php //the summary
 				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
 				echo $summary;

@@ -153,7 +153,6 @@ get_header(); ?>
 		<?php
 		global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
 			$args = array( //arguments for showing newsletters custom post type
-			'caller_get_posts' => 1, 
 			'posts_per_page' => -1, 
 			'post_parent' => 0,
 			'order' =>  'DESC',

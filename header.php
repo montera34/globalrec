@@ -3,8 +3,7 @@
 
 <head>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-<title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?> charset="<?php bloginfo('charset'); ?>" />
 <meta name="description" content="
 	<?php if ( is_single() || is_page() ) {
 		single_post_title('', true);

@@ -130,6 +130,11 @@ color: black;
 .navbar .btn-xs {
 	padding:2px 5px;
 }
+.navbar-default {
+	background-color: transparent;
+	border-color: transparent;
+}
+
 
 .form-search{
 	margin:2px 0 0 0 ;
@@ -217,8 +222,9 @@ h4.post-title a {
 	bottom: 0px;*/
 }
 #pre-menu li {
-	
 }
+
+@media (min-width: 768px ) {
 /* header menu desplegable */
 #pre-menu li a {
         display: block!important;
@@ -271,19 +277,42 @@ h4.post-title a {
 #pre-menu ul.sub-menu li a{
 	color:white;
 }
+}
+
+@media (max-width: 767px ) {
+	#pre-menu li ul {
+		list-style: none;
+		padding-left: 10px;
+	}
+	#pre-menu li ul li,
+	#pre-menu li ul li:hover {
+		background-color: transparent;
+		border-color: transparent;
+	}
+	#pre-menu li ul li a {
+		display: block;
+		text-decoration: none;
+	}
+	nav li.menu-item-has-children {
+		background-image: none;
+	}
+
+}
+
 .navbar .navbar-inner{
 	background-image:none;
 }
-#pre-menu .nav-pills li {
-border-radius: 0px;
+#pre-menu .navbar-nav li {
+	border-radius: 0px;
 }
 #main-menu ul li {
 	background-color:#fe7c11;
 	margin-right: 3px;
+	margin-bottom: 3px;
 	border:1px solid #fe7c11;
 	
 }
-#main-menu li:hover, #main-menu .nav-pills li a:hover{
+#main-menu li:hover, #main-menu .navbar-nav li a:hover{
 	background-color:#fd6b00;
 }
 

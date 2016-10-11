@@ -3,6 +3,8 @@
 
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>
 <?php 
 	wp_title( '|', true, 'right' );
@@ -66,7 +68,6 @@ if ( is_single() || is_page() ) {
 	
 <!-- Bootstrap -->
 <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- /Bootstrap -->
 
 <style type="text/css" media="screen">
@@ -95,6 +96,13 @@ if ( is_single() || is_page() ) {
   })();
 </script>
 	<?php wp_head(); ?>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body <?php body_class(); ?>>
@@ -109,7 +117,7 @@ if ( is_single() || is_page() ) {
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="main-container" class="container">
-	<header>
+	<header role="banner">
 		<div class="row">
 			<div id="imagotipo" class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 				<a title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
@@ -177,15 +185,24 @@ if ( is_single() || is_page() ) {
 				</div>
 			</div>
 		</div>
-		<nav id="main-menu">
-			<div class="navbar">
+		<div class="row">
+		<nav id="main-menu" class="navbar navbar-default">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-collapse" aria-expanded="false">
+				<span class="sr-only">Show/hide menu</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="top-navbar-collapse">
+
 				<?php $defaults = array(
 					'theme_location'  => 'main-menu',
 					'menu_id' => 'pre-menu',
-					'menu_class' => 'nav nav-pills'
+					'menu_class' => 'nav navbar-nav'
 					);
 				wp_nav_menu( $defaults );?>	
 			</div>
 		</nav>
+			</div>
 	</header>
 <!-- end header -->

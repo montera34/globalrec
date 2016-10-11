@@ -2,14 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 
 <head>
+<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<title>
+<?php 
+	wp_title( '|', true, 'right' );
+	// Add the blog name.
+	bloginfo( 'name' );
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		echo " | $site_description";
+?>
+</title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo('charset'); ?>" />
-<meta name="description" content="<?php if ( is_single() || is_page() ) {
-        single_post_title('', true);
-    } else {
-        bloginfo('name'); echo " - "; bloginfo('description');
-    }
-    ?>" />
 <meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
 <meta content="Global Alliance of Waste Pickers" name="organization" />
 
@@ -44,7 +49,6 @@ if ( is_single() || is_page() ) {
 
 <!-- generic meta -->
 <meta content="global_rec" name="author" />
-<meta name="title" content="<?php echo $metatit ?>" />
 <meta content="<?php echo $metadesc ?>" name="description" />
 <!-- facebook meta -->
 <meta property="og:title" content="<?php echo $metatit ?>" />

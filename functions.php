@@ -58,12 +58,41 @@ function wpml_custom_wp_title( $title, $sep ) {
 }
 add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
 
-//Adding dashicons to frontend
-add_action( 'wp_enqueue_scripts', 'themename_scripts' );
-function themename_scripts() {
-    wp_enqueue_style( 'themename-style', get_stylesheet_uri(), array( 'dashicons' ), '1.0' );
-}
+/**
+ * Enqueue scripts and styles.
+ */
+function globalrec_scripts() {
+//	wp_enqueue_style( 'fa-css', get_template_directory_uri().'/font-awesome/css/font-awesome.min.css',false,'4.6.3' );
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css',array('dashicons'),'3.3.6' );
+	wp_enqueue_style( 'globalrec-css', get_stylesheet_uri(),array('dashicons'),'1.0' );
 
+	wp_dequeue_script('jquery');
+	wp_dequeue_script('jquery-core');
+	wp_dequeue_script('jquery-migrate');
+	wp_enqueue_script('jquery', false, array(), false, true);
+	wp_enqueue_script('jquery-core', false, array(), false, true);
+	wp_enqueue_script('jquery-migrate', false, array(), false, true);
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.6', true );
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'globalrec_scripts' );
+
+// load scripts for IE compatibility
+function globalrec_extra_scripts_styles() {
+	echo "
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js'></script>
+	<script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
+	<![endif]-->
+	";
+}
+/* Load scripts for IE compatibility */
+add_action('wp_head','globalrec_extra_scripts_styles',999);
 
 // Custom post types
 add_action( 'init', 'create_post_type', 0 );

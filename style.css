@@ -1,11 +1,13 @@
 /*
 Theme Name: Global Rec with bootstrap v3
-Theme URI: http://montera34.com/
+Theme URI: https://montera34.com/
 Description: WordPress theme for the Global Alliance of Waste Pickers
 Version: 0.1
 Author: Pablo Rey Mazón (Montera34)
 Tags: bootstrap
 */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Sintony:400,700|Ubuntu');
 
 body{
 	background-color:#fafafa;

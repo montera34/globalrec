@@ -56,18 +56,6 @@ if ( is_single() || is_page() ) {
 <meta name="twitter:image:src" content="<?php if (is_home()) {echo $metaimage;} else {echo $metaimage[0];} ?>">
 <meta property="twitter:account_id" content="121067923" />
 	
-<!-- Bootstrap -->
-<link href="<?php bloginfo('template_url'); ?>/css/bootstrap.css" rel="stylesheet" />
-<!-- /Bootstrap -->
-
-<style type="text/css" media="screen">
-	@import url( <?php bloginfo('stylesheet_url'); ?> );
-</style>
-
-<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
-
 <!-- Less -->
 <!--<link rel="stylesheet/less" type="text/css" href="<?php bloginfo('template_url'); ?>/less/magic-bootstrap.less" />
 <script src="<?php bloginfo('template_url'); ?>/less/less-1.3.3.min.js" type="text/javascript"></script>-->
@@ -75,24 +63,8 @@ if ( is_single() || is_page() ) {
 
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-	<?php //wp_get_archives('type=monthly&format=link'); ?>
-	
-	<?php //comments_popup_script(); // off by default ?>
-	<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-	<?php wp_head(); ?>
+<?php wp_head(); ?>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body <?php body_class(); ?>>

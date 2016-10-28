@@ -2,18 +2,67 @@
 $prefix_wpo = 'wpg-';
 $prefixwpg = '_wpg_';
 
-// add menu para pune2012
-function register_my_menus() {
-  register_nav_menus(
-    array(
+//setup globalrec theme
+if ( ! function_exists( 'globalrec_setup' ) ) :
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ *
+ * @since Twenty Fifteen 1.0
+ */
+function globalrec_setup() {
+
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
+
+	//adds excerpt to global meeting post type
+	add_post_type_support( 'global-meeting', 'excerpt' );
+
+	//adds featured image to 'post', 'page','bio','global-meeting','waste-picker-org'
+//	add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
+	add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-org' ) );
+
+	//add posts formats
+	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 'image' ) );
+
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support( 'title-tag' );
+
+	register_nav_menus( array(
 		'main-menu' => 'Main Menu',
 		'home-menu' => 'Home Menu',
 		'foot_menu' => 'Footer Menu'
-	)
-  );
-}
+	) );
 
-add_action( 'init', 'register_my_menus' );
+}
+endif; // globlalrec_setup
+
+add_action( 'after_setup_theme', 'globalrec_setup' );
+
+//Translate title in header
+function wpml_custom_wp_title( $title, $sep ) {
+	global $paged, $page;
+
+	if( function_exists( 'icl_translate') ) {
+		$title = icl_translate('wpml_custom', 'wpml_custom_' . sanitize_key($title), $title);
+	}
+	return $title;
+}
+add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
+
+//Adding dashicons to frontend
+add_action( 'wp_enqueue_scripts', 'themename_scripts' );
+function themename_scripts() {
+    wp_enqueue_style( 'themename-style', get_stylesheet_uri(), array( 'dashicons' ), '1.0' );
+}
 
 
 // Custom post types
@@ -315,12 +364,6 @@ $wpoTaxonomies = array(
 	}
 }
 
-add_action('init', 'my_custom_init');
-
-function my_custom_init() {
-		add_post_type_support( 'global-meeting', 'excerpt' ); //adds excerpt to global meeting post type
-}
-
 /* Map wpo post type capabilities */
 add_filter( 'map_meta_cap', 'globalrec_map_meta_cap', 10, 4 );
 function globalrec_map_meta_cap( $caps, $cap, $user_id, $args ) {
@@ -544,13 +587,6 @@ function the_post_image_url($size=large) {
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );
-
-//adds featured image to 'post', 'page','bio','global-meeting','waste-picker-org'
-add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-org' ) );
-
-//add posts formats
-add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 'image' ) );
-
 
 //----- Adds metabox. Via https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress/wiki/Basic-Usage
 
@@ -1507,7 +1543,6 @@ function initialize_cmb_meta_boxes() {
 }
 //--------------------------finishes metaboxes--------------------------//
 
-add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
 
 function languages_list(){
 	if ( function_exists ( 'icl_get_languages' ) ) { //check if fuction rom wpml exists
@@ -1957,17 +1992,6 @@ function globalrec_insert_wpg() {
 
 } // end insert wpg data in database
 
-//Translate title in header
-function wpml_custom_wp_title( $title, $sep ) {
-  global $paged, $page;
-
-  if( function_exists( 'icl_translate') ) {
-      $title = icl_translate('wpml_custom', 'wpml_custom_' . sanitize_key($title), $title);
-  }
-  return $title;
-}
-add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
-
 //Removes duplicated custom taxonomy metaboxes  from side column (they are already included as custom meta boxes in the main column) in waste-picker-org admin edit panel
 add_action('admin_menu', 'edit_meta_box');
 
@@ -2122,37 +2146,3 @@ function wpml_remove_dashboard_widget() {
     remove_meta_box( 'icl_dashboard_widget', 'dashboard', 'side' );
 }
 add_action('wp_dashboard_setup', 'wpml_remove_dashboard_widget' );
-
-//Adding dashicons to frontend
-add_action( 'wp_enqueue_scripts', 'themename_scripts' );
-function themename_scripts() {
-    wp_enqueue_style( 'themename-style', get_stylesheet_uri(), array( 'dashicons' ), '1.0' );
-}
-
-//setup globalrec theme
-if ( ! function_exists( 'globalrec_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- *
- * @since Twenty Fifteen 1.0
- */
-function globalrec_setup() {
-
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
-}
-endif; // globlalrec_setup
-
-add_action( 'after_setup_theme', 'globalrec_setup' );

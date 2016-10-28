@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 
 <head>
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
+<meta charset="<?php bloginfo('charset'); ?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
-<meta content="Global Alliance of Waste Pickers" name="organization" />
 
 <?php // metatags generation
 if ( is_single() || is_page() ) {
@@ -41,6 +40,8 @@ if ( is_single() || is_page() ) {
 <!-- generic meta -->
 <meta content="global_rec" name="author" />
 <meta content="<?php echo $metadesc ?>" name="description" />
+<meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
+<meta content="Global Alliance of Waste Pickers" name="organization" />
 <!-- facebook meta -->
 <meta property="og:title" content="<?php echo $metatit ?>" />
 <meta property="og:type" content="<?php echo $metatype ?>" />
@@ -192,6 +193,6 @@ if ( is_single() || is_page() ) {
 				wp_nav_menu( $defaults );?>	
 			</div>
 		</nav>
-			</div>
+		</div>
 	</header>
 <!-- end header -->

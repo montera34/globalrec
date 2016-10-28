@@ -125,7 +125,8 @@ if ( is_single() || is_page() ) {
 				</div>	
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
-						<small><?php echo get_bloginfo( 'description' ) ?>
+						<small>
+							<?php _e("The Global Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 28 countries covering mainly Latin America, Asia and Africa. ","globalrec"); ?>
 						<?php if (current_user_can( 'moderate_comments' )) { echo ' '. get_num_queries() .' queries'; echo ' in '; timer_stop(1); }?></small>
 					</div>
 					<div class="col-md-4">

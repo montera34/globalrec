@@ -5,17 +5,6 @@
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>
-<?php 
-	wp_title( '|', true, 'right' );
-	// Add the blog name.
-	bloginfo( 'name' );
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo " | $site_description";
-?>
-</title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
 <meta content="Global Alliance of Waste Pickers" name="organization" />

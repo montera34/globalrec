@@ -1,4 +1,8 @@
 <?php
+// theme global vars
+if (!defined('GLOBALREC_VER'))
+    define('GLOBALREC_VER', '0.1'); // must be updated in style.css header to
+
 $prefix_wpo = 'wpg-';
 $prefixwpg = '_wpg_';
 
@@ -62,9 +66,9 @@ add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
  * Enqueue scripts and styles.
  */
 function globalrec_scripts() {
-//	wp_enqueue_style( 'fa-css', get_template_directory_uri().'/font-awesome/css/font-awesome.min.css',false,'4.6.3' );
+	wp_enqueue_style( 'globalrec-fonts', get_template_directory_uri().'/fonts/style.css',false,GLOBALREC_VER );
 	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css',array('dashicons'),'3.3.6' );
-	wp_enqueue_style( 'globalrec-css', get_stylesheet_uri(),array('dashicons'),'1.0' );
+	wp_enqueue_style( 'globalrec-css', get_stylesheet_uri(),array('bootstrap-css'),GLOBALREC_VER );
 
 	wp_dequeue_script('jquery');
 	wp_dequeue_script('jquery-core');

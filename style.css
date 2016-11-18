@@ -125,6 +125,10 @@ color: black;
 }
 
 /* Menu */
+#main-menu,
+#language_list {
+	font-family: 'Roboto Condensed';
+}
 .navbar {
 	min-height: 0px;
 }
@@ -140,6 +144,10 @@ color: black;
 
 .form-search{
 	margin:2px 0 0 0 ;
+}
+/* social links */
+#social-networking-sites a {
+	text-decoration: none;
 }
 
 /* Language switcher in header */

@@ -100,8 +100,9 @@ if ( is_single() || is_page() ) {
 								} ?>
 						</div>
 					</div>
-					<div class="col-xs-12 col-md-2">
+
 					<?php if ( is_user_logged_in() ) { ?>
+					<div class="col-xs-12 col-md-2">
 						<small>
 						<ul class="nav nav-pills">
 							<li role="presentation" class="dropdown">
@@ -117,9 +118,9 @@ if ( is_single() || is_page() ) {
 							</li>
 						</ul>
 						</small>
-					<?php } ?>
 					</div>
-		    	<div class="pull-right">
+					<?php } ?>
+		    			<div class="pull-right">
 						<?php get_search_form(); ?>
 					</div>
 				</div>	
@@ -141,10 +142,11 @@ if ( is_single() || is_page() ) {
 		<div class="row">
 			<div class="col-md-12">
 				<div class="pull-right">
-					<div id="social-networking-sites" class="btn-group" style="margin: 2px 3px 0 0;">
-						<div class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/twitter.png" alt="" width="15" height="15" /> Twitter </a></div>
-						<div class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/facebook.png" alt="" width="15" height="15" /> Facebook</a></div>
-					</div>
+					<ul id="social-networking-sites" class="list-inline">
+						<li><a href="https://www.twitter.com/global_rec" title="Twitter @global_rec"><span class="dashicons dashicons-twitter"></span> Twitter</a></li>
+						<li><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><span class="dashicons dashicons-facebook-alt"></span> Facebook</a></li>
+						<li><a href="https://plus.google.com/u/3/103747913868560613139" title="Google Plus Global Alliance of Waste Pickers"><span class="dashicons dashicons-googleplus"></span> Google Plus</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>

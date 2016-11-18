@@ -8,8 +8,13 @@
 			</small>
 		</div>
 		<div class="col-md-2">
-			<div class="btn btn-xs"><a href="http://www.twitter.com/global_rec" title="Twitter @global_rec"><img class="alignnone size-full wp-image-18" title="tw" src="<?php bloginfo('template_url'); ?>/images/icons/twitter.png" alt="" width="15" height="15" /></a> </div>
-			<div class="btn btn-xs"><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><img class="alignnone size-full wp-image-15" style="text-align: -webkit-auto;" title="fb" src="<?php bloginfo('template_url'); ?>/images/icons/facebook.png" alt="" width="15" height="15" /></a></div>
+			<div class="pull-right">
+				<ul id="social-networking-sites" class="list-inline">
+					<li><a href="https://www.twitter.com/global_rec" title="Twitter @global_rec"><span class="dashicons dashicons-twitter"></span></a></li>
+					<li><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><span class="dashicons dashicons-facebook-alt"></span></a></li>
+					<li><a href="https://plus.google.com/u/3/103747913868560613139" title="Google Plus Global Alliance of Waste Pickers"><span class="dashicons dashicons-googleplus"></span></a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

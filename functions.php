@@ -123,6 +123,7 @@ register_post_type( 'global-meeting', array( // global meetings
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'global-meeting','with_front'=>false),
 	'menu_icon' => 'dashicons-admin-site',
+	'capability_type' => 'page'
 	)
 );
 register_post_type( 'bio', array( // Defining Biography custom post type
@@ -146,6 +147,7 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'bio','with_front'=>false),
 	'menu_icon' => 'dashicons-id',
+	'capability_type' => 'page'
 	)
 );
 
@@ -170,6 +172,7 @@ register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'newsletter','with_front'=>false),
 	'menu_icon' => 'dashicons-email-alt',
+	'capability_type' => 'page'
 	)
 );
 
@@ -227,6 +230,7 @@ register_post_type( 'threat', array( // Defining Threat custom post type
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
 	'menu_icon' => 'dashicons-hammer',
+	'capability_type' => 'page'
 	)
 );
 
@@ -249,6 +253,7 @@ register_post_type( 'inclusive-model', array( // Defining Inclusive Model custom
 	'menu_position' => 5,
 	'supports' => array('title', 'editor','custom-fields','author','revisions','thumbnail','excerpt'),
 	'menu_icon' => 'dashicons-awards',
+	'capability_type' => 'page'
 	)
 );
 
@@ -271,6 +276,7 @@ register_post_type( 'law-report', array( // Defining Law report custom post type
 	'menu_position' => 5,
 	'supports' => array('title','editor','author','revisions'),
 	'menu_icon' => 'dashicons-book-alt',
+	'capability_type' => 'page'
 	)
 );
 
@@ -293,6 +299,7 @@ register_post_type( 'city', array( // Defining City custom post type
 	'menu_position' => 5,
 	'supports' => array('title','editor','author','revisions'),
 	'menu_icon' => 'dashicons-minus',
+	'capability_type' => 'page'
 	)
 );
 
@@ -316,6 +323,7 @@ register_post_type( 'country', array( // Defining Country custom post type
 	'supports' => array('title','author','revisions'),
 	//'rewrite' => array('slug'=>'group','with_front'=>false),
 	'menu_icon' => 'dashicons-minus',
+	'capability_type' => 'page'
 	)
 );
 flush_rewrite_rules( false );
@@ -440,11 +448,17 @@ function globalrec_map_meta_cap( $caps, $cap, $user_id, $args ) {
 }
 
 /*
- * Create Waste Picker Organizer rol
- * which can create new Waste Picker Organization
- * to be published by an editor
+ * ADD CUSTOM ROLES
+ * Waste Picker Organizer role
+ * on theme activation
+ *
+ * and
+ *
+ * REMOVE CUSTOM ROLES
+ * on theme deactivation
  */
-add_action('init', 'globalrec_add_custom_roles');
+//add_action('init', 'globalrec_add_custom_roles');
+add_action('after_switch_theme', 'globalrec_add_custom_roles');
 function globalrec_add_custom_roles() {
 	$wpo_caps = array(
 		'publish_wpos' => false,
@@ -458,6 +472,9 @@ function globalrec_add_custom_roles() {
 		'read_wpo' => true,
 		// more standard capabilities here
 		'read' => true,
+		'edit_posts' => true,
+		'delete_posts' => true,
+
 	);
 	$wpo = add_role( 'globalrec_wpo','Waste Picker Organizer',$wpo_caps);
 
@@ -467,7 +484,49 @@ function globalrec_add_custom_roles() {
 		$wpo = add_role( 'globalrec_wpo','Waste Picker Organizer',$wpo_caps);
 	}
 }
+add_action('switch_theme', 'globalrec_remove_custom_roles');
+function globalrec_remove_custom_roles() {
+	remove_role('globalrec_wpo');
+}
 
+/*
+ * ADD EXTRA CAPABILITIES
+ * to roles
+ * on theme activation
+ *
+ * and
+ *
+ * REMOVE EXTRA CAPABILITIES
+ * on theme deactivation
+ */
+$roles_to_change = array('administrator','editor');
+$capabilities_to_add = array('publish_wpos','edit_wpos','edit_others_wpos','delete_wpos','delete_others_wpos','read_private_wpos','edit_wpo','delete_wpo','read_wpo');
+add_action( 'after_switch_theme', 'globalrec_add_caps_to_roles', 10 );
+function globalrec_add_caps_to_roles() {
+	global $wp_roles;
+	global $roles_to_change;
+	global $capabilities_to_add;
+	foreach ( $roles_to_change as $r ) {
+		get_role( $r );
+		foreach ( $capabilities_to_add as $c ) {
+			$wp_roles->role_objects[$r]->add_cap( $c );
+		}
+	}
+}
+add_action( 'switch_theme', 'globalrec_remove_caps_to_roles', 10 );
+function globalrec_remove_caps_to_roles() {
+	global $wp_roles;
+	global $roles_to_change;
+	global $capabilities_to_add;
+	foreach ( $roles_to_change as $r ) {
+		get_role( $r );
+		// Could use the get_role() wrapper here since this function is never
+		// called as a one off.  It is always called to alter the role as
+		// stored in the DB.
+		$wp_roles->role_objects[ $r ]->remove_cap( $c );
+	}
+}
+	
 /*
  * Register widgetized areas,
  */

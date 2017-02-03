@@ -526,7 +526,33 @@ function globalrec_remove_caps_to_roles() {
 		$wp_roles->role_objects[ $r ]->remove_cap( $c );
 	}
 }
-	
+
+/*
+ * ADD ALL USERS TO THE AUTHOR SELECT FIELD
+ * in both quick edit and single edit pages
+ *
+ * by default WordPress outputs admins, editors and authors.
+ * now contributors and other custom roles are also shown
+ *
+ * http://wordpress.stackexchange.com/questions/50827/select-subscriber-as-author-of-post-in-admin-panel
+ */
+add_filter('wp_dropdown_users', 'globalrec_dropdown_users');
+function globalrec_dropdown_users($output) {
+
+	global $post;
+	$users = get_users();
+
+	$output = "<select id='post_author_override' name='post_author_override' class=''>";
+
+	foreach($users as $user) {
+		$sel = ($post->post_author == $user->ID)?"selected='selected'":'';
+		$output .= '<option value="'.$user->ID.'"'.$sel.'>'.$user->user_login.'</option>';
+	}
+	$output .= "</select>";
+
+	return $output;
+}
+
 /*
  * Register widgetized areas,
  */

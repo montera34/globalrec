@@ -740,7 +740,7 @@ function sample_metaboxes( $meta_boxes ) {
 		'orderby' => 'title',
 		'order' => 'ASC',
 		));
-	$groups = '';
+	$groups[] = '';
 	foreach ($posts as $post) {
 		$groups[] = array(
 			'name' => $post->post_title,

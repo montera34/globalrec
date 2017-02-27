@@ -659,9 +659,9 @@ return $initArray;
 }
 add_filter('tiny_mce_before_init', 'add_iframe');
 
-// Post Attachment image function. Image URL for CSS Background. 
+// Post Attachment image function. Image URL for CSS Background.
 function the_post_image_url($size=large) {
-	
+
 	global $post;
 	$linkedimgurl = get_post_meta ($post->ID, 'image_url', true);
 
@@ -678,7 +678,7 @@ function the_post_image_url($size=large) {
 
 			echo ''.$attachmenturl.'';
 		}
-		
+
 	} elseif ( $linkedimgurl ) {
 
 		echo $linkedimgurl;
@@ -696,7 +696,7 @@ function the_post_image_url($size=large) {
 
 			echo ''.$attachmenturl.'';
 		}
-		
+
 	} else {
 		echo '' . get_bloginfo ( 'stylesheet_directory' ) . '/img/no-attachment.gif';
 	}
@@ -795,6 +795,24 @@ function sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
+	//Summary for posts (it is different from the excerpt, that is shown in loop.boxes)
+	$meta_boxes[] = array(
+		'id' => 'bio-translation',
+		'title' => 'Translation',
+		'pages' => array('bio'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Translator, type your name',
+				'desc' => 'Type "-" if you are not the translator. Ej: -',
+				'default' => '-',
+				'id' => '_gr_translator',
+				'type' => 'text_small'
+			),
+		),
+	);
 	wp_reset_query();
 
 	return $meta_boxes;
@@ -846,7 +864,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
-	
+
 	//Custom fields for articles (posts)
 	$meta_boxes[] = array(
 		'id' => 'post-extra-fields',
@@ -940,7 +958,7 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		'orderby' => 'title',
 		'order' => 'ASC',
 		));
-		
+
 	foreach ($posts as $post) {
 		$countries[] = array(
 			'name' => $post->post_title,
@@ -966,10 +984,10 @@ function global_meeting_sample_metaboxes( $meta_boxes ) {
 		),
 	);
 	wp_reset_query();
-	
+
 	//Custom Fields for Waste Picker Groups
 	global $prefix_wpo,$prefixwpg; //global prefix variable for waste picker organizations
-	
+
 	$meta_boxes[] = array(
 		'id' => 'wpg-contact-info',
 		'title' => 'Contact Information',
@@ -1391,7 +1409,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 				)
 			),
 			array(
-				'name' => 'Activities', 
+				'name' => 'Activities',
 				'desc' => 'Select all the activities your organization does.',
 				'id' => $prefix_wpo . 'activities',
 				'taxonomy' => $prefix_wpo . 'activities',
@@ -1445,7 +1463,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 					'name' => 'Date of Data Entry',
 					'desc' => '',
 					'id' => $prefixwpg . 'date_data_entry',
-					'type' => 'text_date_timestamp' 
+					'type' => 'text_date_timestamp'
 			),
 			array(
 					'name' => 'Date Data Updated',
@@ -1468,7 +1486,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),
 		),
 	);
-		
+
 	//Custom Fields for Law Reports
 	$prefixlaw = '_law_';
 	//Custom field to select a City for a Waste Picker Group
@@ -1502,7 +1520,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 		),
 	);
 	wp_reset_query();
-	
+
 	$meta_boxes[] = array(
 		'id' => 'law-downloads',
 		'title' => 'Law Report Downloads',
@@ -1581,7 +1599,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),
 		),
 	);
-	
+
 	//Custom field to select a City for a Waste Picker Group
 	$posts = query_posts( array(
 		'posts_per_page' => -1,
@@ -1589,7 +1607,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 		'orderby' => 'title',
 		'order' => 'ASC',
 		));
-	
+
 	$cities = array();
 	foreach ($posts as $post) {
 		$cities[] = array(
@@ -1647,7 +1665,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 		),
 	);
 	wp_reset_query();
-	
+
 	return $meta_boxes;
 }
 add_filter( 'cmb_meta_boxes', 'global_meeting_sample_metaboxes' );
@@ -1872,7 +1890,7 @@ function globalrec_waw_form() {
 	$language_terms = get_terms( 'wpg-language' );
 	$member_type_terms = get_terms( 'wpg-member-type' );
 	$scope_terms = get_terms( 'wpg-scope' );
-	
+
 	//Creates array
 	foreach ($language_terms as $key) {
 		$languages[$key->name] = $key->name;
@@ -1884,26 +1902,26 @@ function globalrec_waw_form() {
 		$scopes[$key->name] = $key->name;
 	}
 	$scopes= array_merge(array_flip(array('local','regional','national')), $scopes);
-	
+
 	//Creates options for multicheck in html
 	$options_languages = "";
 	while ( $language = current($languages) ) {
 		$options_languages .= "<div class='checkbox'><label><input type='checkbox' name='language_list[]' value='" .key($languages). "'>" .ucfirst(key($languages)). "</label></div>";
 		next($languages);
 	}
-	
+
 	$options_member_types = "";
 	while ( $member_type = current($member_types) ) {
 		$options_member_types .= "<div class='checkbox'><label><input type='checkbox' name='members_list[]'' value='" .key($member_types). "'>" .ucfirst(key($member_types)). "</label></div>";
 		next($member_types);
 	}
-	
+
 	$options_scopes = "";
 	while ( $scope = current($scopes) ) {
 		$options_scopes .= "<div class='checkbox'><label><input type='checkbox' name='scopes_list[]'' value='" .key($scopes). "'>" .ucfirst(key($scopes)). "</label></div>";
 		next($scopes);
 	}
-	
+
 	$form_out = "
 	<h2>". __('Submit information about your organization','globalrec') ."</h2>
 <form id='globalrec-form-content' method='post' action='" .$action. "' enctype='multipart/form-data'>
@@ -2045,7 +2063,7 @@ function globalrec_insert_wpg() {
 	$wpg_members_type = $_POST['members_list'];
 	$wpg_scope = $_POST['scopes_list'];
 	$wpg_comments = sanitize_text_field( $_POST['globalrec-form-waw-comments'] );
-	
+
 	// check that all required fields were filled
 	$fields = array(
 		//'title' => $wpg_name, TODO how to check name exists and not include it in this array (used for custom field inserts)
@@ -2055,13 +2073,13 @@ function globalrec_insert_wpg() {
 		'country' => $country,
 		//'_wpg_website' => $wpg_website, Website doesn-t need to be obligatory
 	);
-	
+
 	$terms = array(
 		'wpg-language' => $wpg_language,
 		'wpg-member-type' => $wpg_members_type,
 		'wpg-scope' => $wpg_scope,
 	);
-	
+
 	foreach ( $fields as $name => $field ) {
 		echo $name.' is: '. $field. '<br>';
 		if ( $field == '' ) {
@@ -2096,15 +2114,15 @@ function globalrec_insert_wpg() {
 		add_post_meta($wpg_id, key($fields), $field, TRUE);
 		next($fields);
 	}
-	
+
 	//echo "the id is " .$wpg_id. ".<br>";
-	
+
 	// insert taxonomies
 	foreach ( $terms as $key => $value ) {
 		//echo "insert: ".$value." in" . $key .".<br>";
 		wp_set_object_terms( $wpg_id, $value, $key);
 	}
-	
+
 	wp_redirect( $location_form );
 	exit;
 
@@ -2246,7 +2264,7 @@ function translated_post_table ($title,$array) {
 		$result .= "<tr><td style='background-color:#FF0;'><a href='". $value->guid ."'>". $value->post_title . "</a>". $tick . " [" .get_post_status ( $idValue )  . "]" ."</td>";
 		$tick = ""; //resets value of tick to nothing in case there is no summary for that article
 		if (ICL_LANGUAGE_CODE == 'en') { } else {
-			$result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a> <strong>[" . get_post_status ( $id_en )  ."]</strong></td>";}	
+			$result .= empty($id_en) ? "<td></td>" : "<td><a href='". get_permalink($id_en) ."'>". get_the_title( $id_en ) ."</a> <strong>[" . get_post_status ( $id_en )  ."]</strong></td>";}
 		if (ICL_LANGUAGE_CODE == 'es') { } else {
 			$result .= empty($id_es) ? "<td></td>" : "<td><a href='". get_permalink($id_es) ."'>". get_the_title( $id_es ) ."</a> <strong>[" . get_post_status ( $id_es )  ."]</strong></td>";}
 		if (ICL_LANGUAGE_CODE == 'pt-br') { } else {

@@ -10,16 +10,16 @@ get_header(); ?>
 		</div>
 		<?php the_content(); ?>
 		<?php endwhile; endif; ?>
-		
+
 		<?php
 			$args = array(
 				//'author' => '4',
 				'post_status' => array( 'publish', 'future','draft' ),
-				'post_type' => array( 'post', 'newsletter' ),
+				'post_type' => array( 'post','newsletter','bio' ),
 				'posts_per_page' => 100,
 				'ignore_sticky_posts' => 1,
 				'suppress_filters' => false //wpml suppress filters false
-				
+
 				);
 			$my_query = new WP_Query($args);
 			?>
@@ -32,7 +32,7 @@ get_header(); ?>
 			<th><?php _e('# Newsletter','globalrec'); ?></th>
 			<th><?php _e('Date','globalrec'); ?></th>
 			<th><?php _e('Author','globalrec'); ?></th>
-			<th><span style="background-color:yellow;""><?php _e('Translator','globalrec'); ?><span></th>
+			<th><span style="background-color:yellow;"><?php _e('Translator','globalrec'); ?><span></th>
 			<th><?php _e('Country','globalrec'); ?></th>
 			<th><?php _e('Categories','globalrec'); ?></th>
 			<th><?php _e('Region','globalrec'); ?></th>
@@ -86,7 +86,13 @@ get_header(); ?>
 				</td>
 				<td>
 				<?php
-					$country_ID = get_post_meta( $post_id , '_post_country', true );
+					if (get_post_type() == 'post') {
+						$country_ID = get_post_meta( $post_id , '_post_country', true );
+					} else if (get_post_type() == 'bio') {
+						$country_ID = get_post_meta( $post_id , 'bio_country', true );
+					} else {
+						$country_ID = 24234;
+					}
 					$country = get_post( $country_ID );
 					$countrytitle = $country->post_title;
 					echo $countrytitle;
@@ -108,7 +114,7 @@ get_header(); ?>
 					<?php
 						$str = get_the_content();
 						//echo str_word_count($str);
-						echo str_word_count(strip_tags($str)); 
+						echo str_word_count(strip_tags($str));
 					?>
 				</td>
 				<td>
@@ -116,7 +122,7 @@ get_header(); ?>
 						$summary = get_post_meta( $post_id , '_gr_post-summary', true );
 						$stripped_summary = strip_tags($summary);
 						//echo str_word_count($summary);
-						echo str_word_count($stripped_summary); 
+						echo str_word_count($stripped_summary);
 					?>
 				</td>
 				<td>
@@ -136,7 +142,7 @@ get_header(); ?>
 						echo str_word_count($stripped_original_summary_title);
 						?>
 				</td>
-				
+
 			</tr>
 
 	<?php endwhile; else: ?>

@@ -39,11 +39,18 @@
 						$group_id = get_post_meta( $postid, 'bio_group', true );
 						$group = get_post($group_id);
 						$group_link = get_permalink($postid);
-						$group_name = $group->post_title;
-						echo '<dt>Country</dt><dd><a href="'.$country_link.'">'.$country_name.'</a></dd>';
-						if ($group_name != get_the_title() ) {
-							echo '<dt><span class="dashicons groups-dashicon"></span>Waste Picker Group</dt><dd><a href="'.$group_link.'">'.$group_name.'</a></dd>';
+						if ( $group != "" ) {
+							$group_name = $group->post_title;
+						} else {
+							$group_name = "no group assigned";
 						}
+						if ($group == "" ){
+							//do nothing
+						} else if ( $group_name != get_the_title() ) {
+							echo '<dt><span class="dashicons groups-dashicon"></span>'. __('Waste Picker Group','globalrec') . '</dt>';
+							echo '<dd><a href="'.$group_link.'">'.$group_name.'</a></dd>';
+						}
+						echo '<dt>Country</dt><dd><a href="'.$country_link.'">'.$country_name.'</a></dd>';
 					?>
 				</dl>
 			</div>

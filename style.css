@@ -430,18 +430,22 @@ nav li.menu-item-has-children {
 
 /* Country post list. Styles year according to publication date */
 .year-2012 {
-	background-color:red !important;
+	background-color:darkred !important;
 }
 .year-2013 {
-	background-color:red;
+	background-color:darkred;
 }
 .year-2014 {
-	background-color:orange;
+	background-color:red;
 }
 .year-2015 {
-	background-color:lightcyan;
+	background-color:orange;
 }
 .year-2016 {
+	background-color:lightcyan;
+	color: black;
+}
+.year-2017 {
 	background-color:lightgreen;
 }
 

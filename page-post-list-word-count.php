@@ -41,6 +41,7 @@ get_header(); ?>
 			<th><?php _e('# words Summary without html','globalrec'); ?></th>
 			<th><?php _e('# words Summary + title','globalrec'); ?></th>
 			<th><?php _e('# words Summary + title (original language)','globalrec'); ?></th>
+			<th><?php _e('# words Article + title (original language)','globalrec'); ?></th>
 		</tr>
 	</thead>
     <tbody>
@@ -142,7 +143,16 @@ get_header(); ?>
 						echo str_word_count($stripped_original_summary_title);
 						?>
 				</td>
-
+				<td>
+					<?php
+						$content_post_original = get_post($current_main_id);
+						$content = $content_post_original->post_content;
+						//$content = apply_filters('the_content', $content);
+						$original_content_and_title = $content .' '. $original_post_title;
+						$stripped_original_content = strip_tags($original_content_and_title);
+						echo str_word_count($stripped_original_content);
+						?>
+				</td>
 			</tr>
 
 	<?php endwhile; else: ?>

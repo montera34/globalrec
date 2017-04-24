@@ -381,6 +381,10 @@ nav li.menu-item-has-children {
 	color:#000 !important;
 }
 
+.single-newsletter .type-newsletter .size-thumbnail img {
+	margin: 0 0 20px 0;
+}
+
 /* WAW */
 .nav > li > a {
     padding: 10px 10px;

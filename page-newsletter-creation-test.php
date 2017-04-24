@@ -12,7 +12,14 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3594, 'post-newsletter');
+//$newsletter_number = icl_object_id(3001, 'post-newsletter');
+
+// Grabs continent from url to filter the list of organization displayed by continent
+$newsletter_number = sanitize_text_field( $_GET['letter'] );
+
+if ( !empty($_GET['newsletter'])) {
+	$newsletter_number = sanitize_text_field( $_GET['letter'] );
+}
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),
@@ -156,6 +163,13 @@ $my_query_global = new WP_Query($args_global);
 		<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 	</div>
 	<div class="row">
+		<div class="col-md-8">
+			<h3>Select newsletter <a href="?letter=2862">14</a> <a href="?letter=3214">15</a> <a href="?letter=3001">16</a> <a href="?letter=3594">17</a> <a href="?letter=3599">18</a></h3>
+			<p>Este es el ID de la newsletter <?php echo $newsletter_number.gettype($newsletter_number); ?> </p>
+			<p><?php echo "sanitizado ".sanitize_text_field( $_GET['letter'] ). gettype(sanitize_text_field( $_GET['letter'] )); echo ". sin sanitizar ".$_GET['letter'].gettype($_GET['letter']); ?></p>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-8 content">
 			<?php the_content(); ?>
 			<?php endwhile; endif; ?>
@@ -212,14 +226,6 @@ $my_query_global = new WP_Query($args_global);
 	
 	<div class="row">
 		<div class="col-md-8 content">
-			<strong><?php _e('Global','globalrec'); ?></strong><br>
-			<ol>
-			<?php
-				foreach ($my_query_global_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
-				}
-			?>
-			</ol>
 			<strong id="short"><?php _e('Asia','globalrec'); ?></strong><br>
 			<ol>
 			<?php
@@ -260,65 +266,24 @@ $my_query_global = new WP_Query($args_global);
 				}
 			?>
 			</ol>
-
+			<strong><?php _e('Global','globalrec'); ?></strong><br>
+			<ol>
+			<?php
+				foreach ($my_query_global_posts as $key => $value ) {
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+				}
+			?>
+			</ol>
 			<hr>
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
-				<a href="#global"><?php echo _e('Global','globalrec');?></a>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
 				<a href="#north-america"><?php echo _e('North America','globalrec');?></a><br>
+				<a href="#global"><?php echo _e('Global','globalrec');?></a>
 			</p>
-			<!-- Global -->
-			<h2 id="global">
-				<!-- img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png" -->
-				<strong><?php echo _e('Global','globalrec');?></strong>
-			</h2>
-			<?php if ( $my_query_global->have_posts() ) : while ( $my_query_global->have_posts() ) : $my_query_global->the_post(); ?>
-			<?php
-			global $wp_query;
-			$wp_query->in_the_loop = true;
-			?>
-			<h3>
-				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-					<?php
-					the_title();
-					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$id = icl_object_id($country_ID, 'country', true);
-					$country = get_post( $id );
-					$countrytitle = $country->post_title;
-					echo " (".$countrytitle. ")";
-					?>
-				</a>
-				<small>
-					<?php echo _e('by','globalrec');?> <?php //author
-					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
-					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
-				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
-						echo $written_by;
-
-					}
-					else {
-						the_author_posts_link();
-					}
-					echo $published_date != ''? ' ('.$published_date.')' : '';
-					?>
-				</small>
-			</h3>
-			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
-				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail
-				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
-				</a>
-			</div>
-			<?php //the summary
-			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-			echo $summary;
-			?>
-			<?php endwhile; else: ?>
-			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-			<?php endif; ?>			
+			
 			<!-----------------Asia ------------------------->
 			<h2 id="asia">
 				<img src="http://globalrec.org/wp-content/themes/globalrec/images/asia.png">
@@ -571,6 +536,54 @@ $my_query_global = new WP_Query($args_global);
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
 
+			<!-- Global -->
+			<h2 id="nglobal">
+				<!-- img src="http://globalrec.org/wp-content/themes/globalrec/images/north-america.png" -->
+				<strong><?php echo _e('Global','globalrec');?></strong>
+			</h2>
+			<?php if ( $my_query_global->have_posts() ) : while ( $my_query_global->have_posts() ) : $my_query_global->the_post(); ?>
+			<?php
+			global $wp_query;
+			$wp_query->in_the_loop = true;
+			?>
+			<h3>
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+					<?php
+					the_title();
+					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo " (".$countrytitle. ")";
+					?>
+				</a>
+				<small>
+					<?php echo _e('by','globalrec');?> <?php //author
+					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
+				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+						echo $written_by;
+					}
+					else {
+						the_author_posts_link();
+					}
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
+				</small>
+			</h3>
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+				<?php	//the thumbnail
+				the_post_thumbnail( 'medium', array('class' => 'img-responsive','width' => '300') );?>
+				</a>
+			</div>
+			<?php //the summary
+			$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+			echo $summary;
+			?>
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

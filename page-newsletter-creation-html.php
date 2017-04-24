@@ -12,7 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3001, 'post-newsletter');
+$newsletter_number = icl_object_id(3594, 'post-newsletter');
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),
@@ -172,12 +172,12 @@ $my_query_global = new WP_Query($args_global);
 			</table>
 			<br>
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
+				<a href="#global"><?php echo _e('Global','globalrec');?></a><br>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>
 				<a href="#europe"><?php echo _e('Europe','globalrec');?></a><br>
-				<a href="#north-america"><?php echo _e('North America','globalrec');?></a><br>
-				<a href="#global"><?php echo _e('Global','globalrec');?></a>
+				<a href="#north-america"><?php echo _e('North America','globalrec');?></a>
 			</p>
 	<?php
 		$my_query_asia_posts = $my_query_asia->posts; //accesses the object "posts" inside the my query asia object
@@ -186,6 +186,61 @@ $my_query_global = new WP_Query($args_global);
 		$my_query_europe_posts = $my_query_europe->posts; //accesses the object "posts" inside the my query asia object
 		$my_query_northamerica_posts = $my_query_northamerica->posts; //accesses the object "posts" inside the my query asia object
 	?>
+			<!-- Global -->
+			<a name="global"></a>
+			<h2>
+				<strong><?php echo _e('Global','globalrec');?></strong>
+			</h2>
+			<?php if ( $my_query_global->have_posts() ) : while ( $my_query_global->have_posts() ) : $my_query_global->the_post(); ?>
+			<?php
+			global $wp_query;
+			$wp_query->in_the_loop = true;
+			?>
+			<h3>
+				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+					<?php
+					the_title();
+					$country_ID = get_post_meta( $post->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo " (".$countrytitle. ")";
+					?>
+				</a>
+				<small>
+					<?php echo _e('by','globalrec');?> <?php //author
+					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
+					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
+				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
+						echo $written_by;
+					}
+					else {
+						the_author_posts_link();
+					} 
+					echo $published_date != ''? ' ('.$published_date.')' : '';
+					?>
+				</small>
+			</h3>
+			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
+				<?php	//the thumbnail
+        $post_thumbnail_id = get_post_thumbnail_id();
+        $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+        ?>
+          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
+				</a>
+			</div>
+			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
+				<?php //the summary
+				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
+				echo $summary;
+				?>
+			</div>
+			<?php endwhile; else: ?>
+			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+			<?php endif; ?>
+			<hr>
+			
 			<!-----------------Asia ------------------------->
 			<a name="asia"></a>
 			<h2>
@@ -465,61 +520,7 @@ $my_query_global = new WP_Query($args_global);
 			<?php endwhile; else: ?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 			<?php endif; ?>
-			<hr>
 
-			<!-- Global -->
-			<a name="global"></a>
-			<h2>
-				<strong><?php echo _e('Global','globalrec');?></strong>
-			</h2>
-			<?php if ( $my_query_global->have_posts() ) : while ( $my_query_global->have_posts() ) : $my_query_global->the_post(); ?>
-			<?php
-			global $wp_query;
-			$wp_query->in_the_loop = true;
-			?>
-			<h3>
-				<a style="font-size: 24px;color: #fe7c11;text-decoration: none;" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-					<?php
-					the_title();
-					$country_ID = get_post_meta( $post->ID, '_post_country', true );
-					$id = icl_object_id($country_ID, 'country', true);
-					$country = get_post( $id );
-					$countrytitle = $country->post_title;
-					echo " (".$countrytitle. ")";
-					?>
-				</a>
-				<small>
-					<?php echo _e('by','globalrec');?> <?php //author
-					$written_by = get_post_meta( $post->ID, '_gr_written-by', true );
-					$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
-				 	if ($written_by != '')  { //if the text is written by a journalist the field "written" by will be filled
-						echo $written_by;
-					}
-					else {
-						the_author_posts_link();
-					} 
-					echo $published_date != ''? ' ('.$published_date.')' : '';
-					?>
-				</small>
-			</h3>
-			<div class="size-thumbnail" style="width:300px;margin:0 0 10px 0;">
-				<a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?>">
-				<?php	//the thumbnail
-        $post_thumbnail_id = get_post_thumbnail_id();
-        $thumbnail_array = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
-        ?>
-          <img title="<?php the_title_attribute(); ?>" alt="<?php the_title_attribute(); ?>" class="wp-post-image img-responsive" src="<?php echo $thumbnail_array[0]; ?>" width="300" >
-				</a>
-			</div>
-			<div style="font-size: 11pt; font-family: verdana,helvetica,sans-serif;line-height: 18pt;">
-				<?php //the summary
-				$summary = get_post_meta( $post->ID, '_gr_post-summary', true );
-				echo $summary;
-				?>
-			</div>
-			<?php endwhile; else: ?>
-			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-			<?php endif; ?>
 		</div>
 	</div>
 </div>

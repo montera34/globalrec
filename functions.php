@@ -26,8 +26,8 @@ function globalrec_setup() {
 	add_post_type_support( 'global-meeting', 'excerpt' );
 
 	//adds featured image to 'post', 'page','bio','global-meeting','waste-picker-org'
-//	add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
-	add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-org' ) );
+	add_theme_support( 'post-thumbnails' ); //to make http://codex.wordpress.org/Function_Reference/has_post_thumbnail work
+//	add_theme_support( 'post-thumbnails', array( 'post', 'page','bio','global-meeting','waste-picker-org' ) );
 
 	//add posts formats
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'video', 'audio', 'image' ) );
@@ -144,7 +144,7 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 	'hierarchical' => false,
 	'public' => true,
 	'menu_position' => 5,
-	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
+	'supports' => array('title','editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'bio','with_front'=>false),
 	'menu_icon' => 'dashicons-id',
 	'capability_type' => 'page'

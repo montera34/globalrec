@@ -41,6 +41,7 @@ register_post_type( 'global-meeting', array( // global meetings
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'global-meeting','with_front'=>false),
 	'menu_icon' => 'dashicons-admin-site',
+	'has_archive' => true
 	)
 );
 register_post_type( 'bio', array( // Defining Biography custom post type
@@ -64,6 +65,7 @@ register_post_type( 'bio', array( // Defining Biography custom post type
 	'supports' => array('title', 'editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
 	'rewrite' => array('slug'=>'bio','with_front'=>false),
 	'menu_icon' => 'dashicons-id',
+	'has_archive' => true
 	)
 );
 
@@ -1681,12 +1683,103 @@ function custom_pagination() {
 }
 
 //Adds other custom post types to the feed
-function myfeed_request($qv) {
+function globalrec_myfeed_request($qv) {
 	if (isset($qv['feed']) && !isset($qv['post_type']))
 		$qv['post_type'] = array('post', 'newsletter');
 	return $qv;
 }
-add_filter('request', 'myfeed_request');
+add_filter('request', 'globalrec_myfeed_request');
+
+/* ADDS CUSTOM CONTENTS TO FEEDS
+ * 
+ * The array $feed_contents contains CPT and content to include in feeds
+ * Structure:
+ *
+ * $feed_contents = array(
+ * 	'CPT_1_ID' => array(
+ * 		'cf' => array(
+ * 			'custom_field_1_id' => 'Custom field 1 label',
+ * 			,'custom_field_2_id' => 'Custom field 2 label'
+ * 			),
+ * 		'tax' => array(
+ * 			'tax_1_slug' => 'Taxonomy 1 name',
+ * 			'tax_2_slug' => 'Taxonomy 2 name'
+ * 			),
+ * 	),
+ * 	'CPT_2_ID' => array(
+ * 		'cf' => array(
+ * 			'custom_field_1_id' => 'Custom field 1 label',
+ * 			,'custom_field_2_id' => 'Custom field 2 label'
+ * 			),
+ * 		'tax' => array(
+ * 			'tax_1_slug' => 'Taxonomy 1 name',
+ * 			'tax_2_slug' => 'Taxonomy 2 name'
+ * 			),
+ * 	)
+ * );
+ *
+ * In order to make this function works
+ * it is necessary first to modify the custom post type registration function
+ * and add the option `'has_archive' => true` for every CPT
+ *
+ */
+
+$feed_contents = array(
+	'bio' => array(
+		'cf' => array(
+			'bio_mail' => __('Email','globalrec'),
+		),
+	),
+	'global-meeting' => array(
+		'cf' => array(
+			'gm_location' => __('Location','globalrec'),
+		),
+		'tax' => array(
+			'gb-type' => __('Type','globalrec')
+		)
+	)
+
+);
+function globalrec_custom_feeds($content) {
+	global $wp_query;
+	global $feed_contents;
+	$postid = $wp_query->post->ID;
+	if ( is_feed() ) {
+		foreach ( $feed_contents as $c ) {
+			if ( array_key_exists('cf',$c) ) {
+				$cf_out = '';
+				foreach ( $c['cf'] as $k => $l ) {
+					$v = get_post_meta($postid, $k, true);
+					if ( $v !== '' ) { $cf_out .= "<dt>".$l."</dt><dd>".$v."</dd>"; }
+				}
+				if ( $cf_out != '' ) {
+					$cf_out = '<dd>'.$cf_out.'</dd>';
+					$content .= $cf_out;
+				}
+			}
+			if ( array_key_exists('tax',$c) ) {
+				$tax_out = '';
+				foreach ( $c['tax'] as $t => $l ) {
+					$terms = get_the_terms($postid, $t);
+					if ( $terms && ! is_wp_error( $terms ) ) {
+						$terms_array = array();
+						foreach ( $terms as $t ) { $terms_array[] = $t->name; }
+						$tax_out .= "<dt>".$l."</dt><dd>".implode(',',$terms_array)."</dd>";
+					}
+				}
+				if ( $tax_out != '' ) {
+					$tax_out = '<dd>'.$tax_out.'</dd>';
+					$content .= $tax_out;
+				}
+			}
+		}
+	}
+	return $content;
+}
+add_filter('the_excerpt_rss', 'globalrec_custom_feeds');
+
+add_filter('the_content_feed', 'globalrec_custom_feeds');
+
 
 // Waste Pickers Around the World submit form
 //Code based in https://github.com/skotperez/15muebles/blob/master/functions.php

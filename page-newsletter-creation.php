@@ -263,7 +263,7 @@ $my_query_global = new WP_Query($args_global);
 
 			<hr>
 			<p><strong><?php echo _e('Table of Contents','globalrec');?></strong><br>
-				<a href="#global"><?php echo _e('Global','globalrec');?></a>
+				<a href="#global"><?php echo _e('Global','globalrec');?></a><br>
 				<a href="#asia"><?php echo _e('Asia','globalrec');?></a><br>
 				<a href="#latinamerica"><?php echo _e('Latin America','globalrec');?></a><br>
 				<a href="#africa"><?php echo _e('Africa','globalrec');?></a><br>

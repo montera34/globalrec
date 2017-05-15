@@ -43,7 +43,13 @@ $meta_query = array(
 			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 			<h2 id="post-<?php the_ID(); ?>" class="col-md-10	">
 				<?php the_title();?> &laquo; <?php _e('Waste pickers Around the World (WAW)','globalrec'); ?>
-			</h2>		
+			</h2>
+		</div>
+		<div class="row content">
+			<div class="col-md-9">
+			<?php the_content(); ?>
+			</div>
+			<?php endwhile; endif; ?>
 		</div>
 		<div class="row">
 			<div class="col-md-10">
@@ -58,12 +64,6 @@ $meta_query = array(
 					<li role="presentation"><a href="?continent=europe" title="<?php _e('Europe','globalrec'); ?>	"><?php _e('Europe','globalrec'); ?></a></li>
 				</ul>
 			</div>
-		</div>
-		<div class="row content">
-			<div class="col-md-9">
-			<?php the_content(); ?>
-			</div>
-			<?php endwhile; endif; ?>
 		</div>
 		<div class="row">
 		<?php
@@ -112,10 +112,10 @@ $meta_query = array(
     <tbody>
   <?php $i = 1; ?>
 	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
-	<?php 	 //necessary to show the tags 
+	<?php 	 //necessary to show the tags
 		global $wp_query;
 		$wp_query->in_the_loop = true;
-		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag. 
+		$more = 0;       // Set (inside the loop) to display content above the more "seguir leyendo" tag.
 		$post_id = $post->ID;
 		?>
 
@@ -125,7 +125,7 @@ $meta_query = array(
 						$i++; ?>
 				</td>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
-					<strong><?php the_title(); ?></strong></a> 
+					<strong><?php the_title(); ?></strong></a>
 					<?php if ( is_user_logged_in() ) { ?><div class="btn btn-xs btn-default"> <?php edit_post_link(__('Edit This')); ?></div> <?php } ?>
 				</td>
 				<td>
@@ -150,12 +150,12 @@ $meta_query = array(
 					?>
 				</td>
 				<td>
-					<?php 
+					<?php
 					/*$member_type = get_post_meta( $post_id, '_wpg_members_type', true );
 					if (gettype($member_type) == 'array') {
 						echo list_of_items($post_id,'_wpg_members_type','');
 					} else {
-						echo get_post_meta( $post_id, '_wpg_members_type', true ); 
+						echo get_post_meta( $post_id, '_wpg_members_type', true );
 					} */?>
 					<?php echo get_the_term_list( $post_id, 'wpg-member-type', ' ', ', ', '' ); ?>
 				</td>
@@ -168,7 +168,7 @@ $meta_query = array(
 					echo $number_wpg !='' ? ' ('.number_format($number_wpg).')' : '';
 					?>
 				</td>
-				<td><?php 
+				<td><?php
 						//City
 						$city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 						$city = get_post($city_id);
@@ -177,7 +177,7 @@ $meta_query = array(
 						//orgs without city selected
 						$city2 = get_post_meta( $post_id, 'city', true );
 						$city2_slug = strtolower (str_replace(" ","-",$city2));
-						
+
 						if ( !empty($city) ) {
 							/*if ($city_name == 'Not specified' ) {
 								echo $city2. ", ";
@@ -216,7 +216,7 @@ $meta_query = array(
 						} ?>
 				</td>
 				<td>
-					<?php 
+					<?php
 						$yearformed = get_post_meta( $post_id, '_wpg_year_formed', true );
 						$yearregistred = get_post_meta( $post_id, '_wpg_registration_year', true );
 						echo $yearformed;

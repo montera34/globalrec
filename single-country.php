@@ -18,7 +18,7 @@ $post_id = $post->ID;
 		</div>
 		<div class="row">
 			<div class="col-md-4">
-				<?php 
+				<?php
 					//List of Waste Picker Groups that belong to the Country
 					$waste_picker_groups = get_posts( array(
 						'post_type' => 'waste-picker-org',
@@ -46,9 +46,9 @@ $post_id = $post->ID;
 					));
 					$result = count($waste_picker_groups);
 					?>
-				<h3 class="groups-dashicon">Waste Picker Groups</h3>
+				<h3 class="groups-dashicon"><?php _e('Waste Picker Groups','globalrec'); ?></h3>
 				<table class="table table-condensed table-hover ">
-					<thead><tr><th>Waste Picker Groups (<?php echo $result; ?>)</th></tr></thead>
+					<thead><tr><th><?php _e('Waste Picker Groups','globalrec'); ?> (<?php echo $result; ?>)</th></tr></thead>
 					<tbody>
 						<?php
 						foreach($waste_picker_groups as $waste_picker_group) {
@@ -65,7 +65,7 @@ $post_id = $post->ID;
 						'meta_key' => '_post_country',
 						'meta_value' => $post_id,
 						'posts_per_page'   => 15,
-				)); 
+				));
 				if ($posts) {?>
 					<h3 class="document-dashicon"><?php _e('Last updates from','globalrec'); ?> <?php echo $title; ?></h3>
 					<div class="list-group">
@@ -74,7 +74,7 @@ $post_id = $post->ID;
 							echo '<a href="'.get_permalink($post->ID).'" class="list-group-item">'.$post->post_title;
 							echo $published_date != ''? ' ('.$published_date.')</a>' : '</a>';
 						} ?>
-					</div><?php 
+					</div><?php
 				}
 				wp_reset_query(); ?>
 			</div>
@@ -125,5 +125,5 @@ $post_id = $post->ID;
 	<?php posts_nav_link(' &#8212; ', __('&laquo; Newer Posts'), __('Older Posts &raquo;')); ?>
 	</div>
 	<?php get_footer(); ?>
-	
+
 </div>

@@ -1,18 +1,18 @@
-<?php  /* Template Name: Country List*/ 
+<?php  /* Template Name: Country List*/
 get_header(); ?>
 <div id="page-law-reports"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<div class="row">
 			<div class="col-md-8">
 				<h1 id="post-<?php the_ID(); ?>">
-					<?php the_title();?>	
+					<?php the_title();?>
 				</h1>
 			</div>
-			<div class="col-md-4">	
+			<div class="col-md-4">
 				<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
 			</div>
 		</div>
-		<?php the_content(); ?>	
+		<?php the_content(); ?>
 		<?php endwhile; endif; ?>
 		<?php
 			$args = array(
@@ -41,7 +41,7 @@ get_header(); ?>
 							$wp_query->in_the_loop = true;
 							?>
 						<?php
-							$posts_to_exclude = array(24234, 10942); //excludes "-" and "not specified" from list by they ID.
+							$posts_to_exclude = array(24234, 10942, 24237, 20704); //excludes "-" and "not specified" from list by they ID.
 							if(!in_array($post->ID, $posts_to_exclude)):
 							?>
 								<tr>

@@ -1303,7 +1303,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 				'name' => 'Partnering Organizations',
 				'desc' => 'Input the names of the organizations you currently have a partnership with separated by commas.',
 				'id' => $prefixwpg . 'partnering_organizations',
-				'type' => 'text_small',
+				'type' => 'text_medium',
 			),
 			array(
 				'name' => 'Affiliations',
@@ -1718,7 +1718,7 @@ function icl_object_id_check($id,$type){
 function list_of_items($postid=1,$value=1,$name=1){
 	$items = get_post_meta($postid,$value,true);
 	if ($items!='') {
-		echo "<dt>".$name."</dt>";
+		echo "<dt>" .__($name,'globalrec'). "</dt>";
 		echo "<dd>";
 		foreach($items as $item) {
 			echo  $item == 'ngo' ? 'NGO' : ucfirst($item);
@@ -1737,7 +1737,7 @@ function list_taxonomy_terms($post_id=0,$slug='',$name='') {
 			$term_name = $item->name;
 			$term_slug = $item->slug;
 			if ( $key == 0) { //for the first item
-				echo "<dt>" .$name. "</dt>";
+				echo "<dt>" .__($name,'globalrec'). "</dt>";
 				echo "<dd>";
 			} else { //if there is more than one item adds a comma to separate items
 				echo ", ";
@@ -1752,7 +1752,7 @@ function list_taxonomy_terms($post_id=0,$slug='',$name='') {
 function display_item($postid=1,$value=1,$name=1){
 	$item = get_post_meta($postid,$value,true);
 	if ($item!='') {
-		echo "<dt>".$name."</dt><dd>".ucfirst($item)."</dd>";
+		echo "<dt>".__($name,'globalrec')."</dt><dd>".ucfirst($item)."</dd>";
 	}
 }
 add_action( 'wp', 'display_item' );

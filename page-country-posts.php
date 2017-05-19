@@ -52,7 +52,11 @@ get_header(); ?>
 					<!-- Default panel contents -->
 					<div class="panel-heading">
 						<?php _e('Updates from','globalrec'); ?>
-						<strong><?php echo $country->post_title; ?></strong>
+						<strong>
+							<a href='<?php echo $country->guid; ?>'>
+								<?php echo $country->post_title; ?>
+							</a>
+						</strong>
 						<span class="badge">
 							<?php echo  $count; ?>
 						</span>

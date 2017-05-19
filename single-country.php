@@ -71,10 +71,8 @@ $post_id = $post->ID;
 					<div class="list-group">
 						<?php foreach($posts as $post) {
 							//$published_date = get_post_meta( $post->ID, '_gr_article-date', true );
-							$string = $post->post_date;
-							$date = DateTime::createFromFormat("Y-m-d H:i:s", $string);
 							echo '<a href="'.get_permalink($post->ID).'" class="list-group-item">'.$post->post_title;
-							echo ' ['. $date->format("m/Y"). ']</a>';
+							echo ' ('. get_the_date("m/Y"). ')</a>';
 							//echo $published_date != ''? ' ('.$published_date.')</a>' : '</a>';
 						} ?>
 					</div><?php

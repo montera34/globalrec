@@ -1725,6 +1725,23 @@ add_filter('request', 'globalrec_myfeed_request');
  */
 
 $feed_contents = array(
+	'post' => array(
+		'cf' => array(
+			'_gr_written-by' => __('Writen by','globalrec'),
+			'_gr_translator' => __('Translated by','globalrec'),
+			'_post_country' => __('Country','globalrec'),
+			'_gr_article-url' => __('Article URL','globalrec'),
+			'_gr_article-title' => __('Article title','globalrec'),
+			'_gr_published-in' => __('Article published in','globalrec')
+		),
+		'author' => array(
+			'author' => __('Posted by','globalrec')
+		),
+		'tax' => array(
+			'post-region' => __('Region','globalrec')
+		)
+
+	),
 	'bio' => array(
 		'cf' => array(
 			'bio_mail' => __('Email','globalrec'),
@@ -1753,7 +1770,7 @@ function globalrec_custom_feeds($content) {
 					if ( $v !== '' ) { $cf_out .= "<dt>".$l."</dt><dd>".$v."</dd>"; }
 				}
 				if ( $cf_out != '' ) {
-					$cf_out = '<dd>'.$cf_out.'</dd>';
+					$cf_out = '<dl>'.$cf_out.'</dl>';
 					$content .= $cf_out;
 				}
 			}
@@ -1768,9 +1785,12 @@ function globalrec_custom_feeds($content) {
 					}
 				}
 				if ( $tax_out != '' ) {
-					$tax_out = '<dd>'.$tax_out.'</dd>';
+					$tax_out = '<dl>'.$tax_out.'</dl>';
 					$content .= $tax_out;
 				}
+			}
+			if ( array_key_exists('author',$c) ) {
+				$content .= '<dl><dt>'.$c['author']['author'].'</dt><dd>'.get_the_author().'</dd></dl>';
 			}
 		}
 	}

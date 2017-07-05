@@ -1,6 +1,6 @@
 <?php  /* Template Name: Country List*/
 get_header(); ?>
-<div id="page-law-reports"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
+<div id="page-countries"  <?php post_class(''); ?> id="post-<?php the_ID(); ?>">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<div class="row">
 			<div class="col-md-8">

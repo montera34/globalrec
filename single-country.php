@@ -4,7 +4,7 @@ $title = get_the_title();
 $post_id = $post->ID;
 ?>
 
-<div <?php post_class('container') ?>  id="post-<?php the_ID(); ?>">
+<div class="container">
 	<div class="row">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div class="row">

@@ -1,0 +1,110 @@
+<wpml-config>
+  <custom-types>
+    <custom-type translate="1">global-meeting</custom-type>
+    <custom-type translate="1">bio</custom-type>
+    <custom-type translate="1">newsletter</custom-type>
+    <custom-type translate="1">waste-picker-org</custom-type>
+    <custom-type translate="1">threat</custom-type>
+    <custom-type translate="0">inclusive-model</custom-type>
+    <custom-type translate="1">law-report</custom-type>
+    <custom-type translate="1">city</custom-type>
+    <custom-type translate="1">country</custom-type>
+  </custom-types>
+  <taxonomies>
+    <taxonomy translate="1">gb-type</taxonomy>
+    <taxonomy translate="1">gb-year</taxonomy>
+    <taxonomy translate="1">post-region</taxonomy>
+    <taxonomy translate="1">post-newsletter</taxonomy>
+    <taxonomy translate="1">wpg-language</taxonomy>
+    <taxonomy translate="1">wpg-member-type</taxonomy>
+    <taxonomy translate="1">wpg-scope</taxonomy>
+    <taxonomy translate="1">wpg-organization-type</taxonomy>
+    <taxonomy translate="1">wpg-member-occupation</taxonomy>
+    <taxonomy translate="1">wpg-workplace-members</taxonomy>
+    <taxonomy translate="1">wpg-membership</taxonomy>
+    <taxonomy translate="1">wpg-education-training</taxonomy>
+    <taxonomy translate="1">wpg-affiliations</taxonomy>
+    <taxonomy translate="1">wpg-funding</taxonomy>
+    <taxonomy translate="1">wpg-member-benefits</taxonomy>
+    <taxonomy translate="1">wpg-safety-technology</taxonomy>
+    <taxonomy translate="1">wpg-municipality-how</taxonomy>
+    <taxonomy translate="1">wpg-municipality-what</taxonomy>
+    <taxonomy translate="1">wpg-material-type</taxonomy>
+    <taxonomy translate="1">wpg-activities</taxonomy>
+    <taxonomy translate="1">wpg-sorting-spaces</taxonomy>
+    <taxonomy translate="1">wpg-treatment-organic-materials</taxonomy>
+    <taxonomy translate="1">wpg-challenges-access-waste</taxonomy>
+    <taxonomy translate="1">wpg-status</taxonomy>
+  </taxonomies>
+  <custom-fields>
+		<custom-field action="translate">title</custom-field>
+		<custom-field action="translate">description</custom-field>
+		<custom-field action="translate">keywords</custom-field>
+    <custom-field action="copy">_gr_article-url</custom-field>
+    <custom-field action="copy">_gr_article-date</custom-field>
+    <custom-field action="copy">_wpg_country_code_telephone</custom-field>
+    <custom-field action="copy">gb-tag</custom-field>
+    <custom-field action="translate">_gr_article-title</custom-field>
+    <custom-field action="copy">_gr_written-by</custom-field>
+    <custom-field action="copy">gr_email</custom-field>
+    <custom-field action="copy">bio_email</custom-field>
+    <custom-field action="copy">gm-date</custom-field>
+    <custom-field action="copy">gm-location</custom-field>
+    <custom-field action="copy">gm_date</custom-field>
+    <custom-field action="copy">gm_location</custom-field>
+    <custom-field action="copy">gm_tag</custom-field>
+    <custom-field action="copy">gm_downloads</custom-field>
+    <custom-field action="copy">_wpg_phone1</custom-field>
+    <custom-field action="copy">_law_countryselect</custom-field>
+    <custom-field action="copy">_law_downloads</custom-field>
+    <custom-field action="copy">_wpg_secondary_contact_name</custom-field>
+    <custom-field action="copy">_wpg_primary_contact_name</custom-field>
+    <custom-field action="translate" style="visual" label="Summary">_gr_post-summary</custom-field>
+    <custom-field action="ignore">_cms_nav_minihome</custom-field>
+    <custom-field action="copy">_gr_published-in</custom-field>
+    <custom-field action="copy">_wpg_gender_women_composition</custom-field>
+    <custom-field action="copy">_wpg_postal_code</custom-field>
+    <custom-field action="copy">wpml_media_duplicate_of</custom-field>
+    <custom-field action="copy">_city_countryselect</custom-field>
+    <custom-field action="copy">_city_hidden</custom-field>
+    <custom-field action="copy">_wpg_street_number</custom-field>
+    <custom-field action="copy">_wpg_primary_contact_email</custom-field>
+    <custom-field action="copy">bio_group</custom-field>
+    <custom-field action="copy">bio_country</custom-field>
+    <custom-field action="translate">_gr_translator</custom-field>
+    <custom-field action="copy">_wpg_countryselect</custom-field>
+    <custom-field action="copy">_wpg_cityselect</custom-field>
+    <custom-field action="copy">_wpg_physical_address</custom-field>
+    <custom-field action="copy">_wpg_primary_contact_position</custom-field>
+    <custom-field action="copy">_wpg_number_groups</custom-field>
+    <custom-field action="translate" style="visual" label="Estructura organizativa">_wpg_structure</custom-field>
+    <custom-field action="copy">_wpg_elections</custom-field>
+    <custom-field action="copy">_wpg_middlemen</custom-field>
+    <custom-field action="copy">_wpg_information_source</custom-field>
+    <custom-field action="copy">_wpg_website</custom-field>
+    <custom-field action="copy">_wpg_email</custom-field>
+    <custom-field action="copy">_wpg_region</custom-field>
+    <custom-field action="translate" style="visual" label="Objetivos">_wpg_objectives</custom-field>
+    <custom-field action="copy">_wpg_date_data_entry</custom-field>
+    <custom-field action="copy">_wpg_street_name</custom-field>
+    <custom-field action="copy">_wpg_primary_contact_phone</custom-field>
+    <custom-field action="copy">_wpg_registration_year</custom-field>
+    <custom-field action="copy">_wpg_partnering_organizations</custom-field>
+    <custom-field action="copy">_wpg_year_formed</custom-field>
+    <custom-field action="copy">_wpg_formally_registered</custom-field>
+    <custom-field action="copy">_wpg_number_individuals</custom-field>
+    <custom-field action="copy">_wpg_cell_phone</custom-field>
+    <custom-field action="copy">_wpg_phone2</custom-field>
+    <custom-field action="copy">_wpg_fax</custom-field>
+    <custom-field action="copy">_wpg_secondary_contact_phone</custom-field>
+    <custom-field action="copy">_wpg_secondary_contact_email</custom-field>
+    <custom-field action="copy">_wpg_gender_women_comment</custom-field>
+    <custom-field action="copy">_wpg_postal_address</custom-field>
+    <custom-field action="copy">_wpg_facebook</custom-field>
+    <custom-field action="copy">_wpg_date_data_updated</custom-field>
+    <custom-field action="copy">_wpg_twitter</custom-field>
+    <custom-field action="copy">_wpg_credit_members</custom-field>
+    <custom-field action="copy">_wpg_other_social_networks</custom-field>
+    <custom-field action="ignore">_wpg_education_training</custom-field>
+  </custom-fields>
+</wpml-config>

@@ -9,6 +9,11 @@ Tags: bootstrap
 
 /*@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Sintony');*/
 
+/* jokers */
+.spacetop {
+	margin-top: 20px;
+}
+
 body{
 	background-color:#fafafa;
 }

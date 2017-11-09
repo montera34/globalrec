@@ -40,8 +40,8 @@ $meta_query = array(
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<?php get_template_part( 'nav', 'waw' ); ?>
 		<div class="row">
-			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
-			<h2 id="post-<?php the_ID(); ?>" class="col-md-10	">
+			<div class="spacetop col-md-2 col-md-push-10"><?php do_action('icl_language_selector'); ?></div>
+			<h2 id="post-<?php the_ID(); ?>" class="col-md-10 col-md-pull-2">
 				<?php the_title();?> &laquo; <?php _e('Waste pickers Around the World (WAW)','globalrec'); ?>
 			</h2>		
 		</div>
@@ -66,6 +66,7 @@ $meta_query = array(
 			<?php endwhile; endif; ?>
 		</div>
 		<div class="row">
+		<div class="col-md-12">
 		<?php
 			$args = array(
 				'post_type' => 'waste-picker-org',
@@ -169,5 +170,6 @@ $meta_query = array(
 	<?php endif; ?>
     </tbody>
   </table>
+</div>
 </div>
 <?php get_footer(); ?>

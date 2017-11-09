@@ -80,7 +80,7 @@ function globalrec_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-	if ( is_page_template('page-waw-list.php') ) {
+	if ( is_page_template(array('page-waw-list.php','page-waw-list-candidates.php','page-waw-list-last-modified.php') ) ) {
 		wp_enqueue_style( 'datatables-css', get_template_directory_uri().'/css/datatables.min.css',array('bootstrap-css'),'1.10.16' );
 		wp_enqueue_script( 'datatables-js', get_template_directory_uri().'/js/datatables.min.js',array('bootstrap-js'),'1.10.16' );
 		wp_enqueue_script( 'datatables-init-js', get_template_directory_uri().'/js/datatables.init.js',array('datatables-js'),GLOBALREC_VER );

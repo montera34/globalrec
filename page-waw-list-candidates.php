@@ -5,8 +5,8 @@ get_header();
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
 		<?php get_template_part( 'nav', 'waw' ); ?>
 		<div class="row">
-			<div class="pull-right"><?php do_action('icl_language_selector'); ?></div>
-			<h2 id="post-<?php the_ID(); ?>" class="col-md-10	">
+			<div class="spacetop col-md-2 col-md-push-10"><?php do_action('icl_language_selector'); ?></div>
+			<h2 id="post-<?php the_ID(); ?>" class="col-md-10 col-md-pull-2">
 				<?php the_title();?> &laquo; <?php _e('Waste pickers Around the World (WAW)','globalrec'); ?>
 			</h2>		
 		</div>
@@ -31,6 +31,7 @@ get_header();
 			<?php endwhile; endif; ?>
 		</div>
 		<div class="row">
+		<div class="col-md-12">
 		<?php
 			$args = array(
 				'post_type' => 'waste-picker-org',
@@ -43,7 +44,7 @@ get_header();
 			);
 			$my_query = new WP_Query($args);
 			?>
-  <table class="table table-hover table-condensed" id="wpg-list">
+<table class="table table-hover table-condensed" id="wpg-list">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -54,7 +55,7 @@ get_header();
 			<th><?php _e('Location','globalrec'); ?></th>
 		</tr>
 	</thead>
-    <tbody>
+	<tbody>
   <?php $i = 1; ?>
 	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
 	<?php 	 //necessary to show the tags 
@@ -135,7 +136,8 @@ get_header();
 	<?php endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 	<?php endif; ?>
-    </tbody>
-  </table>
+	</tbody>
+</table>
+</div>
 </div>
 <?php get_footer(); ?>

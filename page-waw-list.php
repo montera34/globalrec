@@ -66,6 +66,7 @@ $meta_query = array(
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-12">
 		<?php
 			$args = array(
 				'post_type' => 'waste-picker-org',
@@ -91,7 +92,7 @@ $meta_query = array(
 			);
 			$my_query = new WP_Query($args);
 			?>
-  <table class="table table-hover table-condensed" id="wpg-list">
+<table class="table table-hover table-condensed" id="wpg-list">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -101,15 +102,16 @@ $meta_query = array(
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
 			<th><?php _e('Number of members','globalrec');
-						echo "<br>(";
-						_e('Number of groups','globalrec');
-						echo ")"; ?></th>
+				echo "<br>(";
+				_e('Number of groups','globalrec');
+				echo ")"; ?>
+			</th>
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
-			<th>Member occupation</th>
+			<th><?php _e('Member occupation','globalrec'); ?></th>
 		</tr>
 	</thead>
-    <tbody>
+	<tbody>
   <?php $i = 1; ?>
 	<?php if ( $my_query->have_posts() ) : while ( $my_query->have_posts() ) :  $my_query->the_post(); ?>
 	<?php 	 //necessary to show the tags
@@ -234,5 +236,6 @@ $meta_query = array(
 	<?php endif; ?>
     </tbody>
   </table>
+</div>
 </div>
 <?php get_footer(); ?>

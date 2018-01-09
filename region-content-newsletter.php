@@ -11,8 +11,7 @@ $wp_query->in_the_loop = true;
 		$country = get_post( $id );
 		$countrytitle = $country->post_title;
 		echo " (".$countrytitle. ")";
-		?>
-	</a>
+		?></a>
 	<small>
 		<?php echo _e('by','globalrec');?> <?php //author
 		$written_by = get_post_meta( $post->ID, '_gr_written-by', true );

@@ -44,7 +44,7 @@
     <custom-field action="copy">_gr_article-date</custom-field>
     <custom-field action="copy">_wpg_country_code_telephone</custom-field>
     <custom-field action="copy">gb-tag</custom-field>
-    <custom-field action="translate">_gr_article-title</custom-field>
+    <custom-field action="copy" label="Article's title">_gr_article-title</custom-field>
     <custom-field action="copy">_gr_written-by</custom-field>
     <custom-field action="copy">gr_email</custom-field>
     <custom-field action="copy">bio_email</custom-field>
@@ -71,7 +71,7 @@
     <custom-field action="copy">_wpg_primary_contact_email</custom-field>
     <custom-field action="copy">bio_group</custom-field>
     <custom-field action="copy">bio_country</custom-field>
-    <custom-field action="translate">_gr_translator</custom-field>
+    <custom-field action="translate" label="Translator">_gr_translator</custom-field>
     <custom-field action="copy">_wpg_countryselect</custom-field>
     <custom-field action="copy">_wpg_cityselect</custom-field>
     <custom-field action="copy">_wpg_physical_address</custom-field>

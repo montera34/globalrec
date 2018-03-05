@@ -1894,9 +1894,9 @@ function globalrec_waw_form() {
 	} else { $badge_from = ""; }
 
 	//Stores terms for language taxonomy
-	$language_terms = get_terms( 'wpg-language' );
-	$member_type_terms = get_terms( 'wpg-member-type' );
-	$scope_terms = get_terms( 'wpg-scope' );
+	$language_terms = get_terms( 'wpg-language', array('taxonomy' => 'type', 'hide_empty' => false));
+	$member_type_terms = get_terms('wpg-member-type', array('taxonomy' => 'type', 'hide_empty' => false));
+	$scope_terms = get_terms( 'wpg-scope', array('taxonomy' => 'type', 'hide_empty' => false));
 
 	//Creates array
 	foreach ($language_terms as $key) {
@@ -1908,7 +1908,7 @@ function globalrec_waw_form() {
 	foreach ($scope_terms as $key) {
 		$scopes[$key->name] = $key->name;
 	}
-	$scopes= array_merge(array_flip(array('local','regional','national')), $scopes);
+	//$scopes= array_merge(array_flip(array('local','regional','national')), $scopes);
 
 	//Creates options for multicheck in html
 	$options_languages = "";
@@ -2052,8 +2052,8 @@ function globalrec_insert_wpg() {
 		return;
 
 	} elseif ( sanitize_text_field( $_POST['globalrec-form-waw-submit'] ) != 'Send' ) {
+		echo "har. Something went wrong.";
 		globalrec_waw_form();
-		echo "har";
 		return;
 	}
 
@@ -2108,7 +2108,7 @@ function globalrec_insert_wpg() {
 		'post_title' => $wpg_name,
 		'post_content' => $wpg_comments,
 	));
-
+	
 	if ( $wpg_id == 0 ) {
 		echo $error;
 		globalrec_waw_form();
@@ -2289,3 +2289,8 @@ function wpml_remove_dashboard_widget() {
     remove_meta_box( 'icl_dashboard_widget', 'dashboard', 'side' );
 }
 add_action('wp_dashboard_setup', 'wpml_remove_dashboard_widget' );
+
+// Disable REST API
+// Filters for WP-API version 2.x
+add_filter('rest_enabled', '__return_false');
+add_filter('rest_jsonp_enabled', '__return_false');

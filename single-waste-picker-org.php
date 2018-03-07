@@ -69,7 +69,7 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								$mainurl_stripped = substr($mainurl_stripped,0,$max_length).'...';
 							}
 					 		echo ($website != '') ? "<a href='" .$website. "'>Website: " .$mainurl_stripped. " <span class='glyphicon glyphicon-new-window'></span></a>" : '';?>
-							<h4><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h4>
+							<h3><span class="glyphicon glyphicon-list-alt"></span> <?php _e('Primary information','globalrec'); ?></h3>
 							<dl class="dl-horizontal">
 								<?php //Primary information
 								echo display_item($post_id,'_wpg_year_formed','Year formed');
@@ -98,15 +98,26 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								$women_composition_comment =	get_post_meta( $post_id, '_wpg_gender_women_comment', true );
 								
 								if (($women_composition != '') && ($number_individuals != '')) {
-									echo "<dt>Women composition</dt><dd>".number_format(100*$women_composition/$number_individuals, 1, ',', '.')."% ";
+									echo "<dt>". __('Women composition','globalrec')."</dt><dd>".number_format(100*$women_composition/$number_individuals, 1, ',', '.')."% ";
 									echo $women_composition_comment =! '' ? "<small>" .$women_composition_comment. "</small>" : "";
 									echo "</dd>";
 								} else {
-								 	echo "<dt>Women composition</dt><dd><small>" .$women_composition_comment. "</small></dd>";
+								 	echo "<dt>". __('Women composition','globalrec'). "</dt><dd><small>" .$women_composition_comment. "</small></dd>";
 								}
 								?>
 							</dl>
-							<h4><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h4>
+							<hr>
+							<h3><span class="glyphicon glyphicon-bullhorn"></span> <?php _e('Social networking sites','globalrec'); ?></h3>
+								<p>
+								<?php //contact information
+								$facebook = get_post_meta( $post_id, '_wpg_facebook', true );
+								$twitter = get_post_meta( $post_id, '_wpg_twitter', true );
+								echo $facebook ? "<a href='".$facebook. "'><span class='dashicons dashicons-facebook-alt'></span> Facebook</a><br>" : '';
+								echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'><span class='dashicons dashicons-twitter'></span> Twitter</a><br>" : '';
+								echo get_post_meta( $post_id, '_wpg_other-social-networks', true ); ?>
+								</p>
+							<hr>
+							<h3><span class="glyphicon glyphicon-heart"></span> <?php _e('Benefits','globalrec'); ?></h3>
 							<dl>
 								<?php //Benefits
 								echo list_taxonomy_terms($post_id,'wpg-member-benefits','Member benefits');
@@ -114,7 +125,8 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 								echo list_taxonomy_terms($post_id,'wpg-safety-technology','Safety & Technology');
 								?>
 							</dl>
-							<h4><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h4>
+							<hr>
+							<h3><span class="glyphicon glyphicon-wrench"></span> <?php _e('Services','globalrec'); ?></h3>
 							<dl>
 								<?php	//Services
 								echo list_taxonomy_terms($post_id,'wpg-municipality-what','What kind of relationship exists with the municipality?');
@@ -132,25 +144,20 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 				<div class="row">
 					<hr>
 					<div class="col-md-9">
-						<h4><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h4>
+						<h3><span class="glyphicon glyphicon-file"></span> <?php _e('Complementary Information','globalrec'); ?></h3>
 							<dl>
 								<?php	//Complementary information
 								echo display_item($post_id,'_wpg_publications','Other publications');
-								echo "<dt>Information Source</dt><dd>".get_post_meta( $post_id, '_wpg_information_source', true ). "</dd>";
+								echo "<dt>". __('Information source','globalrec')."</dt><dd>".get_post_meta( $post_id, '_wpg_information_source', true ). "</dd>";
 								//echo "<dt>Date of data entry</dt><dd>". get_post_meta( $post_id, '_wpg_date_data-entry', true ). "</dd>";
 								//echo "<dt>Date of data update</dt><dd>". get_post_meta( $post_id, '_wpg_date_data_updated', true ). "</dd>";
 								echo display_item($post_id,'_wpg_status','Active');
 								?>
 							</dl>
-						<h4>Comments / Narrative</h4>
+						<hr>
+						<h3><?php _e('Comments / Narrative','globalrec'); ?></h3>
 						<?php the_content(__('(more...)')); ?>
 						<hr>
-						<?php //contact information
-						$facebook = get_post_meta( $post_id, '_wpg_facebook', true );
-						$twitter = get_post_meta( $post_id, '_wpg_twitter', true );
-						echo $facebook ? "<a href='".$facebook. "'>Facebook</a> " : '';
-						echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'>Twitter</a><br>" : '';
-						echo get_post_meta( $post_id, '_wpg_other-social-networks', true ). "<br>"; ?>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h4><span class="glyphicon glyphicon-lock"></span> <span class="glyphicon glyphicon-envelope"></span> <?php _e('Contact information','globalrec'); ?></h4>
@@ -198,21 +205,21 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 			</h4>
 				<?php //includes the loop with the related post according to the custom field gm-tag
 					echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
-			<?php $web_feed = get_post_meta( $post_id, '_wpg_rss', true );
-			if ( !empty($web_feed) ) { //if a feed/rss is indicated	?>
-			<h4>
-				<?php _e('At','globalrec'); ?> <?php _e("organization's website","globalrec"); ?>
-			</h4>
-				<?php // Get RSS Feed(s). Code retrieved from http://codex.wordpress.org/Function_Reference/fetch_feed
-				include_once( ABSPATH . WPINC . '/feed.php' );
-					// Get a SimplePie feed object from the specified feed source
-					$rss = fetch_feed( $web_feed );
-					$maxitems = 0;
-					if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
-						// Figure out how many total items there are, but limit it to 5.
-						$maxitems = $rss->get_item_quantity( 5 );
-						// Build an array of all the items, starting with element 0 (first element).
-						$rss_items = $rss->get_items( 0, $maxitems );
+					<?php $web_feed = get_post_meta( $post_id, '_wpg_rss', true );
+					if ( !empty($web_feed) ) { //if a feed/rss is indicated	?>
+					<h4>
+						<?php _e('At','globalrec'); ?> <?php _e("organization's website","globalrec"); ?>
+					</h4>
+					<?php // Get RSS Feed(s). Code retrieved from http://codex.wordpress.org/Function_Reference/fetch_feed
+					include_once( ABSPATH . WPINC . '/feed.php' );
+						// Get a SimplePie feed object from the specified feed source
+						$rss = fetch_feed( $web_feed );
+						$maxitems = 0;
+						if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
+							// Figure out how many total items there are, but limit it to 5.
+							$maxitems = $rss->get_item_quantity( 5 );
+							// Build an array of all the items, starting with element 0 (first element).
+							$rss_items = $rss->get_items( 0, $maxitems );
 					endif;
 					?>
 					<div class="list-group">

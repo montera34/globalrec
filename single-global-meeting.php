@@ -35,10 +35,12 @@
 			<?php 	$text = get_post_meta( $post->ID, 'gm_downloads', true );
 			echo $text;  ?>	
 		
-			<?php if (get_post_meta($post->ID, 'gm_tag', true)) { echo '<h4>Related posts</h4>';} ?>
-			<?php 
-			//includes the loop with the related post according to the custom field gm-tag
-			echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
+			<?php // related posts
+			$reltag = get_post_meta($post_id, 'gm_tag', true);
+			$reltit = '<h4>'.__('Related posts','globalrec').'</h4>';
+			$relposts = ( $reltag == '' ) ? '' : $rel_tit.globalrec_related_posts($reltag,$post->ID,'post',10);
+
+			?>
 			
 		</div>
 	</div>

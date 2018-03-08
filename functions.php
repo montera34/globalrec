@@ -2282,3 +2282,24 @@ add_action('wp_dashboard_setup', 'wpml_remove_dashboard_widget' );
 // Filters for WP-API version 2.x
 add_filter('rest_enabled', '__return_false');
 add_filter('rest_jsonp_enabled', '__return_false');
+
+// Related posts by tag
+function globalrec_related_posts($tag,$pid,$ptype = 'post',$count = 5) {
+
+	$args = array(
+		'post_type'   => $ptype,
+		'numberposts' => $count,
+		'orderby'     => 'date',
+		'tag'     => $tag,
+		'exclude'     => $pid
+	);
+	$relposts = get_posts($args);
+
+	$list = '';
+	foreach($relposts as $p ) {
+		$list .= '<a href="' . get_permalink($p->ID) . '" class="list-group-item">' . $p->post_title . '</a>';
+	}
+
+	return sprintf('<div class="list-group">%s</div>', $list );
+
+}

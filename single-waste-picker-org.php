@@ -2,10 +2,13 @@
 $post_id = $post->ID;
 $website = get_post_meta( $post_id, '_wpg_website', true );
 $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
+$reltag = get_post_meta($post_id, 'gm_tag', true);
+$reltit = '<h4>'.__('At','globalrec').' GlobalRec.org</h4>';
+$relposts = ( $reltag == '' ) ? '' : $reltit.globalrec_related_posts($reltag,$post_id,'post',10);
 ?>
 
-<div class="">
-																																																																																																																																																																																																																																																																																																																			<?php get_template_part( 'nav', 'waw' ); ?>
+<div>
+	<?php get_template_part( 'nav', 'waw' ); ?>
 	<div class="row">
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<div <?php post_class("col-md-9") ?> id="post-<?php the_ID(); ?>">
@@ -200,11 +203,8 @@ $city_id = get_post_meta( $post_id, '_wpg_cityselect', true );
 			<h3 class="document-dashicon">
 				<?php _e('Last updates from','globalrec'); ?> <?php the_title_attribute(); ?>
 			</h3>
-			<h4>
-				<?php _e('At','globalrec'); ?> GlobalRec.org
-			</h4>
-				<?php //includes the loop with the related post according to the custom field gm-tag
-					echo  get_template_part( 'related', 'postbytag'); //includes the file related-postbytag.php ?>
+			<?php // related posts
+			echo  $relposts;  ?>
 					<?php $web_feed = get_post_meta( $post_id, '_wpg_rss', true );
 					if ( !empty($web_feed) ) { //if a feed/rss is indicated	?>
 					<h4>

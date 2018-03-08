@@ -1487,7 +1487,7 @@ in charge of waste prevention, collection, disposal (among other) activities<br>
 			),*/
 			array( //TODO study how to better output relatedposts. Tag or author?
 				'name' => 'Type the tag to show related posts in the right column to this Waste piker group',
-				'desc' => 'Ex: "MNCR"',
+				'desc' => 'Ex: "MNCR" or "arb".',
 				'id' => 'gm_tag',
 				'type' => 'text_small',
 			),

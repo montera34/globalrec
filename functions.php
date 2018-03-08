@@ -1894,9 +1894,9 @@ function globalrec_waw_form() {
 	} else { $badge_from = ""; }
 
 	//Stores terms for language taxonomy
-	$language_terms = get_terms( 'wpg-language', array('taxonomy' => 'type', 'hide_empty' => false));
-	$member_type_terms = get_terms('wpg-member-type', array('taxonomy' => 'type', 'hide_empty' => false));
-	$scope_terms = get_terms( 'wpg-scope', array('taxonomy' => 'type', 'hide_empty' => false));
+	$language_terms = get_terms( array('taxonomy' => 'wpg-language', 'hide_empty' => false));
+	$member_type_terms = get_terms( array('taxonomy' => 'wpg-member-type', 'hide_empty' => false));
+	$scope_terms = get_terms( array('taxonomy' => 'wpg-scope', 'hide_empty' => false));
 
 	//Creates array
 	foreach ($language_terms as $key) {
@@ -1945,7 +1945,6 @@ function globalrec_waw_form() {
 			<label for='globalrec-form-waw-mail' class='col-sm-4 control-label'>Email</label>
 			<div class='col-sm-6'>
 	 			<input class='form-control req' type='text' value='' name='globalrec-form-waw-mail' />
-				<p class='help-block'><small></small></p>
 			</div>
 		</div>
 		<div class='form-group'>
@@ -1982,14 +1981,6 @@ function globalrec_waw_form() {
 				" .$options_languages. "
 			</div>
 		</div>
-		<!--<div class='form-group'>
-			<label for='globalrec-form-waw-avatar' class='col-sm-4 control-label'>". __('Image or Logo','globalrec') ."</label>
-			<div class='col-sm-6'>
-				<input type='file' name='globalrec-form-waw-avatar' />
-				<input type='hidden' name='MAX_FILE_SIZE' value='4000000' />
-			<p class='help-block'><small>". __('Image or logotype of the organization. Not bigger than<strong> 4MB</strong> and <strong>must be JPG, PNG or GIF</strong>.','globalrec') ."</small></p>
-			</div>
-		</div>-->
 
 		<legend>". __('Primary Information','globalrec') ."</legend>
 		<div class='form-group'>
@@ -2043,16 +2034,13 @@ function globalrec_insert_wpg() {
 	if ( array_key_exists('form', $_GET) ) {
 		if ( sanitize_text_field( $_GET['form']) == 'success' ){
 			echo "<strong>" .$success. "</strong>";
+			echo "<strong>" .__('Add another organization:','globalrec'). "</strong>";
+			globalrec_waw_form();
 			return;
 		}
 	}
 
 	if ( !array_key_exists('globalrec-form-waw-submit', $_POST) ) {
-		globalrec_waw_form();
-		return;
-
-	} elseif ( sanitize_text_field( $_POST['globalrec-form-waw-submit'] ) != 'Send' ) {
-		echo "har. Something went wrong.";
 		globalrec_waw_form();
 		return;
 	}

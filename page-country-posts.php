@@ -17,7 +17,7 @@ get_header(); ?>
 			<div class="col-md-8">
 				<?php the_content(); ?>
 				<h3>
-					Legend: <span class="label year-2013">2012</span>  <span class="label year-2013">2013</span> <span class="label year-2014">2014</span> <span class="label year-2015" style="color:#000">2015</span> <span class="label year-2016">2016</span> <span class="label year-2017">2017</span>
+					Legend: <span class="label year-2013">2012</span>  <span class="label year-2013">2013</span> <span class="label year-2014">2014</span> <span class="label year-2015">2015</span> <span class="label year-2016">2016</span> <span class="label year-2017">2017</span> <span class="label year-2018">2018</span>
 				</h3>
 			</div>
 		</div>

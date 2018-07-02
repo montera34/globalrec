@@ -448,17 +448,17 @@ nav li.menu-item-has-children {
 .year-2013 {
 	background-color:darkred;
 }
-.year-2014 {
+.year-2014,.year-2015 {
 	background-color:red;
 }
-.year-2015 {
+.year-2016 {
 	background-color:orange;
 }
-.year-2016 {
+.year-2017 {
 	background-color:lightcyan;
 	color: black;
 }
-.year-2017 {
+.year-2018 {
 	background-color:lightgreen;
 }
 

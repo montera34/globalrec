@@ -12,7 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(3599, 'post-newsletter');
+$newsletter_number = icl_object_id(4034, 'post-newsletter');
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future' ),
@@ -41,7 +41,7 @@ $argsasia = array(
 $my_query_asia = new WP_Query($argsasia);
 
 $args_latinamerica = array(
-	'post_status' => array( 'publish', 'future' ),
+	'post_status' => array( 'publish', 'future','draft' ),
 	'posts_per_page' => $latinamerican_posts,
 	'ignore_sticky_posts' => 1,
 	'offset' => $latinamerican_offset,
@@ -216,7 +216,12 @@ $my_query_global = new WP_Query($args_global);
 			<ol>
 			<?php
 				foreach ($my_query_global_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+					$country_ID = get_post_meta( $value->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."";
+					echo " (".$countrytitle. ")</a></li>";
 				}
 			?>
 			</ol>
@@ -224,15 +229,24 @@ $my_query_global = new WP_Query($args_global);
 			<ol>
 			<?php
 				foreach ($my_query_asia_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
-				}
+					$country_ID = get_post_meta( $value->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."";
+					echo " (".$countrytitle. ")</a></li>";				}
 			?>
 			</ol>
 			<strong><?php _e('Latin America','globalrec'); ?></strong><br>
 			<ol>
 			<?php
 				foreach ($my_query_latinamerica_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+					$country_ID = get_post_meta( $value->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."";
+					echo " (".$countrytitle. ")</a></li>";
 				}
 			?>
 			</ol>
@@ -240,7 +254,12 @@ $my_query_global = new WP_Query($args_global);
 			<ol>
 			<?php
 				foreach ($my_query_africa_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+					$country_ID = get_post_meta( $value->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."";
+					echo " (".$countrytitle. ")</a></li>";
 				}
 			?>
 			</ol>
@@ -248,7 +267,12 @@ $my_query_global = new WP_Query($args_global);
 			<ol>
 			<?php
 				foreach ($my_query_europe_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+					$country_ID = get_post_meta( $value->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."";
+					echo " (".$countrytitle. ")</a></li>";
 				}
 			?>
 			</ol>
@@ -256,7 +280,12 @@ $my_query_global = new WP_Query($args_global);
 			<ol>
 			<?php
 				foreach ($my_query_northamerica_posts as $key => $value ) {
-					echo "<li><a href='". $value->guid ."'>". $value->post_title ."</a></li>";
+					$country_ID = get_post_meta( $value->ID, '_post_country', true );
+					$id = icl_object_id($country_ID, 'country', true);
+					$country = get_post( $id );
+					$countrytitle = $country->post_title;
+					echo "<li><a href='". $value->guid ."'>". $value->post_title ."";
+					echo " (".$countrytitle. ")</a></li>";
 				}
 			?>
 			</ol>

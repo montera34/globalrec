@@ -52,7 +52,6 @@
     <custom-field action="copy">gm-location</custom-field>
     <custom-field action="copy">gm_date</custom-field>
     <custom-field action="copy">gm_location</custom-field>
-    <custom-field action="copy">gm_tag</custom-field>
     <custom-field action="copy">gm_downloads</custom-field>
     <custom-field action="copy">_wpg_phone1</custom-field>
     <custom-field action="copy">_law_countryselect</custom-field>
@@ -105,6 +104,7 @@
     <custom-field action="copy">_wpg_twitter</custom-field>
     <custom-field action="copy">_wpg_credit_members</custom-field>
     <custom-field action="copy">_wpg_other_social_networks</custom-field>
+    <custom-field action="copy">_wpg_rss</custom-field>
     <custom-field action="ignore">_wpg_education_training</custom-field>
   </custom-fields>
 </wpml-config>

@@ -72,6 +72,7 @@ $meta_query = array(
 				'posts_per_page' => -1,
 				'orderby' => 'title',
 				'order' => 'ASC',
+				'post_status' => 'publish',
 				'tax_query' => array(
 					'relation' => 'AND',
 					array(
@@ -192,10 +193,10 @@ $meta_query = array(
 				<div class="col-md-5">
 					<h3 id="scope"><?php _e('Organizational Reach','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?> (%)</small></h3>
 					<?php
-					//reoders array manually
-					$organization_scope_count = array_merge(array_flip(array('local','regional','national','not known')), $organization_scope_count);
+					//reoders array manually TODO: make this work in all the languages. U	ntil them, deactivate
+					// $organization_scope_count = array_merge(array_flip(array('local','regional','national','not known')), $organization_scope_count);
 					//sets colors for scope
-					$color_scope = array('local' => '#ff3399','regional' => '#ff3333','national' => '#ff9933','not known' => '#ccc');
+					$color_scope = array('local' => '#ff3399','regional' => '#ff3333','national' => '#ff9933','not known' => '#ccc','nacional' => '#ff9933');
 					//calculates max scope value
 					$max_count_org_scope = 0;
 					foreach ($organization_scope_count as $value) {
@@ -326,7 +327,7 @@ $meta_query = array(
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
 						foreach ($year_formed_count as $key => $value) {
-							echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
+							echo $key=='' ? '<p>'.__('Not known','globalrec').'</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 						?>
 					</div>
@@ -355,7 +356,7 @@ $meta_query = array(
 					<div class="col-md-4 col-sm-4 col-xs-4 text-right">
 						<?php
 						foreach ($year_registered_count as $key => $value) {
-							echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
+							echo $key=='' ? '<p>'.__('Not known','globalrec').'</p>' : '<p>'.ucfirst($key).'</p>';
 						}
 						?>
 					</div>
@@ -409,13 +410,13 @@ $meta_query = array(
 		</div>
 	</div>
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<h3 id="activities"><?php _e('Activities','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?></small></h3>
 						<div class="row">
-							<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+							<div class="col-md-8 col-sm-8 col-xs-8 text-right">
 								<?php
 								foreach ($activities_count as $key => $value) {
-									echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>'.__('Not known','globalrec').'</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
@@ -443,14 +444,14 @@ $meta_query = array(
 				<div class="col-md-6">
 					<h3 id="workplace"><?php _e('Workplace of Members','globalrec'); ?> <small><?php _e('number of organizations','globalrec'); ?></small></h3>
 						<div class="row">
-							<div class="col-md-5  col-sm-5 col-xs-5 text-right">
+							<div class="col-md-7 col-sm-7 col-xs-7 text-right">
 								<?php
 								foreach ($workplace_count as $key => $value) {
-									echo $key=='' ? '<p>Not Known</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>'.__('Not known','globalrec').'</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
-							<div class="col-md-7 col-sm-7 col-xs-7">
+							<div class="col-md-5 col-sm-5 col-xs-5">
 								<?php
 								$max_workplace = 0;
 								foreach ($workplace_count as $key => $value) {
@@ -475,7 +476,7 @@ $meta_query = array(
 							<div class="col-md-9 col-sm-9 col-xs-9 text-right">
 								<?php
 								foreach ($municipality_what_count as $key => $value) {
-									echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>'.__('Not known','globalrec').'</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>
@@ -506,7 +507,7 @@ $meta_query = array(
 							<div class="col-md-5 col-sm-5 col-xs-5 text-right">
 								<?php
 								foreach ($language_count as $key => $value) {
-									echo $key=='' ? '<p>Not known</p>' : '<p>'.ucfirst($key).'</p>';
+									echo $key=='' ? '<p>'.__('Not known','globalrec').'</p>' : '<p>'.ucfirst($key).'</p>';
 								}
 						?>
 							</div>

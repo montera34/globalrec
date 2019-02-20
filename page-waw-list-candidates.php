@@ -1,5 +1,40 @@
 <?php  /* Template Name: Waste Picker Groups Candidates List */
 get_header();
+
+// Grabs continent from url to filter the list of organization displayed by continent
+$continent = '';
+
+if ( !empty($_GET['continent'])) {
+	$continent = sanitize_text_field( $_GET['continent'] );
+}
+
+// Countries in contintents are defined in functions.php
+
+//$continent = sanitize_text_field( $_GET['continent'] );
+if ($continent == '' ) {
+	$active_continent = $all;
+} else if ( $continent == 'asia') {
+	$active_continent = $asia;
+} else if ( $continent == 'latinamerica') {
+	$active_continent = $latinamerica;
+} else if ( $continent == 'africa') {
+	$active_continent = $africa;
+} else if ( $continent == 'northamerica') {
+	$active_continent = $northamerica;
+} else if ( $continent == 'europe') {
+	$active_continent = $europe;
+} else if ( $continent == 'all') {
+	$active_continent = $all;
+}
+
+$meta_query = array(
+	array(
+		'key'     => 'country',
+		'value'   => $active_continent,
+		'compare' => 'IN',
+	)
+);
+
 ?>
 <div id="page-wpg">
 	<?php if (have_posts()) : while (have_posts()) : the_post();?>
@@ -41,6 +76,7 @@ get_header();
 				'orderby' => 'modified',
 				'order' => 'ASC',
 				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
+				'meta_query' => $meta_query
 			);
 			$my_query = new WP_Query($args);
 			?>

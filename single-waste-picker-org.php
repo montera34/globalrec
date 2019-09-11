@@ -48,12 +48,12 @@ $relposts = ( $reltag == '' ) ? '' : $reltit.globalrec_related_posts($reltag,$po
 						if ($region != '') {echo $region. ", ";}
 						
 						//Country
-						$country_id = get_post_meta( $post_id, '_wpg_countryselect', true );
-						$country = get_post($country_id);
-						$country2 =get_post_meta( $post_id, 'country', true );
-						$country2_slug = strtolower (str_replace(" ","-",$country2));
-						$country_link = get_permalink($post_id);
-						$country_name = $country->post_title;
+						$country_id = get_post_meta( $post_id, '_wpg_countryselect', true ); // gets id of country, from the selected dropdown menu
+						$country = get_post($country_id); // gets country
+						$country2 =get_post_meta( $post_id, 'country', true ); // gets country name from custom field
+						$country2_slug = strtolower (str_replace(" ","-",$country2)); // replaces space in name with "-"
+						$country_link = get_permalink($post_id); // gets permalink of country, is it used??
+						$country_name = $country->post_title; // gets name of country from dropdown menu
 						if ($country != '') { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
 							if (($country_name == 'Not specified') || ($country_name == '-')) {//if the "not specified" option is selected. The default option is "-"
 								echo $country2;

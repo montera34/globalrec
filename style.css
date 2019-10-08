@@ -443,22 +443,28 @@ nav li.menu-item-has-children {
 
 /* Country post list. Styles year according to publication date */
 .year-2012 {
-	background-color:darkred !important;
+	background-color:red !important;
 }
 .year-2013 {
-	background-color:darkred;
-}
-.year-2014,.year-2015 {
 	background-color:red;
 }
+.year-2014 {
+background-color:#d95f0e;
+}
+.year-2015 {
+	background-color:#fe9929;
+}
 .year-2016 {
-	background-color:orange;
+	background-color:#fec44f;
 }
 .year-2017 {
-	background-color:lightcyan;
-	color: black;
+	background-color:#fee391;
 }
 .year-2018 {
+	background-color:#ffffd4;
+	color: black;
+}
+.year-2019 {
 	background-color:lightgreen;
 }
 

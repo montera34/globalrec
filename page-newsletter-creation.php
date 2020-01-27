@@ -12,10 +12,10 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(4273, 'post-newsletter');
+$newsletter_number = icl_object_id(4572, 'post-newsletter');
 
 $argsasia = array(
-	'post_status' => array( 'publish', 'future' ),
+	'post_status' => array( 'publish', 'future','draft' ),
 	'posts_per_page' => $asian_posts,
 	'ignore_sticky_posts' => 1,
 	'offset' => $asian_offset,
@@ -62,7 +62,7 @@ $args_latinamerica = array(
 $my_query_latinamerica = new WP_Query($args_latinamerica);
 
 $args_africa = array(
-	'post_status' => array( 'publish', 'future' ),
+	'post_status' => array( 'publish', 'future','draft' ),
 	'posts_per_page' => $african_posts,
 	'ignore_sticky_posts' => 1,
 	'offset' => $african_offset,
@@ -83,7 +83,7 @@ $args_africa = array(
 $my_query_africa = new WP_Query($args_africa);
 
 $args_europe = array(
-	'post_status' => array( 'publish', 'future' ),
+	'post_status' => array( 'publish', 'future','draft' ),
 	'posts_per_page' => $european_posts,
 	'offset' => $european_offset,
 	'ignore_sticky_posts' => 1,
@@ -104,7 +104,7 @@ $args_europe = array(
 $my_query_europe = new WP_Query($args_europe);
 
 $args_northamerica = array(
-	'post_status' => array( 'publish', 'future' ),
+	'post_status' => array( 'publish', 'future','draft' ),
 	'posts_per_page' => $northamerican_posts,
 	'offset' => $northamerican_offset,
 	'ignore_sticky_posts' => 1,
@@ -125,7 +125,7 @@ $args_northamerica = array(
 $my_query_northamerica = new WP_Query($args_northamerica);
 
 $args_global = array(
-	'post_status' => array( 'publish', 'future' ),
+	'post_status' => array( 'publish', 'future','draft' ),	
 	'posts_per_page' => $global_posts,
 	'offset' => $global_offset,
 	'ignore_sticky_posts' => 1,

@@ -33,7 +33,7 @@ get_header(); ?>
 					<li><span class="label" style="background-color: #ff9933;"><?php _e("National","globalrec"); ?></span></li>
 					<li><span class="label" style="background-color: #ffff66; color: black;"><?php _e("International","globalrec"); ?></span></li>
 				</ul>
-				<?php if ( is_user_logged_in() ) { ?>
+				<?php if ( is_user_logged_in() ) { // hides supporters page for not logged in users ?>
 				  <h3><span class="glyphicon glyphicon-lock"></span> <a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e("Supporters","globalrec"); ?></a></h3>
 				  <ul>
 					  <li><span class="label" style="background-color: #FFaaaa"><?php _e("Waste picker support organization","globalrec"); ?></span></li>
@@ -43,7 +43,7 @@ get_header(); ?>
 			</div>
 			<div class="col-md-9 content">
 			<?php the_content(); ?>
-			<?php
+			<?php // hides supporters page for not logged in users
 			  if ( is_user_logged_in() ) { 
           if ( is_page( array( 'supporters', 'apoyos-recicladores-en-el-mundo-rem', 'apoiadores' ) ) ) {
             echo "<span class='glyphicon glyphicon-lock'></span> You can access <a href='/?page_id=30781'> the  list of potential supporters and support organizations</a>.";

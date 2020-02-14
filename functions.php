@@ -2303,3 +2303,6 @@ function globalrec_related_posts($tag,$pid,$ptype = 'post',$count = 5) {
 	return sprintf('<div class="list-group">%s</div>', $list );
 
 }
+
+// Gravity Forms functions
+include_once("inc/gforms.php");

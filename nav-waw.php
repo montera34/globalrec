@@ -14,7 +14,7 @@
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 23274 , 'page' , false)); ?>"><?php _e("Waste Pickers' Organizations","globalrec"); ?></a></li>
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 20848 , 'page' , false)); ?>"><?php _e('Type of Oganizations','globalrec'); ?></a></li>
 			<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 20830 , 'page' , false)); ?>"><?php _e('Scope','globalrec'); ?></a></li>
-				<?php if ( is_user_logged_in() ) { ?><li role="presentation"><span class="glyphicon glyphicon-lock"><a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e('Supporters','globalrec'); ?></a></li><?php } // hides supporters page for not logged in users?>
+				<?php if ( is_user_logged_in() ) { ?><li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 21900 , 'page' , false)); ?>"><?php _e('Supporters','globalrec'); ?> <span class="glyphicon glyphicon-lock"></span></a></li><?php } // hides supporters page for not logged in users?>
 		</ul>
 	</li>
 	<li role="presentation"><a href="<?php echo get_permalink( icl_object_id( 30746 , 'page' , false)); ?>"><?php _e('Add your organization','globalrec'); ?></a></li>

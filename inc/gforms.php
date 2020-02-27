@@ -2,6 +2,25 @@
 // include config vars
 include_once("gforms-vars.php");
 
+// REGISTER QUERY VARS
+add_filter( 'query_vars', 'globalrec_add_query_vars' );
+function globalrec_add_query_vars( $vars ) {
+	$vars[] = "action";
+	$vars[] = "horror";
+	return $vars;
+}
+
+// GET FEEDBACK MESSAGE
+function globalrec_get_alert($msg,$btns,$class) {
+	return '
+		<div class="alert alert-'.$class.' alert-dismissible text-center" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<p><strong>'.$msg.'</strong></p>
+			<p>'.$btns.'</p>
+		</div>
+	';
+}
+
 // ADD CLASSES TO FORM ELEMENTS
 add_filter( 'gform_pre_render', 'globalrec_gform_fields_classes' );
 function globalrec_gform_fields_classes( $form ) {
@@ -141,7 +160,7 @@ function globalrec_gform_update_wpg_taxs($entry, $form) {
 // CREATE WPG POST
 function globalrec_gform_insert_wpg_post($entry, $form) {
 
-	global $pt_wpg,
+	global $pt_wpg, $post,
 		$tx_wpg_lang, $tx_wpg_member, $tx_wpg_scope,
 		$cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website, $cf_wpg_country, $cf_wpg_city;
 
@@ -179,15 +198,22 @@ function globalrec_gform_insert_wpg_post($entry, $form) {
 
 	$wpg = wp_insert_post($args);
 
-	// set post terms
-	if ( $wpg == 0 )
-		return;
+	$sep = ( $post->post_status == 'draft' ) ? '&' : '?';
 
-	foreach ( $slugs as $tx => $s ) {
-		wp_set_object_terms( $wpg, $s, $tx, false);
-		clean_object_term_cache( $wpg, $tx );
+	// set post terms
+	if ( $wpg != 0 ) {
+		foreach ( $slugs as $tx => $s ) {
+			wp_set_object_terms( $wpg, $s, $tx, false);
+			clean_object_term_cache( $wpg, $tx );
+		}
+		$target = get_permalink().$sep.'horror=submit';
+	}
+	else {
+		$target = get_permalink().$sep.'action=submit';
 	}
 
-	return;
+	ob_start();
+	wp_safe_redirect( $target );
+	exit;
 }
 ?>

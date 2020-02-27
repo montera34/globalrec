@@ -37,6 +37,9 @@ function alisal_submit_button_classes( $button, $form ) {
 add_filter( 'gform_pre_render_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
 add_filter( 'gform_pre_validation_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
 add_filter( 'gform_pre_submission_filter_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
+add_filter( 'gform_pre_render_'.$f_wpg_submit, 'globalrec_gform_populate_cpt' );
+add_filter( 'gform_pre_validation_'.$f_wpg_submit, 'globalrec_gform_populate_cpt' );
+add_filter( 'gform_pre_submission_filter_'.$f_wpg_submit, 'globalrec_gform_populate_cpt' );
 // update
 add_action( 'gform_after_submission_'.$f_wpg_submit, 'globalrec_gform_insert_wpg_post', 10, 2);
 
@@ -62,7 +65,40 @@ function globalrec_gform_populate_wpg_taxs( $form ) {
 
 		$choices = array();
 		foreach ( $ts as $t )
-				$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => false );
+			$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => false );
+ 
+		$f->placeholder = ' ';
+		$f->choices = $choices;
+
+	}
+
+	return $form;
+
+}
+
+// POPULATE DROPDOWN W/ PT POSTS
+function globalrec_gform_populate_cpt( $form ) {
+ 
+	global $pt_country, $pt_city;
+
+	foreach ( $form['fields'] as &$f ) {
+ 		if ( $f->inputName != $pt_country && $f->inputName != $pt_city )
+	    		continue;
+
+		$pt = $f->inputName;
+
+		$args = array(
+			'suppress_filters' => false, // to get just posts in current lang, not all of them
+			'post_type' => $pt,
+			'nopaging' => true,
+			'orderby' => 'name',
+			'order' => 'ASC'
+		);
+		$ps = get_posts($args);
+
+		$choices = array();
+		foreach ( $ps as $p )
+			$choices[] = array( 'text' => $p->post_title, 'value' => $p->ID, 'isSelected' => false );
  
 		$f->placeholder = ' ';
 		$f->choices = $choices;
@@ -107,7 +143,7 @@ function globalrec_gform_insert_wpg_post($entry, $form) {
 
 	global $pt_wpg,
 		$tx_wpg_lang, $tx_wpg_member, $tx_wpg_scope,
-		$cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website;
+		$cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website, $cf_wpg_country, $cf_wpg_city;
 
 	$fs = array(); // to store custom fields
 	$slugs = array(); // to store terms
@@ -138,7 +174,7 @@ function globalrec_gform_insert_wpg_post($entry, $form) {
 		'post_title' => wp_strip_all_tags( $fs['post_title'] ),
 		'post_content' => wp_strip_all_tags( $fs['post_content'] ),
 	);
-	foreach ( array($cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website) as $cf )
+	foreach ( array($cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website, $cf_wpg_country, $cf_wpg_city) as $cf )
 		$args['meta_input'][$cf] = $fs[$cf];
 
 	$wpg = wp_insert_post($args);

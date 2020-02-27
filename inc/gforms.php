@@ -38,7 +38,7 @@ add_filter( 'gform_pre_render_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_tax
 add_filter( 'gform_pre_validation_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
 add_filter( 'gform_pre_submission_filter_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
 // update
-add_action( 'gform_after_submission_'.$f_wpg_submit, 'globalrec_gform_update_wpg_taxs', 10, 2);
+add_action( 'gform_after_submission_'.$f_wpg_submit, 'globalrec_gform_insert_wpg_post', 10, 2);
 
 
 // POPULATE DROPDOWN W/ WPG TAX TERMS
@@ -61,12 +61,8 @@ function globalrec_gform_populate_wpg_taxs( $form ) {
 		$ts = get_terms($args);
 
 		$choices = array();
-		foreach ( $ts as $t ) {
-			if ( is_object_in_term( $u_id, $tx, $t->term_id ) )
-				$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => true);
-			else
+		foreach ( $ts as $t )
 				$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => false );
-		}
  
 		$f->placeholder = ' ';
 		$f->choices = $choices;
@@ -106,4 +102,56 @@ function globalrec_gform_update_wpg_taxs($entry, $form) {
 	return;
 }
 
+// CREATE WPG POST
+function globalrec_gform_insert_wpg_post($entry, $form) {
+
+	global $pt_wpg,
+		$tx_wpg_lang, $tx_wpg_member, $tx_wpg_scope,
+		$cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website;
+
+	$fs = array(); // to store custom fields
+	$slugs = array(); // to store terms
+
+	// loop throug all form fields
+	foreach ( $form['fields'] as $f ) {
+		if ( $f->inputName == '' )
+			continue;
+
+
+		// if tax field
+		if ( $f->inputName == $tx_wpg_lang || $f->inputName == $tx_wpg_member || $f->inputName == $tx_wpg_scope ) {
+			$tx = $f->inputName;
+			$v = is_object( $f ) ? $f->get_value_export( $entry ) : '';
+			$slugs[$tx] = explode( ',', $v );
+		}
+		else {
+			$fs[$f->inputName] = $entry[$f->id];
+		}
+
+	}
+
+	// post insert
+	$args = array(
+		'post_type' => $pt_wpg,
+		'post_status' => 'draft',
+		'post_author' => 1, // admin user as author, because user is not logged in
+		'post_title' => wp_strip_all_tags( $fs['post_title'] ),
+		'post_content' => wp_strip_all_tags( $fs['post_content'] ),
+	);
+	foreach ( array($cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website) as $cf )
+		$args['meta_input'][$cf] = $fs[$cf];
+
+	$wpg = wp_insert_post($args);
+
+	// set post terms
+	if ( $wpg == 0 )
+		return;
+
+	foreach ( $slugs as $tx => $s ) {
+		wp_set_object_terms( $wpg, $s, $tx, false);
+		clean_object_term_cache( $wpg, $tx );
+	}
+
+	return;
+}
 ?>

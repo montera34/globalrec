@@ -171,18 +171,45 @@ function globalrec_gform_insert_wpg_post($entry, $form) {
 	foreach ( $form['fields'] as $f ) {
 		if ( $f->inputName == '' )
 			continue;
-
-
-		// if tax field
-		if ( $f->inputName == $tx_wpg_lang || $f->inputName == $tx_wpg_member || $f->inputName == $tx_wpg_scope ) {
+	
+		if ( $f->inputName == $tx_wpg_lang || $f->inputName == $tx_wpg_member || $f->inputName == $tx_wpg_scope ) { // if tax field
 			$tx = $f->inputName;
 			$v = is_object( $f ) ? $f->get_value_export( $entry ) : '';
 			$slugs[$tx] = explode( ',', $v );
 		}
-		else {
+		elseif ( $f->inputName == $tx_wpg_lang.'-others' ) { // if tax other
+			$v = $entry[$f->id];
+			$vs = explode( ',', $v );
+			$vs = array_map('trim',$vs);
+			array_push($slugs[$tx_wpg_lang],$vs);
+		}
+		elseif ( $f->inputName == $cf_wpg_country || $f->inputName == $cf_wpg_city ) { // if cpt country or city
+			$pt = $f->inputName;
+			$v = is_object( $f ) ? $f->get_value_export( $entry ) : '';
+			$ids[$pt] = explode( ',', $v );
+		}
+		elseif ( $f->inputName == $cf_wpg_country.'-others' || $f->inputName == $cf_wpg_city.'-others' ) { // if cpt country or city others
+			$pt = substr($f->inputName,0,-7);
+			$v = $entry[$f->id];
+			$vs = explode( ',', $v );
+			$vs = array_map('trim',$vs);
+
+			foreach ( $vs as $v ) {
+				$args = array(
+					'post_type' => $pt,
+					'post_status' => 'publish',
+					'post_author' => 1,
+					'post_title' => $v,
+					'post_content' => ''
+				);
+				$vid = wp_insert_post($args);
+				if ( $vid != '0' && !is_wp_error( $vid ) )
+					array_push($id[$pt],$vid);
+			}
+		}
+		else { // if custom field
 			$fs[$f->inputName] = $entry[$f->id];
 		}
-
 	}
 
 	// post insert
@@ -193,23 +220,27 @@ function globalrec_gform_insert_wpg_post($entry, $form) {
 		'post_title' => wp_strip_all_tags( $fs['post_title'] ),
 		'post_content' => wp_strip_all_tags( $fs['post_content'] ),
 	);
-	foreach ( array($cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website, $cf_wpg_country, $cf_wpg_city) as $cf )
+	foreach ( array($cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website) as $cf )
 		$args['meta_input'][$cf] = $fs[$cf];
 
 	$wpg = wp_insert_post($args);
 
 	$sep = ( $post->post_status == 'draft' ) ? '&' : '?';
 
-	// set post terms
-	if ( $wpg != 0 ) {
-		foreach ( $slugs as $tx => $s ) {
+	// set post terms and country and city relations
+	if ( $wpg != 0 && !is_wp_error($wpg) ) {
+		foreach ( $slugs as $tx => $s ) { // add wpg terms
 			wp_set_object_terms( $wpg, $s, $tx, false);
 			clean_object_term_cache( $wpg, $tx );
 		}
-		$target = get_permalink().$sep.'horror=submit';
+		foreach ( $ids as $pt => $a ) { // add country and city custom fiels
+			foreach ( $a as $id )
+				add_post_meta($wpg,$pt,$id);
+		}
+		$target = get_permalink().$sep.'action=submit';
 	}
 	else {
-		$target = get_permalink().$sep.'action=submit';
+		$target = get_permalink().$sep.'horror=submit';
 	}
 
 	ob_start();

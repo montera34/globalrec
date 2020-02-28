@@ -86,6 +86,12 @@ function globalrec_scripts() {
 		wp_enqueue_script( 'datatables-init-js', get_template_directory_uri().'/js/datatables.init.js',array('datatables-js'),GLOBALREC_VER );
 	
 	}
+	elseif ( is_page_template(array('page-form.php')) ) {
+		wp_enqueue_style( 'multipleselect-css', get_template_directory_uri().'/css/multiple-select.css',array('bootstrap-css'),null );
+		wp_enqueue_script( 'multipleselect-js', get_template_directory_uri().'/js/multiple-select.js',array('bootstrap-js'),null );
+		wp_enqueue_script( 'multipleselect-init-js', get_template_directory_uri().'/js/multiple-select-init.js',array('multipleselect-js'),null );
+	
+	}
 }
 add_action( 'wp_enqueue_scripts', 'globalrec_scripts' );
 

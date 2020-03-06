@@ -66,9 +66,9 @@ add_filter( 'wp_title', 'wpml_custom_wp_title', 10, 2 );
  * Enqueue scripts and styles.
  */
 function globalrec_scripts() {
-	wp_enqueue_style( 'globalrec-fonts', get_template_directory_uri().'/fonts/style.css',false,GLOBALREC_VER );
-	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css',array('dashicons'),'3.3.6' );
-	wp_enqueue_style( 'globalrec-css', get_stylesheet_uri(),array('bootstrap-css'),GLOBALREC_VER );
+	wp_enqueue_style( 'globalrec-fonts', get_template_directory_uri().'/fonts/style.css',false,null );
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css',array('dashicons'),null );
+	wp_enqueue_style( 'globalrec-css', get_stylesheet_uri(),array('bootstrap-css'),null );
 
 	wp_dequeue_script('jquery');
 	wp_dequeue_script('jquery-core');
@@ -76,14 +76,14 @@ function globalrec_scripts() {
 	wp_enqueue_script('jquery', false, array(), false, true);
 	wp_enqueue_script('jquery-core', false, array(), false, true);
 	wp_enqueue_script('jquery-migrate', false, array(), false, true);
-	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.6', true );
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null, true );
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	if ( is_page_template(array('page-waw-list.php','page-waw-list-candidates.php','page-waw-list-last-modified.php') ) ) {
-		wp_enqueue_style( 'datatables-css', get_template_directory_uri().'/css/datatables.min.css',array('bootstrap-css'),'1.10.16' );
-		wp_enqueue_script( 'datatables-js', get_template_directory_uri().'/js/datatables.min.js',array('bootstrap-js'),'1.10.16' );
-		wp_enqueue_script( 'datatables-init-js', get_template_directory_uri().'/js/datatables.init.js',array('datatables-js'),GLOBALREC_VER );
+		wp_enqueue_style( 'datatables-css', get_template_directory_uri().'/css/datatables.min.css',array('bootstrap-css'),null );
+		wp_enqueue_script( 'datatables-js', get_template_directory_uri().'/js/datatables.min.js',array('bootstrap-js'),null );
+		wp_enqueue_script( 'datatables-init-js', get_template_directory_uri().'/js/datatables.init.js',array('datatables-js'),null );
 	
 	}
 	elseif ( is_page_template(array('page-form.php')) ) {

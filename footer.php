@@ -9,9 +9,9 @@
 		<div class="col-md-2">
 			<div class="pull-right">
 				<ul id="social-networking-sites" class="list-inline">
-					<li><a href="https://www.twitter.com/global_rec" title="Twitter @global_rec"><span class="dashicons dashicons-twitter"></span></a></li>
-					<li><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers"><span class="dashicons dashicons-facebook-alt"></span></a></li>
-					<li><a href="https://plus.google.com/u/3/103747913868560613139" title="Google Plus Global Alliance of Waste Pickers"><span class="dashicons dashicons-googleplus"></span></a></li>
+					<li><a href="https://www.twitter.com/global_rec" title="Twitter @global_rec" target="_blank"><span class="dashicons dashicons-twitter"></span></a></li>
+					<li><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-facebook-alt"></span></a></li>
+					<li><a href="https://instagram.com/globalrec_" title="Instagram Global Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-instagram"></span></a></li>
 				</ul>
 			</div>
 		</div>

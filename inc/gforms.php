@@ -2,6 +2,25 @@
 // include config vars
 include_once("gforms-vars.php");
 
+// REGISTER QUERY VARS
+add_filter( 'query_vars', 'globalrec_add_query_vars' );
+function globalrec_add_query_vars( $vars ) {
+	$vars[] = "action";
+	$vars[] = "horror";
+	return $vars;
+}
+
+// GET FEEDBACK MESSAGE
+function globalrec_get_alert($msg,$btns,$class) {
+	return '
+		<div class="alert alert-'.$class.' alert-dismissible text-center" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<p><strong>'.$msg.'</strong></p>
+			<p>'.$btns.'</p>
+		</div>
+	';
+}
+
 // ADD CLASSES TO FORM ELEMENTS
 add_filter( 'gform_pre_render', 'globalrec_gform_fields_classes' );
 function globalrec_gform_fields_classes( $form ) {
@@ -37,8 +56,11 @@ function alisal_submit_button_classes( $button, $form ) {
 add_filter( 'gform_pre_render_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
 add_filter( 'gform_pre_validation_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
 add_filter( 'gform_pre_submission_filter_'.$f_wpg_submit, 'globalrec_gform_populate_wpg_taxs' );
+add_filter( 'gform_pre_render_'.$f_wpg_submit, 'globalrec_gform_populate_cpt' );
+add_filter( 'gform_pre_validation_'.$f_wpg_submit, 'globalrec_gform_populate_cpt' );
+add_filter( 'gform_pre_submission_filter_'.$f_wpg_submit, 'globalrec_gform_populate_cpt' );
 // update
-add_action( 'gform_after_submission_'.$f_wpg_submit, 'globalrec_gform_update_wpg_taxs', 10, 2);
+add_action( 'gform_after_submission_'.$f_wpg_submit, 'globalrec_gform_insert_wpg_post', 10, 2);
 
 
 // POPULATE DROPDOWN W/ WPG TAX TERMS
@@ -61,12 +83,41 @@ function globalrec_gform_populate_wpg_taxs( $form ) {
 		$ts = get_terms($args);
 
 		$choices = array();
-		foreach ( $ts as $t ) {
-			if ( is_object_in_term( $u_id, $tx, $t->term_id ) )
-				$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => true);
-			else
-				$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => false );
-		}
+		foreach ( $ts as $t )
+			$choices[] = array( 'text' => $t->name, 'value' => $t->slug, 'isSelected' => false );
+ 
+		$f->placeholder = ' ';
+		$f->choices = $choices;
+
+	}
+
+	return $form;
+
+}
+
+// POPULATE DROPDOWN W/ PT POSTS
+function globalrec_gform_populate_cpt( $form ) {
+ 
+	global $pt_country, $pt_city;
+
+	foreach ( $form['fields'] as &$f ) {
+ 		if ( $f->inputName != $pt_country && $f->inputName != $pt_city )
+	    		continue;
+
+		$pt = $f->inputName;
+
+		$args = array(
+			'suppress_filters' => false, // to get just posts in current lang, not all of them
+			'post_type' => $pt,
+			'nopaging' => true,
+			'orderby' => 'name',
+			'order' => 'ASC'
+		);
+		$ps = get_posts($args);
+
+		$choices = array();
+		foreach ( $ps as $p )
+			$choices[] = array( 'text' => $p->post_title, 'value' => $p->ID, 'isSelected' => false );
  
 		$f->placeholder = ' ';
 		$f->choices = $choices;
@@ -106,4 +157,94 @@ function globalrec_gform_update_wpg_taxs($entry, $form) {
 	return;
 }
 
+// CREATE WPG POST
+function globalrec_gform_insert_wpg_post($entry, $form) {
+
+	global $pt_wpg, $post,
+		$tx_wpg_lang, $tx_wpg_member, $tx_wpg_scope,
+		$cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website, $cf_wpg_country, $cf_wpg_city;
+
+	$fs = array(); // to store custom fields
+	$slugs = array(); // to store terms
+
+	// loop throug all form fields
+	foreach ( $form['fields'] as $f ) {
+		if ( $f->inputName == '' )
+			continue;
+	
+		if ( $f->inputName == $tx_wpg_lang || $f->inputName == $tx_wpg_member || $f->inputName == $tx_wpg_scope ) { // if tax field
+			$tx = $f->inputName;
+			$v = is_object( $f ) ? $f->get_value_export( $entry ) : '';
+			$slugs[$tx] = explode( ',', $v );
+		}
+		elseif ( $f->inputName == $tx_wpg_lang.'-others' ) { // if tax other
+			$v = $entry[$f->id];
+			$vs = explode( ',', $v );
+			$vs = array_map('trim',$vs);
+			array_push($slugs[$tx_wpg_lang],$vs);
+		}
+		elseif ( $f->inputName == $cf_wpg_country || $f->inputName == $cf_wpg_city ) { // if cpt country or city
+			$pt = $f->inputName;
+			$v = is_object( $f ) ? $f->get_value_export( $entry ) : '';
+			$ids[$pt] = explode( ',', $v );
+		}
+		elseif ( $f->inputName == $cf_wpg_country.'-others' || $f->inputName == $cf_wpg_city.'-others' ) { // if cpt country or city others
+			$pt = substr($f->inputName,0,-7);
+			$v = $entry[$f->id];
+			$vs = explode( ',', $v );
+			$vs = array_map('trim',$vs);
+
+			foreach ( $vs as $v ) {
+				$args = array(
+					'post_type' => $pt,
+					'post_status' => 'publish',
+					'post_author' => 1,
+					'post_title' => $v,
+					'post_content' => ''
+				);
+				$vid = wp_insert_post($args);
+				if ( $vid != '0' && !is_wp_error( $vid ) )
+					array_push($id[$pt],$vid);
+			}
+		}
+		else { // if custom field
+			$fs[$f->inputName] = $entry[$f->id];
+		}
+	}
+
+	// post insert
+	$args = array(
+		'post_type' => $pt_wpg,
+		'post_status' => 'draft',
+		'post_author' => 1, // admin user as author, because user is not logged in
+		'post_title' => wp_strip_all_tags( $fs['post_title'] ),
+		'post_content' => wp_strip_all_tags( $fs['post_content'] ),
+	);
+	foreach ( array($cf_wpg_mail, $cf_wpg_phone, $cf_wpg_website) as $cf )
+		$args['meta_input'][$cf] = $fs[$cf];
+
+	$wpg = wp_insert_post($args);
+
+	$sep = ( $post->post_status == 'draft' ) ? '&' : '?';
+
+	// set post terms and country and city relations
+	if ( $wpg != 0 && !is_wp_error($wpg) ) {
+		foreach ( $slugs as $tx => $s ) { // add wpg terms
+			wp_set_object_terms( $wpg, $s, $tx, false);
+			clean_object_term_cache( $wpg, $tx );
+		}
+		foreach ( $ids as $pt => $a ) { // add country and city custom fiels
+			foreach ( $a as $id )
+				add_post_meta($wpg,$pt,$id);
+		}
+		$target = get_permalink().$sep.'action=submit';
+	}
+	else {
+		$target = get_permalink().$sep.'horror=submit';
+	}
+
+	ob_start();
+	wp_safe_redirect( $target );
+	exit;
+}
 ?>

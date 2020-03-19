@@ -7,6 +7,9 @@
 			endwhile;
 		else :
 		endif;?>
+  <div id="comments-container">
+		<?php comments_template(); // Get wp-comments.php template ?>
+  </div>
 </div><!-- #page -->
 
 <?php get_footer(); ?>

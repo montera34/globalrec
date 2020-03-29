@@ -1,6 +1,7 @@
 </div><!-- close container-->
 <!-- begin footer -->
-<div id="footer" class="row">
+<div id="footer" class="container">
+	<div class="row">
 		<div class="col-md-10">
 			<small>
 				<?php  dynamic_sidebar( 'footer-sidebar' ) ?>
@@ -15,6 +16,7 @@
 				</ul>
 			</div>
 		</div>
+	</div>
 </div>
 <?php wp_footer(); ?>
 

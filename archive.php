@@ -37,7 +37,7 @@ $waw_taxonomies = array(
 			<?php if ( is_tag('pune2012') ) { ?>
 				<h2>Pune 2012 posts</h2>
 			<?php } elseif ( is_category() ) { ?>
-				<h2><?php _e('Category:', 'cp'); ?> <?php single_cat_title(); ?></h2>
+				<h2><?php _e('Category:', 'globalrec'); ?> <?php single_cat_title(); ?></h2>
 			<?php } elseif ( is_tax($waw_taxonomies) ) { //if it is a taxonomy from the WAW database ?>
 			<?php
 				get_template_part( 'nav', 'waw' );
@@ -62,19 +62,19 @@ $waw_taxonomies = array(
 			<?php } elseif ( is_author() ) { ?>
 				<h2><?php _e('Posts by', 'globalrec'); ?> <strong><?php echo $author->display_name;?></strong> </h2>
 			<?php } elseif ( get_post_type() == 'global-meeting' && is_archive()) { ?>
-				<h2><?php _e('Global meeting type:', 'cp'); ?> <?php echo $termname ?></h2>
+				<h2><?php _e('Global meeting type:', 'globalrec'); ?> <?php echo $termname ?></h2>
 			<?php } elseif ( get_post_type() == 'post' && is_archive()) { ?>
 				<h2><?php echo str_replace('@'.ICL_LANGUAGE_CODE, '', $termname) ?></h2>
 			<?php } elseif ( is_tag() ) { ?>
-				<h2><?php _e('Tag:', 'cp'); ?> <span><?php single_tag_title(); ?></span></h2>
+				<h2><?php _e('Tag:', 'globalrec'); ?> <span><?php single_tag_title(); ?></span></h2>
 			<?php } elseif ( is_day() ) { ?>
-				<h2><?php _e('Archive:', 'cp'); ?> <span><?php the_time( __('F jS, Y', 'cp') ); ?></span></h2>
+				<h2><?php _e('Archive:', 'globalrec'); ?> <span><?php the_time( __('F jS, Y', 'globalrec') ); ?></span></h2>
 			<?php } elseif ( is_month() ) { ?>
-				<h2><?php _e('Archive:', 'cp'); ?> <span><?php the_time( __('F, Y', 'cp') ); ?></span></h2>
+				<h2><?php _e('Archive:', 'globalrec'); ?> <span><?php the_time( __('F, Y', 'globalrec') ); ?></span></h2>
 			<?php } elseif ( is_year() ) { ?>
-				<h2><?php _e('Archive:', 'cp'); ?> <span><?php the_time( __('Y', 'cp') ); ?></span></h2>
+				<h2><?php _e('Archive:', 'globalrec'); ?> <span><?php the_time( __('Y', 'globalrec') ); ?></span></h2>
 			<?php } elseif ( isset($_GET['paged']) && !empty($_GET['paged']) ) { ?>
-				<h2><?php __('Blog Archives', 'cp'); ?></h2>
+				<h2><?php __('Blog Archives', 'globalrec'); ?></h2>
 			<?php } ?>
 		</header>
 	</div>
@@ -90,7 +90,7 @@ $waw_taxonomies = array(
 			</article>
 		<?php if ( $count % 4 == 0 || $count == $my_count) { echo "</div><!-- .row --><hr>";} 	?>
 		<?php endwhile; else: ?>
-	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+	<p><?php _e('Sorry, no posts matched your criteria.','globalrec'); ?></p>
 	<?php endif; ?>
 	<div class="row">
 		<div class="col-md-12">

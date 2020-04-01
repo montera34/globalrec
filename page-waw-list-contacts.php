@@ -111,6 +111,7 @@ $meta_query = array(
 			<th>Secondary contact</th>
 			<th>phone</th>
 			<th>email</th>
+			<th>location</th>
 		</tr>
 	</thead>
     <tbody>
@@ -149,6 +150,30 @@ $meta_query = array(
 				<td><?php echo get_post_meta( $post_id, '_wpg_secondary_contact_name', true ); ?></td>
 				<td><?php echo get_post_meta( $post_id, '_wpg_secondary_contact_phone', true ); ?></td>
 				<td><?php echo get_post_meta( $post_id, '_wpg_secondary_contact_email', true ); ?></td>
+				<td><?php 
+				//Country
+						$country_id = get_post_meta( $post_id, '_wpg_countryselect', true );
+						$country = get_post($country_id);
+						$country_name = $country->post_title;
+						$country_link = $country->post_name;
+						//orgs without country selected
+						$country2 =get_post_meta( $post_id, 'country', true );
+						$country2_slug = strtolower (str_replace(" ","-",$country2));
+						if ( !empty($country) ) { //displays the country from the selection list '_wpg_countryselect', if it has been selected, if not it displays the country from the open field '_wpg_city'
+							if ( empty($country_id) ) {//if no country selected from list
+								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
+								echo is_user_logged_in() ? " <span class='label label-danger'>select country</span>" : "";
+							} else if ($country_name == "-" || $country_name == "Not specified") {//if not specified country from list
+								echo '<a href="/country/'.$country2_slug.'">'.$country2.'</a>';
+								echo is_user_logged_in() ? " <span class='label label-danger'>select country</span>" : "";
+							} else {//country selected
+								echo '<a href="/country/'.$country_link.'">'.$country_name.'</a>';
+							}
+						} else {
+						} 
+				 ?></td>
+				
+				
 <?php } ?>
 			</tr>
 		</div>

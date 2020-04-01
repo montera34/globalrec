@@ -23,7 +23,7 @@ if ( is_single() || is_page() ) {
   $metatit = $post->post_title;
   $metatype = "article";
   if (is_home()){
-		$metaimage = "http://globalrec.org/wp-content/uploads/2012/04/logo_globalrec_shari.png";
+		$metaimage = "https://globalrec.org/wp-content/uploads/2012/04/logo_globalrec_shari.png";
 		} else {
   	$metaimage = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large'); }
 } else {
@@ -32,7 +32,7 @@ if ( is_single() || is_page() ) {
   $metadesc_fb = $metadesc;
   $metatit = get_bloginfo('name');
   $metatype = "blog";
-  $metaimage = "http://globalrec.org/wp-content/uploads/2012/04/logo_globalrec_shari.png";
+  $metaimage = "https://globalrec.org/wp-content/uploads/2012/04/logo_globalrec_shari.png";
 }
   $metaperma = get_permalink();
 ?>
@@ -84,11 +84,11 @@ if ( is_single() || is_page() ) {
 			<div id="imagotipo" class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 				<a title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
 					<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" 
-					alt="<?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?> <?php _e( 'WASTE PICKERS', 'domain' ); ?>" />
+					alt="<?php _e( 'GLOBAL ALLIANCE OF', 'globalrec' ); ?> <?php _e( 'WASTE PICKERS', 'globalrec' ); ?>" />
 				</a>
 				<div id="logotype">
-					<span style="font-size:22px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'domain' ); ?></span>
-					<br><span class="globalreccolor" style="font-weight:700; font-size:32px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'domain' ); ?></span>
+					<span style="font-size:22px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'globalrec' ); ?></span>
+					<br><span class="globalreccolor" style="font-weight:700; font-size:32px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'globalrec' ); ?></span>
 				</div>
 			</div>
 			<div id="tagline" class="col-xs-12 col-md-7 col-lg-8">
@@ -127,7 +127,7 @@ if ( is_single() || is_page() ) {
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
 						<small>
-							<?php _e("The Global Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 28 countries covering mainly Latin America, Asia and Africa. ","globalrec"); ?>
+							<?php _e("The Global Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 28 countries covering mainly Latin America, Asia and Africa.",'globalrec'); ?>
 						<?php if (current_user_can( 'moderate_comments' )) { echo ' '. get_num_queries() .' queries'; echo ' in '; timer_stop(1); }?></small>
 					</div>
 					<div class="col-md-4">

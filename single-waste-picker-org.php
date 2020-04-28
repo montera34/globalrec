@@ -80,7 +80,7 @@ $relposts = ( $reltag == '' ) ? '' : $reltit.globalrec_related_posts($reltag,$po
 								echo display_item($post_id,'_wpg_formally_registered','Formally registered');
 								echo list_taxonomy_terms($post_id,'wpg-language','Language');
 								echo display_item($post_id,'_wpg_number_groups','Number of groups');
-								echo display_item($post_id,'_wpg_number_individuals','Number of members');
+								echo display_item_number($post_id,'_wpg_number_individuals','Number of members'); 
 								echo list_taxonomy_terms($post_id,'wpg-member-type','Type of members');
 								echo list_taxonomy_terms($post_id,'wpg-member-occupation','Occupation of members');
 								echo list_taxonomy_terms($post_id,'wpg-organization-type','Type of Organization');

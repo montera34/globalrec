@@ -1770,6 +1770,15 @@ function display_item($postid=1,$value=1,$name=1){
 }
 add_action( 'wp', 'display_item' );
 
+//Function to list single values and uppercase firt letter. Used in Waste Picker Group single
+function display_item_number($postid=1,$value=1,$name=1){
+	$item = get_post_meta($postid,$value,true);
+	if ($item!='') {
+		echo "<dt>".__($name,'globalrec')."</dt><dd>".number_format($item)."</dd>";
+	}
+}
+add_action( 'wp', 'display_item_number' );
+
 //Function to get the number of waste picker groups that have certain custom fields
 function get_number_posts ($meta_key,$meta_value) {
 	$args = array(

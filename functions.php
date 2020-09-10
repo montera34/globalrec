@@ -360,17 +360,24 @@ register_taxonomy( 'gb-selected', 'global-meeting', array( //select if it appear
 	'label' => 'Selected for Global Meetings boxes',
 	'query_var' => true,
 	'rewrite' => true ) );
-register_taxonomy( 'post-region', 'post', array(
-	'hierarchical' => true,
-	'label' => 'Regions',
-	'query_var' => true,
-	'rewrite' => true ) );
-register_taxonomy( 'post-newsletter', 'post', array(
-	'hierarchical' => true,
-	'label' => 'Newsletters',
-	'query_var' => true,
-	'rewrite' => array( 'slug' => 'post-belongs-to-newsletter' ),
-	'show_admin_column' => true) );
+register_taxonomy(
+  'post-region', 'post', array(
+	  'hierarchical' => true,
+	  'label' => 'Regions',
+	  'query_var' => true,
+	  'rewrite' => true,
+	  'show_admin_column' => true
+	  ) 
+	);
+register_taxonomy( 
+   'post-newsletter', 'post', array(
+	    'hierarchical' => true,
+	    'label' => 'Newsletters',
+	    'query_var' => true,
+	    'rewrite' => array( 'slug' => 'post-belongs-to-newsletter' ),
+	    'show_admin_column' => true
+	    ) 
+	);
 register_taxonomy( 'law-type', 'law-report', array(
 	'hierarchical' => true,
 	'label' => 'Type',

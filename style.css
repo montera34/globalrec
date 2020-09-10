@@ -439,7 +439,7 @@ nav li.menu-item-has-children {
 }
 /* Pullquotes styling */
 .simplePullQuote {
-	width: 280px !important;
+	width: 50% !important;
 	float: right !important;
 	text-indent: 0px !important;
 	padding: 13px !important;
@@ -447,6 +447,13 @@ nav li.menu-item-has-children {
 	border-bottom:0px !important;
 	box-shadow: 7px 7px 8px 0px rgba(129,129,129,0.5) !important;
 	font-size: 130% !important;
+	margin: 10px 0 10px 30px;
+}
+
+@media only screen and (max-width: 500px) {
+  .simplePullQuote {
+    width: 100% !important;
+  }
 }
 
 /* Country post list. Styles year according to publication date */

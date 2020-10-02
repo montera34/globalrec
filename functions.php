@@ -138,30 +138,6 @@ register_post_type( 'global-meeting', array( // global meetings
 	'capability_type' => 'page'
 	)
 );
-register_post_type( 'bio', array( // Defining Biography custom post type
-	'labels' => array(
-		'name' => __( 'Biographies' ),
-		'singular_name' => __( 'Biography' ),
-		'add_new_item' => __( 'Add Biography +' ),
-		'edit' => __( 'Edit' ),
-		'edit_item' => __( 'Edit this item' ),
-		'new_item' => __( 'New Biography' ),
-		'view' => __( 'View Biography' ),
-		'view_item' => __( 'View Biography' ),
-		'search_items' => __( 'Search Biography' ),
-		'not_found' => __( 'We didnt found any Biography' ),
-		'not_found_in_trash' => __( 'No Biography in the trash bin' ),
-		'parent' => __( 'Parent Biography' )
-		),
-	'hierarchical' => false,
-	'public' => true,
-	'menu_position' => 5,
-	'supports' => array('title','editor','custom-fields','author','comments','revisions','page-attributes','thumbnail','excerpt'),
-	'rewrite' => array('slug'=>'bio','with_front'=>false),
-	'menu_icon' => 'dashicons-id',
-	'capability_type' => 'page'
-	)
-);
 
 register_post_type( 'newsletter', array( // Defining Newsletter custom post type
 	'labels' => array(
@@ -754,7 +730,7 @@ function sample_metaboxes( $meta_boxes ) {
 	);
 	//Custom field to select a Waste Picker group
 	//we need to create the array of Waste Picker Groups
-	$posts = get_posts( array(
+	$posts = query_posts( array(
 		'posts_per_page' => -1,
 		'post_type' => 'waste-picker-org',
 		'orderby' => 'title',
@@ -792,6 +768,7 @@ function sample_metaboxes( $meta_boxes ) {
 		'orderby' => 'title',
 		'order' => 'ASC',
 		));
+	$countries[] = '';
 	foreach ($posts as $post) {
 		$countries[] = array(
 			'name' => $post->post_title,

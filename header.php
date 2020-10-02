@@ -42,11 +42,6 @@ if ( is_single() || is_page() ) {
 <meta content="<?php echo $metadesc ?>" name="description" />
 <meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
 <meta content="Global Alliance of Waste Pickers" name="organization" />
-<!-- facebook meta -->
-<meta property="og:title" content="<?php echo $metatit ?>" />
-<meta property="og:type" content="<?php echo $metatype ?>" />
-<meta property="og:description" content="<?php echo $metadesc_fb ?>" />
-<meta property="og:url" content="<?php echo $metaperma ?>" />
 <!-- twitter meta -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@global_rec">
@@ -56,11 +51,6 @@ if ( is_single() || is_page() ) {
 <meta name="twitter:image:src" content="<?php if (is_home()) {echo $metaimage;} else {echo $metaimage[0];} ?>">
 <meta property="twitter:account_id" content="121067923" />
 	
-<!-- Less -->
-<!--<link rel="stylesheet/less" type="text/css" href="<?php bloginfo('template_url'); ?>/less/magic-bootstrap.less" />
-<script src="<?php bloginfo('template_url'); ?>/less/less-1.3.3.min.js" type="text/javascript"></script>-->
-<!-- /Less -->
-
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
 <?php wp_head(); ?>
@@ -68,15 +58,6 @@ if ( is_single() || is_page() ) {
 </head>
 
 <body <?php body_class(); ?>>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="main-container" class="container">
 	<header role="banner">
@@ -128,7 +109,7 @@ if ( is_single() || is_page() ) {
 					<div class="col-xs-12 col-md-8">
 						<small>
 							<?php _e("The Global Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 28 countries covering mainly Latin America, Asia and Africa.",'globalrec'); ?>
-						<?php if (current_user_can( 'moderate_comments' )) { echo ' '. get_num_queries() .' queries'; echo ' in '; timer_stop(1); }?></small>
+						</small>
 					</div>
 					<div class="col-md-4">
 						<div style="font-size:10px;margin-top: 10px;" class="pull-right ">

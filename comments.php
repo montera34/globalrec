@@ -49,7 +49,7 @@ if ( post_password_required() ) : ?>
 <?php else : ?>
 	<div class="form-group">
 		<label for="author"><?php _e('Name'); ?> <?php if ($req) _e('(required)'); ?></label>
-		<input type="text" class="form-control" id="author" placeholder="Enter email" type="text" name="author" value="<?php echo esc_attr($comment_author); ?>" >
+		<input type="text" class="form-control" id="author" placeholder="Enter name" type="text" name="author" value="<?php echo esc_attr($comment_author); ?>" >
 	</div>
 	<div class="form-group">
 		<label for="email"><?php _e('Mail (will not be published)');?> <?php if ($req) _e('(required)'); ?></label>
@@ -57,7 +57,7 @@ if ( post_password_required() ) : ?>
 	</div>
 	<div class="form-group">
 		<label for="url"><?php _e('Website'); ?></label>
-		<input type="text" class="form-control" id="url" placeholder="Enter email" type="text" name="url" value="<?php echo esc_attr($comment_author_url); ?>" >
+		<input type="text" class="form-control" id="url" placeholder="http://" type="text" name="url" value="<?php echo esc_attr($comment_author_url); ?>" >
 	</div>
 <?php endif; ?>
 	<!--<p><small><strong>XHTML:</strong> <?php printf(__('You can use these tags: %s'), allowed_tags()); ?></small></p>-->

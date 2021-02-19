@@ -96,6 +96,8 @@ $meta_query = array(
 		<tr>
 			<th>#</th>
 			<th><?php _e('Name','globalrec'); ?></th>
+			<th><span class='dashicons dashicons-twitter'></span></th>
+			<th><span class='dashicons dashicons-facebook-alt'></span></th>
 			<th>Skype</th>
 			<th>Email</th>
 			<th>Physical Adress</th>
@@ -132,6 +134,14 @@ $meta_query = array(
 <?php if ( is_user_logged_in() ) { ?>
 				<td> <a href="<?php the_permalink() ?>" rel="bookmark" title="Go to <?php the_title_attribute(); ?> page">
 					<strong><?php the_title(); ?></strong></a> 
+				</td>
+				<td><?php
+				    $twitter = get_post_meta( $post_id, '_wpg_twitter', true );
+				    echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'><span class='dashicons dashicons-twitter'></span>  @".$twitter."</a><br>" : ' ';  ?>
+				</td>
+				<td><?php 
+		            $facebook = get_post_meta( $post_id, '_wpg_facebook', true );
+					echo $facebook ? "<a href='".$facebook. "'><span class='dashicons dashicons-facebook-alt'></span></a><br>" : '';  ?>
 				</td>
 				<td>
 				 <?php echo get_post_meta( $post_id, '_wpg_skype', true ); ?>

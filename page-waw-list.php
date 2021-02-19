@@ -98,6 +98,7 @@ $meta_query = array(
 			<th>#</th>
 			<th><?php _e('Name','globalrec'); ?></th>
 			<th><?php _e('Web','globalrec'); ?></th>
+			<th><?php _e('SN','globalrec'); ?></th>
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Organization','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
@@ -141,6 +142,13 @@ $meta_query = array(
 						}
 				 		echo ($website != '') ? "<a href='" .$website. "'>" .$mainurl_stripped. "</a>" : '';
 				 	?>
+				</td>
+				<td>
+				<?php
+				    $twitter = get_post_meta( $post_id, '_wpg_twitter', true );
+				    echo $twitter ? "<a href='http://twitter.com/".$twitter."' title='Twitter user @".$twitter."'><span class='dashicons dashicons-twitter'></span></a><br>" : '';
+		            $facebook = get_post_meta( $post_id, '_wpg_facebook', true );
+					echo $facebook ? "<a href='".$facebook. "'><span class='dashicons dashicons-facebook-alt'></span></a><br>" : '';  ?>
 				</td>
 				<td>
 					<?php echo get_the_term_list( $post_id, 'wpg-scope', ' ', ', ', '' ); ?>

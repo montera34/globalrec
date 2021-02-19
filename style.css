@@ -197,7 +197,7 @@ a {
 }
 
 h4, h3, h2, h1 {
-	font-family: 'Sintony', lucida sans console, sans-serif;
+	/* font-family: 'Sintony', lucida sans console, sans-serif; */
 }
 .post-metadata a, h4 a, #footer a, #main-sidebar a, .type-post #post-content a, #post-content a, .content a{
 	color:#fe7c11;

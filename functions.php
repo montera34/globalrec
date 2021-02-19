@@ -2252,7 +2252,7 @@ $waw_taxonomies = array( //TODO deduplicate from archive.php
 
 // Countries in continents for filtering organizations in the WAW database
 $asia = array('india','indonesia','philippines','Bangladesh');
-$africa = array('South Africa','Ghana','Mali','Kenya','Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin');
+$africa = array('South Africa','Ghana','Mali','Kenya','Uganda','Cameroon','Senegal', 'Democratic Republic of Congo','Benin','Nigeria');
 $europe = array('France','Spain','Germany','Serbia','Italy');
 $latinamerica = array('brazil','colombia','peru','argentina', 'chile','Nicaragua','Ecuador', 'Bolivia','Mexico','Uruguay','Paraguay','Venezuela', 'Panama','Honduras','Costa Rica','Dominican Republic');
 $northamerica = array('Canada','USA','United States of America');

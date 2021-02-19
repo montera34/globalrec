@@ -1,4 +1,3 @@
-</div><!-- close container-->
 <!-- begin footer -->
 <div id="footer" class="row">
 		<div class="col-md-10">
@@ -16,20 +15,9 @@
 			</div>
 		</div>
 </div>
+</div><!-- close container-->
+</div>
 <?php wp_footer(); ?>
 
-<!-- GOOGLE PLUS
-	Place this render call where appropriate -->
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<?php
-//Include stats javascript if user is not loged in
-if ( !is_user_logged_in() ) include_once("stats.php");
-?>
 </body>
 </html>

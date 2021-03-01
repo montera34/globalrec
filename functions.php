@@ -72,7 +72,12 @@ function globalrec_scripts() {
 		wp_dequeue_script('jquery-core');
 		wp_dequeue_script('jquery-migrate');
 		wp_dequeue_script('jquery-core', false, array(),null,true);
-		wp_enqueue_script('jquery', false, array('jquery-core'), null, true);
+
+		// latest versions of WordPress use jQuery3.5 which is not compatible with bootstrap 3
+		// From March 1st 2021 we are using an older version of jQuery
+		// this is a temporary patch until we upgrade bootstrap version
+		// wp_enqueue_script('jquery', false, array('jquery-core'), null, true);
+		wp_enqueue_script('jquery-old','https://code.jquery.com/jquery-2.2.4.min.js',array(),null,true);
 
 		wp_dequeue_script('wpml-browser-redirect');
 
@@ -82,11 +87,15 @@ function globalrec_scripts() {
 		wp_dequeue_style('jetpack_css');
 
 
-		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), null, true );
+		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery-old'), null, true );
 
 		/* Load scripts for IE compatibility */
-		wp_enqueue_script( 'ie-html5shiv', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js', array(), null, true );
-		wp_enqueue_script( 'ie-respond', 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js', array('ie-html5shiv'), null, true );
+		// these two js scripts used to be used in bootstrap 3
+		// but they are no longer available online. I comment the two following lines
+		// in more recent versions of bootstrap (we're upgrading globalrec code soon!) the are not needed anymore
+		// I comment the following two lines March 1st 2021
+		// wp_enqueue_script( 'ie-html5shiv', 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js', array(), null, true );
+		// wp_enqueue_script( 'ie-respond', 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js', array('ie-html5shiv'), null, true );
 
 		wp_enqueue_style('dashicons');
 		wp_enqueue_style( 'fonts', get_template_directory_uri().'/fonts/style.css',false,null );
@@ -111,7 +120,6 @@ function globalrec_scripts() {
 	return;
 }
 add_action( 'wp_enqueue_scripts', 'globalrec_scripts',9999 );
-
 
 function globalrec_styles() {
 	wp_enqueue_style('contact-form-7');
@@ -2327,3 +2335,6 @@ function globalrec_related_posts($tag,$pid,$ptype = 'post',$count = 5) {
 
 // Gravity Forms functions
 include_once("inc/gforms.php");
+
+// WordPress functions redefined or filtered
+include_once("inc/wordpress-redefinitions.php");

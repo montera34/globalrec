@@ -7,3 +7,7 @@ icon-publications.png
 hand-in-hand.png
 wp-config.php
 .htaccess
+
+# vim editor
+*.swp
+*.swo

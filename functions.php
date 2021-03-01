@@ -2301,8 +2301,8 @@ add_action('wp_dashboard_setup', 'wpml_remove_dashboard_widget' );
 
 // Disable REST API
 // Filters for WP-API version 2.x
-add_filter('rest_enabled', '__return_false');
-add_filter('rest_jsonp_enabled', '__return_false');
+// add_filter('rest_enabled', '__return_false');
+// add_filter('rest_jsonp_enabled', '__return_false');
 
 // Related posts by tag
 function globalrec_related_posts($tag,$pid,$ptype = 'post',$count = 5) {

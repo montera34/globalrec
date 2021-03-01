@@ -491,3 +491,27 @@ background-color:#d95f0e;
 a.btn-success  {
     color: white !important;
 }
+
+/* images in the_content responsiveness */
+.content img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* iframes responsiveness */
+.iframe-container {
+	overflow: hidden;
+	padding-top: 56.25%;
+	position: relative;
+	margin-bottom: 1em;
+}
+.iframe-container iframe {
+	border: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+}

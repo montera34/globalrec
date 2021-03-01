@@ -2335,3 +2335,6 @@ function globalrec_related_posts($tag,$pid,$ptype = 'post',$count = 5) {
 
 // Gravity Forms functions
 include_once("inc/gforms.php");
+
+// WordPress functions redefined or filtered
+include_once("inc/wordpress-redefinitions.php");

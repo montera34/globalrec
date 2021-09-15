@@ -76,7 +76,7 @@ $meta_query = array(
 				'orderby' => 'date',
 				'order' => 'ASC',
 				// 'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
-				'meta_query' => $meta_query
+				//'meta_query' => $meta_query
 			);
 			$my_query = new WP_Query($args);
 			?>

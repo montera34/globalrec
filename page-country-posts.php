@@ -14,10 +14,10 @@ get_header(); ?>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<?php the_content(); ?>
 				<h3>
-					Legend: <span class="label year-2013">2012</span>  <span class="label year-2013">2013</span> <span class="label year-2014">2014</span> <span class="label year-2015">2015</span> <span class="label year-2016">2016</span> <span class="label year-2017">2017</span> <span class="label year-2018">2018</span> <span class="label year-2019">2019</span>
+					Legend: <span class="label year-2013">2012</span>  <span class="label year-2013">2013</span> <span class="label year-2014">2014</span> <span class="label year-2015">2015</span> <span class="label year-2016">2016</span> <span class="label year-2017">2017</span> <span class="label year-2018">2018</span> <span class="label year-2019">2019</span> <span class="label year-2020">2020</span> <span class="label year-2021">2021</span>
 				</h3>
 			</div>
 		</div>

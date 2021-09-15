@@ -460,26 +460,29 @@ nav li.menu-item-has-children {
 .year-2012 {
 	background-color:red !important;
 }
-.year-2013 {
+.year-2013, .year-2014, .year-2015 {
 	background-color:red;
 }
-.year-2014 {
+.year-2016 {
 background-color:#d95f0e;
 }
-.year-2015 {
+.year-2017 {
 	background-color:#fe9929;
 }
-.year-2016 {
+.year-2018 {
 	background-color:#fec44f;
 }
-.year-2017 {
+.year-2019 {
 	background-color:#fee391;
 }
-.year-2018 {
+.year-2020 {
 	background-color:#ffffd4;
 	color: black;
 }
-.year-2019 {
+.year-2021 {
+	background-color:lightgreen;
+}
+.year-2022 {
 	background-color:lightgreen;
 }
 

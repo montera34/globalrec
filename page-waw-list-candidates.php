@@ -73,9 +73,9 @@ $meta_query = array(
 				'posts_per_page' => -1,
 				'post_status' => array( 'pending', 'draft' ),
 				'orderby' => 'title',
-				'orderby' => 'modified',
+				'orderby' => 'date',
 				'order' => 'ASC',
-				'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
+				// 'suppress_filters'=> true, //removes filter by language so the list can be displayed in all the pages regardless its language
 				'meta_query' => $meta_query
 			);
 			$my_query = new WP_Query($args);
@@ -88,6 +88,7 @@ $meta_query = array(
 			<th><?php _e('Scope','globalrec'); ?></th>
 			<th><?php _e('Type of Member','globalrec'); ?></th>
 			<th><?php _e('Submitted','globalrec'); ?></th>
+			<th><?php _e('Creation','globalrec'); ?></th>
 			<th><?php _e('Location','globalrec'); ?></th>
 		</tr>
 	</thead>
@@ -118,6 +119,9 @@ $meta_query = array(
 				</td>
 				<td class="text-right">
 					<?php the_modified_date(); ?>
+				</td>
+				<td class="text-right">
+					<?php $post_date = get_the_date( 'Y M j' ); echo $post_date;  ?>
 				</td>
 				<td><?php 
 						//City

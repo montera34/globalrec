@@ -104,6 +104,30 @@ $meta_query = array(
 			<th><?php _e('Location','globalrec'); ?></th>
 			<th><?php _e('Year formed','globalrec'); ?> (<?php _e('registration year','globalrec'); ?>)</th>
 			<th>Member occupation</th>
+			<?php if ( is_user_logged_in() ) { ?>
+				<th><?php _e('Organization email','globalrec'); ?></th>
+				<th><?php _e('Physical address','globalrec'); ?></th>
+				<th><?php _e('Street number postal code','globalrec'); ?></th>
+				<th><?php _e('Postal address','globalrec'); ?></th>
+				<th><?php _e('City','globalrec'); ?></th>
+				<th><?php _e('Region','globalrec'); ?></th>
+				<th><?php _e('Country code','globalrec'); ?></th>
+				<th><?php _e('Phone 1','globalrec'); ?></th>
+				<th><?php _e('Phone 2','globalrec'); ?></th>
+				<th><?php _e('Cellphone','globalrec'); ?></th>
+				<th><?php _e('Fax','globalrec'); ?></th>
+				<th><?php _e('Skype','globalrec'); ?></th>
+				<th><?php _e('Facebook','globalrec'); ?></th>
+				<th><?php _e('Twitter','globalrec'); ?></th>
+				<th><?php _e('Primary name','globalrec'); ?></th>
+				<th><?php _e('primary position','globalrec'); ?></th>
+				<th><?php _e('primary phone','globalrec'); ?></th>
+				<th><?php _e('primary email','globalrec'); ?></th>
+				<th><?php _e('Secondary name','globalrec'); ?></th>
+				<th><?php _e('2nd position','globalrec'); ?></th>
+				<th><?php _e('2nd phone','globalrec'); ?></th>
+				<th><?php _e('2nd email','globalrec'); ?></th>
+			<?php } ?>
 		</tr>
 	</thead>
     <tbody>
@@ -204,6 +228,76 @@ $meta_query = array(
 				<td>
 				 <?php echo get_the_term_list( $post_id, 'wpg-member-occupation', ' ', ', ', '' ); ?>
 				</td>
+				<?php if ( is_user_logged_in() ) { ?>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_email', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_physical_address', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_street_name', true ); ?> 
+	 				 <?php echo get_post_meta( $post_id, '_wpg_street_number', true ); ?>.
+	 				 <?php echo get_post_meta( $post_id, '_wpg_postal_code', true ); ?>
+					</td>
+					<td>
+	 				 <?php echo get_post_meta( $post_id, '_wpg_postal_address', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, 'city', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_region', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_country_code_telephone', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_phone1', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_phone2', true ); ?>
+					</td>	
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_cell_phone', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_fax', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_skype', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_facebook', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_twitter', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_primary_contact_name', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_primary_contact_position', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_primary_contact_phone', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_primary_contact_email', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_secondary_contact_name', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_secondary_contact_position', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_secondary_contact_phone', true ); ?>
+					</td>
+					<td>
+					 <?php echo get_post_meta( $post_id, '_wpg_secondary_contact_email', true ); ?>
+					</td>
+				<?php } ?>
 			</tr>
 		</div>
 	<?php endwhile; else: ?>

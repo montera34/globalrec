@@ -1,10 +1,10 @@
 <?php  /* Template Name: Newsletter Creation */
 get_header(); 
-$asian_posts = -1;
+$asian_posts = -1;	
 $asian_offset = 0;
 $latinamerican_posts = -1;
 $latinamerican_offset = 0;
-$african_posts= -1;
+$african_posts= -1;	
 $african_offset= 0;
 $european_posts= -1;
 $european_offset= 0;
@@ -12,7 +12,7 @@ $northamerican_posts= -1;
 $northamerican_offset= 0;
 $global_posts= -1;
 $global_offset= 0;
-$newsletter_number = icl_object_id(4572, 'post-newsletter');
+$newsletter_number = icl_object_id(5061, 'post-newsletter');
 
 $argsasia = array(
 	'post_status' => array( 'publish', 'future','draft' ),

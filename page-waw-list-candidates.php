@@ -1,4 +1,4 @@
-<?php  /* Template Name: Waste Picker Groups Candidates List */
+<?php  /* Template Name: Waste Pick	er Groups Candidates List */
 get_header();
 
 // Grabs continent from url to filter the list of organization displayed by continent
@@ -142,7 +142,7 @@ $meta_query = array(
 							echo $city2;
 							if (!empty($city2)) { echo ", ";};
 						}*/
-								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';
+								echo '<a href="/city/'.$city2_slug.'">'.$city2.'</a>, ';	
 							}
 						
 						//Country

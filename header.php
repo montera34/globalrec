@@ -64,12 +64,12 @@ if ( is_single() || is_page() ) {
 		<div class="row">
 			<div id="imagotipo" class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
 				<a title="Home" href="<?php bloginfo('url'); ?>/" class="pull-left" style="margin-right:5px;">
-					<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png" 
-					alt="<?php _e( 'GLOBAL ALLIANCE OF', 'globalrec' ); ?> <?php _e( 'WASTE PICKERS', 'globalrec' ); ?>" />
+					<img class="imago_top" src="<?php bloginfo('template_url'); ?>/images/logo_9.png" alt="<?php _e( 'INTERNATIONAL ALLIANCE OF', 'globalrec' ); ?> <?php _e( 'WASTE PICKERS', 'globalrec' ); ?>" />
+					<!--<img src="<?php bloginfo('template_url'); ?>/images/logo_<?php $random = rand(3,8); echo $random; ?>.png"-->
 				</a>
 				<div id="logotype">
-					<span style="font-size:22px;line-height: 22px;color: #999;font-weight:400;"><?php _e( 'GLOBAL ALLIANCE OF', 'globalrec' ); ?></span>
-					<br><span class="globalreccolor" style="font-weight:700; font-size:32px;line-height: 36px;"><?php _e( 'WASTE PICKERS', 'globalrec' ); ?></span>
+					<span class="top_logo"><?php _e( 'INTERNATIONAL ALLIANCE OF', 'globalrec' ); ?></span>
+					<br><span class="globalreccolor bottom_logo"><?php _e( 'WASTE PICKERS', 'globalrec' ); ?></span>
 				</div>
 			</div>
 			<div id="tagline" class="col-xs-12 col-md-7 col-lg-8">

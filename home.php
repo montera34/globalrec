@@ -136,8 +136,8 @@ $output = '';
 		</div>
 		<!-- end sidebar -->
 	</div>
-	<div id="footer-home-bar" class="row" 	style="border-top:5px solid #fe7c11;	margin:10px 0 0 0;">
-	<h5><?php _e('Waste Picker Groups','globalrec'); ?></h5>
+	<div id="footer-home-bar" class="row" class="horizontal_line"> 
+	<!--<h5><?php _e('Waste Picker Groups','globalrec'); ?></h5>-->
 	<?php dynamic_sidebar( 'footer-home-bar' ) ?>
 	</div>	 
 	<?php get_footer(); ?>

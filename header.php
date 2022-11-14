@@ -41,7 +41,7 @@ if ( is_single() || is_page() ) {
 <meta content="global_rec" name="author" />
 <meta content="<?php echo $metadesc ?>" name="description" />
 <meta name="keywords" content="waste picker, reciclador, waste pickers, trash, waste, recycling, basura, reciclaje, residuos, globalrec.org, globalrec, lixo" />
-<meta content="Global Alliance of Waste Pickers" name="organization" />
+<meta content="International Alliance of Waste Pickers" name="organization" />
 <!-- twitter meta -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@global_rec">
@@ -108,7 +108,7 @@ if ( is_single() || is_page() ) {
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
 						<small>
-							<?php _e("The Global Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 28 countries covering mainly Latin America, Asia and Africa.",'globalrec'); ?>
+							<?php _e("The International Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 28 countries covering mainly Latin America, Asia and Africa.",'globalrec'); ?>
 						</small>
 					</div>
 					<div class="col-md-4">
@@ -125,8 +125,8 @@ if ( is_single() || is_page() ) {
 				<div class="pull-right">
 					<ul id="social-networking-sites" class="list-inline">
 						<li><a href="https://www.twitter.com/globalrec_org" title="Twitter @globalrec_org" target="_blank"><span class="dashicons dashicons-twitter"></span> Twitter</a></li>
-						<li><a href="https://www.facebook.com/GlobalRec" title="Facebook Global Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-facebook-alt"></span> Facebook</a></li>
-						<li><a href="https://instagram.com/globalrec_org" title="Instagram Global Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-instagram"></span> Instagram</a></li>
+						<li><a href="https://www.facebook.com/GlobalRec" title="Facebook International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-facebook-alt"></span> Facebook</a></li>
+						<li><a href="https://instagram.com/globalrec_org" title="Instagram International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-instagram"></span> Instagram</a></li>
 					</ul>
 				</div>
 			</div>

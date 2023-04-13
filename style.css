@@ -166,7 +166,7 @@ color: black;
 	font-size:85%;
 }
 #language_list li.active a{
-	background-color:#fe7c11;
+	background-color:#668000;
 	border-radius: 0;
 }
 #language_list li:hover, #language_list .nav-pills li a:hover{
@@ -185,11 +185,11 @@ a {
 }
 
 #commentlist a {
- color:#fe7c11;
+ color:#668000;
 }
 
 .globalreccolor {
-  color:#fe7c11;
+  color:#668000;
 }
 .post-metadata{
 	color:#888;
@@ -200,7 +200,7 @@ h4, h3, h2, h1 {
 	/* font-family: 'Sintony', lucida sans console, sans-serif; */
 }
 .post-metadata a, h4 a, #footer a, #main-sidebar a, .type-post #post-content a, #post-content a, .content a{
-	color:#fe7c11;
+	color:#668000;
 }
 .alert a.btn {
 	color: white;
@@ -236,7 +236,7 @@ background-color: #F3F3F3;
 */
 .portada-home {}
 h4.post-title a {
-	color:#fe7c11;
+	color:#668000;
 }
 
 #home-boxes a:link {
@@ -332,14 +332,14 @@ h4.post-title a {
 	border-radius: 0px;
 }
 #main-menu ul li {
-	background-color:#fe7c11;
+	background-color:#668000;
 	margin-right: 3px;
 	margin-bottom: 3px;
-	border:1px solid #fe7c11;
+	border:1px solid #668000;
 	
 }
 #main-menu li:hover, #main-menu .navbar-nav li a:hover{
-	background-color:#fd6b00;
+	background-color:#668000;
 }
 
 #main-menu li a{
@@ -352,7 +352,7 @@ h4.post-title a {
 	
 }
 #main-menu li.current-menu-item a{
-	color:#fe7c11;
+	color:#668000;
 }
 
 nav li.menu-item-has-children {
@@ -367,14 +367,14 @@ nav li.menu-item-has-children {
 }
 
 #footer{
-	border-top:10px solid #fe7c11;
+	border-top:10px solid #668000;
 	margin-top:10px;
 	height: 35px;
 }
 
 /* Pagination */
 .pagination .current {
-	background-color:#fe7c11;
+	background-color:#668000;
 }
 
 /* map */
@@ -443,7 +443,7 @@ nav li.menu-item-has-children {
 	float: right !important;
 	text-indent: 0px !important;
 	padding: 13px !important;
-	border-top: 3px #fe7c11 solid !important;
+	border-top: 3px #668000 solid !important;
 	border-bottom:0px !important;
 	box-shadow: 7px 7px 8px 0px rgba(129,129,129,0.5) !important;
 	font-size: 130% !important;

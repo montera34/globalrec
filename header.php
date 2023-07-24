@@ -53,6 +53,16 @@ if ( is_single() || is_page() ) {
 	
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W2VLMKCF00"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W2VLMKCF00');
+</script>
+
 <?php wp_head(); ?>
 
 </head>
@@ -124,9 +134,11 @@ if ( is_single() || is_page() ) {
 			<div class="col-md-12">
 				<div class="pull-right">
 					<ul id="social-networking-sites" class="list-inline">
-						<li><a href="https://www.twitter.com/globalrec_org" title="Twitter @globalrec_org" target="_blank"><span class="dashicons dashicons-twitter"></span> Twitter</a></li>
-						<li><a href="https://www.facebook.com/GlobalRec" title="Facebook International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-facebook-alt"></span> Facebook</a></li>
-						<li><a href="https://instagram.com/globalrec_org" title="Instagram International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-instagram"></span> Instagram</a></li>
+						<li><a href="https://www.twitter.com/globalrec_org" title="Twitter International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-twitter"></span></a></li>
+						<li><a href="https://www.facebook.com/GlobalRec" title="Facebook International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-facebook-alt"></span></a></li>
+						<li><a href="https://instagram.com/globalrec_org" title="Instagram International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-instagram"></span></a></li>
+						<li><a href="https://www.linkedin.com/company/globalrec" title="LinkedIn International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-linkedin"></span></a></li>
+						<li><a href="https://www.youtube.com/user/GlobalRecTV" title="YouTube International Alliance of Waste Pickers" target="_blank"><span class="dashicons dashicons-youtube"></span></a></li>
 					</ul>
 				</div>
 			</div>

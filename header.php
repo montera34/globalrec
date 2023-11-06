@@ -118,7 +118,7 @@ if ( is_single() || is_page() ) {
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
 						<small>
-							<?php _e("The International Alliance of Waste Pickers is a networking process supported by WIEGO, among thousands of waste picker organizations with groups in more than 32 countries covering mainly Latin America, Asia and Africa.",'globalrec'); ?>
+							<?php _e("The International Alliance of Waste Pickers is a union of waste picker groups representing more than 460,000 workers across 34 countries.",'globalrec'); ?>
 						</small>
 					</div>
 					<div class="col-md-4">

@@ -36,9 +36,9 @@ $output2 = ''; ?>
 				<div class="row">
 					<div class="col-md-12">
 					<?php if ( is_user_logged_in() ) { echo '<div class="btn btn-sm btn-default pull-right">'; edit_post_link(__('Edit This')); echo "</div>";} ?>
-					<h3>
+					<h1>
 						<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
-					</h3>
+					</h1>
 					</div>
 				</div>
 				<div class="row">

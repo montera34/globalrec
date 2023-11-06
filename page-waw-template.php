@@ -10,7 +10,7 @@ get_header(); ?>
 			</h2>
 		</div>
 		<div class="row">
-			<div class="col-md-3 legend-map">
+			<!--div class="col-md-3 legend-map">
 				<h3><a href="<?php echo get_permalink( icl_object_id( 23274 , 'page' , false)); ?>"><span class="glyphicon glyphicon-user"></span> <?php _e("Waste Pickers' Organizations","globalrec"); ?></a></h3>
 				<ul>
 					<li><span class="label" style="background-color: #FE7C11;"><?php _e("Waste Pickers' Organizations","globalrec"); ?></span></li>
@@ -41,6 +41,7 @@ get_header(); ?>
 				  </ul>
 				<?php } ?>
 			</div>
+			<!-->
 			<div class="col-md-9 content">
 			<?php the_content(); ?>
 			<?php // hides supporters page for not logged in users

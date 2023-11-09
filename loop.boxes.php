@@ -129,7 +129,7 @@ if ( $postType == 'document' ) {
 				echo " ".$region;
 				echo " | ";
 			}
-			if ($postType == 'global-meeting') {
+			if ($postType == 'global-meeting' || $postType == 'document' ) {
 				//do nothing
 			} else if ($postType == 'waste-picker-org') {
 				echo get_post_meta( $post_id, 'city', true ). ", ";

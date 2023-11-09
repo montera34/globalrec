@@ -75,7 +75,10 @@ $waw_taxonomies = array(
 				<h2><?php _e('Archive:', 'cp'); ?> <span><?php the_time( __('Y', 'cp') ); ?></span></h2>
 			<?php } elseif ( isset($_GET['paged']) && !empty($_GET['paged']) ) { ?>
 				<h2><?php __('Blog Archives', 'cp'); ?></h2>
-			<?php } ?>
+			<?php } else {
+				the_archive_title( '<h2 class="page-title">', '</h2>' );
+				the_archive_description( '<div class="page-description">', '</div>' );
+			} ?>
 		</header>
 	</div>
 	<?php $cat_desc = category_description();

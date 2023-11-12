@@ -81,7 +81,10 @@ function globalrec_scripts() {
 
 		wp_dequeue_script('wpml-browser-redirect');
 
-		wp_dequeue_style('wp-block-library');
+		// We didn't need block editor styles in the front end until now
+		// I'm uncomment this to fix some responsiveness problems in home widgets area
+		// 12th november 2023
+		// wp_dequeue_style('wp-block-library');
 		wp_dequeue_style('contact-form-7');
 		wp_dequeue_style('newsletter');
 		wp_dequeue_style('jetpack_css');

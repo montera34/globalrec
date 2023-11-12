@@ -6,11 +6,7 @@ $output = '';
 <div id="home">
 	<div class="row">
 		<div class="col-md-9">
-			<div class="row"> <!-- space for banners X -->
-				 <div class="col-md-12">
-					<?php dynamic_sidebar( 'front-page-widget-area-main' ); ?>
-				</div>
-			</div>
+			<?php dynamic_sidebar( 'front-page-widget-area-main' ); ?>
 			<div class="row" id="home-boxes">
 				<!-- box for Life and Voices -->
 				<div class="col-xs-12 col-sm-6 col-md-4">
